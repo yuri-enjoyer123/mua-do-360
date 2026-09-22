@@ -10,6 +10,8 @@ Theo kết quả rà soát và yêu cầu xác thực lịch sử:
 - **Kiểm tra tài nguyên**: SHA-256 của chín JPEG gốc và hai panorama phái sinh đang hoạt động khớp hồ sơ. Bốn tệp panorama/thumbnail đã rút khỏi cả thư mục công khai và bản build. Hồ sơ của hai cảnh bị rút vẫn lưu trong provenance với trạng thái `withdrawn`.
 - **Kiểm thử chức năng**: Build đạt. Lượt đầy đủ đầu tiên có 41/42 kiểm thử đạt trong 4,3 phút; bài điều hướng bàn phím và vòng chuyển cảnh trên máy tính vượt tổng thời lượng 30 giây, với các bước trung gian đã đạt. Gemini 3.8 Flash đọc trace và chỉnh riêng bài này sang 60 giây, bỏ một lần bấm lại cảnh đang mở, giữ mọi assertion. Tác nhân chính chạy lại bài trên cả máy tính và điện thoại: 2/2 đạt trong 24,3 giây. Quy trình GitHub Actions sẽ chạy lại toàn bộ 42 kiểm thử trước khi xuất bản; chưa coi lần kiểm tra cục bộ đầu tiên là 42/42 đạt.
 
+Lượt CI `35748055343` tiếp theo có 41/42 đạt trong 5,7 phút; bài album rồi trở về 360° trên máy tính vượt tổng thời lượng 30 giây. Không có trace tải lên nên chưa xác định được chính xác bước gây chậm. Sau khi áp dụng cùng thời lượng 60 giây như các bài chuyển nhiều cảnh, chạy riêng bài này đạt 2/2 trong 11,8 giây; không bỏ assertion. CI chuyển sang một worker để giảm tranh tài nguyên khi dựng hình bằng SwiftShader và lưu trace khi thất bại. Việc này không thay đổi hiệu ứng hoặc nội dung trên website; lượt CI mới vẫn phải đạt đủ 42 kiểm thử trước khi xuất bản.
+
 Dưới đây là nguyên văn toàn bộ tài liệu rà soát chi tiết của bản phát hành trước (2026-09-22, commit `58a9590`), lưu giữ đầy đủ hồ sơ QA, kiểm thử, xử lý đường nối và Impeccable:
 
 ---

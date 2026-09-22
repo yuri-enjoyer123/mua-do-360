@@ -106,6 +106,7 @@ test('eras restore their selected scenes and links retain date and source attrib
 });
 
 test('archival photo can zoom, pan, reset and return to 360 without changing its date', async ({ page }) => {
+  test.setTimeout(60000);
   await page.goto('./#scene=quang-tri-south-1967');
   await photoReady(page);
   await expect(page.locator('[data-collection="archive"]')).toHaveAttribute('aria-pressed', 'true');

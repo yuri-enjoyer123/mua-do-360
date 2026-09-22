@@ -5,7 +5,7 @@ export default defineConfig({
   timeout: 30000,
   expect: { timeout: 10000 },
   fullyParallel: true,
-  workers: 2,
+  workers: process.env.CI ? 1 : 2,
   reporter: [['list']],
   use: {
     baseURL: process.env.TOUR_URL || 'http://127.0.0.1:4173',
