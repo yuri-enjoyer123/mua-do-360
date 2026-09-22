@@ -35,7 +35,7 @@ npm run preview
 - Dữ liệu các cảnh và nguồn tham khảo nằm trong `src/content.ts`.
 - Panorama giữ độ phân giải nguồn; không phóng lớn rồi giới thiệu là ảnh 4K. Bản WebP và thumbnail được nén để tải nhẹ.
 - Ảnh nguồn 1774 × 887 có giới hạn độ nét khi phóng lớn; một số vùng nối và vùng cực của panorama còn biến dạng. Đây là tour 360° trong trình duyệt, chưa có chế độ kính WebXR.
-- Phông Newsreader và Be Vietnam Pro lưu tại `public/fonts`, kèm giấy phép SIL Open Font License. Pannellum theo giấy phép MIT; giấy phép thư viện được giữ trong gói phụ thuộc.
+- Phông Newsreader và Be Vietnam Pro lưu tại `public/fonts`, kèm giấy phép SIL Open Font License. Pannellum theo giấy phép MIT; bản sao giấy phép được phân phối tại `public/licenses/Pannellum-MIT.txt`.
 - Không sao chép ảnh tư liệu của các cơ quan, toàn văn tiểu thuyết hay thông tin cá nhân của người thuyết trình vào website.
 
 ## Triển khai miễn phí
