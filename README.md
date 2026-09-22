@@ -8,10 +8,12 @@ Tour trình duyệt gồm bốn điểm nhìn minh họa: bờ Thạch Hãn, hà
 
 ## Sử dụng
 
+- Trang mở thẳng cảnh 360°. Nút thông tin trong thanh điều khiển mở nguồn lịch sử, giới hạn ảnh AI và câu chuyện của điểm nhìn.
 - Kéo chuột/chạm để nhìn quanh; chọn dấu chuyển điểm hoặc các ảnh thu nhỏ để đổi cảnh.
 - Phím 1–4 chọn điểm nhìn; khi không gian đang được chọn, dùng phím mũi tên để quay nhìn và +/− để thay đổi góc nhìn.
 - F mở toàn màn hình, P bật/tắt trình chiếu. Escape đóng bảng tư liệu hoặc thoát trình chiếu.
 - Âm thanh thiên nhiên là âm thanh tổng hợp, mặc định tắt, không phải âm thanh tư liệu.
+- Nút bật âm thanh, trình chiếu và hướng dẫn nằm trong bảng thông tin để màn hình ngắm cảnh được gọn.
 - Chia sẻ một điểm bằng địa chỉ có đuôi `#scene=cong-hau` (hoặc `thach-han`, `hao-thanh`, `noi-thanh`).
 
 ## Chạy và kiểm tra

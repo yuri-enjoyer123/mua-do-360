@@ -7,20 +7,22 @@ async function ready(page: Page) {
   await expect(page.locator('#viewer-error')).toBeHidden();
 }
 
-test('intro, real panorama, all viewpoints, and historical notice', async ({ page }) => {
+test('direct panorama entry, all viewpoints, and clean immersion', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('./');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Mưa đỏ');
-  await expect(page.locator('.reconstruction-label')).toContainText('Không phải ảnh chụp năm 1972');
-  await page.getByRole('button', { name: 'Bắt đầu hành trình' }).click();
+  await expect(page.locator('.introduction')).toHaveCount(0);
+  await expect(page.locator('header')).toHaveCount(0);
+  await expect(page.locator('.location-tag')).toHaveCount(0);
+  await expect(page.locator('.reconstruction-label')).toHaveCount(0);
   await ready(page);
   for (const id of ids) {
     await page.locator(`[data-scene="${id}"]`).click();
     await expect(page).toHaveURL(new RegExp(`#scene=${id}$`));
     await ready(page);
     await expect(page.locator(`[data-scene="${id}"]`)).toHaveAttribute('aria-current', 'location');
-    await expect(page.locator('.reconstruction-label')).toBeVisible();
+    await expect(page.locator('.introduction')).toHaveCount(0);
+    await expect(page.locator('.reconstruction-label')).toHaveCount(0);
   }
   expect(errors).toEqual([]);
 });
@@ -28,10 +30,12 @@ test('intro, real panorama, all viewpoints, and historical notice', async ({ pag
 test('deep link and browser history restore selected viewpoint', async ({ page }) => {
   await page.goto('./#scene=cong-hau');
   await ready(page);
+  await expect(page.locator('#scene-title')).toHaveClass(/sr-only/);
   await expect(page.locator('#scene-title')).toHaveText('Quanh Cổng Hậu');
   await page.locator('[data-scene="noi-thanh"]').click();
   await ready(page);
   await page.goBack();
+  await expect(page.locator('#scene-title')).toHaveClass(/sr-only/);
   await expect(page.locator('#scene-title')).toHaveText('Quanh Cổng Hậu');
   await ready(page);
 });
@@ -39,29 +43,34 @@ test('deep link and browser history restore selected viewpoint', async ({ page }
 test('source drawer separates historical evidence and interpretive details', async ({ page }) => {
   await page.goto('./#scene=cong-hau');
   await ready(page);
-  await page.locator('.read-scene').click();
+  await page.locator('#scene-information').click();
   const dialog = page.locator('#information-dialog');
   await expect(dialog).toBeVisible();
-  await expect(dialog).toContainText('vòm cuốn');
-  await expect(dialog).toContainText('diễn họa');
-  await expect(dialog).toContainText('tiểu thuyết');
-  await page.locator('#sources-tab').click();
+  await expect(page.locator('#sources-panel')).toBeVisible();
   await expect(page.locator('#sources-panel')).toContainText('Cục Di sản');
   const links = await page.locator('#sources-panel a[href]').evaluateAll(nodes => nodes.map(n => (n as HTMLAnchorElement).href));
   expect(links.length).toBeGreaterThanOrEqual(3);
   expect(links.every(url => url.startsWith('https://'))).toBe(true);
+  await page.locator('#story-tab').click();
+  await expect(page.locator('#story-panel')).toBeVisible();
+  await expect(dialog).toContainText('vòm cuốn');
+  await expect(dialog).toContainText('diễn họa');
+  await expect(dialog).toContainText('tiểu thuyết');
   await page.keyboard.press('Escape');
   await expect(dialog).not.toBeVisible();
-  await expect(page.locator('.read-scene')).toBeFocused();
+  await expect(page.locator('#scene-information')).toBeFocused();
 });
 
-test('presentation keeps disclosure visible and can exit; audio defaults off', async ({ page }) => {
+test('presentation and audio controls inside info dialog; presentation closes dialog', async ({ page }) => {
   await page.goto('./#scene=thach-han');
   await ready(page);
-  await expect(page.locator('#ambience-button')).toHaveAttribute('aria-pressed', 'false');
-  await page.locator('#presentation-button').click();
+  await page.locator('#scene-information').click();
+  const dialog = page.locator('#information-dialog');
+  await expect(dialog).toBeVisible();
+  await expect(dialog.locator('#ambience-button')).toHaveAttribute('aria-pressed', 'false');
+  await dialog.locator('#presentation-button').click();
+  await expect(dialog).not.toBeVisible();
   await expect(page.locator('body')).toHaveClass(/presentation/);
-  await expect(page.locator('.reconstruction-label')).toBeVisible();
   await expect(page.locator('#presentation-exit')).toBeVisible();
   await page.locator('#presentation-exit').click();
   await expect(page.locator('body')).not.toHaveClass(/presentation/);
@@ -95,7 +104,6 @@ test('WebGL unavailable leaves readable scene and source access', async ({ page 
 
 test('responsive layout, image assets, and initial transfer budget', async ({ page }) => {
   await page.goto('./');
-  await page.getByRole('button', { name: 'Bắt đầu hành trình' }).click();
   await ready(page);
   const layout = await page.evaluate(() => ({ width: innerWidth, scrollWidth: document.documentElement.scrollWidth }));
   expect(layout.scrollWidth).toBeLessThanOrEqual(layout.width + 1);
@@ -108,7 +116,6 @@ test('responsive layout, image assets, and initial transfer budget', async ({ pa
 
 test('rapid navigation finishes on latest scene, including invalid hash', async ({ page }) => {
   await page.goto('./#scene=does-not-exist');
-  await page.getByRole('button', { name: 'Bắt đầu hành trình' }).click();
   await ready(page);
   await page.evaluate(() => {
     for (const id of ['hao-thanh', 'cong-hau', 'noi-thanh']) {
@@ -120,10 +127,45 @@ test('rapid navigation finishes on latest scene, including invalid hash', async 
   await expect(page.locator('#scene-title')).toHaveText('Bên trong Thành cổ');
 });
 
-test('reconstruction disclosure remains legible', async ({ page }) => {
+test('invalid hash during tour resets to valid first scene with working renderer', async ({ page }) => {
+  await page.goto('./#scene=cong-hau');
+  await ready(page);
+  await expect(page.locator('#scene-title')).toHaveText('Quanh Cổng Hậu');
+  await page.evaluate(() => {
+    location.hash = '#scene=invalid-corrupted-hash';
+  });
+  await ready(page);
+  await expect(page).toHaveURL(/#scene=thach-han$/);
+  await expect(page.locator('#scene-title')).toHaveText('Bờ sông Thạch Hãn');
+  await expect(page.locator('#panorama canvas')).toBeVisible();
+  await page.evaluate(() => {
+    location.hash = '';
+  });
+  await ready(page);
+  await expect(page).toHaveURL(/#scene=thach-han$/);
+  await expect(page.locator('#scene-title')).toHaveText('Bờ sông Thạch Hãn');
+  await expect(page.locator('#panorama canvas')).toBeVisible();
+});
+
+test('compact info access reaches sources, AI disclosure, historical links, and 44px target', async ({ page }) => {
   await page.goto('./');
-  const size = await page.locator('.reconstruction-label').evaluate(el => parseFloat(getComputedStyle(el).fontSize));
-  expect(size).toBeGreaterThanOrEqual(10);
+  await ready(page);
+  const infoButton = page.locator('#scene-information');
+  const box = await infoButton.boundingBox();
+  expect(box).not.toBeNull();
+  expect(box!.width).toBeGreaterThanOrEqual(44);
+  expect(box!.height).toBeGreaterThanOrEqual(44);
+
+  await infoButton.click();
+  const dialog = page.locator('#information-dialog');
+  await expect(dialog).toBeVisible();
+  await expect(page.locator('#sources-panel')).toBeVisible();
+  await expect(page.locator('#sources-panel')).toContainText('Toàn bộ ảnh toàn cảnh do AI tạo');
+  await expect(page.locator('#sources-panel')).toContainText('Đây không phải ảnh tư liệu');
+
+  const links = await page.locator('#sources-panel a[href]').evaluateAll(nodes => nodes.map(n => (n as HTMLAnchorElement).href));
+  expect(links.length).toBeGreaterThanOrEqual(3);
+  expect(links.some(url => url.includes('dsvh.gov.vn') || url.includes('vnanet.vn') || url.includes('quangtri.gov.vn') || url.includes('vietnamtourism.vn'))).toBe(true);
 });
 
 test('mouse or touch drag and keyboard turn the actual panorama', async ({ page, isMobile }) => {

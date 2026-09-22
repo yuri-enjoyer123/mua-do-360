@@ -2,7 +2,7 @@
 
 Phạm vi: bốn điểm gợi không gian Quảng Trị trong cuộc chiến đấu 81 ngày đêm, từ 28/6 đến 16/9/1972. Đây là một hành trình đọc văn học bằng hình ảnh phục dựng, không phải hồ sơ khảo cổ, mô hình đo đạc hay ảnh toàn cảnh chụp trong chiến tranh.
 
-Thông báo phải luôn hiện trên cảnh: **Phục dựng theo tư liệu — không phải ảnh chụp năm 1972**.
+Thông tin **Phục dựng theo tư liệu — không phải ảnh chụp năm 1972** nằm trong bảng nguồn, mở bằng nút thông tin ảnh. Theo yêu cầu tinh gọn giao diện của chủ dự án, thông báo không còn là thanh chữ phủ thường trực lên cảnh.
 
 Chưa tìm thấy ảnh toàn cảnh 360 độ chụp đúng thời kỳ này trong các nguồn đã khảo sát. Bộ tư liệu của dự án không có panorama gốc năm 1972; không được biến giới hạn tìm kiếm này thành khẳng định rằng trên thế giới không tồn tại bất kỳ tư liệu nào như vậy. Hình ảnh do AI tạo là sản phẩm diễn họa, không bổ sung bằng chứng lịch sử.
 
@@ -54,6 +54,6 @@ Tên, lớp, thông tin cá nhân và đường dẫn tài liệu học tập ri
 
 1. Đọc từng nhận định có thể kiểm chứng và đối chiếu nguồn gắn ở cảnh đó.
 2. Quan sát toàn bộ hình, kể cả phía sau và vùng sát chân trời, để loại chi tiết sai niên đại hoặc hình thể vô lý.
-3. Giữ thông báo phục dựng dễ đọc trên máy tính và điện thoại; giữ mục dữ kiện và phần diễn họa có thể mở tại mỗi điểm.
+3. Giữ thông tin phục dựng dễ đọc trong bảng nguồn trên máy tính và điện thoại; nút thông tin phải mở được tại mỗi điểm, cùng mục dữ kiện và phần diễn họa.
 4. Không thay tên các cảnh minh họa thành địa điểm chính xác hoặc công sự có danh tính khi chưa có bằng chứng mới.
 5. Kiểm tra attribution và quyền sử dụng cho mọi tài sản ngoài hình ảnh tự tạo của dự án.
