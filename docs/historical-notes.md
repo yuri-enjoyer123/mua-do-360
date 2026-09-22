@@ -1,8 +1,8 @@
 # Ghi chú tư liệu cho hành trình Mưa đỏ
 
-Phạm vi: bốn điểm gợi không gian Quảng Trị trong cuộc chiến đấu 81 ngày đêm, từ 28/6 đến 16/9/1972. Đây là một hành trình đọc văn học bằng hình ảnh phục dựng, không phải hồ sơ khảo cổ, mô hình đo đạc hay ảnh toàn cảnh chụp trong chiến tranh.
+Phạm vi: sáu điểm gợi không gian Quảng Trị trong và sau cuộc chiến đấu 81 ngày đêm, từ 28/6 đến 16/9/1972. Riêng cảnh phố dùng tư liệu về hậu quả giao tranh, không được gán cho tháng 6–8. Đây là một hành trình đọc văn học bằng hình ảnh minh họa, không phải hồ sơ khảo cổ, mô hình đo đạc hay ảnh toàn cảnh chụp trong chiến tranh.
 
-Thông tin **Phục dựng theo tư liệu — không phải ảnh chụp năm 1972** nằm trong bảng nguồn, mở bằng nút thông tin ảnh. Theo yêu cầu tinh gọn giao diện của chủ dự án, thông báo không còn là thanh chữ phủ thường trực lên cảnh.
+Thông tin **Minh họa theo tư liệu, không phải ảnh chụp năm 1972** nằm trong bảng nguồn, mở bằng nút thông tin ảnh. Theo yêu cầu tinh gọn giao diện của chủ dự án, thông báo không còn là thanh chữ phủ thường trực lên cảnh.
 
 Chưa tìm thấy ảnh toàn cảnh 360 độ chụp đúng thời kỳ này trong các nguồn đã khảo sát. Bộ tư liệu của dự án không có panorama gốc năm 1972; không được biến giới hạn tìm kiếm này thành khẳng định rằng trên thế giới không tồn tại bất kỳ tư liệu nào như vậy. Hình ảnh do AI tạo là sản phẩm diễn họa, không bổ sung bằng chứng lịch sử.
 
@@ -14,6 +14,8 @@ Chưa tìm thấy ảnh toàn cảnh 360 độ chụp đúng thời kỳ này tr
 | `hao-thanh` — Hào và tường thành | Kiến trúc thành gồm hào, tường bao và bốn cửa. | Không suy ra mực nước, mặt cắt hào hoặc đoạn tường cụ thể từ ảnh hiện đại. |
 | `cong-hau` — Quanh Cổng Hậu | Bắc môn; hồ sơ ghi nhận vòm cuốn còn hình dạng sau chiến tranh. | Tình trạng sau chiến tranh không phải bằng chứng cho mọi thời điểm trong 81 ngày. |
 | `noi-thanh` — Bên trong Thành cổ | Thành bị phá hủy gần hết trong năm 1972. | Góc khuất và đổ nát là minh họa, không phải công sự có danh tính hoặc tọa độ đã xác minh. |
+| `luy-bac`: Lũy đất phía Bắc | Hồ sơ Cục Di sản ghi nhận tường đất ở đoạn giữa mặt Bắc và sự phá hủy nặng ở góc Tây Bắc. | Không đo dựng một đoạn cụ thể hoặc sao chép hố bom được bảo tồn hiện nay. |
+| `pho-cu`: Phố sau chiến sự | Ảnh đường Quang Trung ở trang 128 của ấn phẩm USMC, chú thích đặt sau khi quân Việt Nam Cộng hòa tái chiếm thị xã. | Không gọi panorama là đường Quang Trung; ảnh không có ngày chụp chính xác. |
 
 Nguồn nền cho thời gian là [TTXVN: Cuộc chiến đấu 81 ngày đêm](https://nvsk.vnanet.vn/cuoc-chien-dau-81-ngay-dem-bao-ve-thanh-co-quang-tri-ngay-28-6-den-16-9-1972-4-147823.vna). Vai trò dòng sông được đối chiếu với [Ủy ban MTTQ Việt Nam tỉnh Quảng Trị](https://ubmttqvn.quangtri.gov.vn/index.php/van-hoa-van-nghe/thach-han-dong-song-hoa-lua-4075.html). Kiến trúc và diễn biến bảo tồn được đối chiếu với [hồ sơ Cục Di sản văn hóa](https://dsvh.gov.vn/di-tich-lich-su-thanh-co-quang-tri-va-nhung-dia-diem-luu-niem-su-kien-81-ngay-dem-nam-1972-2975) và [Cục Du lịch Quốc gia Việt Nam](https://vietnamtourism.vn/index.php/tourism/items/1271).
 
@@ -44,11 +46,21 @@ Tên, lớp, thông tin cá nhân và đường dẫn tài liệu học tập ri
 
 ## Bản đồ, ảnh và quyền sử dụng
 
-- [Bản đồ AMS Quảng Trị tại NARA, mã 74797754, bản sao Commons](https://commons.wikimedia.org/wiki/File:AMS_-_Quang_Tri,_Vietnam_-_NARA_-_74797754.jpg) có nhãn public domain của tác phẩm Chính phủ Hoa Kỳ. Metadata “1942–1972” chỉ là khoảng niên đại, không đủ để kết luận bản đồ phản ánh đúng một ngày năm 1972. Chưa dùng bản đồ này để định vị các panorama.
+- [Bản đồ AMS Quảng Trị tại NARA, mã 74797754, bản sao Commons](https://commons.wikimedia.org/wiki/File:AMS_-_Quang_Tri,_Vietnam_-_NARA_-_74797754.jpg) có nhãn public domain của tác phẩm Chính phủ Hoa Kỳ. Chú giải in trên bản gốc ghi thông tin đến năm 1968; metadata “1942–1972” là khoảng niên đại hồ sơ. Bản giảm kích thước được nhúng trong bảng nguồn, không chỉnh sửa nội dung, không dùng để xác định vị trí panorama hoặc nguyên trạng năm 1972. Thông tin quyền nằm trong `public/archive/ATTRIBUTION.md`.
 - [Tờ AMS 6442-4, tỷ lệ 1:50.000 tại UT Austin](https://maps.lib.utexas.edu/maps/topo/vietnam/quang_tri-6442-4.pdf) có thể hỗ trợ nghiên cứu địa hình tổng thể; không đủ để chứng minh từng mặt nhà, cửa sổ hoặc vật thể trong cảnh.
 - Ảnh minh họa trên báo và trang cơ quan không tự động có giấy phép mở. Bài MTTQ ghi ảnh TTXVN, video Vnews; cần xác minh quyền riêng nếu muốn sao chép các tài sản đó.
 - Một số ảnh trong bài tổng hợp thuộc địa điểm hoặc thời gian khác. Phải đọc chú thích gốc, không dùng ảnh điểm cao 365 ngày 30/3/1972 như ảnh Thành cổ trong giai đoạn 28/6–16/9.
 - Không lấy panorama hiện đại, khung hình phim hoặc ảnh AI làm bằng chứng nguyên trạng năm 1972.
+
+## Tư liệu đối chiếu cho bộ ảnh thứ hai
+
+[The War That Would Not End, 1971–1973, phần 6](https://www.marines.mil/Portals/1/Publications/U.S.%20Marines%20in%20Vietnam%20The%20war%20that%20would%20not%20end%201971-1973%20PCN%2019000311200_6.pdf) có ảnh bên trong thành ở trang 127 và ảnh đường Quang Trung ở trang 128. Đã quan sát ảnh để đối chiếu gạch, vữa, gỗ sập, địa hình bằng phẳng và mức phá hủy thấp của đô thị. Đây là căn cứ vật liệu và cảnh quan, không phải nguồn để suy ra toàn bộ 360° hoặc một tuyến đi bộ.
+
+Các ảnh đó ghi tác giả/nguồn Việt Nam, nên không áp dụng mặc nhiên nhãn public domain của tác phẩm USMC cho ảnh nằm trong ấn phẩm. Dự án chỉ dẫn liên kết tới tư liệu; không xuất bản lại ảnh. Niên đại kiến trúc tiếp tục theo hồ sơ Việt Nam, không lấy mô tả “thế kỷ XVIII” trong ấn phẩm USMC thay cho mốc 1809/1837.
+
+Liên kết trong ứng dụng mở [bản số hóa tại Internet Archive, trang 128](https://archive.org/details/usmarinesinvietn00char_0/page/128/mode/2up), đã trả HTTP 200 khi kiểm tra. Máy kiểm tra không phân giải được tên miền `www.marines.mil` tại thời điểm xuất bản, nên giữ liên kết chính thức ở ghi chú nghiên cứu nhưng dùng bản số hóa có thể truy cập trong giao diện.
+
+Bộ ảnh mới thay phần trong vòm Cổng Hậu có nhiều cửa không được chứng minh bằng một góc nhìn ngoài cổng, một lối vòm. Cảnh nội thành chuyển sang gạch, vữa và gỗ thay cho cảm giác phế tích đá. Cảnh lũy có lõi đất và mảng gạch còn lại; hào không dùng kè bazan hoặc tường bê tông hiện đại. Hình dáng hư hại, lớp đất và thời tiết vẫn là diễn họa. Sáu prompt và tệp nguồn được ghi tại `docs/asset-prompts-v2.json`.
 
 ## Kiểm tra trước khi đưa lên mạng
 

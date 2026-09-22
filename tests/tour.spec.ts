@@ -1,6 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 
-const ids = ['thach-han', 'hao-thanh', 'cong-hau', 'noi-thanh'];
+const ids = ['thach-han', 'hao-thanh', 'cong-hau', 'luy-bac', 'noi-thanh', 'pho-cu'];
 async function ready(page: Page) {
   await expect(page.locator('#panorama')).toHaveAttribute('aria-busy', 'false');
   await expect(page.locator('#panorama canvas')).toBeVisible();
@@ -15,6 +15,7 @@ test('direct panorama entry, all viewpoints, and clean immersion', async ({ page
   await expect(page.locator('header')).toHaveCount(0);
   await expect(page.locator('.location-tag')).toHaveCount(0);
   await expect(page.locator('.reconstruction-label')).toHaveCount(0);
+  await expect(page.locator('nav.scene-navigation')).toHaveAttribute('aria-label', '6 điểm nhìn');
   await ready(page);
   for (const id of ids) {
     await page.locator(`[data-scene="${id}"]`).click();
@@ -191,4 +192,59 @@ test('mouse or touch drag and keyboard turn the actual panorama', async ({ page,
   const afterDrag = await hotspot.getAttribute('style');
   await page.keyboard.press('ArrowRight');
   await expect.poll(() => hotspot.getAttribute('style')).not.toEqual(afterDrag);
+});
+
+test('archive map opens by keyboard with source, date limits and a loaded image', async ({ page }) => {
+  await page.goto('./');
+  await ready(page);
+  await page.locator('#scene-information').click();
+  const summary = page.locator('.archive-map summary');
+  await summary.focus();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('.archive-map')).toHaveAttribute('open', '');
+  const map = page.locator('.archive-map img');
+  await map.scrollIntoViewIfNeeded();
+  await expect.poll(() => map.evaluate(image => (image as HTMLImageElement).naturalWidth)).toBe(1200);
+  await expect(page.locator('.archive-map figcaption')).toContainText('1968');
+  await expect(page.locator('.archive-map figcaption')).toContainText('không xác nhận nguyên trạng năm 1972');
+  await expect(page.locator('.archive-map figure a')).toHaveAttribute('href', 'https://catalog.archives.gov/id/74797754');
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#scene-information')).toBeFocused();
+});
+
+test('new scenes accessible via keyboard, story tab verification, and cyclic navigation wrapping', async ({ page }) => {
+  await page.goto('./');
+  await ready(page);
+
+  await page.locator('#panorama').focus();
+  await page.keyboard.press('4');
+  await ready(page);
+  await expect(page).toHaveURL(/#scene=luy-bac$/);
+  await expect(page.locator('#scene-title')).toHaveText('Lũy đất phía Bắc');
+
+  await page.locator('#panorama').focus();
+  await page.keyboard.press('6');
+  await ready(page);
+  await expect(page).toHaveURL(/#scene=pho-cu$/);
+  await expect(page.locator('#scene-title')).toHaveText('Phố sau chiến sự');
+
+  await page.locator('#scene-information').click();
+  const dialog = page.locator('#information-dialog');
+  await expect(dialog).toBeVisible();
+  await page.locator('#story-tab').click();
+  await expect(page.locator('#story-panel')).toBeVisible();
+  await expect(page.locator('#story-panel')).toContainText('tháng 6–8/1972');
+  await expect(page.locator('#story-panel')).toContainText('không phải ảnh tư liệu được tô màu');
+  await page.keyboard.press('Escape');
+  await expect(dialog).not.toBeVisible();
+
+  await page.locator('#next-scene').click();
+  await ready(page);
+  await expect(page).toHaveURL(/#scene=thach-han$/);
+  await expect(page.locator('#scene-title')).toHaveText('Bờ sông Thạch Hãn');
+
+  await page.locator('#previous-scene').click();
+  await ready(page);
+  await expect(page).toHaveURL(/#scene=pho-cu$/);
+  await expect(page.locator('#scene-title')).toHaveText('Phố sau chiến sự');
 });

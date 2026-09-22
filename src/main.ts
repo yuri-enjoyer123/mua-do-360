@@ -22,7 +22,6 @@ const paths: Record<IconName, string> = {
 const icon = (name: IconName, cls = '') => `<svg class="icon ${cls}" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name]}</svg>`;
 const escape = (value: string) => value.replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]!);
 const asset = (path: string) => new URL(`${import.meta.env.BASE_URL}${path}`, document.baseURI).href;
-const number = (index: number) => String(index + 1).padStart(2, '0');
 const fromHash = () => {
   const id = new URLSearchParams(location.hash.slice(1)).get('scene');
   return scenes.find((scene) => scene.id === id);
@@ -57,13 +56,13 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         <button class="icon-button" id="scene-information" data-open="sources" aria-label="Thông tin ảnh phục dựng và nguồn lịch sử" title="Thông tin ảnh và nguồn lịch sử">${icon('book')}</button>
       </div>
       <p class="sr-only" id="panorama-help">Kéo để nhìn quanh. Chọn dấu mốc hoặc ảnh thu nhỏ để chuyển điểm. Mở nút thông tin để đọc nguồn và giới hạn của ảnh phục dựng AI.</p>
-      <nav class="scene-navigation" aria-label="Bốn điểm nhìn">
-        <div class="scene-nav-row"><button class="icon-button scene-step previous" id="previous-scene" aria-label="Điểm nhìn trước" title="Điểm nhìn trước">${icon('chevron')}</button><div class="scene-strip">${scenes.map((scene, index) => `<button class="scene-card" data-scene="${escape(scene.id)}" aria-label="Điểm nhìn ${index + 1}: ${escape(scene.title)}"><img src="${asset(`scenes/${scene.id}-thumb.webp`)}" alt="" loading="lazy" width="160" height="90" /><span class="scene-card-shade"></span><span class="scene-card-number">${number(index)}</span><span class="scene-card-title">${escape(scene.title)}</span><span class="scene-card-indicator" aria-hidden="true"></span></button>`).join('')}</div><button class="icon-button scene-step next" id="next-scene" aria-label="Điểm nhìn tiếp theo" title="Điểm nhìn tiếp theo">${icon('chevron')}</button></div>
+      <nav class="scene-navigation" aria-label="${scenes.length} điểm nhìn">
+        <div class="scene-nav-row"><button class="icon-button scene-step previous" id="previous-scene" aria-label="Điểm nhìn trước" title="Điểm nhìn trước">${icon('chevron')}</button><div class="scene-strip">${scenes.map((scene, index) => `<button class="scene-card" data-scene="${escape(scene.id)}" aria-label="Điểm nhìn ${index + 1}: ${escape(scene.title)}" title="${escape(scene.title)}"><img src="${asset(`scenes/${scene.id}-thumb.webp`)}" alt="" loading="lazy" width="320" height="180" /><span class="scene-card-title">${escape(scene.title)}</span></button>`).join('')}</div><button class="icon-button scene-step next" id="next-scene" aria-label="Điểm nhìn tiếp theo" title="Điểm nhìn tiếp theo">${icon('chevron')}</button></div>
       </nav>
     </div>
 
     <div class="viewer-status" id="viewer-status" role="status" hidden><span class="loading-orbit" aria-hidden="true"></span><span>Đang mở không gian…</span></div>
-    <section class="viewer-error" id="viewer-error" aria-label="Không thể mở ảnh 360 độ" hidden><span class="eyebrow">BẠN VẪN CÓ THỂ ĐỌC CÂU CHUYỆN</span><h2>Không gian chưa thể mở.</h2><p>Ảnh 360° chưa tải được hoặc trình duyệt chưa hỗ trợ WebGL. Bạn có thể thử lại, chuyển điểm nhìn hoặc đọc tư liệu.</p><div><button class="primary-button" id="retry-button">Thử tải lại ${icon('reset')}</button><button class="text-button" data-open="story">Đọc câu chuyện ${icon('arrow')}</button></div></section>
+    <section class="viewer-error" id="viewer-error" aria-label="Không thể mở ảnh 360 độ" hidden><h2>Chưa mở được cảnh</h2><p>Ảnh 360° chưa tải được hoặc trình duyệt chưa hỗ trợ WebGL. Bạn có thể thử lại, chuyển điểm nhìn hoặc đọc tư liệu.</p><div><button class="primary-button" id="retry-button">Thử tải lại ${icon('reset')}</button><button class="text-button" data-open="story">Đọc câu chuyện</button></div></section>
 
     <button class="presentation-exit" id="presentation-exit" hidden>${icon('eye')}<span>Thoát trình chiếu</span><kbd>P</kbd></button>
     <div class="sr-only" id="announcement" role="status" aria-live="polite" aria-atomic="true"></div>
@@ -80,7 +79,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <button class="icon-button" id="presentation-button" aria-label="Bật chế độ trình chiếu" aria-pressed="false" title="Trình chiếu (P)">${icon('eye')}</button>
     </div>
   </dialog>
-  <dialog class="help-dialog" id="help-dialog" aria-labelledby="help-title"><div class="dialog-top"><span class="eyebrow">DÀNH MỘT CHÚT ĐỂ LÀM QUEN</span><button class="icon-button close-dialog" aria-label="Đóng hướng dẫn">${icon('close')}</button></div><h2 id="help-title">Đi theo nhịp của bạn.</h2><p class="help-intro">Bốn điểm nhìn độc lập, kết nối bằng những dấu mốc. Bạn tự chọn nơi muốn dừng lại.</p><div class="help-grid"><div>${icon('drag')}<h3>Nhìn quanh</h3><p>Kéo chuột hoặc vuốt màn hình. Cuộn chuột, chụm hai ngón tay hoặc dùng nút + / − để thay đổi góc nhìn.</p></div><div>${icon('arrow')}<h3>Chuyển điểm</h3><p>Chọn dấu mốc trong cảnh, ảnh ở thanh hành trình hoặc hai nút trước / sau.</p></div><div>${icon('book')}<h3>Đọc và đối chiếu</h3><p>Mở câu chuyện để đọc bối cảnh, tư liệu lịch sử và những lựa chọn khi phục dựng.</p></div></div><div class="keyboard-help"><h3>Bàn phím</h3><p><kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd> Nhìn quanh khi chọn không gian</p><p><kbd>1</kbd> — <kbd>4</kbd> Chuyển điểm <span>·</span> <kbd>F</kbd> Toàn màn hình <span>·</span> <kbd>P</kbd> Trình chiếu</p><p><kbd>Esc</kbd> Đóng bảng đang mở / thoát trình chiếu</p></div><p class="help-note">Đây là các góc nhìn minh họa 360°, không phải bản đồ đo đạc hay tuyến đi bộ liên tục. Âm thanh, nếu bật, là âm thanh thiên nhiên tổng hợp. Trải nghiệm không yêu cầu kính VR.</p></dialog>
+  <dialog class="help-dialog" id="help-dialog" aria-labelledby="help-title"><div class="dialog-top"><button class="icon-button close-dialog" aria-label="Đóng hướng dẫn">${icon('close')}</button></div><h2 id="help-title">Cách xem</h2><p class="help-intro">${scenes.length} điểm nhìn độc lập. Bạn có thể chọn bất kỳ cảnh nào để dừng lại và đọc.</p><div class="help-grid"><div>${icon('drag')}<h3>Nhìn quanh</h3><p>Kéo chuột hoặc vuốt màn hình. Cuộn chuột, chụm hai ngón tay hoặc dùng nút + / − để thay đổi góc nhìn.</p></div><div>${icon('arrow')}<h3>Chuyển điểm</h3><p>Chọn dấu mốc trong cảnh, ảnh ở thanh hành trình hoặc hai nút trước / sau.</p></div><div>${icon('book')}<h3>Đọc và đối chiếu</h3><p>Mở nút thông tin để đọc bối cảnh, nguồn lịch sử và giới hạn của ảnh minh họa.</p></div></div><div class="keyboard-help"><h3>Bàn phím</h3><p><kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd> Nhìn quanh khi chọn không gian</p><p><kbd>1</kbd> đến <kbd>${scenes.length}</kbd> Chuyển điểm <span>·</span> <kbd>F</kbd> Toàn màn hình <span>·</span> <kbd>P</kbd> Trình chiếu</p><p><kbd>Esc</kbd> Đóng bảng đang mở / thoát trình chiếu</p></div><p class="help-note">Đây là các góc nhìn minh họa 360°, không phải bản đồ đo đạc hay tuyến đi bộ liên tục. Âm thanh, nếu bật, là âm thanh thiên nhiên tổng hợp. Trải nghiệm không yêu cầu kính VR.</p></dialog>
 `;
 
 const get = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
@@ -112,6 +111,7 @@ function renderScene() {
 
 function renderStory() {
   const references = sources.filter((source) => current.sourceIds.includes(source.id));
+  const orderedSources = [...sources].sort((a, b) => Number(current.sourceIds.includes(b.id)) - Number(current.sourceIds.includes(a.id)));
   get('story-panel').innerHTML = `
     <p class="story-lead">${escape(current.summary)}</p>
     ${current.description.map((paragraph) => `<p>${escape(paragraph)}</p>`).join('')}
@@ -125,8 +125,13 @@ function renderStory() {
   get('story-to-sources').addEventListener('click', () => setTab('sources', true));
   get('sources-panel').innerHTML = `
     <div class="source-notice"><h3>Về ảnh phục dựng</h3><p>${escape(reconstructionNotice)}</p><p>Toàn bộ ảnh toàn cảnh do AI tạo để minh họa không gian. Tư liệu giúp định hướng bối cảnh, không xác thực từng chi tiết trong hình. Đây không phải ảnh tư liệu hay bản phục dựng khảo cổ.</p><p>Các dấu chuyển điểm chỉ giúp điều hướng giữa những góc nhìn độc lập; chúng không xác nhận khoảng cách hay hướng đi thực tế.</p></div>
+    <details class="archive-map"><summary>Bản đồ lưu trữ Quảng Trị</summary>
+      <figure><a href="https://catalog.archives.gov/id/74797754" target="_blank" rel="noopener noreferrer" aria-label="Xem hồ sơ bản đồ Quảng Trị tại National Archives (mở thẻ mới)"><img src="${asset('archive/ams-quang-tri.webp')}" alt="Bản đồ AMS lưu trữ thể hiện sông Thạch Hãn, thị xã và khu Thành cổ Quảng Trị." width="1200" height="1332" loading="lazy" /></a>
+      <figcaption>U.S. Army Topographic Command / National Archives, NAID 74797754. Chú giải trên bản đồ ghi thông tin đến năm 1968; hồ sơ lưu trữ ghi khoảng 1942–1972. Đây là bản đồ lưu trữ thật, không phải ảnh AI, cũng không xác nhận nguyên trạng năm 1972 hay vị trí các cảnh minh họa.</figcaption></figure>
+      <a class="archive-credit" href="https://commons.wikimedia.org/wiki/File:AMS_-_Quang_Tri,_Vietnam_-_NARA_-_74797754.jpg" target="_blank" rel="noopener noreferrer">Bản gốc độ phân giải cao và thông tin public domain ${icon('external')}<span class="sr-only"> (mở thẻ mới)</span></a>
+    </details>
     <h3 class="sources-heading">Nguồn tham khảo</h3><p class="sources-intro">Nguồn lịch sử và nguồn về văn học được ghi riêng. Các liên kết mở trong thẻ mới.</p>
-    <ul class="source-list">${sources.map((source) => `<li><div><span class="source-kind">${source.kind === 'historical' ? 'Tư liệu lịch sử' : 'Nguồn về văn học'}</span><h4><a href="${escape(source.url)}" target="_blank" rel="noopener noreferrer">${escape(source.title)} ${icon('external')}<span class="sr-only"> (mở thẻ mới)</span></a></h4><p class="source-publisher">${escape(source.publisher)}</p><p>${escape(source.note)}</p>${current.sourceIds.includes(source.id) ? '<span class="source-relevance">Tham khảo cho điểm nhìn này</span>' : ''}</div></li>`).join('')}</ul>`;
+    <ul class="source-list">${orderedSources.map((source) => `<li><div><span class="source-kind">${source.kind === 'historical' ? 'Tư liệu lịch sử' : 'Nguồn về văn học'}</span><h4><a href="${escape(source.url)}" target="_blank" rel="noopener noreferrer">${escape(source.title)} ${icon('external')}<span class="sr-only"> (mở thẻ mới)</span></a></h4><p class="source-publisher">${escape(source.publisher)}</p><p>${escape(source.note)}</p>${current.sourceIds.includes(source.id) ? '<span class="source-relevance">Tham khảo cho điểm nhìn này</span>' : ''}</div></li>`).join('')}</ul>`;
 }
 
 function setTab(tab: 'story' | 'sources', focus = false) {
@@ -159,7 +164,7 @@ allDialogs.forEach((dialog) => {
   dialog.addEventListener('close', () => focusReturns.get(dialog)?.focus({ preventScroll: true }));
   dialog.addEventListener('keydown', (event) => {
     if (event.key !== 'Tab') return;
-    const focusable = [...dialog.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], [tabindex="0"]')].filter((element) => element.getClientRects().length > 0);
+    const focusable = [...dialog.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], summary, [tabindex="0"]')].filter((element) => element.getClientRects().length > 0);
     const first = focusable[0];
     const last = focusable[focusable.length - 1];
     if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
@@ -256,8 +261,13 @@ async function loadScene() {
       // Stop continuous updates once the static panorama has been uploaded.
       viewer?.setUpdate(false);
       clearTimeout(loadingTimer);
-      setLoading(false);
-      announce(`Đã mở điểm nhìn ${scenes.indexOf(current) + 1}: ${current.title}. Kéo để nhìn quanh hoặc chọn dấu chuyển điểm.`);
+      // The library creates hotspot children after firing load. Let their first
+      // paint finish before exposing a completed scene, including reduced motion.
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (token !== generation) return;
+        setLoading(false);
+        announce(`Đã mở điểm nhìn ${scenes.indexOf(current) + 1}: ${current.title}. Kéo để nhìn quanh hoặc chọn dấu chuyển điểm.`);
+      }));
     };
     viewer.on('load', onLoaded);
     viewer.on('error', () => failScene(token));
@@ -369,7 +379,7 @@ document.addEventListener('keydown', (event) => {
   const target = event.target as HTMLElement;
   if (target.closest('input, textarea, select, [contenteditable="true"]')) return;
   if (event.key === 'Escape' && presentation) { setPresentation(false); return; }
-  if (/^[1-4]$/.test(event.key)) { event.preventDefault(); selectScene(scenes[Number(event.key) - 1].id); return; }
+  if (/^[1-9]$/.test(event.key) && scenes[Number(event.key) - 1]) { event.preventDefault(); selectScene(scenes[Number(event.key) - 1].id); return; }
   if (event.key.toLowerCase() === 'f') { event.preventDefault(); void toggleFullscreen(); return; }
   if (event.key.toLowerCase() === 'p') { event.preventDefault(); setPresentation(!presentation); return; }
   if (!viewer || (target !== panorama && target !== document.body)) return;

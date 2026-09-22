@@ -24,9 +24,25 @@ export interface Scene {
 }
 
 export const reconstructionNotice =
-  'Phục dựng theo tư liệu — không phải ảnh chụp năm 1972';
+  'Minh họa theo tư liệu, không phải ảnh chụp năm 1972';
 
 export const sources: Source[] = [
+  {
+    id: 'usmc-archive',
+    title: 'Ảnh Quảng Trị sau giao tranh, trang 127–128',
+    publisher: 'History and Museums Division, U.S. Marine Corps',
+    url: 'https://archive.org/details/usmarinesinvietn00char_0/page/128/mode/2up',
+    kind: 'historical',
+    note: 'The War That Would Not End, 1971–1973: đối chiếu ảnh đổ nát và chú thích, không lấy toàn bộ cách diễn giải của ấn phẩm làm lời thuyết minh. Ảnh phố ở trang 128 được chụp sau khi quân Việt Nam Cộng hòa tái chiếm thị xã; không ghi ngày chụp cụ thể. Ảnh chỉ dùng để nghiên cứu, không sao chép vào trang.',
+  },
+  {
+    id: 'ams-map',
+    title: 'AMS: Quảng Trị, bản đồ lưu trữ',
+    publisher: 'U.S. Army Topographic Command / National Archives',
+    url: 'https://catalog.archives.gov/id/74797754',
+    kind: 'historical',
+    note: 'NAID 74797754. Chú giải bản đồ ghi thông tin đến năm 1968; hồ sơ lưu trữ ghi khoảng 1942–1972. Bản đồ không xác nhận nguyên trạng năm 1972 hoặc định vị các góc đứng trong tour.',
+  },
   {
     id: 'di-san',
     title: 'Thành cổ Quảng Trị và những địa điểm lưu niệm sự kiện 81 ngày đêm năm 1972',
@@ -74,7 +90,7 @@ export const scenes: Scene[] = [
     id: 'thach-han',
     title: 'Bờ sông Thạch Hãn',
     eyebrow: 'Quảng Trị · Hè–thu 1972',
-    summary: 'Bắt đầu bên dòng sông gắn với tuyến tiếp tế cho mặt trận Quảng Trị, rồi theo hành trình đọc để tìm hiểu không gian Thành cổ.',
+    summary: 'Từ bờ Thạch Hãn, nhìn về dòng sông từng nối hậu phương với mặt trận Quảng Trị.',
     description: [
       'Trong cuộc chiến đấu 81 ngày đêm, Thạch Hãn là một tuyến tiếp tế nhân lực và vật lực quan trọng. Cảnh này gợi không gian bờ sông, không xác định một bến vượt hay một chuyến đò cụ thể.',
       'Các điểm chuyển cảnh đưa bạn đến phần tiếp theo của hành trình; vị trí mũi tên không biểu thị một lối đi lịch sử đã được khảo sát.',
@@ -100,7 +116,7 @@ export const scenes: Scene[] = [
     id: 'hao-thanh',
     title: 'Hào và tường thành',
     eyebrow: 'Không gian phòng thủ · Năm 1972',
-    summary: 'Dừng ngoài tường thành để hình dung mối quan hệ giữa hào, lũy và cửa thành; những chi tiết không còn tư liệu được ghi rõ là phần minh họa.',
+    summary: 'Bên kia hào là lớp gạch vỡ và đất lũy lộ ra, những thành phần của hệ thống phòng thủ Thành cổ.',
     description: [
       'Hào và tường bao là những thành phần của hệ thống phòng thủ Thành cổ. Cảnh phục dựng gợi vị trí quan sát bên ngoài thành trong bối cảnh chiến tranh, không khẳng định hình dạng nguyên vẹn của một đoạn hào vào thời điểm xác định.',
     ],
@@ -126,7 +142,7 @@ export const scenes: Scene[] = [
     id: 'cong-hau',
     title: 'Quanh Cổng Hậu',
     eyebrow: 'Bắc môn · Thành cổ Quảng Trị',
-    summary: 'Tiếp cận không gian Cổng Hậu từ dấu tích còn lại sau chiến tranh, đồng thời phân biệt những gì hồ sơ ghi nhận với phần hình ảnh được phục dựng.',
+    summary: 'Vòm Cổng Hậu là một trong những dấu tích còn lại để đọc cấu trúc của tòa thành.',
     description: [
       'Cổng Hậu, còn gọi là Bắc môn, là một điểm tựa để tìm hiểu cấu trúc Thành cổ. Những dấu tích được ghi nhận sau chiến tranh không cho biết đầy đủ diện mạo của cổng trong từng giai đoạn giao tranh.',
     ],
@@ -145,14 +161,35 @@ export const scenes: Scene[] = [
     initialPitch: 0,
     hotspots: [
       { pitch: -10, yaw: -25, targetId: 'hao-thanh', label: 'Điểm trước: Hào thành' },
-      { pitch: -10, yaw: 25, targetId: 'noi-thanh', label: 'Điểm tiếp: Bên trong thành' },
+      { pitch: -10, yaw: 25, targetId: 'luy-bac', label: 'Điểm tiếp: Lũy phía Bắc' },
+    ],
+  },
+  {
+    id: 'luy-bac',
+    title: 'Lũy đất phía Bắc',
+    eyebrow: 'Dấu tích phòng thủ',
+    summary: 'Lớp gạch không còn che kín thân lũy. Phần đất đắp lộ ra cho thấy thành được tạo nên từ cả đất lẫn gạch.',
+    description: ['Hồ sơ di tích ghi nhận đoạn giữa mặt Bắc chỉ còn tường đắp bằng đất, còn góc Tây Bắc bị phá hủy gần như toàn bộ. Đây là căn cứ để dựng một góc nhìn sát chân lũy.'],
+    verified: ['Hồ sơ Cục Di sản ghi nhận dấu tích tường đất ở đoạn giữa mặt Bắc và sự hư hại nặng tại góc Tây Bắc.'],
+    interpretation: [
+      'Vị trí đứng, hình dáng chỗ vỡ, các hõm đất và gạch rơi trong ảnh là diễn họa, không phải một đoạn thành đã được đo dựng.',
+      'Cảnh không xác định công sự, đơn vị chiến đấu hoặc vị trí của hố bom được bảo tồn hiện nay.',
+    ],
+    sourceIds: ['di-san', 'du-lich', 'chu-lai'],
+    literaryNote: 'Có thể đọc Mưa đỏ từ khoảng cách gần này: người lính sống giữa đất, gạch và những giới hạn rất cụ thể của nơi trú ẩn. Đây là cách tiếp cận tác phẩm, không phải vị trí đã xác minh của nhân vật.',
+    panorama: 'scenes/luy-bac.webp',
+    initialYaw: -20,
+    initialPitch: -3,
+    hotspots: [
+      { pitch: -10, yaw: -55, targetId: 'cong-hau', label: 'Điểm trước: Cổng Hậu' },
+      { pitch: -10, yaw: 25, targetId: 'noi-thanh', label: 'Điểm tiếp: Trong thành' },
     ],
   },
   {
     id: 'noi-thanh',
     title: 'Bên trong Thành cổ',
     eyebrow: 'Góc nhìn minh họa · Năm 1972',
-    summary: 'Khép lại giữa không gian đổ nát bên trong thành, dành khoảng lặng để đọc về người lính và suy nghĩ về cái giá của chiến tranh.',
+    summary: 'Những mảng tường gạch, lớp vữa còn bám và gỗ sập gợi lại không gian từng có doanh trại, nhà lao và các công trình trong thành.',
     description: [
       'Đây là góc nhìn minh họa bên trong Thành cổ, không phải một căn hầm, sở chỉ huy hay trận địa được xác định trong hồ sơ. Cảnh chỉ gợi cảm giác về một không gian bị chiến tranh tàn phá.',
       'Các công trình tưởng niệm hiện nay không thuộc lớp cảnh năm 1972. Phần liên hệ văn học dành cho cách tiểu thuyết nhìn vào con người giữa chiến tranh.',
@@ -165,14 +202,38 @@ export const scenes: Scene[] = [
       'Góc khuất, cách sắp xếp đổ nát và địa hình ngay trước mắt là bố cục minh họa; không được gọi là nơi trú ẩn của một đơn vị hay nhân vật cụ thể.',
       'Chất liệu bề mặt và ánh sáng do AI diễn họa; không tái hiện chính xác mức tàn phá, thời tiết hoặc tầm nhìn của một ngày trong năm 1972.',
     ],
-    sourceIds: ['di-san', 'ttxvn', 'chu-lai'],
+    sourceIds: ['di-san', 'usmc-archive', 'ttxvn', 'chu-lai'],
     literaryNote: 'Mưa đỏ gợi suy ngẫm về hy sinh và khát vọng sống; nhan đề được tiếp nhận như hình tượng văn học, không phải hiện tượng mưa màu đỏ.',
     panorama: 'scenes/noi-thanh.webp',
     initialYaw: 0,
     initialPitch: 0,
     hotspots: [
-      { pitch: -10, yaw: -25, targetId: 'cong-hau', label: 'Điểm trước: Cổng Hậu' },
-      { pitch: -10, yaw: 25, targetId: 'thach-han', label: 'Về đầu hành trình' },
+      { pitch: -10, yaw: -25, targetId: 'luy-bac', label: 'Điểm trước: Lũy phía Bắc' },
+      { pitch: -10, yaw: 25, targetId: 'pho-cu', label: 'Điểm tiếp: Phố sau chiến sự' },
+    ],
+  },
+  {
+    id: 'pho-cu',
+    title: 'Phố sau chiến sự',
+    eyebrow: 'Quảng Trị · Sau giao tranh năm 1972',
+    summary: 'Từ không gian tòa thành, nhìn ra những gì còn lại của một thị xã sau chiến tranh.',
+    description: [
+      'Ảnh đường Quang Trung trong tư liệu được đối chiếu cho thấy một con đường rộng giữa những đống đổ nát thấp, xen vài cột và khung còn đứng. Chú thích đặt ảnh sau khi quân Việt Nam Cộng hòa tái chiếm thị xã, không ghi ngày chụp cụ thể.',
+      'Panorama này lấy đó làm căn cứ về mức độ phá hủy và vật liệu. Không gọi đây là đường Quang Trung, vì chưa có đủ tư liệu để dựng đúng toàn bộ con phố và góc nhìn ấy.',
+    ],
+    verified: ['Ảnh ở trang 128 của The War That Would Not End, 1971–1973 ghi lại đường Quang Trung sau giao tranh; dòng ghi nguồn ảnh là Government of Vietnam Photo.'],
+    interpretation: [
+      'Các chân tường, gỗ sập, cột, chiều rộng đường và vị trí nhà trong panorama đều là sắp đặt minh họa.',
+      'Đây là cảnh gợi hậu quả chiến tranh, không mô tả một ngày trong tháng 6–8/1972, không phải ảnh tư liệu được tô màu.',
+    ],
+    sourceIds: ['usmc-archive', 'ttxvn', 'chu-lai'],
+    literaryNote: 'Nhìn ra phố cũng là nhìn về đời sống đã bị chiến tranh làm gián đoạn. Từ đó, trở lại Mưa đỏ và câu hỏi về những gì con người mong giữ lấy qua cuộc chiến.',
+    panorama: 'scenes/pho-cu.webp',
+    initialYaw: 0,
+    initialPitch: -2,
+    hotspots: [
+      { pitch: -10, yaw: -25, targetId: 'noi-thanh', label: 'Điểm trước: Trong thành' },
+      { pitch: -10, yaw: 25, targetId: 'thach-han', label: 'Trở lại bờ sông' },
     ],
   },
 ];

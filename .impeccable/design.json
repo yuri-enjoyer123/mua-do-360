@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-22T11:35:00+00:00",
+  "title": "Mưa đỏ 360°",
+  "extensions": {
+    "shadows": [{"name": "controls", "value": "0 4px 16px rgba(0,0,0,.35)", "purpose": "Tách điều khiển đặc khỏi hình ảnh."}],
+    "motion": [{"name": "control-state", "value": "0.2s", "purpose": "Phản hồi trạng thái; giảm chuyển động theo thiết lập trình duyệt."}],
+    "breakpoints": [{"name": "mobile", "value": "760px"}, {"name": "compact", "value": "480px"}]
+  },
+  "components": [{
+    "name": "Nút điều khiển",
+    "kind": "button",
+    "refersTo": "view-control",
+    "description": "Nút phủ trên cảnh, vùng chạm 44px.",
+    "html": "<button class=\"view-control\" aria-label=\"Phóng to\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M12 5v14M5 12h14\"/></svg></button>",
+    "css": ".view-control{display:grid;place-items:center;width:44px;height:44px;background:#28241f;color:#f3eee3;border:0;border-radius:4px;cursor:pointer}.view-control:hover{background:#38332c}.view-control:focus-visible{outline:2px solid #f3eee3;outline-offset:3px}"
+  }],
+  "narrative": {
+    "northStar": "Cảnh lịch sử và một tập tư liệu",
+    "overview": "Trải nghiệm vào thẳng panorama, điều khiển than trầm và phần đọc nền giấy ấm.",
+    "keyCharacteristics": ["Cảnh dẫn đầu", "Nguồn có thể đối chiếu", "Điều hướng gọn", "Chữ Việt dễ đọc"],
+    "rules": [{"name": "Màu ảnh", "body": "Không phủ lớp nhuộm màu hoặc sương giả lên toàn cảnh.", "section": "colors"}],
+    "dos": ["Giữ thông tin diễn họa trong bảng nguồn.", "Chụp thumbnail từ phối cảnh của trình xem."],
+    "donts": ["Không bịa lịch sử để trang thêm kịch tính.", "Không phục hồi màn giới thiệu đã bị loại bỏ."]
+  }
+}
