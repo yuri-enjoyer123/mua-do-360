@@ -1,13 +1,152 @@
 import { test, expect, type Page } from '@playwright/test';
 
-const ids = ['thach-han', 'hao-thanh', 'cong-hau', 'luy-bac', 'noi-thanh', 'pho-cu'];
+const ids = ['thach-han', 'hao-thanh', 'cong-hau', 'luy-bac', 'noi-thanh', 'pho-cu', 'quang-tri-south-1967-360', 'quang-tri-northeast-1967-360'];
 async function ready(page: Page) {
   await expect(page.locator('#panorama')).toHaveAttribute('aria-busy', 'false');
   await expect(page.locator('#panorama canvas')).toBeVisible();
   await expect(page.locator('#viewer-error')).toBeHidden();
 }
 
+async function photoReady(page: Page) {
+  await expect(page.locator('#photo-viewer')).toHaveAttribute('aria-busy', 'false');
+  await expect(page.locator('#document-photo')).toBeVisible();
+  await expect(page.locator('#panorama')).toBeHidden();
+  await expect(page.locator('#viewer-error')).toBeHidden();
+}
+
+for (const [id, file] of [['quang-tri-south-1967', 'photographs/quang-tri-south-1967.jpg'], ['cong-hau', 'scenes/cong-hau.webp']]) {
+  test(`a response arriving after timeout cannot reopen the failed scene: ${id}`, async ({ page }) => {
+    await page.clock.install();
+    let release!: () => void;
+    const delayed = new Promise<void>(resolve => { release = resolve; });
+    let intercepted!: () => void;
+    const interceptedPromise = new Promise<void>(resolve => { intercepted = resolve; });
+    const matcher = (url: URL) => url.pathname.endsWith(`/${file}`);
+    await page.route(matcher, async route => {
+      intercepted();
+      await delayed;
+      await route.continue();
+    });
+    await page.goto(`./#scene=${id}`, { waitUntil: 'domcontentloaded' });
+    await expect(page.locator(id === 'cong-hau' ? '#panorama' : '#photo-viewer')).toHaveAttribute('aria-busy', 'true');
+    await interceptedPromise;
+    await page.clock.fastForward(25001);
+    await expect(page.locator('#viewer-error')).toBeVisible();
+    const responsePromise = page.waitForResponse(result => {
+      try {
+        return matcher(new URL(result.url()));
+      } catch {
+        return false;
+      }
+    });
+    release();
+    const response = await responsePromise;
+    expect(response.ok()).toBe(true);
+    await response.finished();
+    const responseUrl = response.url();
+    await page.evaluate(async source => {
+      const image = new Image();
+      image.src = source;
+      await image.decode();
+      await new Promise(resolve => requestAnimationFrame(resolve));
+    }, responseUrl);
+    await expect(page.locator('#announcement')).not.toContainText('Đã mở');
+    await expect(page.locator('#viewer-error')).toBeVisible();
+    await expect(page.locator('#panorama canvas')).toHaveCount(0);
+    await expect(page.locator('#photo-viewer')).toBeHidden();
+    await page.unroute(matcher);
+    await page.locator('#retry-button').click();
+    if (id === 'cong-hau') await ready(page);
+    else await photoReady(page);
+  });
+}
+
+test('camera buttons look above, below and around without the removed book button', async ({ page }) => {
+  await page.goto('./#scene=thach-han');
+  await ready(page);
+  await expect(page.locator('#scene-information')).toHaveCount(0);
+  await expect(page.locator('.tour-ui')).not.toContainText('ảnh AI');
+  const hotspot = page.locator('.scene-hotspot').first();
+  for (const direction of ['up', 'down', 'left', 'right']) {
+    const previous = await hotspot.getAttribute('style');
+    await page.locator(`#look-${direction}`).click();
+    await expect.poll(() => hotspot.getAttribute('style')).not.toBe(previous);
+  }
+  await page.locator('#reset-view').click();
+  await expect(page.locator('#panorama canvas')).toBeVisible();
+});
+
+test('eras restore their selected scenes and links retain date and source attribution', async ({ page }) => {
+  test.setTimeout(60000);
+  await page.goto('./#scene=quang-tri-south-1967-360');
+  await ready(page);
+  await expect(page.locator('#scene-date')).toContainText('1967');
+  await page.locator('[data-era="present"]').click();
+  await ready(page);
+  await expect(page.locator('[data-era="present"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#scene-date')).toContainText('2018');
+  expect(await page.locator('#scene-preview').evaluate((image: HTMLImageElement) => [image.naturalWidth, image.naturalHeight])).toEqual([7096, 3548]);
+  await page.locator('[data-scene="citadel-wall-2018-360"]').click();
+  await ready(page);
+  expect(await page.locator('#scene-preview').evaluate((image: HTMLImageElement) => [image.naturalWidth, image.naturalHeight])).toEqual([7096, 3548]);
+  await page.locator('[data-era="past"]').click();
+  await ready(page);
+  await expect(page).toHaveURL(/#scene=quang-tri-south-1967-360$/);
+  await page.locator('[data-era="present"]').click();
+  await ready(page);
+  await expect(page).toHaveURL(/#scene=citadel-wall-2018-360$/);
+  await page.locator('#scene-sources').click();
+  await expect(page.locator('#sources-panel')).toContainText('Phương Huy');
+  await expect(page.locator('#sources-panel')).toContainText('CC BY-SA 4.0');
+  await expect(page.locator('#sources-panel')).toContainText('Phần ngoài khung ảnh là suy đoán');
+  await page.keyboard.press('Escape');
+  await page.goBack();
+  await ready(page);
+  await expect(page.locator('[data-era="past"]')).toHaveAttribute('aria-pressed', 'true');
+});
+
+test('archival photo can zoom, pan, reset and return to 360 without changing its date', async ({ page }) => {
+  await page.goto('./#scene=quang-tri-south-1967');
+  await photoReady(page);
+  await expect(page.locator('[data-collection="archive"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#scene-date')).toContainText('1967');
+  await page.locator('#zoom-in').click();
+  await page.locator('#zoom-in').click();
+  const photo = page.locator('#photo-viewer');
+  await expect.poll(async () => Number(await photo.getAttribute('data-scale'))).toBeGreaterThan(1);
+  await page.locator('#look-right').click();
+  await expect.poll(async () => Number(await photo.getAttribute('data-x'))).toBeLessThan(0);
+  await page.locator('#reset-view').click();
+  await expect(photo).toHaveAttribute('data-scale', '1');
+  await expect(photo).toHaveAttribute('data-x', '0');
+  await page.locator('#scene-sources').click();
+  await expect(page.locator('#sources-panel')).toContainText('Sciacchitano');
+  await expect(page.locator('#sources-panel a[href*="creativecommons.org"]')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await page.locator('[data-collection="panorama"]').click();
+  await ready(page);
+});
+
+test('present album has six correctly dated photographs and recovers from a missing photo', async ({ page }) => {
+  test.setTimeout(60000);
+  await page.route('**/photographs/citadel-gate-2018.jpg', route => route.abort());
+  await page.goto('./#scene=citadel-gate-2018');
+  await expect(page.locator('#viewer-error')).toBeVisible();
+  await page.unroute('**/photographs/citadel-gate-2018.jpg');
+  await page.locator('#retry-button').click();
+  await photoReady(page);
+  await expect(page.locator('.scene-navigation')).toHaveAttribute('aria-label', '6 điểm nhìn');
+  const items = await page.locator('[data-scene]').evaluateAll(buttons => buttons.map(button => (button as HTMLElement).dataset.scene!));
+  for (const id of items) {
+    await page.locator(`[data-scene="${id}"]`).click();
+    await photoReady(page);
+    expect(await page.locator('#document-photo').evaluate((image: HTMLImageElement) => image.naturalWidth)).toBeGreaterThan(1000);
+    await expect(page.locator('#scene-date')).toHaveText(/2016|2018|2025/);
+  }
+});
+
 test('direct panorama entry, all viewpoints, and clean immersion', async ({ page }) => {
+  test.setTimeout(60000);
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('./');
@@ -15,7 +154,7 @@ test('direct panorama entry, all viewpoints, and clean immersion', async ({ page
   await expect(page.locator('header')).toHaveCount(0);
   await expect(page.locator('.location-tag')).toHaveCount(0);
   await expect(page.locator('.reconstruction-label')).toHaveCount(0);
-  await expect(page.locator('nav.scene-navigation')).toHaveAttribute('aria-label', '6 điểm nhìn');
+  await expect(page.locator('nav.scene-navigation')).toHaveAttribute('aria-label', '8 điểm nhìn');
   await ready(page);
   for (const id of ids) {
     await page.locator(`[data-scene="${id}"]`).click();
@@ -36,20 +175,24 @@ test('direct panorama entry, all viewpoints, and clean immersion', async ({ page
 test('deep link and browser history restore selected viewpoint', async ({ page }) => {
   await page.goto('./#scene=cong-hau');
   await ready(page);
-  await expect(page.locator('#scene-title')).toHaveClass(/sr-only/);
+  await expect(page.locator('#scene-title')).toBeVisible();
   await expect(page.locator('#scene-title')).toHaveText('Quanh Cổng Hậu');
   await page.locator('[data-scene="noi-thanh"]').click();
   await ready(page);
+  await page.locator('#scene-sources').click();
+  await page.locator('#story-tab').click();
   await page.goBack();
-  await expect(page.locator('#scene-title')).toHaveClass(/sr-only/);
+  await expect(page.locator('#scene-title')).toBeVisible();
   await expect(page.locator('#scene-title')).toHaveText('Quanh Cổng Hậu');
+  await expect(page.locator('#dialog-title')).toHaveText('Quanh Cổng Hậu');
+  await page.keyboard.press('Escape');
   await ready(page);
 });
 
 test('source drawer separates historical evidence and interpretive details', async ({ page }) => {
   await page.goto('./#scene=cong-hau');
   await ready(page);
-  await page.locator('#scene-information').click();
+  await page.locator('#scene-sources').click();
   const dialog = page.locator('#information-dialog');
   await expect(dialog).toBeVisible();
   await expect(page.locator('#sources-panel')).toBeVisible();
@@ -64,13 +207,13 @@ test('source drawer separates historical evidence and interpretive details', asy
   await expect(dialog).toContainText('tiểu thuyết');
   await page.keyboard.press('Escape');
   await expect(dialog).not.toBeVisible();
-  await expect(page.locator('#scene-information')).toBeFocused();
+  await expect(page.locator('#scene-sources')).toBeFocused();
 });
 
 test('presentation and audio controls inside info dialog; presentation closes dialog', async ({ page }) => {
   await page.goto('./#scene=thach-han');
   await ready(page);
-  await page.locator('#scene-information').click();
+  await page.locator('#scene-sources').click();
   const dialog = page.locator('#information-dialog');
   await expect(dialog).toBeVisible();
   await expect(dialog.locator('#ambience-button')).toHaveAttribute('aria-pressed', 'false');
@@ -191,10 +334,10 @@ test('invalid hash during tour resets to valid first scene with working renderer
   await expect(page.locator('#panorama canvas')).toBeVisible();
 });
 
-test('compact info access reaches sources, AI disclosure, historical links, and 44px target', async ({ page }) => {
+test('compact info access reaches sources, reconstruction limits, historical links, and 44px target', async ({ page }) => {
   await page.goto('./');
   await ready(page);
-  const infoButton = page.locator('#scene-information');
+  const infoButton = page.locator('#scene-sources');
   const box = await infoButton.boundingBox();
   expect(box).not.toBeNull();
   expect(box!.width).toBeGreaterThanOrEqual(44);
@@ -204,8 +347,10 @@ test('compact info access reaches sources, AI disclosure, historical links, and 
   const dialog = page.locator('#information-dialog');
   await expect(dialog).toBeVisible();
   await expect(page.locator('#sources-panel')).toBeVisible();
-  await expect(page.locator('#sources-panel')).toContainText('Toàn bộ ảnh toàn cảnh do AI tạo');
-  await expect(page.locator('#sources-panel')).toContainText('Đây không phải ảnh tư liệu');
+  await expect(page.locator('#sources-panel')).toContainText('Cảnh toàn cảnh được phục dựng');
+  await expect(page.locator('body')).not.toContainText(/\bAI\b|AI.generated|made by AI/i);
+  await expect(page.locator('#sources-panel')).toContainText('Đây không phải ảnh chụp tư liệu hay bản phục dựng khảo cổ');
+  await expect(page.locator('#sources-panel')).toContainText('Chi tiết bổ sung không phải chứng cứ lịch sử');
 
   const links = await page.locator('#sources-panel a[href]').evaluateAll(nodes => nodes.map(n => (n as HTMLAnchorElement).href));
   expect(links.length).toBeGreaterThanOrEqual(3);
@@ -240,7 +385,7 @@ test('mouse or touch drag and keyboard turn the actual panorama', async ({ page,
 test('archive map opens by keyboard with source, date limits and a loaded image', async ({ page }) => {
   await page.goto('./');
   await ready(page);
-  await page.locator('#scene-information').click();
+  await page.locator('#scene-sources').click();
   const summary = page.locator('.archive-map summary');
   await summary.focus();
   await page.keyboard.press('Enter');
@@ -252,7 +397,7 @@ test('archive map opens by keyboard with source, date limits and a loaded image'
   await expect(page.locator('.archive-map figcaption')).toContainText('không xác nhận nguyên trạng năm 1972');
   await expect(page.locator('.archive-map figure a')).toHaveAttribute('href', 'https://catalog.archives.gov/id/74797754');
   await page.keyboard.press('Escape');
-  await expect(page.locator('#scene-information')).toBeFocused();
+  await expect(page.locator('#scene-sources')).toBeFocused();
 });
 
 test('new scenes accessible via keyboard, story tab verification, and cyclic navigation wrapping', async ({ page }) => {
@@ -271,7 +416,7 @@ test('new scenes accessible via keyboard, story tab verification, and cyclic nav
   await expect(page).toHaveURL(/#scene=pho-cu$/);
   await expect(page.locator('#scene-title')).toHaveText('Phố sau chiến sự');
 
-  await page.locator('#scene-information').click();
+  await page.locator('#scene-sources').click();
   const dialog = page.locator('#information-dialog');
   await expect(dialog).toBeVisible();
   await page.locator('#story-tab').click();
@@ -281,6 +426,8 @@ test('new scenes accessible via keyboard, story tab verification, and cyclic nav
   await page.keyboard.press('Escape');
   await expect(dialog).not.toBeVisible();
 
+  await page.locator('[data-scene="quang-tri-northeast-1967-360"]').click();
+  await ready(page);
   await page.locator('#next-scene').click();
   await ready(page);
   await expect(page).toHaveURL(/#scene=thach-han$/);
@@ -288,6 +435,143 @@ test('new scenes accessible via keyboard, story tab verification, and cyclic nav
 
   await page.locator('#previous-scene').click();
   await ready(page);
-  await expect(page).toHaveURL(/#scene=pho-cu$/);
-  await expect(page.locator('#scene-title')).toHaveText('Phố sau chiến sự');
+  await expect(page).toHaveURL(/#scene=quang-tri-northeast-1967-360$/);
+});
+
+test('archival photo viewer gestures update rendered geometry and presentation fills viewport', async ({ page, isMobile }) => {
+  await page.goto('./#scene=quang-tri-south-1967');
+  await photoReady(page);
+
+  const viewer = page.locator('#photo-viewer');
+  const image = page.locator('#document-photo');
+
+  const getGeometry = async () => {
+    return image.evaluate((el: HTMLImageElement) => {
+      const rect = el.getBoundingClientRect();
+      const styleTransform = el.style.transform;
+      const computedTransform = getComputedStyle(el).transform;
+      return {
+        left: rect.left,
+        top: rect.top,
+        width: rect.width,
+        height: rect.height,
+        styleTransform,
+        computedTransform,
+      };
+    });
+  };
+
+  const initialGeometry = await getGeometry();
+
+  const viewerBox = await viewer.boundingBox();
+  expect(viewerBox).not.toBeNull();
+  const centerX = Math.round(viewerBox!.x + viewerBox!.width / 2);
+  const centerY = Math.round(viewerBox!.y + viewerBox!.height / 2);
+
+  if (isMobile) {
+    const client = await page.context().newCDPSession(page);
+    // Two-finger pinch to zoom in with stable unique touch identifiers
+    await client.send('Input.dispatchTouchEvent', {
+      type: 'touchStart',
+      touchPoints: [
+        { x: centerX - 25, y: centerY, id: 1 },
+        { x: centerX + 25, y: centerY, id: 2 },
+      ],
+    });
+    await client.send('Input.dispatchTouchEvent', {
+      type: 'touchMove',
+      touchPoints: [
+        { x: centerX - 80, y: centerY, id: 1 },
+        { x: centerX + 80, y: centerY, id: 2 },
+      ],
+    });
+    await client.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+
+    await expect.poll(async () => {
+      const current = await getGeometry();
+      return current.computedTransform;
+    }).not.toEqual(initialGeometry.computedTransform);
+
+    const postZoomGeometry = await getGeometry();
+    expect(postZoomGeometry.width).toBeGreaterThan(initialGeometry.width);
+
+    // One-finger drag to pan
+    await client.send('Input.dispatchTouchEvent', {
+      type: 'touchStart',
+      touchPoints: [{ x: centerX, y: centerY, id: 1 }],
+    });
+    await client.send('Input.dispatchTouchEvent', {
+      type: 'touchMove',
+      touchPoints: [{ x: centerX - 60, y: centerY - 40, id: 1 }],
+    });
+    await client.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+
+    await expect.poll(async () => {
+      const current = await getGeometry();
+      return current.computedTransform;
+    }).not.toEqual(postZoomGeometry.computedTransform);
+
+    const postDragGeometry = await getGeometry();
+    const hasMoved = Math.abs(postDragGeometry.left - postZoomGeometry.left) > 1 || Math.abs(postDragGeometry.top - postZoomGeometry.top) > 1;
+    expect(hasMoved).toBe(true);
+  } else {
+    // Desktop mouse wheel zoom
+    await page.mouse.move(centerX, centerY);
+    await page.mouse.wheel(0, -200);
+
+    await expect.poll(async () => {
+      const current = await getGeometry();
+      return current.computedTransform;
+    }).not.toEqual(initialGeometry.computedTransform);
+
+    const postZoomGeometry = await getGeometry();
+    expect(postZoomGeometry.width).toBeGreaterThan(initialGeometry.width);
+
+    // Desktop mouse drag to pan
+    await page.mouse.move(centerX, centerY);
+    await page.mouse.down();
+    await page.mouse.move(centerX - 60, centerY - 40, { steps: 6 });
+    await page.mouse.up();
+
+    await expect.poll(async () => {
+      const current = await getGeometry();
+      return current.computedTransform;
+    }).not.toEqual(postZoomGeometry.computedTransform);
+
+    const postDragGeometry = await getGeometry();
+    const hasMoved = Math.abs(postDragGeometry.left - postZoomGeometry.left) > 1 || Math.abs(postDragGeometry.top - postZoomGeometry.top) > 1;
+    expect(hasMoved).toBe(true);
+  }
+
+  // Reset restores rendered geometry
+  await page.locator('#reset-view').click();
+  await expect.poll(async () => {
+    const current = await getGeometry();
+    return current.computedTransform;
+  }).toEqual(initialGeometry.computedTransform);
+  const resetGeometry = await getGeometry();
+  expect(Math.round(resetGeometry.width)).toEqual(Math.round(initialGeometry.width));
+  expect(Math.round(resetGeometry.height)).toEqual(Math.round(initialGeometry.height));
+  expect(Math.round(resetGeometry.left)).toEqual(Math.round(initialGeometry.left));
+  expect(Math.round(resetGeometry.top)).toEqual(Math.round(initialGeometry.top));
+
+  // Enter presentation using existing interface (#scene-sources -> #presentation-button)
+  await page.locator('#scene-sources').click();
+  const dialog = page.locator('#information-dialog');
+  await expect(dialog).toBeVisible();
+  await dialog.locator('#presentation-button').click();
+  await expect(dialog).not.toBeVisible();
+  await expect(page.locator('body')).toHaveClass(/presentation/);
+
+  // Assert photo-viewer fills viewport
+  const viewport = page.viewportSize()!;
+  await expect.poll(async () => {
+    const box = await viewer.boundingBox();
+    return box ? { x: Math.round(box.x), y: Math.round(box.y), width: Math.round(box.width), height: Math.round(box.height) } : null;
+  }).toEqual({ x: 0, y: 0, width: viewport.width, height: viewport.height });
+
+  // Exit presentation
+  await expect(page.locator('#presentation-exit')).toBeVisible();
+  await page.locator('#presentation-exit').click();
+  await expect(page.locator('body')).not.toHaveClass(/presentation/);
 });

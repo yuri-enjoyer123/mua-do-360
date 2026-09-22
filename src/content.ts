@@ -200,7 +200,7 @@ export const scenes: Scene[] = [
     ],
     interpretation: [
       'Góc khuất, cách sắp xếp đổ nát và địa hình ngay trước mắt là bố cục minh họa; không được gọi là nơi trú ẩn của một đơn vị hay nhân vật cụ thể.',
-      'Chất liệu bề mặt và ánh sáng do AI diễn họa; không tái hiện chính xác mức tàn phá, thời tiết hoặc tầm nhìn của một ngày trong năm 1972.',
+      'Chất liệu bề mặt và ánh sáng được diễn họa; không tái hiện chính xác mức tàn phá, thời tiết hoặc tầm nhìn của một ngày trong năm 1972.',
     ],
     sourceIds: ['di-san', 'usmc-archive', 'ttxvn', 'chu-lai'],
     literaryNote: 'Mưa đỏ gợi suy ngẫm về hy sinh và khát vọng sống; nhan đề được tiếp nhận như hình tượng văn học, không phải hiện tượng mưa màu đỏ.',

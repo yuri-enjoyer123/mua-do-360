@@ -8,41 +8,46 @@ web
 
 ## Users
 
-Người xem hành trình 360° phục vụ việc giới thiệu và tìm hiểu tiểu thuyết Mưa đỏ của Chu Lai. Trải nghiệm chạy trên trình duyệt máy tính và điện thoại.
+Người xem quan tâm đến tiểu thuyết *Mưa đỏ* của Chu Lai và lịch sử vùng đất Thành cổ Quảng Trị cùng phụ cận qua các thời kỳ, sử dụng trình duyệt trên máy tính hoặc điện thoại.
 
 ## Product Purpose
 
-Cho người xem khám phá không gian Quảng Trị được minh họa bằng panorama, đồng thời tiếp cận tư liệu lịch sử liên quan đến bối cảnh tác phẩm. Thành công là mở được cảnh, nhìn quanh, chuyển điểm và tìm được căn cứ cho phần thuyết minh.
+Cung cấp trải nghiệm trực quan kết hợp không gian toàn cảnh 360° minh họa và album ảnh tư liệu lịch sử có đối chiếu nguồn. Giúp người xem tiếp cận không gian Thành cổ Quảng Trị, sông Thạch Hãn và phụ cận qua hai thời kỳ Quá khứ và Hiện tại trên nền tảng tư liệu xác thực.
 
 ## Operating Context
 
-Dự án đã chạy bằng Vite, TypeScript và Pannellum. Mã nguồn và tài nguyên nằm trong repository này; GitHub Actions kiểm thử và xuất bản lên GitHub Pages miễn phí. Không cần tài khoản người xem hoặc API AI khi sử dụng trang.
+Xây dựng bằng Vite, TypeScript và Pannellum; triển khai tĩnh hoàn toàn trên GitHub Pages qua GitHub Actions với đường dẫn cơ sở tương đối miễn phí. Người dùng truy cập trực tiếp, không cần tài khoản, máy chủ backend hay dịch vụ API khi xem.
 
 ## Capabilities and Constraints
 
-- Sáu điểm nhìn: bờ Thạch Hãn (`thach-han`), hào và tường thành (`hao-thanh`), quanh Cổng Hậu (`cong-hau`), lũy đất phía Bắc (`luy-bac`), bên trong Thành cổ (`noi-thanh`), và phố sau chiến sự (`pho-cu`).
-- Điều khiển bằng chuột, chạm và bàn phím (phím tắt 1–6 chọn điểm nhìn); hỗ trợ liên kết trực tiếp (deep links) đến từng cảnh, toàn màn hình và trình chiếu.
-- Trạng thái lỗi ảnh hoặc WebGL phải có lối thử lại, chuyển cảnh và đọc nội dung.
-- Không bịa sự kiện lịch sử, tọa độ công sự hoặc vị trí nhân vật tiểu thuyết.
-- Phân biệt dữ kiện có nguồn, chi tiết AI minh họa và liên hệ văn học.
-- Không đưa công trình tưởng niệm hiện đại vào lớp cảnh năm 1972.
-- Âm thanh tổng hợp mặc định tắt. Tour trình duyệt hiện chưa có WebXR cho kính VR và không dựa trên khảo sát thực địa đo đạc chính xác.
-- Yêu cầu cập nhật của chủ dự án: bỏ màn giới thiệu, logo, nhãn địa điểm và các thanh chữ trang trí được đánh dấu trong ảnh phản hồi; không bắt người xem đi qua một trang quảng bá trước khi vào cảnh.
-- Khi mở trang, vào thẳng cảnh 360°, không có màn giới thiệu. Chỉ giữ điều hướng và nút thông tin gọn. Bảng tư liệu nền giấy ấm và điều khiển màu than trầm tạo cảm giác hoài niệm theo yêu cầu của chủ dự án.
-- Bản đồ AMS (NAID 74797754) được nhúng trong bảng nguồn. Chú giải ghi thông tin đến năm 1968, hồ sơ lưu trữ ghi khoảng 1942–1972; không khẳng định nguyên trạng năm 1972.
-- Ứng dụng không tái xuất bản ảnh tư liệu chiến tranh; ảnh lưu trữ chỉ dùng làm tài liệu tham khảo nội bộ.
+- **Cấu trúc nội dung**:
+  - *10 không gian 360°*: 6 cảnh minh họa cuộc chiến đấu bảo vệ Thành cổ năm 1972 và sau giao tranh (`pho-cu` sau giữa tháng 9, không gán cho tháng 6–8), 2 cảnh dựng từ không ảnh năm 1967, và 2 cảnh dựng từ ảnh di tích năm 2018. Chỉ 6 cảnh 1972 ban đầu có liên hệ văn học tiểu thuyết *Mưa đỏ*; các cảnh còn lại không có mục văn học.
+  - *9 ảnh tư liệu trong album*: 3 ảnh thời kỳ Quá khứ (1967) và 6 ảnh thời kỳ Hiện tại (2016, 2018, 2025). Mỗi thời kỳ có panorama và album ảnh riêng; hiển thị rõ niên đại cụ thể của từng ảnh.
+- **Giao diện và tương tác**:
+  - Phong cách tập tư liệu in với tông màu giấy ngà, mực nâu sẫm, điểm nhấn đỏ nâu, đường kẻ mảnh và phông chữ Newsreader.
+  - Nút chữ **Tư liệu** thuần túy không dùng biểu tượng cuốn sách. Bảng tư liệu giải thích nguồn gốc và giới hạn tái hiện một cách trung thực, không dùng nhãn hay huy hiệu AI trên giao diện người dùng.
+  - Cụm điều khiển gồm 4 nút chỉnh hướng nhìn, phóng to (+), thu nhỏ (−), đặt lại góc nhìn và toàn màn hình (F). Chế độ xem ảnh cho phép phóng to rồi kéo chuột/chạm hoặc dùng phím mũi tên để duyệt chi tiết ảnh gốc. Phím tắt 1–9 chọn trực tiếp điểm nhìn trong bộ sưu tập đang hiển thị.
+- **Kỹ thuật và bản quyền hình ảnh**:
+  - Cả 10 ảnh 360° được tạo ở kích thước 1774 × 887 rồi nâng độ phân giải lên 7096 × 3548 qua Real-ESRGAN x4plus; không phải ảnh chụp gốc 7K và không bổ sung bằng chứng lịch sử. 9 ảnh JPEG trong album giữ nguyên độ phân giải gốc.
+  - 4 cảnh dựng từ ảnh đơn mở rộng không gian ngoài khung hình và có thể thay đổi chi tiết bên trong vùng chụp; không phải ảnh 360° cùng thời hay đo đạc hình học.
+  - Tư liệu năm 1967 trước năm 1972 không mang nghĩa hòa bình. Phiếu ảnh sân bay năm 1967 đặt cách thị xã 3 dặm về phía Bắc dọc QL1, giữ nguyên phiếu dọc kèm chú thích. Cầu Hiền Lương bên sông Bến Hải tách biệt với Thành cổ.
+  - Bản đồ AMS ghi thông tin đến năm 1968 và ảnh sân bay USMC là tác phẩm công vụ thuộc phạm vi công cộng tại Hoa Kỳ. Ảnh Commons tuân thủ CC BY-SA 3.0/4.0; ảnh phái sinh áp dụng cùng giấy phép ShareAlike và ghi công tác giả. Các ảnh chiến trường trong sách USMC ghi tác giả Việt Nam không được tái xuất bản.
+  - Loại trừ các công trình sau chiến tranh (đài tưởng niệm 1997, nhà trưng bày 2002) khỏi lớp cảnh 1972. Không đưa kịch bản cá nhân, dữ liệu học tập hay toàn văn tiểu thuyết vào trang web.
+
+Âm thanh tổng hợp mặc định tắt; ứng dụng chưa có WebXR. Nhóm Hiện tại dùng ảnh chụp năm 2016, 2018 và 2025, không phải hình ảnh trực tiếp.
 
 ## Evidence on Hand
 
-- `src/content.ts`: nội dung từng cảnh, nguồn Cục Di sản văn hóa, TTXVN, MTTQ Quảng Trị, Cục Du lịch, USMC và phỏng vấn tác giả.
-- `docs/historical-notes.md`: căn cứ, giới hạn diễn họa và chi tiết sai niên đại cần loại trừ; liên kết Commons cho bản đồ AMS NARA (NAID 74797754).
-- `public/scenes/`: panorama AI và ảnh thu nhỏ. Ảnh nguồn 1774 × 887 được nâng lên 7096 × 3548 bằng Real-ESRGAN; không phải ảnh gốc 7K, ảnh tư liệu hoặc phục dựng khảo cổ đo đạc. Chi tiết nhỏ do mô hình suy đoán không bổ sung bằng chứng lịch sử. Không có WebXR.
-- `docs/asset-prompts-v2.json`: nguồn gốc và yêu cầu tạo hình cho 6 cảnh.
-- Kịch bản do chủ dự án cung cấp dùng làm bối cảnh riêng. Không công bố đường dẫn tài liệu riêng, thông tin học sinh hoặc toàn văn tiểu thuyết.
+- `src/content.ts`: 6 cảnh 1972, tư liệu từ Cục Di sản, TTXVN, MTTQ Quảng Trị, Cục Du lịch, USMC và nhà văn Chu Lai.
+- `src/derived-scenes.ts`: 4 cảnh 360° dựng từ ảnh đơn kèm liên kết ảnh gốc và giới hạn tái hiện.
+- `src/photo-records.json` & [photograph-provenance.json](docs/photograph-provenance.json): Hồ sơ 9 ảnh tư liệu gốc.
+- `docs/historical-notes.md`: Căn cứ lịch sử, giới hạn diễn họa, chi tiết loại trừ và tác quyền tư liệu.
+- `docs/asset-prompts-v2.json`: Hồ sơ tạo hình cho 6 cảnh 1972 ban đầu.
+- [ATTRIBUTION ảnh](public/photographs/ATTRIBUTION.md) & [ATTRIBUTION toàn cảnh](public/scenes/ATTRIBUTION.md): Bản quyền và giấy phép.
 
 ## Product Principles
 
-1. Cảnh là nội dung chính; thao tác điều hướng không nên bị chặn bởi phần giới thiệu.
-2. Nhận định lịch sử cần nguồn có thể đối chiếu; hình ảnh minh họa không tạo thêm bằng chứng.
-3. Giữ nội dung và cách điều khiển sử dụng được trên máy tính, điện thoại và bàn phím.
-4. Duy trì triển khai miễn phí và không phụ thuộc dịch vụ AI khi người xem mở trang.
+1. Điểm nhìn là trung tâm: mở trang vào thẳng không gian, không qua màn hình chờ hay bước đệm trung gian.
+2. Minh bạch về nguồn gốc và giới hạn tái hiện: phân định rõ tư liệu gốc với phần diễn họa; hình ảnh không tạo bằng chứng lịch sử mới.
+3. Trải nghiệm trực quan, thao tác nhất quán bằng chuột, chạm và bàn phím trên máy tính lẫn điện thoại.
+4. Triển khai tài nguyên tĩnh miễn phí, không phụ thuộc vào backend, tài khoản đăng nhập hay API bên ngoài khi xem.

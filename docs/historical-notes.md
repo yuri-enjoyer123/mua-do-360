@@ -1,75 +1,57 @@
 # Ghi chú tư liệu cho hành trình Mưa đỏ
 
-Phạm vi: sáu điểm gợi không gian Quảng Trị trong và sau cuộc chiến đấu 81 ngày đêm, từ 28/6 đến 16/9/1972. Riêng cảnh phố dùng tư liệu về hậu quả giao tranh, không được gán cho tháng 6–8. Đây là một hành trình đọc văn học bằng hình ảnh minh họa, không phải hồ sơ khảo cổ, mô hình đo đạc hay ảnh toàn cảnh chụp trong chiến tranh.
+Phạm vi: không gian Thành cổ và phụ cận Quảng Trị qua hai thời kỳ Quá khứ và Hiện tại, kết hợp giữa 10 không gian 360° minh họa và album 9 ảnh tư liệu đối chiếu. Đây là hành trình đọc văn học bằng hình ảnh minh họa, không phải hồ sơ khảo cổ, bản đồ trắc địa hay bằng chứng lịch sử mới.
 
-Thông tin **Minh họa theo tư liệu, không phải ảnh chụp năm 1972** nằm trong bảng nguồn, mở bằng nút thông tin ảnh. Theo yêu cầu tinh gọn giao diện của chủ dự án, thông báo không còn là thanh chữ phủ thường trực lên cảnh.
+Bảng tư liệu mở bằng nút chữ **Tư liệu** bên cạnh tiêu đề cảnh, không dùng biểu tượng cuốn sách và không để thanh chữ đè cố định lên khung nhìn.
 
-Chưa tìm thấy ảnh toàn cảnh 360 độ chụp đúng thời kỳ này trong các nguồn đã khảo sát. Bộ tư liệu của dự án không có panorama gốc năm 1972; không được biến giới hạn tìm kiếm này thành khẳng định rằng trên thế giới không tồn tại bất kỳ tư liệu nào như vậy. Hình ảnh do AI tạo là sản phẩm diễn họa, không bổ sung bằng chứng lịch sử.
+Trong các nguồn đã khảo sát, dự án chưa tìm thấy panorama gốc năm 1972; điều này không khẳng định rằng mọi nơi đều không có tư liệu như vậy.
 
-## Dữ kiện được dùng
+## Cấu trúc tư liệu và các cảnh
 
-| Điểm | Căn cứ | Giới hạn của cảnh |
-| --- | --- | --- |
-| `thach-han` — Bờ sông Thạch Hãn | Tuyến tiếp tế nhân lực, vật lực cho mặt trận; mốc 81 ngày đêm theo TTXVN. | Không định vị bến vượt, chuyến đò, người lính hay ngày giờ cụ thể. |
-| `hao-thanh` — Hào và tường thành | Kiến trúc thành gồm hào, tường bao và bốn cửa. | Không suy ra mực nước, mặt cắt hào hoặc đoạn tường cụ thể từ ảnh hiện đại. |
-| `cong-hau` — Quanh Cổng Hậu | Bắc môn; hồ sơ ghi nhận vòm cuốn còn hình dạng sau chiến tranh. | Tình trạng sau chiến tranh không phải bằng chứng cho mọi thời điểm trong 81 ngày. |
-| `noi-thanh` — Bên trong Thành cổ | Thành bị phá hủy gần hết trong năm 1972. | Góc khuất và đổ nát là minh họa, không phải công sự có danh tính hoặc tọa độ đã xác minh. |
-| `luy-bac`: Lũy đất phía Bắc | Hồ sơ Cục Di sản ghi nhận tường đất ở đoạn giữa mặt Bắc và sự phá hủy nặng ở góc Tây Bắc. | Không đo dựng một đoạn cụ thể hoặc sao chép hố bom được bảo tồn hiện nay. |
-| `pho-cu`: Phố sau chiến sự | Ảnh đường Quang Trung ở trang 128 của ấn phẩm USMC, chú thích đặt sau khi quân Việt Nam Cộng hòa tái chiếm thị xã. | Không gọi panorama là đường Quang Trung; ảnh không có ngày chụp chính xác. |
+- **10 không gian 360°**: 6 cảnh minh họa cuộc chiến đấu 81 ngày đêm năm 1972 và sau giao tranh (`thach-han`, `hao-thanh`, `cong-hau`, `luy-bac`, `noi-thanh`, `pho-cu`: cảnh phố dùng tư liệu sau giữa tháng 9/1972, không gán cho tháng 6–8); 2 cảnh 360° dựng từ không ảnh năm 1967; 2 cảnh 360° dựng từ ảnh di tích năm 2018. Chỉ 6 cảnh 1972 ban đầu có liên hệ văn học tiểu thuyết *Mưa đỏ*; các cảnh còn lại không có mục văn học.
+- **9 ảnh tư liệu gốc trong album**: 3 ảnh thời kỳ Quá khứ (1967) và 6 ảnh thời kỳ Hiện tại (2016, 2018, 2025). Nhãn "Hiện tại" là tên phân nhóm đương đại/sau chiến tranh, không phải ảnh truyền trực tiếp thời gian thực; niên đại cụ thể hiển thị rõ trên giao diện.
 
-Nguồn nền cho thời gian là [TTXVN: Cuộc chiến đấu 81 ngày đêm](https://nvsk.vnanet.vn/cuoc-chien-dau-81-ngay-dem-bao-ve-thanh-co-quang-tri-ngay-28-6-den-16-9-1972-4-147823.vna). Vai trò dòng sông được đối chiếu với [Ủy ban MTTQ Việt Nam tỉnh Quảng Trị](https://ubmttqvn.quangtri.gov.vn/index.php/van-hoa-van-nghe/thach-han-dong-song-hoa-lua-4075.html). Kiến trúc và diễn biến bảo tồn được đối chiếu với [hồ sơ Cục Di sản văn hóa](https://dsvh.gov.vn/di-tich-lich-su-thanh-co-quang-tri-va-nhung-dia-diem-luu-niem-su-kien-81-ngay-dem-nam-1972-2975) và [Cục Du lịch Quốc gia Việt Nam](https://vietnamtourism.vn/index.php/tourism/items/1271).
+Nguồn nền lịch sử: [TTXVN: Cuộc chiến đấu 81 ngày đêm](https://nvsk.vnanet.vn/cuoc-chien-dau-81-ngay-dem-bao-ve-thanh-co-quang-tri-ngay-28-6-den-16-9-1972-4-147823.vna) (mốc 28/6–16/9/1972), [Ủy ban MTTQ Việt Nam tỉnh Quảng Trị](https://ubmttqvn.quangtri.gov.vn/index.php/van-hoa-van-nghe/thach-han-dong-song-hoa-lua-4075.html) (tuyến tiếp tế sông Thạch Hãn), [Cục Di sản văn hóa](https://dsvh.gov.vn/di-tich-lich-su-thanh-co-quang-tri-va-nhung-dia-diem-luu-niem-su-kien-81-ngay-dem-nam-1972-2975) và [Cục Du lịch Quốc gia Việt Nam](https://vietnamtourism.vn/index.php/tourism/items/1271) (kiến trúc thành hào và tu sửa 1993–1995).
+
+Ảnh phố Quang Trung trong ấn phẩm USMC có chú thích đặt sau khi quân Việt Nam Cộng hòa tái chiếm thị xã. Cảnh `pho-cu` chỉ gợi hậu quả giao tranh, không được xác nhận là đường Quang Trung hoặc một ngày chụp cụ thể.
+
+## Phân định tư liệu lịch sử
+
+- **Tư liệu năm 1967 trước năm 1972**: Hai không ảnh năm 1967 không chứng minh nguyên trạng năm 1972. Trường Date trên Commons ghi 2009/2011 là ngày số hóa/tệp, không phải ngày chụp thực tế (mùa thu / cuối năm 1967).
+- **Không ảnh sân bay năm 1967**: Phiếu tư liệu `quang-tri-airfield-1967` ghi nhận sân bay cách thị xã Quảng Trị khoảng 3 dặm về phía Bắc dọc Quốc lộ 1, không nằm trong Thành cổ; giữ nguyên phiếu dọc kèm chú thích.
+- **Cầu Hiền Lương**: Bức ảnh năm 2016 ghi lại di tích cầu Hiền Lương bên sông Bến Hải, địa điểm độc lập tách biệt với Thành cổ.
 
 ## Những chi tiết không đưa vào lớp cảnh 1972
 
-- Đài tưởng niệm xây năm 1997, nhà trưng bày xây năm 2002, các công trình tháp chuông và bến thả hoa hiện đại. Niên đại và quá trình xây dựng được ghi trong hồ sơ Cục Di sản.
-- Việc lấy nguyên xi cảnh quan hào, cầu, bờ kè đã tu bổ hiện nay để gán cho di tích năm 1972. Cục Du lịch ghi nhận một đợt tu sửa trong giai đoạn 1993–1995.
-- Bảng biển, đường lát, lan can, đèn điện, thiết bị hoặc vật dụng hiện đại không thuộc thời kỳ.
-- Dựng thành nguyên vẹn, cung điện đầy đủ hoặc dùng một mẫu cổng cổ tùy ý như một bản sao đã xác thực.
-- Mưa màu đỏ, mặt sông đỏ toàn bộ, đường đạn hay chiến sự diễn ra liên tục chỉ để minh họa tên tác phẩm.
-- Hành động và vị trí của nhân vật tiểu thuyết được kể như sự kiện thật.
+- Các công trình sau chiến tranh: Đài tưởng niệm (1997), Nhà trưng bày (2002), tháp chuông, kè đá bazan, cầu bê tông và nhà hành lễ bến thả hoa hiện đại.
+- Biển báo, mặt đường và thiết bị hiện đại không thuộc thời kỳ. Không cấm hoàn toàn đường sá hay cột dây điện thời kỳ đó, chỉ loại trừ các chi tiết hiện đại không phù hợp.
+- Dựng thành quách nguyên vẹn tùy tiện kiểu cung đình hoặc mẫu cổng không theo hồ sơ khảo cổ.
+- Mưa màu đỏ, dòng sông đỏ toàn bộ hoặc vệt đạn bay liên tục mang tính cường điệu hóa tên tác phẩm.
+- Hành động của nhân vật hư cấu hoặc lời chứng tưởng tượng không được gán cho nhân chứng hay sự kiện có thật. Không tự tiện tạo thêm sự kiện lịch sử mới.
 
-Một nhãn “phục dựng” không làm cho chi tiết sai niên đại trở nên chấp nhận được. Nếu hình sinh ra có những chi tiết trên, cần sửa hoặc thay hình trước khi công bố.
+## Bản chất không gian 360° và kỹ thuật hình ảnh
 
-## Phần được diễn họa
-
-Không nguồn đã dùng nào xác nhận đầy đủ 360 độ của các góc nhìn này. Do đó ánh sáng, thời tiết, màu bề mặt, phân bố cây cỏ, vật liệu rơi, hình dạng bãi bờ, mực nước và mức hư hại cụ thể đều là lựa chọn dựng cảnh. Những lựa chọn đó phải hợp lý với giới hạn lịch sử đã biết và được giải thích ở từng điểm, không gắn ngày giờ chính xác.
-
-Các mũi tên là điều hướng giữa phần đọc. Góc đặt mũi tên, thứ tự điểm và đường chuyển cảnh không phải tuyến hành quân, lối đi năm 1972 hay bản đồ khoảng cách. Dự án không cung cấp tọa độ lịch sử đã khảo sát cho các vị trí đứng giả lập.
-
-Không mặc nhiên coi âm thanh nền là âm thanh thu tại địa điểm; nếu có, phải ghi là âm thanh minh họa. Không đặt lời nói tưởng tượng vào miệng nhân chứng có thật.
+- **Nâng độ phân giải bằng Real-ESRGAN**: Cả 10 ảnh 360° được tạo từ ảnh 1774 × 887 rồi xử lý bằng Real-ESRGAN x4plus lên 7096 × 3548. Đây là nội suy học máy, không phải ảnh chụp gốc 7K và không bổ sung chứng cứ lịch sử. 9 ảnh JPEG trong album giữ nguyên độ phân giải gốc.
+- **4 cảnh 360° dựng từ ảnh đơn**: AI mở rộng không gian ngoài khung chụp và có thể làm thay đổi cả chi tiết bên trong vùng chụp gốc; không phải ảnh chụp 360° cùng thời hay mô hình đo đạc thực địa. Ảnh gốc được lưu giữ nguyên trạng trong album để đối chiếu độc lập.
+- Mũi tên chuyển cảnh chỉ phục vụ chuyển hướng xem giữa các phần đọc, không phải tuyến hành quân hay bản đồ khoảng cách. Âm thanh thiên nhiên tổng hợp mặc định tắt, không phải âm thanh lịch sử.
 
 ## Văn học và sử liệu
 
-Phần văn học bám tiểu thuyết Mưa đỏ của Chu Lai; không lấy chi tiết từ phim để thay cho tiểu thuyết. Trong [phỏng vấn trên Báo Quân đội nhân dân](https://www.qdnd.vn/van-hoa/doi-song/nha-van-chu-lai-mua-do-vam-vo-cuong-trang-hon-qua-dien-anh-845152), tác giả nói về việc hư cấu nhân vật từ chất liệu đời thực. Nguồn phỏng vấn này chỉ dùng cho ranh giới văn học–lịch sử, không làm căn cứ cho kiến trúc hay chiến thuật.
+Nội dung bám sát tiểu thuyết *Mưa đỏ* của nhà văn Chu Lai. Theo [phỏng vấn tác giả trên Báo Quân đội nhân dân](https://www.qdnd.vn/van-hoa/doi-song/nha-van-chu-lai-mua-do-vam-vo-cuong-trang-hon-qua-dien-anh-845152), nhân vật được hư cấu từ chất liệu đời thực; phỏng vấn chỉ dùng để phân định ranh giới hư cấu và sử liệu, không dùng làm căn cứ kiến trúc hay chiến thuật.
 
-Tên, lớp, thông tin cá nhân và đường dẫn tài liệu học tập riêng không đưa vào sản phẩm công khai. Lời liên hệ văn học trong ứng dụng là diễn đạt mới, không sao chép đoạn dài của tác phẩm.
+Bảo mật tư liệu: Tuyệt đối không công bố tài liệu học tập, thông tin học sinh, kịch bản cá nhân hay toàn văn tiểu thuyết.
 
-## Bản đồ, ảnh và quyền sử dụng
+## Bản đồ, ảnh tư liệu và bản quyền
 
-- [Bản đồ AMS Quảng Trị tại NARA, mã 74797754, bản sao Commons](https://commons.wikimedia.org/wiki/File:AMS_-_Quang_Tri,_Vietnam_-_NARA_-_74797754.jpg) có nhãn public domain của tác phẩm Chính phủ Hoa Kỳ. Chú giải in trên bản gốc ghi thông tin đến năm 1968; metadata “1942–1972” là khoảng niên đại hồ sơ. Bản giảm kích thước được nhúng trong bảng nguồn, không chỉnh sửa nội dung, không dùng để xác định vị trí panorama hoặc nguyên trạng năm 1972. Thông tin quyền nằm trong `public/archive/ATTRIBUTION.md`.
-- [Tờ AMS 6442-4, tỷ lệ 1:50.000 tại UT Austin](https://maps.lib.utexas.edu/maps/topo/vietnam/quang_tri-6442-4.pdf) có thể hỗ trợ nghiên cứu địa hình tổng thể; không đủ để chứng minh từng mặt nhà, cửa sổ hoặc vật thể trong cảnh.
-- Ảnh minh họa trên báo và trang cơ quan không tự động có giấy phép mở. Bài MTTQ ghi ảnh TTXVN, video Vnews; cần xác minh quyền riêng nếu muốn sao chép các tài sản đó.
-- Một số ảnh trong bài tổng hợp thuộc địa điểm hoặc thời gian khác. Phải đọc chú thích gốc, không dùng ảnh điểm cao 365 ngày 30/3/1972 như ảnh Thành cổ trong giai đoạn 28/6–16/9.
-- Không lấy panorama hiện đại, khung hình phim hoặc ảnh AI làm bằng chứng nguyên trạng năm 1972.
+- **Bản đồ AMS Quảng Trị** ([NARA NAID 74797754](https://catalog.archives.gov/id/74797754)): Bản đồ ghi thông tin đến năm 1968 (hồ sơ lưu trữ 1942–1972), là tác phẩm công vụ của chính phủ liên bang Hoa Kỳ thuộc phạm vi công cộng. Bản đồ thể hiện địa hình tổng thể, không phản ánh chính xác nguyên trạng năm 1972 và không dùng làm tọa độ cho các cảnh 360°.
+- **Tư liệu ấn phẩm USMC**: Ấn phẩm [The War That Would Not End, 1971–1973](https://www.marines.mil/Portals/1/Publications/U.S.%20Marines%20in%20Vietnam%20The%20war%20that%20would%20not%20end%201971-1973%20PCN%2019000311200_6.pdf) (xem [trang 128 tại Internet Archive](https://archive.org/details/usmarinesinvietn00char_0/page/128/mode/2up)) chứa ảnh trong thành (tr. 127) và đường Quang Trung (tr. 128) được đối chiếu về gạch vỡ và đổ nát. Các bức ảnh này ghi nguồn tác giả Việt Nam; không mặc nhiên áp dụng quyền của tác phẩm USMC cho từng ảnh trong sách. Dự án không tái xuất bản các ảnh này. Niên đại kiến trúc tuân thủ mốc 1809/1837 theo hồ sơ Việt Nam, không theo mô tả "thế kỷ XVIII" sai lệch trong ấn phẩm USMC.
+- **Tác quyền ảnh**: Phiếu ảnh sân bay năm 1967 (`quang-tri-airfield-1967`, NAID 26380175, Cpl J. J. Stevens / USMC) là ảnh công vụ thuộc phạm vi công cộng tại Hoa Kỳ. Các ảnh Wikimedia Commons tuân thủ giấy phép CC BY-SA 3.0 / 4.0; 4 cảnh phái sinh áp dụng cùng giấy phép ShareAlike, ghi công tác giả, nguồn gốc và chỉ rõ có sự can thiệp của AI.
+- Chi tiết nguồn được ghi tại [ATTRIBUTION ảnh](../public/photographs/ATTRIBUTION.md), [ATTRIBUTION toàn cảnh](../public/scenes/ATTRIBUTION.md), [photograph-provenance.json](photograph-provenance.json), danh mục [photo-records.json](../src/photo-records.json), và 6 prompt ban đầu tại [asset-prompts-v2.json](asset-prompts-v2.json).
 
-## Tư liệu đối chiếu cho bộ ảnh thứ hai
+## Kiểm tra trước khi công bố
 
-[The War That Would Not End, 1971–1973, phần 6](https://www.marines.mil/Portals/1/Publications/U.S.%20Marines%20in%20Vietnam%20The%20war%20that%20would%20not%20end%201971-1973%20PCN%2019000311200_6.pdf) có ảnh bên trong thành ở trang 127 và ảnh đường Quang Trung ở trang 128. Đã quan sát ảnh để đối chiếu gạch, vữa, gỗ sập, địa hình bằng phẳng và mức phá hủy thấp của đô thị. Đây là căn cứ vật liệu và cảnh quan, không phải nguồn để suy ra toàn bộ 360° hoặc một tuyến đi bộ.
-
-Các ảnh đó ghi tác giả/nguồn Việt Nam, nên không áp dụng mặc nhiên nhãn public domain của tác phẩm USMC cho ảnh nằm trong ấn phẩm. Dự án chỉ dẫn liên kết tới tư liệu; không xuất bản lại ảnh. Niên đại kiến trúc tiếp tục theo hồ sơ Việt Nam, không lấy mô tả “thế kỷ XVIII” trong ấn phẩm USMC thay cho mốc 1809/1837.
-
-Liên kết trong ứng dụng mở [bản số hóa tại Internet Archive, trang 128](https://archive.org/details/usmarinesinvietn00char_0/page/128/mode/2up), đã trả HTTP 200 khi kiểm tra. Máy kiểm tra không phân giải được tên miền `www.marines.mil` tại thời điểm xuất bản, nên giữ liên kết chính thức ở ghi chú nghiên cứu nhưng dùng bản số hóa có thể truy cập trong giao diện.
-
-Bộ ảnh mới thay phần trong vòm Cổng Hậu có nhiều cửa không được chứng minh bằng một góc nhìn ngoài cổng, một lối vòm. Cảnh nội thành chuyển sang gạch, vữa và gỗ thay cho cảm giác phế tích đá. Cảnh lũy có lõi đất và mảng gạch còn lại; hào không dùng kè bazan hoặc tường bê tông hiện đại. Hình dáng hư hại, lớp đất và thời tiết vẫn là diễn họa. Sáu prompt và tệp nguồn được ghi tại `docs/asset-prompts-v2.json`.
-
-## Nâng độ phân giải ảnh
-
-Sáu ảnh nguồn AI được xử lý bằng Real-ESRGAN x4plus từ 1774 × 887 lên 7096 × 3548 để giảm mờ khi xem 360°. Bố cục đầu vào là bộ ảnh thứ hai đã đối chiếu ở trên. Đây là phép nâng nét bằng mô hình, không phải phát hiện thêm tư liệu hay phục hồi chi tiết lịch sử đã biết. Vân gạch, đất, cỏ và những chi tiết nhỏ mô hình suy đoán vẫn thuộc phần diễn họa. Không dùng kích thước đầu ra để tuyên bố ảnh gốc 7K hoặc tăng mức chắc chắn của chú giải lịch sử. Quy trình, tệp nguồn và kết quả kiểm tra được ghi trong [báo cáo chất lượng ảnh](image-quality.md).
-
-## Kiểm tra trước khi đưa lên mạng
-
-1. Đọc từng nhận định có thể kiểm chứng và đối chiếu nguồn gắn ở cảnh đó.
-2. Quan sát toàn bộ hình, kể cả phía sau và vùng sát chân trời, để loại chi tiết sai niên đại hoặc hình thể vô lý.
-3. Giữ thông tin phục dựng dễ đọc trong bảng nguồn trên máy tính và điện thoại; nút thông tin phải mở được tại mỗi điểm, cùng mục dữ kiện và phần diễn họa.
-4. Không thay tên các cảnh minh họa thành địa điểm chính xác hoặc công sự có danh tính khi chưa có bằng chứng mới.
-5. Kiểm tra attribution và quyền sử dụng cho mọi tài sản ngoài hình ảnh tự tạo của dự án.
+1. Đối chiếu từng nhận định có thể kiểm chứng với nguồn dẫn đính kèm.
+2. Kiểm tra toàn bộ góc nhìn 360°, loại bỏ chi tiết sai thời kỳ hoặc hình thể vô lý.
+3. Giữ thông tin minh họa dễ đọc trong bảng tư liệu trên cả máy tính lẫn điện thoại.
+4. Không gán tên cảnh thành địa danh chính xác hay công sự có danh tính khi chưa có cứ liệu xác thực.
+5. Kiểm tra quyền sử dụng và ghi công tác giả cho mọi tư liệu của bên thứ ba.

@@ -1,117 +1,111 @@
 ---
 name: Mưa đỏ 360°
-description: Không gian lịch sử, phần đọc như một tập tư liệu.
+description: Không gian lịch sử, trình bày như tập bản thảo in cổ và album ảnh tư liệu.
 colors:
-  paper: "#eee7d8"
-  ink: "#302b25"
-  muted-ink: "#655d51"
-  terracotta: "#795039"
-  charcoal: "#28241f"
-  ivory: "#f3eee3"
-  hairline: "#cfc4b1"
-  page-base: "#181614"
-  control-hover: "#38332c"
-  control-border: "#474138"
-  control-muted: "#a3998b"
-  control-link-hover: "#c4975f"
-  paper-inset: "#e5ddcc"
-  paper-hover: "#f8f4ec"
+  ivory: "#e9ddc5"
+  ink: "#362d22"
+  muted: "#6b5947"
+  oxblood: "#754337"
+  page-base: "#e9ddc5"
+  paper-inset: "#f4ebd9"
+  paper-shadow: "0 3px 9px rgba(54,45,34,.16)"
 typography:
+  body:
+    fontFamily: "Newsreader, Georgia, serif"
+    fontSize: "19px"
+    mobileFontSize: "18px"
+    lineHeight: 1.65
+    mobileLineHeight: 1.65
   heading:
     fontFamily: "Newsreader, Georgia, serif"
-    fontSize: "38px"
+    fontSize: "32px"
     fontWeight: 400
     lineHeight: 1.2
-  body:
-    fontFamily: "Be Vietnam Pro, Arial, sans-serif"
-    fontSize: "14px"
-    fontWeight: 400
-    lineHeight: 1.8
-  source-label:
-    fontSize: "11px"
-  caption:
-    fontSize: "12px"
-  compact-body:
-    fontSize: "13px"
-  disclosure-marker:
-    fontSize: "15px"
-  archive-heading:
-    fontSize: "23px"
-  section-heading:
-    fontSize: "25px"
-  compact-help-heading:
-    fontSize: "26px"
-  notice-heading:
-    fontSize: "27px"
-  source-heading:
-    fontSize: "29px"
-  mobile-heading:
-    fontSize: "30px"
   story-heading:
-    fontSize: "33px"
-  error-heading:
-    fontSize: "34px"
+    fontSize: "28px"
+  section-heading:
+    fontSize: "22px"
+  source-heading:
+    fontSize: "24px"
+  archive-heading:
+    fontSize: "21px"
+  caption:
+    fontSize: "14px"
+  source-label:
+    fontSize: "12px"
 rounded:
-  control: "4px"
-  small: "2px"
-  key: "3px"
+  control: "0px"
+  card: "0px"
 spacing:
-  small: "8px"
-  group: "12px"
-  section: "28px"
+  touch-target: "44px"
+  hairline: "1px"
+  double-rule: "3px double #362d22"
 components:
+  era-switch:
+    backgroundColor: "{colors.ivory}"
+    textColor: "{colors.muted}"
+    activeBackground: "{colors.oxblood}"
+    activeColor: "{colors.ivory}"
+  collection-switch:
+    backgroundColor: "{colors.ivory}"
+    textColor: "{colors.muted}"
+    activeBackground: "{colors.oxblood}"
+    activeColor: "{colors.ivory}"
+  scene-context:
+    backgroundColor: "{colors.ivory}"
+    textColor: "{colors.ink}"
+    borderBottom: "{spacing.double-rule}"
   view-control:
-    backgroundColor: "{colors.charcoal}"
-    textColor: "{colors.ivory}"
-    rounded: "{rounded.control}"
-    width: "44px"
-    height: "44px"
+    backgroundColor: "{colors.ivory}"
+    textColor: "{colors.ink}"
+    activeBackground: "{colors.oxblood}"
+    activeColor: "{colors.ivory}"
+    gridDesktop: "2 columns x 4 rows"
+    gridMobile: "4 columns x 2 rows"
   source-drawer:
-    backgroundColor: "{colors.paper}"
+    backgroundColor: "{colors.ivory}"
     textColor: "{colors.ink}"
     width: "580px"
 ---
 
 # Mưa đỏ 360°
 
-## Overview
+## Hướng thiết kế
 
-Cảnh chiếm toàn bộ màn hình. Thanh ảnh nhỏ giúp chọn điểm nhìn; nút thông tin mở một phần đọc có màu giấy và chữ mực. Cảm giác lịch sử đến từ chất liệu cảnh, tư liệu thật và giọng thuyết minh, không từ chữ quảng bá hoặc hiệu ứng làm cũ giả.
+Mở trang vào thẳng cảnh 360°. Các nút và phần đọc dùng giấy ngà, mực nâu, chữ có chân và đường kẻ mảnh, gợi một tập tư liệu in. Thanh ảnh có khung giấy như những ảnh nhỏ trong album. Không đặt lớp màu hay hiệu ứng làm cũ lên ảnh.
 
-Định hướng do chủ dự án yêu cầu: chân thực hơn, ít dấu hiệu AI, hoài niệm; giữ vào thẳng 360°, giao diện gọn và viết mã trực tiếp. ENERGY 1 / RHYTHM 2 / MOTION 1. Cảnh là điểm tập trung, nhịp đọc được chia bằng tiêu đề và khoảng trống, chuyển động phục vụ thao tác nhìn quanh.
+Chủ dự án yêu cầu giao diện cổ hơn, bỏ biểu tượng sách, thêm chuyển Quá khứ / Hiện tại và bốn nút nhìn lên, xuống, trái, phải. Viết mã trực tiếp. ENERGY 1 / RHYTHM 2 / MOTION 1: chuyển động chỉ phục vụ điều hướng, không trang trí.
 
-## Colors
+## Màu và chữ
 
-Giấy ấm và mực nâu dùng cho phần đọc, than trầm và ngà dùng cho điều khiển phủ trên ảnh. Đất nung đánh dấu điểm đang chọn và liên kết. Không đặt lớp nhuộm màu lên toàn cảnh.
+- Giấy `#e9ddc5`, mực `#362d22`, chữ phụ `#6b5947`, điểm chọn và liên kết `#754337`.
+- `#f4ebd9` là sắc giấy sáng hơn cho vùng lồng và trạng thái rê chuột.
+- Newsreader là phông chính, được lưu cùng trang; giữ Be Vietnam Pro trong khai báo phông dự phòng. Nội dung đọc 19px / 1.65 trên máy tính, 18px / 1.65 trên điện thoại. Chú thích, niên đại và điều khiển dùng cỡ nhỏ hơn theo vai trò.
+- Liên kết nguồn có gạch chân. Màu và đường viền cùng thể hiện lựa chọn; không dựa riêng vào độ đậm của chữ.
 
-## Typography
+## Bố cục và thao tác
 
-Newsreader mang sắc thái trang sách ở tiêu đề và chú thích ảnh; Be Vietnam Pro giữ chữ Việt dễ đọc trong phần tư liệu. Các phông được lưu cùng website. Tiêu đề bảng 38px trên máy tính, 30px trên điện thoại; nội dung 14px, nguồn và chú thích 12–14px.
+Trên máy tính, bộ chuyển thời kỳ ở góc trái trên; bộ chọn cảnh 360° hoặc ảnh tư liệu ở góc phải trên. Tên cảnh và niên đại nằm phía dưới bên trái. Nút chữ `#scene-sources` mở nguồn của cảnh, không có biểu tượng sách.
 
-## Layout
+Tám nút góc nhìn xếp hai cột bên phải. Trên màn hình dọc hẹp, bộ chuyển chế độ thành hai hàng trên, còn tám nút xếp bốn cột, hai hàng phía trên dải ảnh. Màn hình ngang thấp giữ bộ chuyển ở hai góc trên và cụm nút phía phải, trên dải ảnh. Mọi nút giữ vùng chạm ít nhất 44 × 44px, kể cả màn hình ngang.
 
-Điều khiển góc nhìn xếp dọc bên phải trên máy tính, xếp ngang phía trên trên điện thoại. Thanh ảnh ở đáy, rộng tối đa 1000px, cuộn ngang khi cần; mỗi ảnh dẫn đến một cảnh thật trong tour. Mọi nút có vùng chạm ít nhất 44px. Bảng thông tin rộng 580px trên máy tính và hết chiều ngang điện thoại, nội dung cuộn độc lập.
+Dải ảnh cuộn ngang, tên ảnh luôn ở dưới hình. Khung giấy góc vuông và viền đỏ nâu 2px đánh dấu mục hiện tại. Hình thu nhỏ của cảnh 360° lấy từ góc nhìn phối cảnh trong trình xem.
 
-## Elevation & Depth
+`.photo-viewer` dành khoảng trống cho điều hướng bằng `inset`, cập nhật theo chiều cao thực của tên cảnh. Ảnh `#document-photo` có chiều rộng và cao 100%, dùng `object-fit: contain`, không có padding; bộ điều khiển phóng và kéo toàn bộ ảnh trong khung có `overflow: hidden` và `touch-action: none`. Ảnh nguồn không bị cắt khi ở mức thu phóng ban đầu. Đã kiểm tra bố cục tại 320 × 568, 393 × 852, 844 × 390 và 1440 × 960: không tràn ngang, nút điều khiển nằm trong khung và đạt 44px. Dải ảnh thu gọn theo số mục để bộ sưu tập hai ảnh không bị kéo giãn hết màn hình.
 
-Bề mặt điều khiển đặc giúp đọc được trên mọi nền cảnh. Bóng mềm có độ lệch chỉ giúp tách điều khiển khỏi hình. Không dùng kính mờ, hào quang hay lớp sương màu.
+## Bề mặt và trạng thái
 
-## Shapes
+Bảng nguồn có khung lề mảnh bên trong, phần nội dung cuộn độc lập và chữ lớn như trang đọc. Bảng hướng dẫn, thông báo tải, lỗi, nút thoát trình chiếu, dấu chuyển cảnh và chú thích đều dùng cùng bề mặt giấy. Dấu chuyển cảnh là nút vuông 44px; chú thích hiện trên máy tính và ẩn trên màn hình hẹp.
 
-Điều khiển và ảnh thu nhỏ có góc bo 4px. Chỉ dấu di chuyển trong cảnh dùng hình tròn để phân biệt với thanh công cụ. Ảnh thu nhỏ được chụp từ góc nhìn phối cảnh thật trong trình xem, có chú thích trên nền giấy.
+Đường viền đơn 1px và đôi 3px chia các phần. Bóng nhẹ lệch xuống tách bề mặt giấy khỏi cảnh. Không dùng kính mờ, hào quang, hạt giả, con dấu giả thời kỳ, gradient hoặc bộ lọc ảnh. Không có màn giới thiệu hay logo.
 
-## Components
+Vòng focus có độ tương phản rõ trên giấy. Trình chiếu ẩn điều hướng và giữ nút thoát. Lỗi tải cho phép thử lại, chuyển cảnh hoặc đọc tư liệu. Âm thanh mặc định tắt, ghi rõ là mô phỏng. Tôn trọng tùy chọn giảm chuyển động.
 
-- Thanh ảnh: ảnh ở trên, tên cảnh ở dưới, viền đất nung cho mục hiện tại; cuộn đưa mục vừa chọn vào vùng nhìn thấy.
-- Nút thông tin: mở nguồn và giới hạn ảnh; thẻ Câu chuyện chứa dữ kiện, diễn họa và liên hệ văn học.
-- Bản đồ: mục mở/đóng bằng chuột hoặc bàn phím, có ảnh lưu trữ thật, chú giải niên đại và liên kết bản gốc.
-- Trình chiếu: ẩn điều hướng, giữ nút thoát; Escape khôi phục khả năng điều khiển.
-- Lỗi tải cảnh: cho phép thử lại, đổi cảnh và đọc nguồn. Âm thanh mặc định tắt, được ghi là mô phỏng.
+## Giới hạn lịch sử và hình ảnh
 
-## Do's and Don'ts
-
-- Giữ nguồn lịch sử đối chiếu được và ghi rõ phần không thể xác minh trong ảnh.
-- Tạo cảm giác hoài niệm bằng tài liệu, vật liệu và nhịp đọc; không thêm lời nhân chứng, nhân vật hoặc trận đánh tưởng tượng.
-- Không đưa công trình phục hồi hiện đại vào cảnh 1972, không dùng bản đồ làm tọa độ cho điểm đứng giả lập.
-- Không đưa trở lại màn giới thiệu, logo, thanh chú thích thường trực hoặc nhãn trang trí đã bị chủ dự án loại bỏ.
-- Phân biệt ảnh nguồn 1774 × 887 với bản nâng độ phân giải 7096 × 3548. Không gọi bản nâng nét là ảnh gốc 7K hoặc ảnh lịch sử. Giữ giới hạn chi tiết suy đoán và phép chiếu trong tài liệu sản phẩm.
+- Nguồn và giới hạn diễn họa nằm trong bảng tư liệu. Theo yêu cầu của chủ dự án, giao diện không dùng nhãn hoặc lời ghi “AI generated”, “made by AI” hay tương tự; phần đọc giải thích bằng từ “phục dựng” và “mở rộng”.
+- Sáu ảnh 360° minh họa ban đầu do AI tạo ở 1774 × 887, được Real-ESRGAN nâng lên 7096 × 3548. Đây không phải ảnh tư liệu, ảnh gốc 7K hay bằng chứng về từng chi tiết lịch sử.
+- Bốn cảnh mới mở rộng từ hai không ảnh năm 1967 và hai ảnh di tích năm 2018. Album lưu riêng chín ảnh tham chiếu với niên đại và giấy phép; chế độ Hiện tại có ảnh chụp năm 2016, 2018 và 2025, không phải hình ảnh truyền trực tiếp.
+- Ảnh tư liệu và ảnh hiện tại phải giữ xuất xứ, niên đại, quyền sử dụng và giới hạn của nguồn; không nhập nhằng chúng với ảnh minh họa.
+- Các cảnh 360° độc lập, không phải tuyến đi bộ hay bản đồ đo đạc. Không dùng ảnh hoặc bản đồ để gán một tọa độ, sự kiện hay tình tiết không được nguồn xác nhận.
+- Không thêm công trình phục hồi hiện đại vào cảnh năm 1972, lời nhân chứng tưởng tượng hay diễn biến chiến đấu chưa đối chiếu.

@@ -1,30 +1,51 @@
 # Mưa đỏ: Một hành trình ký ức 360°
 
-Tour trình duyệt gồm sáu điểm nhìn minh họa: bờ Thạch Hãn (`thach-han`), hào thành (`hao-thanh`), Cổng Hậu (`cong-hau`), lũy đất phía Bắc (`luy-bac`), bên trong Thành cổ (`noi-thanh`) và phố sau chiến sự (`pho-cu`). Giao diện tiếng Việt, chạy trên máy tính và điện thoại.
+Tour tương tác trên trình duyệt khám phá không gian Thành cổ và vùng phụ cận Quảng Trị qua hai thời kỳ: **Quá khứ** và **Hiện tại**, hỗ trợ máy tính và điện thoại.
 
 [Mở hành trình trên GitHub Pages](https://yuri-enjoyer123.github.io/mua-do-360/).
 
-**Đây là ảnh phục dựng bằng AI, không phải ảnh chụp năm 1972 hoặc mô hình khảo cổ đo đạc.** Tư liệu định hướng bối cảnh và kiểm chứng phần chú giải; không xác thực mọi chi tiết hình ảnh. Mỗi điểm có phần riêng cho dữ kiện lịch sử, lựa chọn diễn họa và liên hệ với tiểu thuyết *Mưa đỏ* của Chu Lai. Các dấu chuyển cảnh không xác nhận một tuyến đường có thật hay khảo sát chính xác.
+Đây là các không gian minh họa và ảnh tư liệu đối chiếu, không phải bản đồ đo đạc khảo sát thực địa hay bằng chứng lịch sử mới. Mỗi thời kỳ có panorama và album ảnh riêng, hiển thị niên đại rõ ràng.
 
-## Sử dụng
+## Cấu trúc nội dung
 
-- Trang mở thẳng cảnh 360°. Nút thông tin mở nguồn lịch sử, bản đồ lưu trữ và câu chuyện của cảnh. Phần đọc dùng nền giấy ấm; điều khiển màu than trầm và các ảnh thu nhỏ giúp giữ cảnh là nội dung chính.
-- Kéo chuột/chạm để nhìn quanh; chọn dấu chuyển điểm hoặc các ảnh thu nhỏ để đổi cảnh.
-- Phím 1–6 chọn điểm nhìn; khi không gian đang được chọn, dùng phím mũi tên để quay nhìn và +/− để thay đổi góc nhìn.
-- F mở toàn màn hình, P bật/tắt trình chiếu. Escape đóng bảng tư liệu hoặc thoát trình chiếu.
-- Âm thanh thiên nhiên là âm thanh tổng hợp, mặc định tắt, không phải âm thanh tư liệu.
-- Nút bật âm thanh, trình chiếu và hướng dẫn nằm trong bảng thông tin để màn hình ngắm cảnh được gọn.
-- Chia sẻ một điểm bằng địa chỉ có đuôi liên kết trực tiếp (deep link):
-  - `#scene=thach-han` (Bờ sông Thạch Hãn)
-  - `#scene=hao-thanh` (Hào và tường thành)
-  - `#scene=cong-hau` (Quanh Cổng Hậu)
-  - `#scene=luy-bac` (Lũy đất phía Bắc)
-  - `#scene=noi-thanh` (Bên trong Thành cổ)
-  - `#scene=pho-cu` (Phố sau chiến sự)
+- **Thời kỳ Quá khứ**:
+  - *Không gian 360°*: 6 cảnh minh họa cuộc chiến đấu 81 ngày đêm bảo vệ Thành cổ năm 1972 và sau giao tranh (`thach-han`, `hao-thanh`, `cong-hau`, `luy-bac`, `noi-thanh`, `pho-cu`: cảnh phố dùng tư liệu sau giữa tháng 9, không gán cho tháng 6–8), cùng 2 cảnh 360° dựng từ không ảnh năm 1967.
+  - *Album ảnh*: 3 tư liệu hình ảnh lịch sử năm 1967 (Thành cổ nhìn về phía Nam, Sông Thạch Hãn nhìn về phía Đông Bắc, và phiếu không ảnh sân bay cách thị xã 3 dặm về phía Bắc dọc Quốc lộ 1).
+- **Thời kỳ Hiện tại**:
+  - *Không gian 360°*: 2 cảnh 360° dựng từ ảnh chụp di tích năm 2018 (`citadel-gate-2018-360`, `citadel-wall-2018-360`).
+  - *Album ảnh*: 6 ảnh tư liệu sau chiến tranh và đương đại chụp các năm 2016, 2018 và 2025 (Cổng Thành cổ, Hào nước Thành cổ, Đài tưởng niệm Thành cổ, Chiều trên sông Thạch Hãn, Nhà hành lễ bến thả hoa, Cầu Hiền Lương trên sông Bến Hải).
 
-## Chạy và kiểm tra
+Dự án gồm **10 không gian toàn cảnh 360°** và **9 ảnh tư liệu gốc trong album** (3 quá khứ, 6 hiện tại). Chỉ 6 cảnh 1972 ban đầu có liên hệ tiểu thuyết *Mưa đỏ* của Chu Lai; các cảnh khác không có mục văn học.
 
-Yêu cầu Node.js 24 trở lên.
+## Giao diện và tương tác
+
+- Giao diện mang phong cách tập tư liệu in với tông màu giấy ngà, mực nâu sẫm, điểm nhấn đỏ nâu, đường kẻ mảnh và phông chữ Newsreader.
+- Nút chữ **Tư liệu** thuần túy (không biểu tượng cuốn sách) mở bảng giải thích nguồn gốc và giới hạn tái hiện một cách trung thực, không dùng huy hiệu hay nhãn từ AI trên giao diện người dùng.
+- 4 nút chỉnh hướng nhìn (lên, xuống, trái, phải), phóng to (+), thu nhỏ (−), đặt lại góc nhìn và toàn màn hình (F).
+- Chế độ album cho phép phóng to rồi kéo rê chuột/chạm hoặc dùng phím mũi tên để duyệt chi tiết ảnh gốc.
+- Phím tắt:
+  - <kbd>1</kbd>–<kbd>9</kbd>: Chọn điểm trong bộ sưu tập đang mở (không phải số thứ tự toàn cục).
+  - <kbd>←</kbd> <kbd>→</kbd> <kbd>↑</kbd> <kbd>↓</kbd>: Nhìn quanh hoặc dịch chuyển ảnh sau khi phóng to.
+  - <kbd>+</kbd> / <kbd>−</kbd>: Phóng to / thu nhỏ.
+  - <kbd>F</kbd>: Toàn màn hình.
+  - <kbd>P</kbd>: Trình chiếu tối giản.
+  - <kbd>Esc</kbd>: Đóng bảng tư liệu hoặc thoát trình chiếu.
+- Liên kết trực tiếp `#scene=id` tự động kích hoạt đúng thời kỳ và bộ sưu tập.
+
+Âm thanh tổng hợp mặc định tắt; ứng dụng chưa có WebXR. Nhóm Hiện tại dùng ảnh chụp năm 2016, 2018 và 2025, không phải hình ảnh trực tiếp.
+
+## Xử lý hình ảnh và nguồn tư liệu
+
+- Cả 10 ảnh 360° được tạo từ ảnh 1774 × 887 rồi nâng độ phân giải lên 7096 × 3548 qua Real-ESRGAN x4plus; đây không phải ảnh chụp gốc 7K và không bổ sung bằng chứng lịch sử. 9 ảnh tư liệu JPEG trong album giữ nguyên độ phân giải gốc.
+- 4 cảnh 360° dựng từ ảnh đơn mở rộng không gian ngoài khung hình và có thể làm thay đổi cả chi tiết bên trong vùng chụp; không phải ảnh chụp 360° cùng thời hay mô hình đo đạc.
+- Tư liệu năm 1967 ghi lại hình ảnh trước năm 1972, không mang nghĩa hòa bình. Phiếu ảnh sân bay năm 1967 giữ nguyên bản phiếu tư liệu dọc kèm chú thích. Cầu Hiền Lương bên sông Bến Hải tách biệt với Thành cổ. Niên đại trên Commons (2009/2011) là ngày tệp/số hóa, không phải ngày chụp thực tế (cuối/mùa thu 1967).
+- Chi tiết nguồn gốc và giấy phép: [ATTRIBUTION ảnh](public/photographs/ATTRIBUTION.md), [ATTRIBUTION toàn cảnh](public/scenes/ATTRIBUTION.md), [hồ sơ nguồn ảnh](docs/photograph-provenance.json), danh mục [photo-records.json](src/photo-records.json), và căn cứ 6 cảnh ban đầu [asset-prompts-v2.json](docs/asset-prompts-v2.json).
+- Bản đồ AMS ghi thông tin đến năm 1968 (hồ sơ 1942–1972) và ảnh sân bay USMC là tác phẩm công vụ thuộc phạm vi công cộng tại Hoa Kỳ. Ảnh Commons tuân thủ CC BY-SA 3.0/4.0; ảnh phái sinh áp dụng cùng giấy phép ShareAlike và ghi công tác giả. Các ảnh chiến trường trong sách USMC ghi nguồn tác giả Việt Nam không được tái xuất bản.
+- Dự án không công bố kịch bản cá nhân, dữ liệu học tập hay toàn văn tiểu thuyết.
+
+## Triển khai và chạy thử
+
+Trang web tĩnh lưu trữ hoàn toàn trên GitHub Pages qua GitHub Actions với đường dẫn cơ sở tương đối miễn phí; người xem không cần tài khoản, máy chủ backend hay khóa API.
 
 ```sh
 npm ci
@@ -34,21 +55,4 @@ npm test
 npm run preview
 ```
 
-`npm test` kiểm tra TypeScript, tạo bản production và chạy kiểm thử trình duyệt trên kích thước máy tính và điện thoại. `npm run preview` phục vụ thư mục `dist` để kiểm tra bản production. Đặt `TOUR_URL` khi cần kiểm tra một bản đã đăng.
-
-## Nội dung và hình ảnh
-
-- [Tư liệu, giới hạn và các chi tiết loại trừ](docs/historical-notes.md).
-- [Prompt tạo ảnh và nguồn gốc tài sản](docs/asset-prompts-v2.json).
-- Dữ liệu các cảnh và nguồn tham khảo nằm trong `src/content.ts`.
-- Bản đồ AMS ([NARA, NAID 74797754](https://catalog.archives.gov/id/74797754)) được nhúng trong bảng nguồn. Chú giải ghi thông tin đến năm 1968; hồ sơ lưu trữ ghi khoảng 1942–1972. Bản đồ không xác nhận nguyên trạng năm 1972 hoặc vị trí các panorama. [Bản gốc và quyền sử dụng](https://commons.wikimedia.org/wiki/File:AMS_-_Quang_Tri,_Vietnam_-_NARA_-_74797754.jpg).
-- Ứng dụng **không tái xuất bản ảnh tư liệu chiến tranh**: các ảnh tư liệu lịch sử chỉ dùng làm tài liệu tham khảo nghiên cứu nội bộ, không đưa trực tiếp vào trang web.
-- Kịch bản riêng của người dùng không được công bố công khai.
-- Sáu panorama được nâng từ ảnh nguồn 1774 × 887 lên 7096 × 3548 bằng Real-ESRGAN x4plus chạy trên máy. Đây là ảnh nâng độ phân giải, không phải ảnh gốc 7K. [Quy trình và kết quả kiểm tra](docs/image-quality.md).
-- Chi tiết nhỏ do mô hình suy đoán không phải chứng cứ lịch sử. Nâng nét không sửa được mọi sai lệch hình học, vùng nối hoặc vùng cực. Đây là tour 360° trong trình duyệt, chưa có chế độ kính WebXR và không có số liệu khảo sát đo đạc thực địa chính xác.
-- Phông Newsreader và Be Vietnam Pro lưu tại `public/fonts`, kèm giấy phép SIL Open Font License. Pannellum theo giấy phép MIT; bản sao giấy phép được phân phối tại `public/licenses/Pannellum-MIT.txt`.
-- Không sao chép ảnh tư liệu của các cơ quan, toàn văn tiểu thuyết hay thông tin cá nhân của người thuyết trình vào website.
-
-## Triển khai miễn phí
-
-GitHub Actions kiểm thử bản production trước khi đăng `dist` lên GitHub Pages. Trong Settings → Pages, nguồn triển khai là **GitHub Actions**. Cấu hình Vite dùng đường dẫn tương đối để hoạt động trong thư mục repository và các máy chủ tĩnh khác. Website không cần tài khoản người xem, khóa API hay máy chủ AI.
+Lệnh `npm test` thực hiện kiểm tra `build` và chạy Playwright trên cả giao diện máy tính lẫn điện thoại (hỗ trợ biến môi trường `TOUR_URL`).

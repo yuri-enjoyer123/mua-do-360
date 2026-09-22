@@ -1,0 +1,463 @@
+{
+  "recorded": "2026-09-22",
+  "originals": [
+    {
+      "id": "quang-tri-south-1967",
+      "era": "past",
+      "title": "Thành cổ và thị xã Quảng Trị, nhìn về phía Nam",
+      "caption": "Ảnh chụp từ trên cao, nhìn về phía Nam, ghi lại Thành cổ và thị xã Quảng Trị vào mùa thu năm 1967 theo mô tả của người chụp.",
+      "date": "Mùa thu 1967",
+      "creator": "Sciacchitano",
+      "license": "CC BY-SA 3.0 Unported",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:34._Quang_Tri_Citadel_and_City_looking_South_Fall_1967.jpg",
+      "file": "photographs/quang-tri-south-1967.jpg",
+      "width": 3559,
+      "height": 2443,
+      "notes": [
+        "Đây là ảnh năm 1967, không phải ảnh cuộc chiến 81 ngày đêm năm 1972.",
+        "Mốc mùa thu 1967 nằm trong tên và mô tả do tác giả cung cấp; trường Date của Commons ghi 9/8/2011 là mốc tệp, không phải ngày chụp lịch sử. Không xác định ngày chụp cụ thể.",
+        "Ảnh đơn chụp từ trên cao, không phải ảnh toàn cảnh 360°. Không suy ra vị trí người đứng hoặc tuyến tham quan từ ảnh."
+      ],
+      "sha256": "ad639ca70d236b7817a6afdcee08e1f08aa2df79824859ab5b1dd7ae1df9fb6b",
+      "directFileUrl": "https://upload.wikimedia.org/wikipedia/commons/3/35/34._Quang_Tri_Citadel_and_City_looking_South_Fall_1967.jpg",
+      "sourceChanges": "None; downloaded original bytes retained.",
+      "thumbnailChanges": "Resized to fit 320 by 180 pixels; WebP export, quality 85. No color adjustment or crop."
+    },
+    {
+      "id": "quang-tri-northeast-1967",
+      "era": "past",
+      "title": "Sông Thạch Hãn và Quảng Trị nhìn về phía Đông Bắc",
+      "caption": "Toàn cảnh thị xã Quảng Trị nhìn về phía Đông Bắc cuối năm 1967. Mô tả của tác giả xác định sông Thạch Hãn ở giữa ảnh, Thành cổ và làng Trí Bưu ở phía trên bên trái.",
+      "date": "Cuối năm 1967",
+      "creator": "Sciacchitano",
+      "license": "CC BY-SA 3.0 Unported",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:29._-_Quang_Tri_Citadel_and_City_Fall_1967.jpg",
+      "file": "photographs/quang-tri-northeast-1967.jpg",
+      "width": 3484,
+      "height": 2417,
+      "notes": [
+        "Địa danh và hướng nhìn theo mô tả do tác giả cung cấp trên Commons; không có tọa độ máy ảnh.",
+        "Mốc cuối năm 1967 nằm trong mô tả; trường Date ghi 20/10/2009 trùng ngày số hóa trong metadata, không phải ngày chụp.",
+        "Không dùng ảnh này để xác định một bến vượt sông hay hoạt động quân sự năm 1972. Đây là ảnh đơn, không phải 360°."
+      ],
+      "sha256": "815d2136a39361d6727b4c1eba4290b12eecfcef8bbdb931034687bd4028887a",
+      "directFileUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a7/29._-_Quang_Tri_Citadel_and_City_Fall_1967.jpg",
+      "sourceChanges": "None; downloaded original bytes retained.",
+      "thumbnailChanges": "Resized to fit 320 by 180 pixels; WebP export, quality 85. No color adjustment or crop."
+    },
+    {
+      "id": "quang-tri-airfield-1967",
+      "era": "past",
+      "title": "Tư liệu không ảnh sân bay phía Bắc Quảng Trị",
+      "caption": "Phiếu ảnh ngày 22/10/1967 ghi lại sân bay mới dọc Quốc lộ 1, cách Quảng Trị khoảng ba dặm về phía Bắc theo chú thích gốc. Bản số hóa giữ cả ảnh và thông tin lưu trữ.",
+      "date": "22/10/1967",
+      "creator": "Cpl J. J. Stevens / U.S. Marine Corps",
+      "license": "Public domain in the United States; official U.S. federal government photograph",
+      "licenseUrl": "https://www.archives.gov/global-pages/privacy.html#copyright",
+      "sourceUrl": "https://catalog.archives.gov/id/26380175",
+      "file": "photographs/quang-tri-airfield-1967.jpg",
+      "width": 1200,
+      "height": 768,
+      "notes": [
+        "Đây là sân bay ở phía Bắc Quảng Trị, không phải Thành cổ hay một điểm bên trong thành.",
+        "Giữ nguyên phiếu tư liệu có ảnh đặt dọc và chú thích; không xoay hoặc cắt ảnh trong lần thu thập này.",
+        "Chú thích gốc ghi 3D-203072-67, ngày 22Oct67 và Photog: Cpl J.J. Stevens.",
+        "Nhãn public domain áp dụng tại Hoa Kỳ. Không gán CC0 cho ảnh chỉ vì NARA lưu giữ; căn cứ tác quyền là ảnh công vụ USMC cùng nhãn PD tại Commons."
+      ],
+      "sha256": "4501ab5a899b550e2f9d2cb9d147220b499b5a494a369b177494db6f56c2ea64",
+      "directFileUrl": "https://www.archives.gov/files/research/cartographic/aerial-photography/127-gvb-vietnam-marine000187.jpg",
+      "sourceChanges": "None; downloaded original bytes retained.",
+      "thumbnailChanges": "Resized to fit 320 by 180 pixels; WebP export, quality 85. No color adjustment or crop."
+    },
+    {
+      "id": "citadel-gate-2018",
+      "era": "present",
+      "title": "Cổng Thành cổ",
+      "caption": "Cổng Thành cổ Quảng Trị trong chuyến thăm dịp Tết 2018. Ảnh chụp ngày 19/02/2018.",
+      "date": "19/02/2018",
+      "creator": "Phương Huy",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Th%C3%A0nh_c%E1%BB%95_Qu%E1%BA%A3ng_Tr%E1%BB%8B_(C%E1%BB%95ng_th%C3%A0nh),_T%E1%BA%BFt_n%C4%83m_2018_(44).jpg",
+      "file": "photographs/citadel-gate-2018.jpg",
+      "width": 4160,
+      "height": 3120,
+      "notes": [
+        "Mốc thời gian là ngày chụp được ghi tại nguồn ảnh; không phải hình ảnh trực tiếp theo thời gian thực."
+      ],
+      "sha256": "d2f542722450d71f9f17b4f2515a74d4e84c9f7352e78c748e068642d6a084ce",
+      "directFileUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Th%C3%A0nh_c%E1%BB%95_Qu%E1%BA%A3ng_Tr%E1%BB%8B_%28C%E1%BB%95ng_th%C3%A0nh%29%2C_T%E1%BA%BFt_n%C4%83m_2018_%2844%29.jpg",
+      "sourceSha1": "543ff0323e1cd90047a6c7562ae67cf7fa585ac0",
+      "sourceChanges": "None; downloaded original bytes retained.",
+      "thumbnailChanges": "Resized to fit 320 by 180 pixels; WebP export, quality 85. No color adjustment or crop."
+    },
+    {
+      "id": "citadel-wall-2018",
+      "era": "present",
+      "title": "Hào nước Thành cổ",
+      "caption": "Hào nước và lối đi bên Thành cổ Quảng Trị. Ảnh chụp ngày 19/02/2018.",
+      "date": "19/02/2018",
+      "creator": "Phương Huy",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Th%C3%A0nh_c%E1%BB%95_Qu%E1%BA%A3ng_Tr%E1%BB%8B_(b%E1%BB%9D_th%C3%A0nh),_T%E1%BA%BFt_n%C4%83m_2018_(50).jpg",
+      "file": "photographs/citadel-wall-2018.jpg",
+      "width": 4160,
+      "height": 3120,
+      "notes": [
+        "Mốc thời gian là ngày chụp được ghi tại nguồn ảnh; không phải hình ảnh trực tiếp theo thời gian thực."
+      ],
+      "sha256": "b2e86c98f65a78af6672861cad5cd7129ca0addf22e5c48ed278e7e0d32459da",
+      "directFileUrl": "https://upload.wikimedia.org/wikipedia/commons/1/19/Th%C3%A0nh_c%E1%BB%95_Qu%E1%BA%A3ng_Tr%E1%BB%8B_%28b%E1%BB%9D_th%C3%A0nh%29%2C_T%E1%BA%BFt_n%C4%83m_2018_%2850%29.jpg",
+      "sourceSha1": "33066880351c78f748308eefe58968e1dac82b6d",
+      "sourceChanges": "None; downloaded original bytes retained.",
+      "thumbnailChanges": "Resized to fit 320 by 180 pixels; WebP export, quality 85. No color adjustment or crop."
+    },
+    {
+      "id": "citadel-memorial-2018",
+      "era": "present",
+      "title": "Đài tưởng niệm Thành cổ",
+      "caption": "Đài tưởng niệm trong khuôn viên Thành cổ Quảng Trị. Ảnh chụp ngày 19/02/2018.",
+      "date": "19/02/2018",
+      "creator": "Phương Huy",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Th%C3%A0nh_c%E1%BB%95_Qu%E1%BA%A3ng_Tr%E1%BB%8B_(%C4%90%C3%A0i_t%C6%B0%E1%BB%9Fng_ni%E1%BB%87m),_T%E1%BA%BFt_n%C4%83m_2018_(11).jpg",
+      "file": "photographs/citadel-memorial-2018.jpg",
+      "width": 4160,
+      "height": 3120,
+      "notes": [
+        "Mốc thời gian là ngày chụp được ghi tại nguồn ảnh; không phải hình ảnh trực tiếp theo thời gian thực."
+      ],
+      "sha256": "9f498ac7637d383bbf4c990ffe3b2c69904abd9b85647c66a9acb8360300ab95",
+      "directFileUrl": "https://upload.wikimedia.org/wikipedia/commons/4/42/Th%C3%A0nh_c%E1%BB%95_Qu%E1%BA%A3ng_Tr%E1%BB%8B_%28%C4%90%C3%A0i_t%C6%B0%E1%BB%9Fng_ni%E1%BB%87m%29%2C_T%E1%BA%BFt_n%C4%83m_2018_%2811%29.jpg",
+      "sourceSha1": "bb27d0c563e48212f15489c5e1a3b34510660ef9",
+      "sourceChanges": "None; downloaded original bytes retained.",
+      "thumbnailChanges": "Resized to fit 320 by 180 pixels; WebP export, quality 85. No color adjustment or crop."
+    },
+    {
+      "id": "thach-han-evening-2025",
+      "era": "present",
+      "title": "Chiều trên sông Thạch Hãn",
+      "caption": "Trời chiều trên sông Thạch Hãn qua ảnh của Nguyenbinh07, ghi ngày 03/07/2025.",
+      "date": "03/07/2025",
+      "creator": "Nguyenbinh07",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tr%E1%BB%9Di_chi%E1%BB%81u_tr%C3%AAn_s%C3%B4ng_Th%E1%BA%A1ch_H%C3%A3n.jpg",
+      "file": "photographs/thach-han-evening-2025.jpg",
+      "width": 4076,
+      "height": 2976,
+      "notes": [
+        "Mốc thời gian là ngày chụp được ghi tại nguồn ảnh; không phải hình ảnh trực tiếp theo thời gian thực."
+      ],
+      "sha256": "4afe8eb64770152622566ff772a127b01b0441403c1bc733ccf23849ce80ee51",
+      "directFileUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Tr%E1%BB%9Di_chi%E1%BB%81u_tr%C3%AAn_s%C3%B4ng_Th%E1%BA%A1ch_H%C3%A3n.jpg",
+      "sourceSha1": "4434a8d0199c846805cdeddfd9d4fa7b4fb9ea2a",
+      "sourceChanges": "None; downloaded original bytes retained.",
+      "thumbnailChanges": "Resized to fit 320 by 180 pixels; WebP export, quality 85. No color adjustment or crop."
+    },
+    {
+      "id": "thach-han-pavilion-2018",
+      "era": "present",
+      "title": "Nhà hành lễ bến thả hoa",
+      "caption": "Mặt tiền Nhà hành lễ bến thả hoa tưởng niệm các anh hùng liệt sĩ bên sông Thạch Hãn. Ảnh chụp ngày 19/02/2018.",
+      "date": "19/02/2018",
+      "creator": "Phương Huy",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:S%C3%B4ng_Th%E1%BA%A1ch_H%C3%A3n_(ki%E1%BA%BFn_tr%C3%BAc_b%C3%AAn_b%E1%BB%9D,_nh%C3%A0_t%C6%B0%E1%BB%9Fng_ni%E1%BB%87m_th%E1%BA%A3_hoa),_T%E1%BA%BFt_n%C4%83m_2018_(2).jpg",
+      "file": "photographs/thach-han-pavilion-2018.jpg",
+      "width": 3120,
+      "height": 4160,
+      "notes": [
+        "Mốc thời gian là ngày chụp được ghi tại nguồn ảnh; không phải hình ảnh trực tiếp theo thời gian thực."
+      ],
+      "sha256": "8c320a4796dc5ed4043ac5377e174baee2b97b7de7a9194330f2c6882f1e2fa5",
+      "directFileUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1e/S%C3%B4ng_Th%E1%BA%A1ch_H%C3%A3n_%28ki%E1%BA%BFn_tr%C3%BAc_b%C3%AAn_b%E1%BB%9D%2C_nh%C3%A0_t%C6%B0%E1%BB%9Fng_ni%E1%BB%87m_th%E1%BA%A3_hoa%29%2C_T%E1%BA%BFt_n%C4%83m_2018_%282%29.jpg",
+      "sourceSha1": "fcf66e3c005d1d0c5cd9c2c13dc725ee54b5b593",
+      "sourceChanges": "None; downloaded original bytes retained.",
+      "thumbnailChanges": "Resized to fit 320 by 180 pixels; WebP export, quality 85. No color adjustment or crop."
+    },
+    {
+      "id": "hien-luong-bridge-2016",
+      "era": "present",
+      "title": "Cầu Hiền Lương",
+      "caption": "Cầu Hiền Lương bắc qua sông Bến Hải, chụp ngày 30/09/2016. Đây là điểm di tích riêng, không nằm trong khuôn viên Thành cổ.",
+      "date": "30/09/2016",
+      "creator": "Linhcandng",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:C%E1%BA%A7u_Hi%E1%BB%81n_L%C6%B0%C6%A1ng,_Qu%E1%BA%A3ng_Tr%E1%BB%8B.jpeg",
+      "file": "photographs/hien-luong-bridge-2016.jpg",
+      "width": 4224,
+      "height": 2368,
+      "notes": [
+        "Mốc thời gian là ngày chụp được ghi tại nguồn ảnh; không phải hình ảnh trực tiếp theo thời gian thực."
+      ],
+      "sha256": "f141951ed8fcf8be9a6b620c7302f524b4dc8755c4433cc6577a9edb926b6df6",
+      "directFileUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/C%E1%BA%A7u_Hi%E1%BB%81n_L%C6%B0%C6%A1ng%2C_Qu%E1%BA%A3ng_Tr%E1%BB%8B.jpeg",
+      "sourceSha1": "6c7718888883503cdd3b2d5a3ad2175e20843537",
+      "sourceChanges": "None; downloaded original bytes retained.",
+      "thumbnailChanges": "Resized to fit 320 by 180 pixels; WebP export, quality 85. No color adjustment or crop."
+    }
+  ],
+  "derivatives": [
+    {
+      "id": "quang-tri-south-1967-360",
+      "sourceId": "quang-tri-south-1967",
+      "creator": "Sciacchitano",
+      "date": "Mùa thu 1967",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:34._Quang_Tri_Citadel_and_City_looking_South_Fall_1967.jpg",
+      "license": "CC BY-SA 3.0 Unported",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "file": "scenes/quang-tri-south-1967-360.webp",
+      "dimensions": {
+        "width": 7096,
+        "height": 3548
+      },
+      "bytes": 2249758,
+      "sha256": "cfef03982cf89f14a32df6d17e3cf9012a7de3d3a31daa0ed58b729bbc42b8ad",
+      "generationTool": "OpenAI built-in image_gen",
+      "nativeDimensions": [
+        1774,
+        887
+      ],
+      "nativeSha256": "f818d35a3259d0ce254f3623fed6ca65f296c9738c85abd4481d4802e07ecfd9",
+      "upscaleInputSha256": "b99e12f4ee69c5dad25690fd29feed55a40381757f8d3385996925ba04074b29",
+      "seamRepair": {
+        "status": "complete",
+        "method": "Center original wrap seam by cyclic pixel roll, imagegen repair, retain only bounded AI patch with feather overlap, undo roll. No hand-painted content.",
+        "prompt": "Precise seam repair only. Reference 1 is the original AI-extended aerial panorama after a reversible horizontal cyclic shift of half the width. Its defective original wrap seam is therefore exposed as a conspicuous straight vertical cut DOWN THE EXACT CENTER: misaligned tree belts, roads and field boundaries meet there. Repair that central join. Reference 2 is Sciacchitano's original 1967 aerial photo of Quang Tri looking south; it protects factual source-view layout, not invented detail. The genuine-source front view has temporarily been split between the outer edges of reference 1. Output remains an AI-processed illustration, never archival evidence.\n\nMake the central seam disappear by creating one coherent, restrained piece of aerial farmland across a band centered on that cut. Match each side's tree belts, small roads, irrigation margins, field boundaries, horizon and grain so they form a continuous landscape. Repaint the narrow central region only; preserve reference 1 outside approximately a 400px-wide center band on the 1774px-wide image as much as possible. No blur stripe, fog wall, flat-color strip, divider, copying/mirroring of landmarks, or artificial symmetric rows. This unseen rear landscape is inferred and has no geographic accuracy claim.\n\nCrucially do not redesign the rest of the panorama. Preserve the elevated camera, visible citadel footprint and internal buildings, moat, river, bridge and city grid near the outer edges of the shifted reference. Same 1967 setting, grayscale film texture and tone, sky, horizon height, perspective, full spherical coverage and exact 2:1 framing. Do not reproject, resize contents, crop, zoom, rotate the scene or move objects. The caller will keep only this center repair patch and undo the cyclic shift, preserving unchanged original native pixels elsewhere.\n\nReturn ONE full panorama in THIS SHIFTED orientation, ideally 1774×887 as reference 1. No text, labels, borders, frames, panels, watermarks, people, cars, military vehicles, aircraft, battle, smoke, contemporary memorials, rubble or new named historical landmarks. Only repair the visible center cut.\n",
+        "referencePaths": [
+          "quang-tri-south-1967-seam-centered-input.png",
+          "quang-tri-south-1967.jpg"
+        ],
+        "centeredImagegenOutput": {
+          "path": "quang-tri-south-1967-seam-centered-edited.png",
+          "dimensions": {
+            "width": 1774,
+            "height": 887
+          },
+          "bytes": 2617620,
+          "sha256": "8de5ea0166725428467c1736636a69468459df734468c95e50accf796e0da54e"
+        },
+        "cyclicRollPixels": 887,
+        "inverseRollPixels": -887,
+        "canvasWidth": 1774,
+        "canvasHeight": 887,
+        "patchWidthPixels": 400,
+        "patchStartColumnInclusive": 687,
+        "patchEndColumnExclusive": 1087,
+        "featherPixelsPerSide": 64,
+        "generatedCoreWidthPixels": 272,
+        "maskPath": "seam-repair-mask-400-feather64.png",
+        "composition": "ImageMagick CopyOpacity then Over; linear alpha ramps only; no other synthesis, painting or color treatment.",
+        "preservation": {
+          "comparedAgainst": "original generated native, not the historical source photograph",
+          "columnsStartInclusive": 200,
+          "columnsEndExclusive": 1574,
+          "allRows": true,
+          "rgbPixelsExactlyEqual": true,
+          "originalRgbRegionSha256": "f81045568736b46012d42e3fa14a2c448f751cb1461a4cac3ae92ba3118afa6c",
+          "processedRgbRegionSha256": "f81045568736b46012d42e3fa14a2c448f751cb1461a4cac3ae92ba3118afa6c"
+        },
+        "diagnostic": {
+          "metric": "Mean absolute RGB jump between last and first columns; terrain rows 350 inclusive to 800 exclusive; lower is better, not a historical or geometric accuracy score",
+          "before": 35.37851851851852,
+          "after": 13.991111111111111
+        },
+        "visualInspection": "Large geography cut removed; faint field-line join remains. Root inspected corrected native and rear QA crop and accepted this bounded improvement. No further image editing.",
+        "rejectedAttempt": {
+          "prompt": "Edit the first reference image only: repair the left/right wrap seam of this exact 2:1 equirectangular panorama. Reference 2 is the authentic 1967 aerial photograph underlying its central southward view; use it only to protect those original-view proportions and landmark layout, never to add new details. This output is an AI-processed illustrative extension, not an archival image.\n\nConcrete defect: when the viewer turns to longitude 180 degrees, the leftmost and rightmost columns meet in a hard vertical discontinuity because unrelated farmland textures and roads were generated on the two sides. Repair that exact defect. The first and last columns represent adjacent rays and MUST form one single uninterrupted scene across the join, at every elevation. Treat the panorama as a horizontally wrapped canvas, repaint only a narrow wrap-around band (roughly the outermost 10–15 percent on each side), matching existing grain, brightness and aerial perspective. Connect the field boundaries, tree belts, paths and waterways that cross the boundary smoothly. The two outer edges must have matching terrain features at matching heights and transition as naturally as adjacent interior columns. Do not hide the cut with a blur stripe, fog wall, divider, a duplicate landmark, mirror symmetry or black pixels.\n\nKeep the central 70–80 percent of reference 1 as unchanged as possible, especially the citadel footprint, its internal layout, moat, city streets, river and bridge in the front south-facing view. Keep the elevated airborne camera, grayscale photographic tones, 1967 source context, sky/terrain horizon heights and current 2:1 spherical framing. Do not make a ground-level view or relocate known features. At the seam only, simplify inferential land to unobtrusive continuous fields and sparse trees if necessary; this unseen area has no claim to historical exactness.\n\nOutput ONE corrected full 360×180 degree equirectangular panorama, exact 2:1, highest native resolution supported. No crop, no panels, no visible seam, no captions/text/watermarks/borders, no people, vehicles, military action, ruins, modern monuments or new named landmarks. This is a narrow technical seam repair, not a new composition.",
+          "toolOutputPath": "exec-43c6dbb7-82b0-470a-b478-6bcb2c508766.png",
+          "reason": "Direct opposite-edge imagegen edit retained visible hard wrap discontinuity. Not used."
+        },
+        "residual": "Faint field-line join in portions of the inferred rear landscape; not certified mathematically seamless.",
+        "upscaledVisuallyInspected": true,
+        "imagegenEditCount": 2,
+        "previousWebpSha256": "2fc82c4ab0b433f4512dd2fb5e347267dc936cf6e8a16f948b8f126860c9a151",
+        "finalWebpSha256": "cfef03982cf89f14a32df6d17e3cf9012a7de3d3a31daa0ed58b729bbc42b8ad"
+      },
+      "prompt": "Use case: historical-scene, source-based panoramic outpainting.\nAsset type: full spherical 360 degree equirectangular photographic panorama for an educational Quang Tri viewer.\nInput image 1 is the historical edit target and factual visual anchor: Sciacchitano's black-and-white aerial photograph of Quang Tri citadel and city looking south, autumn 1967. Its source is https://commons.wikimedia.org/wiki/File:34._Quang_Tri_Citadel_and_City_looking_South_Fall_1967.jpg and it is CC BY-SA 3.0. This request creates an AI extrapolation, not an authentic archival photograph or a measured reconstruction.\n\nExtend that actual source view into ONE exact 2:1 equirectangular full sphere, 360 degrees horizontally and 180 vertically. Highest native resolution available; target 4096 by 2048 if supported, otherwise the largest exact 2:1 size. Output only the full rectangular panorama, no inset or side-by-side panels.\nCamera stays airborne above Quang Tri, matching the input elevated southward view. Place the source's photographed layout in the center-front downward-looking sector around latitude -25 to -45 degrees. Preserve the clearly visible rectilinear citadel footprint, moat, internal low buildings, street grid, river and bridge, the proportions and relative positions of those photographed features. Do not relocate the camera to ground level. Do not add or change named landmarks. Only extend beyond the existing photograph with restrained plausible flat central-Vietnam terrain: low scattered rooflines, fields, water margins, trees and distant haze. These unseen sides and the rear are explicitly inferential; keep them visually quiet and avoid asserting detailed new architecture.\n\nProjection: a genuine full equirectangular texture suitable for a sphere. Horizon at the vertical midpoint, continuous pale sky in upper hemisphere; terrain in lower hemisphere seen from this same elevated camera. Top edge tends to uniform zenith sky; bottom edge tends toward straight-down land texture. Left and right edges meet seamlessly with identical horizon height and exposure, no duplicated prominent landmark at the seam, no pinching.\nMonochrome grayscale throughout with restrained period-film grain and soft photographic contrast matching the source, ordinary diffuse daylight. Depict 1967 intact town conditions visible in the source; no invented 1972 destruction.\nAvoid absolutely: writing, labels, dates, captions, archival stamps, frames, borders, white margins, watermarks, annotation crosses, logos, aircraft or aircraft parts, soldiers, crowds, cars, military vehicles, battles, smoke, explosions, corpses, blood, contemporary monuments, modern high-rises, modern roads or tourist infrastructure. Do not present this extrapolation as source evidence.",
+      "modifications": "Spherical reconstruction and outpainting from the credited photograph. The rear join was repaired with a 400-pixel generated strip and 64-pixel feather overlaps on a cyclically rolled native texture; pixels outside this strip were retained. Followed by Real-ESRGAN x4plus enlargement and WebP encoding. Thumbnail is a resized perspective view rendered in the spherical viewer.",
+      "limitations": "Panorama do AI xử lý và mở rộng từ ảnh thật năm 1967 của Sciacchitano, CC BY-SA 3.0. Phần ngoài khung ảnh gốc là suy diễn; chi tiết trong toàn bộ panorama cũng có thể thay đổi khi AI xử lý. Đây không phải ảnh chụp 360° lịch sử hay bản đo dựng địa hình. Ảnh gốc được giữ riêng để đối chiếu. Real-ESRGAN x4plus nâng kích thước hiển thị, không bổ sung chứng cứ lịch sử. Mối nối phía sau được sửa bằng AI trên một dải hẹp; phần ngoài dải sửa giữ nguyên pixel của bản panorama AI trước khi nâng độ phân giải.",
+      "upscale": {
+        "model": "realesrgan-x4plus",
+        "modelSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+        "scale": 4,
+        "tile": 128,
+        "workers": "1:1:1",
+        "horizontalWrapPaddingPixels": 64,
+        "webpQuality": 88,
+        "outputIsNativeResolution": false
+      },
+      "sourcePixelExact": false,
+      "unseenSurroundingsGeographicallyVerified": false
+    },
+    {
+      "id": "quang-tri-northeast-1967-360",
+      "sourceId": "quang-tri-northeast-1967",
+      "creator": "Sciacchitano",
+      "date": "Cuối năm 1967",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:29._-_Quang_Tri_Citadel_and_City_Fall_1967.jpg",
+      "license": "CC BY-SA 3.0 Unported",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "file": "scenes/quang-tri-northeast-1967-360.webp",
+      "dimensions": {
+        "width": 7096,
+        "height": 3548
+      },
+      "bytes": 2262982,
+      "sha256": "ba9d4ddcbe782cd6183964237aa35e1bd3d89eaab8e96b98c5db137adede50c1",
+      "generationTool": "OpenAI built-in image_gen",
+      "nativeDimensions": [
+        1774,
+        887
+      ],
+      "nativeSha256": "52dbe66d201ffa1c117347a1d5d2ef55a88cdec7302a7c56ecec4dafd0f833aa",
+      "upscaleInputSha256": "6ab8fc79d5a3ac36aee8db6254ae7dba5cadf927a1828018d8450cea6be9d557",
+      "seamRepair": {
+        "status": "complete",
+        "method": "Center original wrap seam by cyclic pixel roll, imagegen repair, retain only bounded AI patch with feather overlap, undo roll. No hand-painted content.",
+        "prompt": "Precise seam repair, not a redesign. Reference 1 is a historical AI-extended equirectangular panorama that has been cyclically shifted by exactly half its width, solely so its defective wrap seam is visible as a straight vertical cut DOWN THE EXACT CENTER of the image. The abrupt mismatch runs from sky through the ground: a river/riverbank on the left meets unrelated fields on the right at that central cut. That central join is the ONLY place to repaint. Reference 2 is the authentic Sciacchitano late-1967 northeastward aerial photograph; use it to protect the real-source river and field layout at the left and right sides of reference 1. This is acknowledged AI illustration, not an archival image.\n\nRepair the visibly broken vertical join by naturally completing a coherent continuous piece of distant plain, riverbank and fields across a narrow central band (no wider than 15 percent of the image). Remove the hard center cut completely, bringing terrain and sky across it into a believable unbroken panorama with matching photographic tone and grain. Unseen rear terrain is inferred; simple low fields and tree belts are enough, no invented landmark. Connect water to water and field surfaces naturally, without a blur strip or flat fog wall.\n\nCRUCIAL: preserve reference 1 everywhere outside that central repair band as closely as possible. In particular preserve BOTH OUTER EDGES and the photographed Thach Han river source-layout that has been temporarily split between those edges. Those outer edges already belong to adjacent parts of the original front-facing view and MUST remain horizontally periodic after this edit. Do not add objects, crop, zoom, move the camera, change projection, remap the panorama, reflect terrain or shift any feature. Keep grayscale, same elevated aerial perspective, same 1967 context, same sky/ground horizon, same exact 2:1 canvas and full spherical coverage. Keep the original field of view and return the panorama in THIS CURRENT SHIFTED ORIENTATION; the caller will undo the exact half-width cyclic shift without painting pixels.\n\nOutput a single edited panorama, ideally same 1774×887 size as reference 1. No labels, writing, borders, watermark, frames, panels, people, vehicles, aircraft, battle, smoke, ruins or modern objects. The task is only to repair the clearly visible center join while retaining the surrounding panorama.\n",
+        "referencePaths": [
+          "quang-tri-northeast-1967-seam-centered-input.png",
+          "quang-tri-northeast-1967.jpg"
+        ],
+        "centeredImagegenOutput": {
+          "path": "quang-tri-northeast-1967-seam-centered-edited.png",
+          "dimensions": {
+            "width": 1774,
+            "height": 887
+          },
+          "bytes": 2347520,
+          "sha256": "b75bca31119804011a75c80bb1de3fcbf3979eebfa50be1d090201f434cad3bb"
+        },
+        "cyclicRollPixels": 887,
+        "inverseRollPixels": -887,
+        "canvasWidth": 1774,
+        "canvasHeight": 887,
+        "patchWidthPixels": 400,
+        "patchStartColumnInclusive": 687,
+        "patchEndColumnExclusive": 1087,
+        "featherPixelsPerSide": 64,
+        "generatedCoreWidthPixels": 272,
+        "maskPath": "seam-repair-mask-400-feather64.png",
+        "composition": "ImageMagick CopyOpacity then Over; linear alpha ramps only; no other synthesis, painting or color treatment.",
+        "preservation": {
+          "comparedAgainst": "original generated native, not the historical source photograph",
+          "columnsStartInclusive": 200,
+          "columnsEndExclusive": 1574,
+          "allRows": true,
+          "rgbPixelsExactlyEqual": true,
+          "originalRgbRegionSha256": "ba1fc0cdc573d38f88edd0cce8eaeda9312ede5712f517ca36fc523c2651cc29",
+          "processedRgbRegionSha256": "ba1fc0cdc573d38f88edd0cce8eaeda9312ede5712f517ca36fc523c2651cc29"
+        },
+        "diagnostic": {
+          "metric": "Mean absolute RGB jump between last and first columns; terrain rows 350 inclusive to 800 exclusive; lower is better, not a historical or geometric accuracy score",
+          "before": 23.94962962962963,
+          "after": 6.147407407407408
+        },
+        "visualInspection": "Large rear river/field cut removed; both patch transitions visually inspected; front preserved exactly.",
+        "upscaledVisuallyInspected": true,
+        "imagegenEditCount": 1,
+        "previousWebpSha256": "01d9ed93339424ef278e1a1aec5454acd3e2792089d621f4b6c6ddc402bb81e2",
+        "finalWebpSha256": "ba9d4ddcbe782cd6183964237aa35e1bd3d89eaab8e96b98c5db137adede50c1"
+      },
+      "prompt": "Use case: historical-scene, source-based panoramic outpainting.\nAsset type: full spherical 360 degree equirectangular photographic panorama for an educational Quang Tri viewer.\nInput image 1 is the historical edit target and factual visual anchor: Sciacchitano's black-and-white aerial photograph of Quang Tri looking northeast in late 1967. The original photographer identifies the Thach Han River in the center and the citadel and Tri Buu village at upper left. Source: https://commons.wikimedia.org/wiki/File:29._-_Quang_Tri_Citadel_and_City_Fall_1967.jpg, CC BY-SA 3.0. This request creates an AI extrapolation, not an authentic archival photograph or a measured reconstruction.\n\nExtend that actual source view into ONE exact 2:1 equirectangular full sphere, 360 degrees horizontally and 180 vertically. Highest native resolution available; target 4096 by 2048 if supported, otherwise largest exact 2:1 size. Output only the full rectangular panorama, no inset or side-by-side panels.\nCamera stays airborne on the source side of the Thach Han River, matching its northeastward aerial view. Place the original photographed layout in the center-front downward-looking sector around latitude -20 to -45 degrees. Preserve the broad river across the image, its visible sandbars, near-bank field shapes, far-bank town/trees and the citadel's relative position at the left in the photographed view. Keep proportions and the original riverbank geometry wherever they are photographed. Do not transpose the view or invent a close-up citadel. Only the unseen sides, rear, sky and nadir are extended with restrained plausible flat central-Vietnam countryside, low sparse village roofs, patchwork fields and distant haze. These extensions are explicitly inference, not recovered detail. Avoid detailed fabricated landmarks.\n\nProjection: genuine full equirectangular texture for a sphere. Horizon exactly around vertical midpoint, continuous pale sky in upper hemisphere; terrain in lower hemisphere from the same elevated aerial camera. Upper edge uniform zenith sky; bottom edge straight-down field texture. Left and right edges must meet seamlessly at matching horizon height and exposure, with continuous field/water forms and no prominent repeated landmark.\nMonochrome grayscale throughout, period-film tonal softness and restrained grain matching the source, diffuse ordinary daylight. Maintain the source's 1967 landscape, not a 1972 battlefield.\nAvoid absolutely: writing, labels, dates, captions, archival stamps, frames, borders, white margins, watermarks, annotation crosses, logos, aircraft or aircraft parts, soldiers, crowds, cars, military vehicles, battles, smoke, explosions, bodies, blood, contemporary memorials, modern high-rises, modern tourist facilities, artificial symmetry, and extra named landmarks. Do not present the extension as archival evidence.",
+      "modifications": "Spherical reconstruction and outpainting from the credited photograph. The rear join was repaired with a 400-pixel generated strip and 64-pixel feather overlaps on a cyclically rolled native texture; pixels outside this strip were retained. Followed by Real-ESRGAN x4plus enlargement and WebP encoding. Thumbnail is a resized perspective view rendered in the spherical viewer.",
+      "limitations": "Panorama do AI xử lý và mở rộng từ ảnh thật năm 1967 của Sciacchitano, CC BY-SA 3.0. Phần ngoài khung ảnh gốc là suy diễn; chi tiết trong toàn bộ panorama cũng có thể thay đổi khi AI xử lý. Đây không phải ảnh chụp 360° lịch sử hay bản đo dựng địa hình. Ảnh gốc được giữ riêng để đối chiếu. Real-ESRGAN x4plus nâng kích thước hiển thị, không bổ sung chứng cứ lịch sử. Mối nối phía sau được sửa bằng AI trên một dải hẹp; phần ngoài dải sửa giữ nguyên pixel của bản panorama AI trước khi nâng độ phân giải.",
+      "upscale": {
+        "model": "realesrgan-x4plus",
+        "modelSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+        "scale": 4,
+        "tile": 128,
+        "workers": "1:1:1",
+        "horizontalWrapPaddingPixels": 64,
+        "webpQuality": 88,
+        "outputIsNativeResolution": false
+      },
+      "sourcePixelExact": false,
+      "unseenSurroundingsGeographicallyVerified": false
+    },
+    {
+      "id": "citadel-gate-2018-360",
+      "sourceId": "citadel-gate-2018",
+      "creator": "Phương Huy",
+      "date": "19/02/2018",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Th%C3%A0nh_c%E1%BB%95_Qu%E1%BA%A3ng_Tr%E1%BB%8B_(C%E1%BB%95ng_th%C3%A0nh),_T%E1%BA%BFt_n%C4%83m_2018_(44).jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "file": "scenes/citadel-gate-2018-360.webp",
+      "dimensions": {
+        "width": 7096,
+        "height": 3548
+      },
+      "bytes": 2222580,
+      "sha256": "40a593b7cc1902623359fdc654839a58fe51a95f8c5ffd0a56567eeb2eaa85c8",
+      "generationTool": "OpenAI built-in image_gen",
+      "nativeDimensions": [
+        1774,
+        887
+      ],
+      "nativeSha256": "8b8c1885c254ea1f9a25662ed484f90fc6255c819a8ffc69444c7e0b59d8ef3f",
+      "upscaleInputSha256": "8b8c1885c254ea1f9a25662ed484f90fc6255c819a8ffc69444c7e0b59d8ef3f",
+      "prompt": "Use case: compositing / careful photographic outpainting.\nAsset type: a single full-sphere panorama for an educational Quang Tri heritage viewer.\nEdit target: the attached real photograph of the gate of Quang Tri Citadel, captured by Phuong Huy on 19 February 2018. This is the restored modern-era site shown in the photograph, not a scene from 1972.\nPrimary request: extend this photograph into one continuous 360 x 180 degree equirectangular panorama, exact 2:1 aspect ratio, at the maximum supported native resolution. It must be a genuine spherical projection image suitable for a sphere viewer, with the horizon at the vertical midpoint, continuous left/right seam, full zenith sky and a coherent full nadir. No frame, split panels, labels, text overlay, watermark, compass, or decorative border.\nPreserve the photographed front-facing sector faithfully: the exact weathered gray-black gate architecture, central arch and steps, upper roof and parapets, Vietnamese and decorative flags, the people already visible through the arch, stone paving, material textures, overcast gray sky, vegetation, restrained colors, camera height, and viewing direction. The recognizable gate is centered at longitude zero. Treat the reference as a perspective view occupying roughly the front 80 degrees; convert it correctly into the spherical projection rather than stretching the photograph across 360 degrees. Keep its actual architectural details and proportions.\nOnly outpaint the unseen surrounding sectors, above, below, and behind the camera. Use conservative continuity of the existing stone courtyard, low plain walls, simple paths and ordinary trees or greenery consistent with the visible scene. The unknown surroundings are an illustrative extension, so do not invent another identifiable monument, tower, gate, named building, inscription, sign, vehicle, or additional person. Do not duplicate the gate. Do not add warfare, damage, soldiers, smoke, rain, dramatic sunset lighting or a historical filter. Keep the present-era restoration and the source photograph's quiet diffuse daylight. The poles should resolve naturally into sky above and paving below, without pinched objects or a tripod. Produce exactly one panorama.\n",
+      "modifications": "Spherical reconstruction and outpainting from the credited photograph. Followed by Real-ESRGAN x4plus enlargement and WebP encoding. Thumbnail is a resized perspective view rendered in the spherical viewer.",
+      "limitations": "Panorama do AI xử lý và mở rộng từ ảnh Phương Huy chụp ngày 19/02/2018, CC BY-SA 4.0. Phần ngoài khung ảnh gốc là suy diễn; chi tiết trong toàn bộ panorama cũng có thể thay đổi khi AI xử lý. Đây không phải ảnh chụp 360° tại thực địa, không mô tả hiện trạng năm 2026. Ảnh gốc được giữ riêng để đối chiếu. Real-ESRGAN x4plus tăng kích thước hiển thị, không bổ sung chứng cứ về địa điểm.",
+      "upscale": {
+        "model": "realesrgan-x4plus",
+        "modelSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+        "scale": 4,
+        "tile": 128,
+        "workers": "1:1:1",
+        "horizontalWrapPaddingPixels": 64,
+        "webpQuality": 88,
+        "outputIsNativeResolution": false
+      },
+      "sourcePixelExact": false,
+      "unseenSurroundingsGeographicallyVerified": false
+    },
+    {
+      "id": "citadel-wall-2018-360",
+      "sourceId": "citadel-wall-2018",
+      "creator": "Phương Huy",
+      "date": "19/02/2018",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Th%C3%A0nh_c%E1%BB%95_Qu%E1%BA%A3ng_Tr%E1%BB%8B_(b%E1%BB%9D_th%C3%A0nh),_T%E1%BA%BFt_n%C4%83m_2018_(50).jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "file": "scenes/citadel-wall-2018-360.webp",
+      "dimensions": {
+        "width": 7096,
+        "height": 3548
+      },
+      "bytes": 3137688,
+      "sha256": "84a5c974d9c923f8e56020c7e32917b32c1ca50c5875f97bdbaa38de2424071b",
+      "generationTool": "OpenAI built-in image_gen",
+      "nativeDimensions": [
+        1774,
+        887
+      ],
+      "nativeSha256": "23817726f9e672d263f17f2dc0f979f6b88ff5cffd0e2b7106e134be617819bd",
+      "upscaleInputSha256": "23817726f9e672d263f17f2dc0f979f6b88ff5cffd0e2b7106e134be617819bd",
+      "prompt": "Use case: compositing / careful photographic outpainting.\nAsset type: a single full-sphere panorama for an educational Quang Tri heritage viewer.\nEdit target: the attached real photograph of the moat and walkway at Quang Tri Citadel, captured by Phuong Huy on 19 February 2018. This is the restored modern-era site shown in the photograph, not a scene from 1972.\nPrimary request: extend this photograph into one continuous 360 x 180 degree equirectangular panorama, exact 2:1 aspect ratio, at the maximum supported native resolution. It must be a true spherical projection image suitable for a sphere viewer, with the horizon at the vertical midpoint, continuous left/right seam, full zenith sky and a coherent full nadir. No frame, split panels, labels, text overlay, watermark, compass, or decorative border.\nPreserve the photographed front-facing sector faithfully: the quiet moat water, exact gray weathered stone balustrade in the foreground and continuing around the water, walkway on the right, mature palms and leafless frangipani, grass, the cyan banner on the left, the visible plain buildings in the distance, original colors and material textures, flat pale overcast light, and the original camera height and viewing direction. Treat the reference as a perspective view occupying roughly the front 80 degrees; correctly convert this sector to the equirectangular projection rather than stretching the source over 360 degrees. Do not relocate or reinterpret the visible features.\nOutpaint only the unseen sectors, above, below, and behind the camera. Continue the simple walkway, stone railing, moat edge and ordinary trees conservatively and plausibly. Keep the camera on the solid walkway behind the foreground railing, with paving directly below the camera, never floating over water. Do not introduce any new distinctive or named monument, gate, tower, identifiable building, inscription, sign, vehicle, boat or person. Do not add war damage, soldiers, smoke, dramatic sunset lighting, rain or historical color grading. Keep the modern-era site and the source photograph's diffuse daylight. Make upper pole plain continuous sky and lower pole coherent paving, without pinched repeated objects or a tripod. Produce exactly one panorama.\n",
+      "modifications": "Spherical reconstruction and outpainting from the credited photograph. Followed by Real-ESRGAN x4plus enlargement and WebP encoding. Thumbnail is a resized perspective view rendered in the spherical viewer.",
+      "limitations": "Panorama do AI xử lý và mở rộng từ ảnh Phương Huy chụp ngày 19/02/2018, CC BY-SA 4.0. Phần ngoài khung ảnh gốc là suy diễn; chi tiết trong toàn bộ panorama cũng có thể thay đổi khi AI xử lý. Đây không phải ảnh chụp 360° tại thực địa, không mô tả hiện trạng năm 2026. Ảnh gốc được giữ riêng để đối chiếu. Real-ESRGAN x4plus tăng kích thước hiển thị, không bổ sung chứng cứ về địa điểm.",
+      "upscale": {
+        "model": "realesrgan-x4plus",
+        "modelSha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf",
+        "scale": 4,
+        "tile": 128,
+        "workers": "1:1:1",
+        "horizontalWrapPaddingPixels": 64,
+        "webpQuality": 88,
+        "outputIsNativeResolution": false
+      },
+      "sourcePixelExact": false,
+      "unseenSurroundingsGeographicallyVerified": false
+    }
+  ]
+}
