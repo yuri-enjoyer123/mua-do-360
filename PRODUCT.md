@@ -36,7 +36,7 @@ Dự án đã chạy bằng Vite, TypeScript và Pannellum. Mã nguồn và tài
 
 - `src/content.ts`: nội dung từng cảnh, nguồn Cục Di sản văn hóa, TTXVN, MTTQ Quảng Trị, Cục Du lịch, USMC và phỏng vấn tác giả.
 - `docs/historical-notes.md`: căn cứ, giới hạn diễn họa và chi tiết sai niên đại cần loại trừ; liên kết Commons cho bản đồ AMS NARA (NAID 74797754).
-- `public/scenes/`: panorama AI và ảnh thu nhỏ. Đây không phải ảnh tư liệu hoặc phục dựng khảo cổ đo đạc; ảnh nguồn 1774 × 887 có giới hạn độ nét và độ liền mạch. Không có WebXR.
+- `public/scenes/`: panorama AI và ảnh thu nhỏ. Ảnh nguồn 1774 × 887 được nâng lên 7096 × 3548 bằng Real-ESRGAN; không phải ảnh gốc 7K, ảnh tư liệu hoặc phục dựng khảo cổ đo đạc. Chi tiết nhỏ do mô hình suy đoán không bổ sung bằng chứng lịch sử. Không có WebXR.
 - `docs/asset-prompts-v2.json`: nguồn gốc và yêu cầu tạo hình cho 6 cảnh.
 - Kịch bản do chủ dự án cung cấp dùng làm bối cảnh riêng. Không công bố đường dẫn tài liệu riêng, thông tin học sinh hoặc toàn văn tiểu thuyết.
 

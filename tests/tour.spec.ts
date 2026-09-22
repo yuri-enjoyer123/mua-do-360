@@ -22,10 +22,15 @@ test('direct panorama entry, all viewpoints, and clean immersion', async ({ page
     await expect(page).toHaveURL(new RegExp(`#scene=${id}$`));
     await ready(page);
     await expect(page.locator(`[data-scene="${id}"]`)).toHaveAttribute('aria-current', 'location');
+    const size = await page.locator('#scene-preview').evaluate((image: HTMLImageElement) => ({ width: image.naturalWidth, height: image.naturalHeight }));
+    expect(size.width).toBeGreaterThanOrEqual(7000);
+    expect(size.width).toBe(size.height * 2);
     await expect(page.locator('.introduction')).toHaveCount(0);
     await expect(page.locator('.reconstruction-label')).toHaveCount(0);
   }
   expect(errors).toEqual([]);
+  const resolution = await page.locator('#panorama canvas').evaluate((canvas: HTMLCanvasElement) => ({ width: canvas.width, expected: Math.floor(canvas.clientWidth * devicePixelRatio) }));
+  expect(resolution.width).toBeGreaterThanOrEqual(resolution.expected);
 });
 
 test('deep link and browser history restore selected viewpoint', async ({ page }) => {
@@ -78,11 +83,11 @@ test('presentation and audio controls inside info dialog; presentation closes di
 });
 
 test('missing panorama can retry and recover without trapping navigation', async ({ page }) => {
-  await page.route('**/scenes/hao-thanh.webp', route => route.abort());
+  await page.route('**/scenes/hao-thanh.webp?*', route => route.abort());
   await page.goto('./#scene=hao-thanh');
   await expect(page.locator('#viewer-error')).toBeVisible();
   await expect(page.locator('#scene-title')).toContainText('Hào');
-  await page.unroute('**/scenes/hao-thanh.webp');
+  await page.unroute('**/scenes/hao-thanh.webp?*');
   await page.getByRole('button', { name: 'Thử tải lại' }).click();
   await ready(page);
   await page.locator('[data-scene="thach-han"]').click();
@@ -101,6 +106,44 @@ test('WebGL unavailable leaves readable scene and source access', async ({ page 
   await expect(page.locator('#viewer-error')).toBeVisible();
   await page.locator('#viewer-error [data-open="story"]').click();
   await expect(page.locator('#information-dialog')).toContainText('Thạch Hãn');
+});
+
+test('wide panoramas stay within GPU texture limits after turning and zooming', async ({ page }) => {
+  const fixture = await page.evaluate(() => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 1774;
+    canvas.height = 887;
+    const context = canvas.getContext('2d')!;
+    context.fillStyle = '#ab6842';
+    context.fillRect(0, 0, 887, 887);
+    context.fillStyle = '#456b83';
+    context.fillRect(887, 0, 887, 887);
+    return canvas.toDataURL('image/png').split(',')[1];
+  });
+  await page.route('**/scenes/thach-han.webp?*', route => route.fulfill({ contentType: 'image/png', body: Buffer.from(fixture, 'base64') }));
+  await page.addInitScript(() => {
+    const uploads: { width: number; height: number }[] = [];
+    Object.assign(window, { textureUploads: uploads });
+    const getParameter = WebGLRenderingContext.prototype.getParameter;
+    WebGLRenderingContext.prototype.getParameter = function (parameter) {
+      return parameter === this.MAX_TEXTURE_SIZE ? 1024 : getParameter.call(this, parameter);
+    };
+    const upload = WebGLRenderingContext.prototype.texImage2D;
+    WebGLRenderingContext.prototype.texImage2D = function (...args: unknown[]) {
+      const image = args[5] as { width?: number; height?: number } | undefined;
+      if (image?.width && image.height) uploads.push({ width: image.width, height: image.height });
+      return Reflect.apply(upload, this, args);
+    } as typeof upload;
+  });
+  await page.goto('./#scene=thach-han');
+  await ready(page);
+  await page.locator('#zoom-in').click();
+  await page.locator('#panorama').focus();
+  await page.keyboard.press('ArrowRight');
+  await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+  const uploads = await page.evaluate(() => (window as unknown as { textureUploads: { width: number; height: number }[] }).textureUploads);
+  expect(uploads.filter(image => image.width === 887 && image.height === 887)).toHaveLength(2);
+  expect(uploads.every(image => image.width <= 1024 && image.height <= 1024)).toBe(true);
 });
 
 test('responsive layout, image assets, and initial transfer budget', async ({ page }) => {

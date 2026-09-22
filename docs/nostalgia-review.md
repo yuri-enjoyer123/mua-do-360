@@ -1,5 +1,7 @@
 # Rà soát bản sáu cảnh
 
+Đây là báo cáo của bản sáu cảnh trước lần nâng nét. Kích thước ảnh và kết quả kiểm tra mới được ghi trong [báo cáo chất lượng ảnh](image-quality.md).
+
 Yêu cầu: cảnh lịch sử chân thực hơn, thêm điểm nhìn, giảm cảm giác hình AI và tạo sắc thái hoài niệm. Giữ vào thẳng 360°, giao diện gọn, nội dung lịch sử có nguồn và triển khai miễn phí.
 
 ## Nội dung và hình ảnh

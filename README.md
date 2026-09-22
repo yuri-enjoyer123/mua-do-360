@@ -44,8 +44,8 @@ npm run preview
 - Bản đồ AMS ([NARA, NAID 74797754](https://catalog.archives.gov/id/74797754)) được nhúng trong bảng nguồn. Chú giải ghi thông tin đến năm 1968; hồ sơ lưu trữ ghi khoảng 1942–1972. Bản đồ không xác nhận nguyên trạng năm 1972 hoặc vị trí các panorama. [Bản gốc và quyền sử dụng](https://commons.wikimedia.org/wiki/File:AMS_-_Quang_Tri,_Vietnam_-_NARA_-_74797754.jpg).
 - Ứng dụng **không tái xuất bản ảnh tư liệu chiến tranh**: các ảnh tư liệu lịch sử chỉ dùng làm tài liệu tham khảo nghiên cứu nội bộ, không đưa trực tiếp vào trang web.
 - Kịch bản riêng của người dùng không được công bố công khai.
-- Panorama giữ độ phân giải nguồn; không phóng lớn rồi giới thiệu là ảnh 4K. Bản WebP và thumbnail được nén để tải nhẹ.
-- Ảnh nguồn 1774 × 887 có giới hạn độ nét khi phóng lớn; một số vùng nối và vùng cực của panorama còn biến dạng. Đây là tour 360° trong trình duyệt, chưa có chế độ kính WebXR và không có số liệu khảo sát đo đạc thực địa chính xác.
+- Sáu panorama được nâng từ ảnh nguồn 1774 × 887 lên 7096 × 3548 bằng Real-ESRGAN x4plus chạy trên máy. Đây là ảnh nâng độ phân giải, không phải ảnh gốc 7K. [Quy trình và kết quả kiểm tra](docs/image-quality.md).
+- Chi tiết nhỏ do mô hình suy đoán không phải chứng cứ lịch sử. Nâng nét không sửa được mọi sai lệch hình học, vùng nối hoặc vùng cực. Đây là tour 360° trong trình duyệt, chưa có chế độ kính WebXR và không có số liệu khảo sát đo đạc thực địa chính xác.
 - Phông Newsreader và Be Vietnam Pro lưu tại `public/fonts`, kèm giấy phép SIL Open Font License. Pannellum theo giấy phép MIT; bản sao giấy phép được phân phối tại `public/licenses/Pannellum-MIT.txt`.
 - Không sao chép ảnh tư liệu của các cơ quan, toàn văn tiểu thuyết hay thông tin cá nhân của người thuyết trình vào website.
 

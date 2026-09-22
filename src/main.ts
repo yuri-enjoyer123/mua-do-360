@@ -22,6 +22,7 @@ const paths: Record<IconName, string> = {
 const icon = (name: IconName, cls = '') => `<svg class="icon ${cls}" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name]}</svg>`;
 const escape = (value: string) => value.replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]!);
 const asset = (path: string) => new URL(`${import.meta.env.BASE_URL}${path}`, document.baseURI).href;
+const panoramaAsset = (path: string) => `${asset(path)}?v=esrgan4x`;
 const fromHash = () => {
   const id = new URLSearchParams(location.hash.slice(1)).get('scene');
   return scenes.find((scene) => scene.id === id);
@@ -40,7 +41,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <a class="skip-link" href="#information-dialog">Đến nội dung điểm nhìn</a>
   <main class="experience" aria-label="Hành trình Mưa đỏ 360 độ">
     <h1 class="sr-only">Mưa đỏ 360°: các cảnh minh họa phục dựng bằng AI</h1>
-    <div class="landscape" aria-hidden="true"><img id="scene-preview" src="${asset(current.panorama)}" alt="" fetchpriority="high" /></div>
+    <div class="landscape" aria-hidden="true"><img id="scene-preview" src="${panoramaAsset(current.panorama)}" alt="" fetchpriority="high" /></div>
     <div id="panorama" tabindex="0" role="region" aria-label="Không gian 360 độ. Kéo để nhìn quanh; dùng phím mũi tên khi đang tập trung vào không gian." aria-describedby="panorama-help"></div>
     <div class="tour-vignette" aria-hidden="true"></div>
 
@@ -94,7 +95,7 @@ const focusReturns = new WeakMap<HTMLDialogElement, HTMLElement>();
 function announce(text: string) { announcement.textContent = text; }
 
 function renderScene() {
-  preview.src = asset(current.panorama);
+  preview.src = panoramaAsset(current.panorama);
   get('scene-title').textContent = current.title;
   document.querySelectorAll<HTMLButtonElement>('[data-scene]').forEach((button) => {
     const selected = button.dataset.scene === current.id;
@@ -124,7 +125,7 @@ function renderStory() {
     <button class="text-button" id="story-to-sources">Xem nguồn và giới hạn ảnh</button>`;
   get('story-to-sources').addEventListener('click', () => setTab('sources', true));
   get('sources-panel').innerHTML = `
-    <div class="source-notice"><h3>Về ảnh phục dựng</h3><p>${escape(reconstructionNotice)}</p><p>Toàn bộ ảnh toàn cảnh do AI tạo để minh họa không gian. Tư liệu giúp định hướng bối cảnh, không xác thực từng chi tiết trong hình. Đây không phải ảnh tư liệu hay bản phục dựng khảo cổ.</p><p>Các dấu chuyển điểm chỉ giúp điều hướng giữa những góc nhìn độc lập; chúng không xác nhận khoảng cách hay hướng đi thực tế.</p></div>
+    <div class="source-notice"><h3>Về ảnh phục dựng</h3><p>${escape(reconstructionNotice)}</p><p>Toàn bộ ảnh toàn cảnh do AI tạo để minh họa không gian. Tư liệu giúp định hướng bối cảnh, không xác thực từng chi tiết trong hình. Đây không phải ảnh tư liệu hay bản phục dựng khảo cổ.</p><p>Ảnh đã được AI nâng độ phân giải để giảm mờ khi nhìn quanh. Chi tiết nhỏ do mô hình suy đoán không phải chứng cứ lịch sử.</p><p>Các dấu chuyển điểm chỉ giúp điều hướng giữa những góc nhìn độc lập; chúng không xác nhận khoảng cách hay hướng đi thực tế.</p></div>
     <details class="archive-map"><summary>Bản đồ lưu trữ Quảng Trị</summary>
       <figure><a href="https://catalog.archives.gov/id/74797754" target="_blank" rel="noopener noreferrer" aria-label="Xem hồ sơ bản đồ Quảng Trị tại National Archives (mở thẻ mới)"><img src="${asset('archive/ams-quang-tri.webp')}" alt="Bản đồ AMS lưu trữ thể hiện sông Thạch Hãn, thị xã và khu Thành cổ Quảng Trị." width="1200" height="1332" loading="lazy" /></a>
       <figcaption>U.S. Army Topographic Command / National Archives, NAID 74797754. Chú giải trên bản đồ ghi thông tin đến năm 1968; hồ sơ lưu trữ ghi khoảng 1942–1972. Đây là bản đồ lưu trữ thật, không phải ảnh AI, cũng không xác nhận nguyên trạng năm 1972 hay vị trí các cảnh minh họa.</figcaption></figure>
@@ -225,16 +226,15 @@ async function loadScene() {
   setLoading(true);
   loadingTimer = setTimeout(() => failScene(token), 25000);
   try {
-    // Decode the selected image before handing it to Pannellum. This also keeps
-    // a usable static preview when WebGL is unavailable, and avoids the viewer
-    // library's XHR error path trying to parse a missing image response.
+    // Predecode catches missing images before Pannellum's XHR error parser runs.
     const sceneImage = new Image();
-    sceneImage.src = asset(current.panorama);
+    sceneImage.src = panoramaAsset(current.panorama);
     enginePromise ??= import('pannellum').catch((error: unknown) => { enginePromise = undefined; throw error; });
     await Promise.all([enginePromise, sceneImage.decode()]);
     if (token !== generation) return;
     viewer = window.pannellum.viewer(panorama, {
-      type: 'equirectangular', panorama: sceneImage, dynamic: true, dynamicUpdate: true,
+      // Static mode preserves split textures on devices with smaller GPU limits.
+      type: 'equirectangular', panorama: sceneImage.src,
       autoLoad: true, showControls: false, compass: false,
       disableKeyboardCtrl: true, keyboardZoom: false,
       yaw: current.initialYaw, pitch: current.initialPitch,
@@ -257,9 +257,6 @@ async function loadScene() {
     });
     const onLoaded = () => {
       if (token !== generation) return;
-      // Pannellum requires one dynamic update to initialize a decoded image.
-      // Stop continuous updates once the static panorama has been uploaded.
-      viewer?.setUpdate(false);
       clearTimeout(loadingTimer);
       // The library creates hotspot children after firing load. Let their first
       // paint finish before exposing a completed scene, including reduced motion.
@@ -271,8 +268,6 @@ async function loadScene() {
     };
     viewer.on('load', onLoaded);
     viewer.on('error', () => failScene(token));
-    // An already-decoded image initializes synchronously; its load/error event
-    // may occur inside the constructor before listeners can be attached.
     if (viewer.isLoaded()) onLoaded();
     else if (panorama.querySelector<HTMLElement>('.pnlm-error-msg')?.style.display === 'table') failScene(token);
   } catch { failScene(token); }

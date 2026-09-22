@@ -114,4 +114,4 @@ Bề mặt điều khiển đặc giúp đọc được trên mọi nền cảnh
 - Tạo cảm giác hoài niệm bằng tài liệu, vật liệu và nhịp đọc; không thêm lời nhân chứng, nhân vật hoặc trận đánh tưởng tượng.
 - Không đưa công trình phục hồi hiện đại vào cảnh 1972, không dùng bản đồ làm tọa độ cho điểm đứng giả lập.
 - Không đưa trở lại màn giới thiệu, logo, thanh chú thích thường trực hoặc nhãn trang trí đã bị chủ dự án loại bỏ.
-- Không gọi ảnh nguồn 1774 × 887 là ảnh 4K hoặc ảnh lịch sử. Giữ giới hạn độ nét và phép chiếu trong tài liệu sản phẩm.
+- Phân biệt ảnh nguồn 1774 × 887 với bản nâng độ phân giải 7096 × 3548. Không gọi bản nâng nét là ảnh gốc 7K hoặc ảnh lịch sử. Giữ giới hạn chi tiết suy đoán và phép chiếu trong tài liệu sản phẩm.

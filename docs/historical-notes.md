@@ -62,6 +62,10 @@ Liên kết trong ứng dụng mở [bản số hóa tại Internet Archive, tra
 
 Bộ ảnh mới thay phần trong vòm Cổng Hậu có nhiều cửa không được chứng minh bằng một góc nhìn ngoài cổng, một lối vòm. Cảnh nội thành chuyển sang gạch, vữa và gỗ thay cho cảm giác phế tích đá. Cảnh lũy có lõi đất và mảng gạch còn lại; hào không dùng kè bazan hoặc tường bê tông hiện đại. Hình dáng hư hại, lớp đất và thời tiết vẫn là diễn họa. Sáu prompt và tệp nguồn được ghi tại `docs/asset-prompts-v2.json`.
 
+## Nâng độ phân giải ảnh
+
+Sáu ảnh nguồn AI được xử lý bằng Real-ESRGAN x4plus từ 1774 × 887 lên 7096 × 3548 để giảm mờ khi xem 360°. Bố cục đầu vào là bộ ảnh thứ hai đã đối chiếu ở trên. Đây là phép nâng nét bằng mô hình, không phải phát hiện thêm tư liệu hay phục hồi chi tiết lịch sử đã biết. Vân gạch, đất, cỏ và những chi tiết nhỏ mô hình suy đoán vẫn thuộc phần diễn họa. Không dùng kích thước đầu ra để tuyên bố ảnh gốc 7K hoặc tăng mức chắc chắn của chú giải lịch sử. Quy trình, tệp nguồn và kết quả kiểm tra được ghi trong [báo cáo chất lượng ảnh](image-quality.md).
+
 ## Kiểm tra trước khi đưa lên mạng
 
 1. Đọc từng nhận định có thể kiểm chứng và đối chiếu nguồn gắn ở cảnh đó.

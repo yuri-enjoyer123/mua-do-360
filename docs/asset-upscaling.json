@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "date": "2026-09-22",
+  "notice": "AI illustrations upscaled from native 1774 × 887 sources. Inferred fine detail is not historical evidence; these are not native 7K images or archival photographs.",
+  "sourceGenerationManifest": "asset-prompts-v2.json",
+  "engine": {
+    "name": "Real-ESRGAN ncnn Vulkan",
+    "version": "0.2.0",
+    "release": "https://github.com/xinntao/Real-ESRGAN-ncnn-vulkan/releases/tag/v0.2.0",
+    "sha256": "22c2296a39b40cc43ac92615c827ab6d4b60b7142e8cee59f718e3f8e2cdbda9"
+  },
+  "model": {
+    "name": "realesrgan-x4plus",
+    "source": "https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.5.0/realesrgan-ncnn-vulkan-20220424-ubuntu.zip",
+    "files": [
+      {
+        "file": "realesrgan-x4plus.bin",
+        "sha256": "713ee713b0353afaa27976f0563a64a5043bd70b9bd8936c2e26e25ebcdbcddf"
+      },
+      {
+        "file": "realesrgan-x4plus.param",
+        "sha256": "35330ececcea33b6c397a72548e788d5d53becee4734c50b7fada36e89f10a86"
+      }
+    ]
+  },
+  "processing": {
+    "script": "scripts/upscale-panorama.sh",
+    "scale": 4,
+    "horizontalPaddingPixelsPerSide": 64,
+    "paddingMode": "Wrap opposite horizontal edges, then crop scaled padding",
+    "gpuDevice": 0,
+    "threads": "1:1:1",
+    "outputFormat": "WebP",
+    "quality": 88,
+    "webpMethod": 6,
+    "additionalSharpening": false,
+    "colorGrading": false
+  },
+  "scenes": [
+    {
+      "id": "thach-han",
+      "input": {
+        "file": "exec-fbea26cb-04e5-4551-bc9d-742d5003f942.png",
+        "width": 1774,
+        "height": 887,
+        "sha256": "f9127474be5ab76b8d7a2c1e6a06008bdc98a25005a1ab6e243dd052fec1503f"
+      },
+      "output": {
+        "file": "public/scenes/thach-han.webp",
+        "width": 7096,
+        "height": 3548,
+        "bytes": 2082030,
+        "sha256": "9e560eeb5821b3a61d177725a72dabe21e72f9a6d5e6d2cd3e6bb9737a0b0d48"
+      },
+      "tileSize": 128,
+      "inferenceSeconds": 240,
+      "processingSeconds": 252
+    },
+    {
+      "id": "hao-thanh",
+      "input": {
+        "file": "exec-264f71ed-f966-4e8a-8de2-d349d8f39c4d.png",
+        "width": 1774,
+        "height": 887,
+        "sha256": "50be37e63219bde9395535295ca2d501c7c2cccea50e3add1821118a1350bafd"
+      },
+      "output": {
+        "file": "public/scenes/hao-thanh.webp",
+        "width": 7096,
+        "height": 3548,
+        "bytes": 3139778,
+        "sha256": "34c0e9522480e8b58199768550c2be7bfa82cdcbf9f9054248adf0ee89efd581"
+      },
+      "tileSize": 128,
+      "inferenceSeconds": 243,
+      "processingSeconds": 254
+    },
+    {
+      "id": "cong-hau",
+      "input": {
+        "file": "exec-7f5f33b8-16bd-4e19-9429-3931469f10af.png",
+        "width": 1774,
+        "height": 887,
+        "sha256": "aaa2650dbe3e382050b35112f66c27ac589845ef7068c38a79aa4af10efb9590"
+      },
+      "output": {
+        "file": "public/scenes/cong-hau.webp",
+        "width": 7096,
+        "height": 3548,
+        "bytes": 2709138,
+        "sha256": "e8c44fe401c6397704719a38ce1b9416483943b9126199cda9d0d168b9ba95c9"
+      },
+      "tileSize": 64,
+      "inferenceSeconds": 328,
+      "processingSeconds": 340
+    },
+    {
+      "id": "luy-bac",
+      "input": {
+        "file": "exec-866ee271-836a-49f1-ba7c-fd7d2cb4bd8f.png",
+        "width": 1774,
+        "height": 887,
+        "sha256": "b01517e3ed4012030fbd1553ed552cb413f57c328c750b35ecff1a8ba5561b5b"
+      },
+      "output": {
+        "file": "public/scenes/luy-bac.webp",
+        "width": 7096,
+        "height": 3548,
+        "bytes": 3107466,
+        "sha256": "8b3d5f54269e32578f0a672c2fe09b4f71f6d507a655ab65fc7575b6eef1c78e"
+      },
+      "tileSize": 128,
+      "inferenceSeconds": 241,
+      "processingSeconds": 253
+    },
+    {
+      "id": "noi-thanh",
+      "input": {
+        "file": "exec-408a1e42-f8dd-4cc6-bace-f2f131f7d48e.png",
+        "width": 1774,
+        "height": 887,
+        "sha256": "737f6b91ad0fb2de8f289c1b3b2ed86209dbc3f204cf39b50e550d456e49cf16"
+      },
+      "output": {
+        "file": "public/scenes/noi-thanh.webp",
+        "width": 7096,
+        "height": 3548,
+        "bytes": 2541872,
+        "sha256": "cb138b77a26322c36aaef71925412411be27b1b01bcefcc854ba50f3f8e778e3"
+      },
+      "tileSize": 128,
+      "inferenceSeconds": 244,
+      "processingSeconds": 255
+    },
+    {
+      "id": "pho-cu",
+      "input": {
+        "file": "exec-c97b2cd7-7c78-4843-8c09-a4f34d53cd84.png",
+        "width": 1774,
+        "height": 887,
+        "sha256": "a8d9684253066aa57df52089c2525965303c6c0a44f492ad94fb7487443b0f21"
+      },
+      "output": {
+        "file": "public/scenes/pho-cu.webp",
+        "width": 7096,
+        "height": 3548,
+        "bytes": 2060242,
+        "sha256": "7661e316cc2595cceb80c6931bc7e0a5a38667ae9c25c97b1102f2f275c27b27"
+      },
+      "tileSize": 128,
+      "inferenceSeconds": 246,
+      "processingSeconds": 257
+    }
+  ]
+}

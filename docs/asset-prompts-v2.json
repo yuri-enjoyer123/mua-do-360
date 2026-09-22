@@ -2,7 +2,7 @@
   "version": 2,
   "tool": "Built-in image_gen",
   "date": "2026-09-22",
-  "notice": "AI illustrations, not archival photographs or measured reconstructions. Native1774x887; no detail-enhancing upscaling.",
+  "notice": "Original generation record: native 1774 × 887 AI illustrations, not archival photographs or measured reconstructions. The deployed 7096 × 3548 derivatives use Real-ESRGAN; see asset-upscaling.json for processing provenance. The original prompts below describe generation, not upscaling.",
   "scenes": [
     {
       "id": "thach-han",
