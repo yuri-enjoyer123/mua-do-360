@@ -1,8 +1,6 @@
 import { photographs, type TourScene } from './photographs';
 
 const specifications = [
-  { source: 'quang-tri-south-1967', title: 'Thành cổ từ trên cao', pitch: -35 },
-  { source: 'quang-tri-northeast-1967', title: 'Thạch Hãn nhìn từ trên cao', pitch: -30 },
   { source: 'citadel-gate-2018', title: 'Cổng Thành cổ', pitch: 0 },
   { source: 'citadel-wall-2018', title: 'Dọc hào Thành cổ', pitch: 0 },
 ];

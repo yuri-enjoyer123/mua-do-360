@@ -9,18 +9,19 @@ Tour tương tác trên trình duyệt khám phá không gian Thành cổ và v�
 ## Cấu trúc nội dung
 
 - **Thời kỳ Quá khứ**:
-  - *Không gian 360°*: 6 cảnh minh họa cuộc chiến đấu 81 ngày đêm bảo vệ Thành cổ năm 1972 và sau giao tranh (`thach-han`, `hao-thanh`, `cong-hau`, `luy-bac`, `noi-thanh`, `pho-cu`: cảnh phố dùng tư liệu sau giữa tháng 9, không gán cho tháng 6–8), cùng 2 cảnh 360° dựng từ không ảnh năm 1967.
+  - *Không gian 360°*: 6 cảnh minh họa cuộc chiến đấu 81 ngày đêm bảo vệ Thành cổ năm 1972 và sau giao tranh (`thach-han`, `hao-thanh`, `cong-hau`, `luy-bac`, `noi-thanh`, `pho-cu`: cảnh phố dùng tư liệu sau giữa tháng 9, không gán cho tháng 6–8), hiển thị đơn sắc với độ mềm nhẹ và hạt tĩnh.
   - *Album ảnh*: 3 tư liệu hình ảnh lịch sử năm 1967 (Thành cổ nhìn về phía Nam, Sông Thạch Hãn nhìn về phía Đông Bắc, và phiếu không ảnh sân bay cách thị xã 3 dặm về phía Bắc dọc Quốc lộ 1).
 - **Thời kỳ Hiện tại**:
-  - *Không gian 360°*: 2 cảnh 360° dựng từ ảnh chụp di tích năm 2018 (`citadel-gate-2018-360`, `citadel-wall-2018-360`).
+  - *Không gian 360°*: 2 cảnh 360° dựng từ ảnh chụp di tích năm 2018 (`citadel-gate-2018-360`, `citadel-wall-2018-360`), giữ nguyên màu sắc.
   - *Album ảnh*: 6 ảnh tư liệu sau chiến tranh và đương đại chụp các năm 2016, 2018 và 2025 (Cổng Thành cổ, Hào nước Thành cổ, Đài tưởng niệm Thành cổ, Chiều trên sông Thạch Hãn, Nhà hành lễ bến thả hoa, Cầu Hiền Lương trên sông Bến Hải).
 
-Dự án gồm **10 không gian toàn cảnh 360°** và **9 ảnh tư liệu gốc trong album** (3 quá khứ, 6 hiện tại). Chỉ 6 cảnh 1972 ban đầu có liên hệ tiểu thuyết *Mưa đỏ* của Chu Lai; các cảnh khác không có mục văn học.
+Dự án gồm **8 không gian toàn cảnh 360°** (6 cảnh minh họa quá khứ và 2 cảnh mở rộng từ ảnh di tích năm 2018) cùng **9 ảnh tư liệu gốc trong album** (3 quá khứ, 6 hiện tại); hiện chỉ còn **2 không gian toàn cảnh phái sinh từ ảnh chụp đang hoạt động**. Hai toàn cảnh không ảnh năm 1967 (`quang-tri-south-1967-360` và `quang-tri-northeast-1967-360`) đã được rút lui do lo ngại về độ chân thực lịch sử và tái tạo lẫn thời kỳ; 3 ảnh tư liệu gốc năm 1967 vẫn được lưu giữ nguyên trạng trong album. Chỉ 6 cảnh 1972 ban đầu có liên hệ tiểu thuyết *Mưa đỏ* của Chu Lai; các cảnh khác không có mục văn học.
 
 ## Giao diện và tương tác
 
 - Giao diện mang phong cách tập tư liệu in với tông màu giấy ngà, mực nâu sẫm, điểm nhấn đỏ nâu, đường kẻ mảnh và phông chữ Newsreader.
 - Nút chữ **Tư liệu** thuần túy (không biểu tượng cuốn sách) mở bảng giải thích nguồn gốc và giới hạn tái hiện một cách trung thực, không dùng huy hiệu hay nhãn từ AI trên giao diện người dùng.
+- Hiển thị hình ảnh phân định rõ hai thời kỳ: ở thời kỳ Quá khứ, toàn cảnh 360°, ảnh trong album và ảnh thu nhỏ được xử lý thang xám đơn sắc, độ mờ nhẹ (blur 0.4px) và hạt tĩnh; thời kỳ Hiện tại giữ màu sắc nguyên bản. Byte tệp JPEG gốc và ảnh tham chiếu trong bảng tư liệu (source drawer) giữ nguyên vẹn không đổi, không áp bộ lọc; các thành phần giao diện người dùng không bị can thiệp bộ lọc.
 - 4 nút chỉnh hướng nhìn (lên, xuống, trái, phải), phóng to (+), thu nhỏ (−), đặt lại góc nhìn và toàn màn hình (F).
 - Chế độ album cho phép phóng to rồi kéo rê chuột/chạm hoặc dùng phím mũi tên để duyệt chi tiết ảnh gốc.
 - Phím tắt:
@@ -36,9 +37,9 @@ Dự án gồm **10 không gian toàn cảnh 360°** và **9 ảnh tư liệu g�
 
 ## Xử lý hình ảnh và nguồn tư liệu
 
-- Cả 10 ảnh 360° được tạo từ ảnh 1774 × 887 rồi nâng độ phân giải lên 7096 × 3548 qua Real-ESRGAN x4plus; đây không phải ảnh chụp gốc 7K và không bổ sung bằng chứng lịch sử. 9 ảnh tư liệu JPEG trong album giữ nguyên độ phân giải gốc.
-- 4 cảnh 360° dựng từ ảnh đơn mở rộng không gian ngoài khung hình và có thể làm thay đổi cả chi tiết bên trong vùng chụp; không phải ảnh chụp 360° cùng thời hay mô hình đo đạc.
-- Tư liệu năm 1967 ghi lại hình ảnh trước năm 1972, không mang nghĩa hòa bình. Phiếu ảnh sân bay năm 1967 giữ nguyên bản phiếu tư liệu dọc kèm chú thích. Cầu Hiền Lương bên sông Bến Hải tách biệt với Thành cổ. Niên đại trên Commons (2009/2011) là ngày tệp/số hóa, không phải ngày chụp thực tế (cuối/mùa thu 1967).
+- Cả 8 ảnh 360° được tạo từ ảnh 1774 × 887 rồi nâng độ phân giải lên 7096 × 3548 qua Real-ESRGAN x4plus; đây không phải ảnh chụp gốc 7K và không bổ sung bằng chứng lịch sử. 9 ảnh tư liệu JPEG trong album giữ nguyên độ phân giải và byte ảnh gốc.
+- 2 cảnh 360° đang hoạt động dựng từ ảnh đơn mở rộng không gian ngoài khung hình và có thể làm thay đổi cả chi tiết bên trong vùng chụp; không phải ảnh chụp 360° cùng thời hay mô hình đo đạc.
+- Tư liệu năm 1967 ghi lại hình ảnh trước năm 1972, không mang nghĩa hòa bình. Phiếu ảnh sân bay năm 1967 giữ nguyên bản phiếu tư liệu dọc kèm chú thích. Cầu Hiền Lương bên sông Bến Hải tách biệt với Thành cổ. Mốc 2009/2011 trên Commons của hai không ảnh Sciacchitano là ngày tệp/số hóa, không phải ngày chụp thực tế (mùa thu/cuối năm 1967).
 - Chi tiết nguồn gốc và giấy phép: [ATTRIBUTION ảnh](public/photographs/ATTRIBUTION.md), [ATTRIBUTION toàn cảnh](public/scenes/ATTRIBUTION.md), [hồ sơ nguồn ảnh](docs/photograph-provenance.json), danh mục [photo-records.json](src/photo-records.json), và căn cứ 6 cảnh ban đầu [asset-prompts-v2.json](docs/asset-prompts-v2.json).
 - Bản đồ AMS ghi thông tin đến năm 1968 (hồ sơ 1942–1972) và ảnh sân bay USMC là tác phẩm công vụ thuộc phạm vi công cộng tại Hoa Kỳ. Ảnh Commons tuân thủ CC BY-SA 3.0/4.0; ảnh phái sinh áp dụng cùng giấy phép ShareAlike và ghi công tác giả. Các ảnh chiến trường trong sách USMC ghi nguồn tác giả Việt Nam không được tái xuất bản.
 - Dự án không công bố kịch bản cá nhân, dữ liệu học tập hay toàn văn tiểu thuyết.

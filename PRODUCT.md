@@ -21,15 +21,16 @@ Xây dựng bằng Vite, TypeScript và Pannellum; triển khai tĩnh hoàn toà
 ## Capabilities and Constraints
 
 - **Cấu trúc nội dung**:
-  - *10 không gian 360°*: 6 cảnh minh họa cuộc chiến đấu bảo vệ Thành cổ năm 1972 và sau giao tranh (`pho-cu` sau giữa tháng 9, không gán cho tháng 6–8), 2 cảnh dựng từ không ảnh năm 1967, và 2 cảnh dựng từ ảnh di tích năm 2018. Chỉ 6 cảnh 1972 ban đầu có liên hệ văn học tiểu thuyết *Mưa đỏ*; các cảnh còn lại không có mục văn học.
+  - *8 không gian 360°*: 6 cảnh minh họa cuộc chiến đấu bảo vệ Thành cổ năm 1972 và sau giao tranh (`pho-cu` sau giữa tháng 9, không gán cho tháng 6–8) hiển thị đơn sắc, hạt tĩnh và độ mềm nhẹ; 2 cảnh phái sinh dựng từ ảnh di tích năm 2018 hiển thị màu sắc đương đại. Hai cảnh dựng từ không ảnh năm 1967 (`quang-tri-south-1967-360`, `quang-tri-northeast-1967-360`) đã được rút lui do lo ngại về độ chân thực lịch sử và tái tạo lẫn thời kỳ; hiện chỉ còn 2 cảnh phái sinh từ ảnh chụp đang hoạt động. Chỉ 6 cảnh 1972 ban đầu có liên hệ văn học tiểu thuyết *Mưa đỏ*; các cảnh còn lại không có mục văn học.
   - *9 ảnh tư liệu trong album*: 3 ảnh thời kỳ Quá khứ (1967) và 6 ảnh thời kỳ Hiện tại (2016, 2018, 2025). Mỗi thời kỳ có panorama và album ảnh riêng; hiển thị rõ niên đại cụ thể của từng ảnh.
 - **Giao diện và tương tác**:
   - Phong cách tập tư liệu in với tông màu giấy ngà, mực nâu sẫm, điểm nhấn đỏ nâu, đường kẻ mảnh và phông chữ Newsreader.
   - Nút chữ **Tư liệu** thuần túy không dùng biểu tượng cuốn sách. Bảng tư liệu giải thích nguồn gốc và giới hạn tái hiện một cách trung thực, không dùng nhãn hay huy hiệu AI trên giao diện người dùng.
+  - Phân định thị giác rõ rệt giữa hai thời kỳ: trong thời kỳ Quá khứ, toàn cảnh 360°, ảnh xem trong album và ảnh thu nhỏ được xử lý thang xám đơn sắc, độ mờ nhẹ (blur 0.4px) và hạt tĩnh; thời kỳ Hiện tại giữ màu sắc nguyên bản. Byte tệp JPEG gốc và ảnh tham chiếu trong bảng tư liệu (source drawer) giữ nguyên vẹn, không áp bộ lọc; các thành phần giao diện người dùng không bị áp dụng bộ lọc.
   - Cụm điều khiển gồm 4 nút chỉnh hướng nhìn, phóng to (+), thu nhỏ (−), đặt lại góc nhìn và toàn màn hình (F). Chế độ xem ảnh cho phép phóng to rồi kéo chuột/chạm hoặc dùng phím mũi tên để duyệt chi tiết ảnh gốc. Phím tắt 1–9 chọn trực tiếp điểm nhìn trong bộ sưu tập đang hiển thị.
 - **Kỹ thuật và bản quyền hình ảnh**:
-  - Cả 10 ảnh 360° được tạo ở kích thước 1774 × 887 rồi nâng độ phân giải lên 7096 × 3548 qua Real-ESRGAN x4plus; không phải ảnh chụp gốc 7K và không bổ sung bằng chứng lịch sử. 9 ảnh JPEG trong album giữ nguyên độ phân giải gốc.
-  - 4 cảnh dựng từ ảnh đơn mở rộng không gian ngoài khung hình và có thể thay đổi chi tiết bên trong vùng chụp; không phải ảnh 360° cùng thời hay đo đạc hình học.
+  - Cả 8 ảnh 360° được tạo ở kích thước 1774 × 887 rồi nâng độ phân giải lên 7096 × 3548 qua Real-ESRGAN x4plus; không phải ảnh chụp gốc 7K và không bổ sung bằng chứng lịch sử. 9 ảnh JPEG trong album giữ nguyên độ phân giải và byte tải về gốc.
+  - 2 cảnh phái sinh đang hoạt động dựng từ ảnh đơn mở rộng không gian ngoài khung hình và có thể thay đổi chi tiết bên trong vùng chụp; không phải ảnh 360° cùng thời hay đo đạc hình học.
   - Tư liệu năm 1967 trước năm 1972 không mang nghĩa hòa bình. Phiếu ảnh sân bay năm 1967 đặt cách thị xã 3 dặm về phía Bắc dọc QL1, giữ nguyên phiếu dọc kèm chú thích. Cầu Hiền Lương bên sông Bến Hải tách biệt với Thành cổ.
   - Bản đồ AMS ghi thông tin đến năm 1968 và ảnh sân bay USMC là tác phẩm công vụ thuộc phạm vi công cộng tại Hoa Kỳ. Ảnh Commons tuân thủ CC BY-SA 3.0/4.0; ảnh phái sinh áp dụng cùng giấy phép ShareAlike và ghi công tác giả. Các ảnh chiến trường trong sách USMC ghi tác giả Việt Nam không được tái xuất bản.
   - Loại trừ các công trình sau chiến tranh (đài tưởng niệm 1997, nhà trưng bày 2002) khỏi lớp cảnh 1972. Không đưa kịch bản cá nhân, dữ liệu học tập hay toàn văn tiểu thuyết vào trang web.
@@ -39,7 +40,7 @@ Xây dựng bằng Vite, TypeScript và Pannellum; triển khai tĩnh hoàn toà
 ## Evidence on Hand
 
 - `src/content.ts`: 6 cảnh 1972, tư liệu từ Cục Di sản, TTXVN, MTTQ Quảng Trị, Cục Du lịch, USMC và nhà văn Chu Lai.
-- `src/derived-scenes.ts`: 4 cảnh 360° dựng từ ảnh đơn kèm liên kết ảnh gốc và giới hạn tái hiện.
+- `src/derived-scenes.ts`: 2 cảnh 360° phái sinh đang hoạt động dựng từ ảnh đơn kèm liên kết ảnh gốc và giới hạn tái hiện.
 - `src/photo-records.json` & [photograph-provenance.json](docs/photograph-provenance.json): Hồ sơ 9 ảnh tư liệu gốc.
 - `docs/historical-notes.md`: Căn cứ lịch sử, giới hạn diễn họa, chi tiết loại trừ và tác quyền tư liệu.
 - `docs/asset-prompts-v2.json`: Hồ sơ tạo hình cho 6 cảnh 1972 ban đầu.

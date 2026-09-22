@@ -1,6 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 
-const ids = ['thach-han', 'hao-thanh', 'cong-hau', 'luy-bac', 'noi-thanh', 'pho-cu', 'quang-tri-south-1967-360', 'quang-tri-northeast-1967-360'];
+const ids = ['thach-han', 'hao-thanh', 'cong-hau', 'luy-bac', 'noi-thanh', 'pho-cu'];
 async function ready(page: Page) {
   await expect(page.locator('#panorama')).toHaveAttribute('aria-busy', 'false');
   await expect(page.locator('#panorama canvas')).toBeVisible();
@@ -78,9 +78,9 @@ test('camera buttons look above, below and around without the removed book butto
 
 test('eras restore their selected scenes and links retain date and source attribution', async ({ page }) => {
   test.setTimeout(60000);
-  await page.goto('./#scene=quang-tri-south-1967-360');
+  await page.goto('./#scene=cong-hau');
   await ready(page);
-  await expect(page.locator('#scene-date')).toContainText('1967');
+  await expect(page.locator('#scene-date')).toContainText('1972');
   await page.locator('[data-era="present"]').click();
   await ready(page);
   await expect(page.locator('[data-era="present"]')).toHaveAttribute('aria-pressed', 'true');
@@ -91,7 +91,7 @@ test('eras restore their selected scenes and links retain date and source attrib
   expect(await page.locator('#scene-preview').evaluate((image: HTMLImageElement) => [image.naturalWidth, image.naturalHeight])).toEqual([7096, 3548]);
   await page.locator('[data-era="past"]').click();
   await ready(page);
-  await expect(page).toHaveURL(/#scene=quang-tri-south-1967-360$/);
+  await expect(page).toHaveURL(/#scene=cong-hau$/);
   await page.locator('[data-era="present"]').click();
   await ready(page);
   await expect(page).toHaveURL(/#scene=citadel-wall-2018-360$/);
@@ -154,7 +154,7 @@ test('direct panorama entry, all viewpoints, and clean immersion', async ({ page
   await expect(page.locator('header')).toHaveCount(0);
   await expect(page.locator('.location-tag')).toHaveCount(0);
   await expect(page.locator('.reconstruction-label')).toHaveCount(0);
-  await expect(page.locator('nav.scene-navigation')).toHaveAttribute('aria-label', '8 điểm nhìn');
+  await expect(page.locator('nav.scene-navigation')).toHaveAttribute('aria-label', '6 điểm nhìn');
   await ready(page);
   for (const id of ids) {
     await page.locator(`[data-scene="${id}"]`).click();
@@ -401,6 +401,7 @@ test('archive map opens by keyboard with source, date limits and a loaded image'
 });
 
 test('new scenes accessible via keyboard, story tab verification, and cyclic navigation wrapping', async ({ page }) => {
+  test.setTimeout(60000);
   await page.goto('./');
   await ready(page);
 
@@ -426,8 +427,6 @@ test('new scenes accessible via keyboard, story tab verification, and cyclic nav
   await page.keyboard.press('Escape');
   await expect(dialog).not.toBeVisible();
 
-  await page.locator('[data-scene="quang-tri-northeast-1967-360"]').click();
-  await ready(page);
   await page.locator('#next-scene').click();
   await ready(page);
   await expect(page).toHaveURL(/#scene=thach-han$/);
@@ -435,7 +434,7 @@ test('new scenes accessible via keyboard, story tab verification, and cyclic nav
 
   await page.locator('#previous-scene').click();
   await ready(page);
-  await expect(page).toHaveURL(/#scene=quang-tri-northeast-1967-360$/);
+  await expect(page).toHaveURL(/#scene=pho-cu$/);
 });
 
 test('archival photo viewer gestures update rendered geometry and presentation fills viewport', async ({ page, isMobile }) => {

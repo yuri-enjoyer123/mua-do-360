@@ -1,6 +1,6 @@
 # Ghi chú tư liệu cho hành trình Mưa đỏ
 
-Phạm vi: không gian Thành cổ và phụ cận Quảng Trị qua hai thời kỳ Quá khứ và Hiện tại, kết hợp giữa 10 không gian 360° minh họa và album 9 ảnh tư liệu đối chiếu. Đây là hành trình đọc văn học bằng hình ảnh minh họa, không phải hồ sơ khảo cổ, bản đồ trắc địa hay bằng chứng lịch sử mới.
+Phạm vi: không gian Thành cổ và phụ cận Quảng Trị qua hai thời kỳ Quá khứ và Hiện tại, kết hợp giữa 8 không gian 360° minh họa và album 9 ảnh tư liệu đối chiếu. Đây là hành trình đọc văn học bằng hình ảnh minh họa, không phải hồ sơ khảo cổ, bản đồ trắc địa hay bằng chứng lịch sử mới.
 
 Bảng tư liệu mở bằng nút chữ **Tư liệu** bên cạnh tiêu đề cảnh, không dùng biểu tượng cuốn sách và không để thanh chữ đè cố định lên khung nhìn.
 
@@ -8,8 +8,8 @@ Trong các nguồn đã khảo sát, dự án chưa tìm thấy panorama gốc n
 
 ## Cấu trúc tư liệu và các cảnh
 
-- **10 không gian 360°**: 6 cảnh minh họa cuộc chiến đấu 81 ngày đêm năm 1972 và sau giao tranh (`thach-han`, `hao-thanh`, `cong-hau`, `luy-bac`, `noi-thanh`, `pho-cu`: cảnh phố dùng tư liệu sau giữa tháng 9/1972, không gán cho tháng 6–8); 2 cảnh 360° dựng từ không ảnh năm 1967; 2 cảnh 360° dựng từ ảnh di tích năm 2018. Chỉ 6 cảnh 1972 ban đầu có liên hệ văn học tiểu thuyết *Mưa đỏ*; các cảnh còn lại không có mục văn học.
-- **9 ảnh tư liệu gốc trong album**: 3 ảnh thời kỳ Quá khứ (1967) và 6 ảnh thời kỳ Hiện tại (2016, 2018, 2025). Nhãn "Hiện tại" là tên phân nhóm đương đại/sau chiến tranh, không phải ảnh truyền trực tiếp thời gian thực; niên đại cụ thể hiển thị rõ trên giao diện.
+- **8 không gian 360°**: 6 cảnh minh họa cuộc chiến đấu 81 ngày đêm năm 1972 và sau giao tranh (`thach-han`, `hao-thanh`, `cong-hau`, `luy-bac`, `noi-thanh`, `pho-cu`: cảnh phố dùng tư liệu sau giữa tháng 9/1972, không gán cho tháng 6–8) hiển thị đơn sắc, độ mềm nhẹ và hạt tĩnh; 2 cảnh 360° dựng từ ảnh di tích năm 2018 (`citadel-gate-2018-360`, `citadel-wall-2018-360`) giữ nguyên màu sắc đương đại. Hai không gian toàn cảnh dựng từ không ảnh năm 1967 (`quang-tri-south-1967-360` và `quang-tri-northeast-1967-360`) đã được rút lui do lo ngại về độ chân thực lịch sử và việc tái tạo lẫn thời kỳ; hiện chỉ còn 2 toàn cảnh phái sinh từ ảnh chụp đang hoạt động. Chỉ 6 cảnh 1972 ban đầu có liên hệ văn học tiểu thuyết *Mưa đỏ*; các cảnh còn lại không có mục văn học.
+- **9 ảnh tư liệu gốc trong album**: 3 ảnh thời kỳ Quá khứ (1967) và 6 ảnh thời kỳ Hiện tại (2016, 2018, 2025). Nhãn "Hiện tại" là tên phân nhóm đương đại/sau chiến tranh, không phải ảnh truyền trực tiếp thời gian thực; niên đại cụ thể hiển thị rõ trên giao diện. Cả 9 ảnh tư liệu gốc giữ nguyên byte JPEG tải về không đổi và ảnh tham chiếu trong bảng tư liệu (source drawer) không áp bộ lọc. Khi hiển thị trong album và ảnh thu nhỏ của thời kỳ Quá khứ, ảnh được áp thang xám, độ mờ nhẹ (blur 0.4px) và hạt tĩnh theo phong cách tư liệu; thời kỳ Hiện tại giữ nguyên màu sắc.
 
 Nguồn nền lịch sử: [TTXVN: Cuộc chiến đấu 81 ngày đêm](https://nvsk.vnanet.vn/cuoc-chien-dau-81-ngay-dem-bao-ve-thanh-co-quang-tri-ngay-28-6-den-16-9-1972-4-147823.vna) (mốc 28/6–16/9/1972), [Ủy ban MTTQ Việt Nam tỉnh Quảng Trị](https://ubmttqvn.quangtri.gov.vn/index.php/van-hoa-van-nghe/thach-han-dong-song-hoa-lua-4075.html) (tuyến tiếp tế sông Thạch Hãn), [Cục Di sản văn hóa](https://dsvh.gov.vn/di-tich-lich-su-thanh-co-quang-tri-va-nhung-dia-diem-luu-niem-su-kien-81-ngay-dem-nam-1972-2975) và [Cục Du lịch Quốc gia Việt Nam](https://vietnamtourism.vn/index.php/tourism/items/1271) (kiến trúc thành hào và tu sửa 1993–1995).
 
@@ -17,7 +17,7 @@ Nguồn nền lịch sử: [TTXVN: Cuộc chiến đấu 81 ngày đêm](https:/
 
 ## Phân định tư liệu lịch sử
 
-- **Tư liệu năm 1967 trước năm 1972**: Hai không ảnh năm 1967 không chứng minh nguyên trạng năm 1972. Trường Date trên Commons ghi 2009/2011 là ngày số hóa/tệp, không phải ngày chụp thực tế (mùa thu / cuối năm 1967).
+- **Tư liệu năm 1967 trước năm 1972**: Ba ảnh tư liệu năm 1967 trong album không chứng minh nguyên trạng năm 1972. Đối với riêng hai không ảnh của tác giả Sciacchitano (`quang-tri-south-1967` và `quang-tri-northeast-1967`), trường Date trên Wikimedia Commons ghi 2009/2011 là ngày số hóa hoặc mốc tạo tệp, không phải ngày chụp thực tế (mùa thu / cuối năm 1967); phiếu ảnh sân bay thứ ba ghi ngày chụp cụ thể 22/10/1967 trong tài liệu lưu trữ NARA/USMC. Hai bản dựng toàn cảnh 360° từ không ảnh 1967 trước đây đã được rút lui khỏi danh mục hoạt động do những sai lệch và suy diễn không phù hợp về bối cảnh lịch sử.
 - **Không ảnh sân bay năm 1967**: Phiếu tư liệu `quang-tri-airfield-1967` ghi nhận sân bay cách thị xã Quảng Trị khoảng 3 dặm về phía Bắc dọc Quốc lộ 1, không nằm trong Thành cổ; giữ nguyên phiếu dọc kèm chú thích.
 - **Cầu Hiền Lương**: Bức ảnh năm 2016 ghi lại di tích cầu Hiền Lương bên sông Bến Hải, địa điểm độc lập tách biệt với Thành cổ.
 
@@ -31,9 +31,9 @@ Nguồn nền lịch sử: [TTXVN: Cuộc chiến đấu 81 ngày đêm](https:/
 
 ## Bản chất không gian 360° và kỹ thuật hình ảnh
 
-- **Nâng độ phân giải bằng Real-ESRGAN**: Cả 10 ảnh 360° được tạo từ ảnh 1774 × 887 rồi xử lý bằng Real-ESRGAN x4plus lên 7096 × 3548. Đây là nội suy học máy, không phải ảnh chụp gốc 7K và không bổ sung chứng cứ lịch sử. 9 ảnh JPEG trong album giữ nguyên độ phân giải gốc.
-- **4 cảnh 360° dựng từ ảnh đơn**: AI mở rộng không gian ngoài khung chụp và có thể làm thay đổi cả chi tiết bên trong vùng chụp gốc; không phải ảnh chụp 360° cùng thời hay mô hình đo đạc thực địa. Ảnh gốc được lưu giữ nguyên trạng trong album để đối chiếu độc lập.
-- Mũi tên chuyển cảnh chỉ phục vụ chuyển hướng xem giữa các phần đọc, không phải tuyến hành quân hay bản đồ khoảng cách. Âm thanh thiên nhiên tổng hợp mặc định tắt, không phải âm thanh lịch sử.
+- **Nâng độ phân giải bằng Real-ESRGAN**: Cả 8 ảnh 360° được tạo từ ảnh 1774 × 887 rồi xử lý bằng Real-ESRGAN x4plus lên 7096 × 3548. Đây là nội suy học máy, không phải ảnh chụp gốc 7K và không bổ sung chứng cứ lịch sử. Toàn bộ 9 ảnh JPEG gốc lưu giữ nguyên vẹn byte tải về; ảnh tham chiếu trong bảng tư liệu hoàn toàn không áp bộ lọc.
+- **2 cảnh 360° đang hoạt động dựng từ ảnh đơn**: AI mở rộng không gian ngoài khung chụp và có thể làm thay đổi cả chi tiết bên trong vùng chụp gốc; không phải ảnh chụp 360° cùng thời hay mô hình đo đạc thực địa. Ảnh gốc được lưu giữ nguyên trạng trong album để đối chiếu độc lập.
+- Hiển thị hình ảnh phân biệt rõ Quá khứ và Hiện tại: trong thời kỳ Quá khứ, toàn cảnh 360° cùng ảnh hiển thị trong album và ảnh thu nhỏ áp dụng thang xám đơn sắc, độ mờ nhẹ (blur 0.4px) và hạt tĩnh; thời kỳ Hiện tại giữ màu sắc chân thực. Byte ảnh JPEG gốc và ảnh tham chiếu trong bảng tư liệu không chịu bất kỳ bộ lọc nào. Mũi tên chuyển cảnh chỉ phục vụ chuyển hướng xem giữa các phần đọc, không phải tuyến hành quân hay bản đồ khoảng cách. Âm thanh thiên nhiên tổng hợp mặc định tắt, không phải âm thanh lịch sử.
 
 ## Văn học và sử liệu
 

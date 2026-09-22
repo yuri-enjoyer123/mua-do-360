@@ -72,7 +72,7 @@ components:
 
 ## Hướng thiết kế
 
-Mở trang vào thẳng cảnh 360°. Các nút và phần đọc dùng giấy ngà, mực nâu, chữ có chân và đường kẻ mảnh, gợi một tập tư liệu in. Thanh ảnh có khung giấy như những ảnh nhỏ trong album. Không đặt lớp màu hay hiệu ứng làm cũ lên ảnh.
+Mở trang vào thẳng cảnh 360°. Các nút và phần đọc dùng giấy ngà, mực nâu, chữ có chân và đường kẻ mảnh, gợi một tập tư liệu in. Thanh ảnh có khung giấy như những ảnh nhỏ trong album. Về hiển thị hình ảnh, toàn bộ byte ảnh JPEG gốc được giữ nguyên vẹn không đổi và ảnh tham chiếu trong bảng tư liệu (source drawer) không áp bộ lọc. Ở bề mặt hiển thị Quá khứ, toàn cảnh 360°, ảnh trong album và ảnh thu nhỏ được xử lý thang xám đơn sắc, độ mờ nhẹ (blur 0.4px) và hạt tĩnh (static grain); bề mặt hiển thị Hiện tại giữ nguyên màu sắc chân thực. Không áp dụng bộ lọc lên các thành phần giao diện người dùng (thanh điều khiển, nút bấm, chữ viết).
 
 Chủ dự án yêu cầu giao diện cổ hơn, bỏ biểu tượng sách, thêm chuyển Quá khứ / Hiện tại và bốn nút nhìn lên, xuống, trái, phải. Viết mã trực tiếp. ENERGY 1 / RHYTHM 2 / MOTION 1: chuyển động chỉ phục vụ điều hướng, không trang trí.
 
@@ -97,7 +97,7 @@ Dải ảnh cuộn ngang, tên ảnh luôn ở dưới hình. Khung giấy góc 
 
 Bảng nguồn có khung lề mảnh bên trong, phần nội dung cuộn độc lập và chữ lớn như trang đọc. Bảng hướng dẫn, thông báo tải, lỗi, nút thoát trình chiếu, dấu chuyển cảnh và chú thích đều dùng cùng bề mặt giấy. Dấu chuyển cảnh là nút vuông 44px; chú thích hiện trên máy tính và ẩn trên màn hình hẹp.
 
-Đường viền đơn 1px và đôi 3px chia các phần. Bóng nhẹ lệch xuống tách bề mặt giấy khỏi cảnh. Không dùng kính mờ, hào quang, hạt giả, con dấu giả thời kỳ, gradient hoặc bộ lọc ảnh. Không có màn giới thiệu hay logo.
+Đường viền đơn 1px và đôi 3px chia các phần. Bóng nhẹ lệch xuống tách bề mặt giấy khỏi cảnh. Giao diện (khung giấy, nút bấm, chữ) hoàn toàn không dùng kính mờ, hào quang, gradient hay bộ lọc làm cũ. Toàn bộ 9 ảnh JPEG gốc lưu trữ giữ nguyên byte không đổi, và ảnh tham chiếu hiển thị trong bảng tư liệu (source drawer) không áp bộ lọc. Ở bề mặt hiển thị Quá khứ, toàn cảnh 360°, ảnh xem trong album và ảnh thu nhỏ được áp dụng thang độ xám đơn sắc (grayscale), độ mờ nhẹ (blur 0.4px) và hạt tĩnh (static grain) nhằm phân định rõ với không gian Hiện tại (vẫn giữ màu sắc nguyên bản). Không có màn giới thiệu hay logo.
 
 Vòng focus có độ tương phản rõ trên giấy. Trình chiếu ẩn điều hướng và giữ nút thoát. Lỗi tải cho phép thử lại, chuyển cảnh hoặc đọc tư liệu. Âm thanh mặc định tắt, ghi rõ là mô phỏng. Tôn trọng tùy chọn giảm chuyển động.
 
@@ -105,7 +105,7 @@ Vòng focus có độ tương phản rõ trên giấy. Trình chiếu ẩn đi�
 
 - Nguồn và giới hạn diễn họa nằm trong bảng tư liệu. Theo yêu cầu của chủ dự án, giao diện không dùng nhãn hoặc lời ghi “AI generated”, “made by AI” hay tương tự; phần đọc giải thích bằng từ “phục dựng” và “mở rộng”.
 - Sáu ảnh 360° minh họa ban đầu do AI tạo ở 1774 × 887, được Real-ESRGAN nâng lên 7096 × 3548. Đây không phải ảnh tư liệu, ảnh gốc 7K hay bằng chứng về từng chi tiết lịch sử.
-- Bốn cảnh mới mở rộng từ hai không ảnh năm 1967 và hai ảnh di tích năm 2018. Album lưu riêng chín ảnh tham chiếu với niên đại và giấy phép; chế độ Hiện tại có ảnh chụp năm 2016, 2018 và 2025, không phải hình ảnh truyền trực tiếp.
+- Hai cảnh phái sinh đang hoạt động mở rộng từ hai ảnh di tích năm 2018 (hai cảnh dựng từ không ảnh năm 1967 đã được rút lui do lo ngại về độ chân thực lịch sử và tái tạo lẫn thời kỳ). Album lưu riêng chín ảnh tham chiếu với niên đại và giấy phép; chế độ Hiện tại có ảnh chụp năm 2016, 2018 và 2025, không phải hình ảnh truyền trực tiếp.
 - Ảnh tư liệu và ảnh hiện tại phải giữ xuất xứ, niên đại, quyền sử dụng và giới hạn của nguồn; không nhập nhằng chúng với ảnh minh họa.
 - Các cảnh 360° độc lập, không phải tuyến đi bộ hay bản đồ đo đạc. Không dùng ảnh hoặc bản đồ để gán một tọa độ, sự kiện hay tình tiết không được nguồn xác nhận.
 - Không thêm công trình phục hồi hiện đại vào cảnh năm 1972, lời nhân chứng tưởng tượng hay diễn biến chiến đấu chưa đối chiếu.

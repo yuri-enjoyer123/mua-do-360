@@ -21,6 +21,7 @@
   --terracotta:#754337;
   --paper-hairline:#6b5947;
   --paper-shadow:0 3px 9px rgba(54,45,34,.16);
+  --film-grain:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0.33 0.33 0.33 0 0  0.33 0.33 0.33 0 0  0.33 0.33 0.33 0 0  0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='0.16'/%3E%3C/svg%3E");
 }
 *{box-sizing:border-box}
 html,body,#app{width:100%;height:100%;margin:0}
@@ -93,6 +94,14 @@ h1,h2,h3,h4,p{margin:0}
   border:1px solid var(--ink);
   box-shadow:var(--paper-shadow);
 }
+.photo-viewer::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+  display:none;
+}
 .photo-viewer img#document-photo{
   display:block;
   width:100%;
@@ -101,6 +110,52 @@ h1,h2,h3,h4,p{margin:0}
   transform-origin:center;
   user-select:none;
   -webkit-user-drag:none;
+}
+
+body[data-scene-era="past"] #panorama canvas,
+body[data-scene-era="past"] #scene-preview,
+body[data-scene-era="past"] #document-photo,
+body[data-scene-era="past"] .scene-card>img {
+  filter: grayscale(100%) blur(0.4px);
+}
+
+body[data-scene-era="past"]:not(.viewing-photo) .tour-vignette {
+  background-image: var(--film-grain);
+  background-size: 200px 200px;
+  background-repeat: repeat;
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+}
+
+body[data-scene-era="past"] .photo-viewer::after {
+  display: block;
+  background-image: var(--film-grain);
+  background-size: 200px 200px;
+  background-repeat: repeat;
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+}
+
+body[data-scene-era="past"] .scene-card::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  height: var(--thumbnail-height,54px);
+  pointer-events: none;
+  background-image: var(--film-grain);
+  background-size: 200px 200px;
+  background-repeat: repeat;
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+  z-index: 1;
+}
+
+body[data-scene-era="past"] .scene-card.active::after {
+  top: 2px;
+  left: 2px;
+  right: 2px;
 }
 .photo-caption{
   position:absolute;
@@ -988,7 +1043,8 @@ kbd{
     height:80px;
     scroll-snap-align:start;
   }
-  .scene-card>img{height:46px}
+  .scene-card{--thumbnail-height:46px}
+  .scene-card>img{height:var(--thumbnail-height)}
   .scene-card-title{font-size:12px;padding:2px 4px}
   .scene-step{
     width:44px;

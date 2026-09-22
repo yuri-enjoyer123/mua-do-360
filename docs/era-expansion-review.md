@@ -1,5 +1,21 @@
 # Rà soát bản mở rộng Quá khứ / Hiện tại
 
+## Hiệu chỉnh hiện tại (2026-09-22)
+
+Theo kết quả rà soát và yêu cầu xác thực lịch sử:
+- **8 không gian toàn cảnh 360°**: 6 cảnh Quá khứ minh họa năm 1972 và 2 cảnh Hiện tại dựng từ ảnh di tích năm 2018. Hai toàn cảnh dựng từ không ảnh năm 1967 (`quang-tri-south-1967-360` và `quang-tri-northeast-1967-360`) đã được loại bỏ hoàn toàn khỏi danh mục hoạt động do lo ngại về độ chân thực lịch sử và việc tái tạo lẫn thời kỳ; hiện chỉ còn 2 toàn cảnh phái sinh từ ảnh chụp đang hoạt động.
+- **9 ảnh tư liệu gốc trong album**: 3 ảnh thời kỳ Quá khứ (1967) và 6 ảnh thời kỳ Hiện tại (2016, 2018, 2025). Cả ba hồ sơ không ảnh năm 1967 trong album tư liệu được giữ nguyên vẹn.
+- **Hiển thị hình ảnh và bộ lọc**: Toàn bộ byte tệp JPEG gốc được giữ nguyên vẹn; ảnh tham chiếu trong bảng tư liệu (source drawer) không áp bộ lọc. Ở bề mặt hiển thị Quá khứ, toàn cảnh 360°, ảnh xem trong album và ảnh thu nhỏ được xử lý thang xám (grayscale), độ mờ nhẹ blur(0.4px) và hạt tĩnh (static grain); bề mặt Hiện tại giữ nguyên màu sắc chân thực. Các thành phần giao diện người dùng không áp bộ lọc.
+- **Kiểm tra giao diện**: 12 trạng thái trên bốn kích thước 1440 × 960, 393 × 852, 320 × 568 và 844 × 390 không có lỗi JavaScript, tràn ngang hay nút chính nằm ngoài màn hình; các nút chính đạt tối thiểu 44 × 44px. Đã xem ảnh chụp màn hình, kiểm tra thang xám trên cảnh Quá khứ, màu ở Hiện tại và ảnh đối chiếu không qua bộ lọc. Nền album không phủ hạt; hiệu ứng nằm trong khung ảnh. Hai liên kết tới cảnh đã bỏ trở về cảnh đầu hợp lệ.
+- **Kiểm tra tài nguyên**: SHA-256 của chín JPEG gốc và hai panorama phái sinh đang hoạt động khớp hồ sơ. Bốn tệp panorama/thumbnail đã rút khỏi cả thư mục công khai và bản build. Hồ sơ của hai cảnh bị rút vẫn lưu trong provenance với trạng thái `withdrawn`.
+- **Kiểm thử chức năng**: Build đạt. Lượt đầy đủ đầu tiên có 41/42 kiểm thử đạt trong 4,3 phút; bài điều hướng bàn phím và vòng chuyển cảnh trên máy tính vượt tổng thời lượng 30 giây, với các bước trung gian đã đạt. Gemini 3.8 Flash đọc trace và chỉnh riêng bài này sang 60 giây, bỏ một lần bấm lại cảnh đang mở, giữ mọi assertion. Tác nhân chính chạy lại bài trên cả máy tính và điện thoại: 2/2 đạt trong 24,3 giây. Quy trình GitHub Actions sẽ chạy lại toàn bộ 42 kiểm thử trước khi xuất bản; chưa coi lần kiểm tra cục bộ đầu tiên là 42/42 đạt.
+
+Dưới đây là nguyên văn toàn bộ tài liệu rà soát chi tiết của bản phát hành trước (2026-09-22, commit `58a9590`), lưu giữ đầy đủ hồ sơ QA, kiểm thử, xử lý đường nối và Impeccable:
+
+---
+
+# Hồ sơ bản phát hành trước (2026-09-22, commit 58a9590)
+
 ## Phạm vi
 
 Bản này vào thẳng cảnh 360°, thay cụm điều khiển tối màu bằng bề mặt giấy ngà và chữ Newsreader. Biểu tượng sách được bỏ khỏi thanh điều khiển. Nút chữ **Tư liệu** mở nguồn, ngày chụp và giới hạn phục dựng. Giao diện không dùng nhãn “AI generated”, “made by AI” hoặc cách ghi tương tự theo yêu cầu của chủ dự án.

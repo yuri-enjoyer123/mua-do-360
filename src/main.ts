@@ -127,6 +127,7 @@ function renderScene() {
   const collection = collectionOf(current);
   remembered.set(era, current.id);
   remembered.set(`${era}:${collection}`, current.id);
+  document.body.dataset.sceneEra = era;
   document.querySelectorAll<HTMLElement>('[data-era]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.era === era)));
   document.querySelectorAll<HTMLElement>('[data-collection]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.collection === collection)));
   document.querySelector<HTMLElement>('.collection-switch')!.hidden = !scenes.some(scene => eraOf(scene) === era && collectionOf(scene) !== collection);

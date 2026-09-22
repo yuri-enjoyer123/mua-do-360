@@ -207,6 +207,8 @@
   "derivatives": [
     {
       "id": "quang-tri-south-1967-360",
+      "status": "withdrawn",
+      "withdrawalReason": "User identified mixed-era reconstruction and historical-fidelity concerns; removed from active tour display.",
       "sourceId": "quang-tri-south-1967",
       "creator": "Sciacchitano",
       "date": "Mùa thu 1967",
@@ -299,6 +301,8 @@
     },
     {
       "id": "quang-tri-northeast-1967-360",
+      "status": "withdrawn",
+      "withdrawalReason": "User identified mixed-era reconstruction and historical-fidelity concerns; removed from active tour display.",
       "sourceId": "quang-tri-northeast-1967",
       "creator": "Sciacchitano",
       "date": "Cuối năm 1967",
@@ -385,6 +389,7 @@
     },
     {
       "id": "citadel-gate-2018-360",
+      "status": "active",
       "sourceId": "citadel-gate-2018",
       "creator": "Phương Huy",
       "date": "19/02/2018",
@@ -423,6 +428,7 @@
     },
     {
       "id": "citadel-wall-2018-360",
+      "status": "active",
       "sourceId": "citadel-wall-2018",
       "creator": "Phương Huy",
       "date": "19/02/2018",
