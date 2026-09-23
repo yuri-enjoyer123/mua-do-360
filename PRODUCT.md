@@ -21,7 +21,7 @@ Xây dựng bằng Vite, TypeScript và Pannellum; phần toán học Three.js c
 ## Capabilities and Constraints
 
 - **Cấu trúc nội dung**:
-  - *8 không gian 360°*: 6 cảnh minh họa cuộc chiến đấu bảo vệ Thành cổ năm 1972 và sau giao tranh (`pho-cu` sau giữa tháng 9, không gán cho tháng 6–8) hiển thị đơn sắc, hạt tĩnh và độ mềm nhẹ; 2 cảnh phái sinh dựng từ ảnh di tích năm 2018 hiển thị màu sắc đương đại. Hai cảnh dựng từ không ảnh năm 1967 (`quang-tri-south-1967-360`, `quang-tri-northeast-1967-360`) đã được rút lui do lo ngại về độ chân thực lịch sử và tái tạo lẫn thời kỳ; hiện chỉ còn 2 cảnh phái sinh từ ảnh chụp đang hoạt động. Chỉ 6 cảnh 1972 ban đầu có liên hệ văn học tiểu thuyết *Mưa đỏ*; các cảnh còn lại không có mục văn học.
+  - *8 không gian 360°*: 6 cảnh minh họa cuộc chiến đấu bảo vệ Thành cổ năm 1972 và sau giao tranh (`pho-cu` sau giữa tháng 9, không gán cho tháng 6–8) hiển thị đơn sắc, hạt tĩnh và độ mềm nhẹ; 2 cảnh phái sinh dựng từ ảnh di tích năm 2018 hiển thị màu sắc đương đại. Hai cảnh dựng từ không ảnh năm 1967 (`quang-tri-south-1967-360`, `quang-tri-northeast-1967-360`) đã được rút lui do lo ngại về độ chân thực lịch sử và tái tạo lẫn thời kỳ; hiện chỉ còn 2 cảnh phái sinh từ ảnh chụp đang hoạt động. Các cảnh không có mục liên hệ văn học riêng.
   - *9 ảnh tư liệu trong album*: 3 ảnh thời kỳ Quá khứ (1967) và 6 ảnh thời kỳ Hiện tại (2016, 2018, 2025). Mỗi thời kỳ có panorama và album ảnh riêng; hiển thị rõ niên đại cụ thể của từng ảnh.
 - **Giao diện và tương tác**:
   - Nút con mắt mở Ngắm cảnh với tự xoay, âm thanh theo cảnh và cảm biến điện thoại theo lựa chọn của người xem. Tự xoay và âm thanh mặc định tắt; cảm biến chỉ xin quyền sau thao tác bật. Đổi cảnh, rời chế độ, kéo ảnh hoặc ẩn thẻ dừng chuyển động.

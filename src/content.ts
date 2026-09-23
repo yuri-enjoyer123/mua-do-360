@@ -40,7 +40,7 @@ export const sources: Source[] = [
     publisher: 'U.S. Army Topographic Command / National Archives',
     url: 'https://catalog.archives.gov/id/74797754',
     kind: 'historical',
-    note: 'NAID 74797754. Chú giải bản đồ ghi thông tin đến năm 1968; hồ sơ lưu trữ ghi khoảng 1942–1972. Bản đồ không xác nhận nguyên trạng năm 1972 hoặc định vị các góc đứng trong tour.',
+    note: 'NAID 74797754. Chú giải bản đồ ghi thông tin đến năm 1968; hồ sơ lưu trữ ghi khoảng 1942–1972.',
   },
   {
     id: 'di-san',
@@ -48,7 +48,7 @@ export const sources: Source[] = [
     publisher: 'Cục Di sản văn hóa',
     url: 'https://dsvh.gov.vn/di-tich-lich-su-thanh-co-quang-tri-va-nhung-dia-diem-luu-niem-su-kien-81-ngay-dem-nam-1972-2975',
     kind: 'historical',
-    note: 'Theo hồ sơ xếp hạng di tích; phân biệt dấu tích còn lại sau chiến tranh với các công trình tu bổ, tưởng niệm xây dựng về sau.',
+    note: 'Hồ sơ xếp hạng di tích, gồm dấu tích sau chiến tranh và các công trình tu bổ, tưởng niệm xây dựng về sau.',
   },
   {
     id: 'ttxvn',
@@ -56,7 +56,7 @@ export const sources: Source[] = [
     publisher: 'Thông tấn xã Việt Nam · Nhân vật và Sự kiện',
     url: 'https://nvsk.vnanet.vn/cuoc-chien-dau-81-ngay-dem-bao-ve-thanh-co-quang-tri-ngay-28-6-den-16-9-1972-4-147823.vna',
     kind: 'historical',
-    note: 'Đối chiếu mốc 28/6–16/9/1972. Mốc chung này không xác định ngày, giờ của từng cảnh phục dựng.',
+    note: 'Mốc 81 ngày đêm: 28/6–16/9/1972.',
   },
   {
     id: 'thach-han',
@@ -64,7 +64,7 @@ export const sources: Source[] = [
     publisher: 'Ủy ban MTTQ Việt Nam tỉnh Quảng Trị',
     url: 'https://ubmttqvn.quangtri.gov.vn/index.php/van-hoa-van-nghe/thach-han-dong-song-hoa-lua-4075.html',
     kind: 'historical',
-    note: 'Đối chiếu vai trò tiếp tế của dòng sông. Bài có cả ảnh hiện đại và ảnh thuộc thời điểm khác; không coi mọi ảnh minh họa là Thành cổ trong 81 ngày đêm.',
+    note: 'Vai trò tiếp tế của sông Thạch Hãn. Bài viết có ảnh từ nhiều thời kỳ.',
   },
   {
     id: 'du-lich',
@@ -72,7 +72,7 @@ export const sources: Source[] = [
     publisher: 'Cục Du lịch Quốc gia Việt Nam',
     url: 'https://vietnamtourism.vn/index.php/tourism/items/1271',
     kind: 'historical',
-    note: 'Đối chiếu tường thành, hào, bốn cửa và việc tu sửa giai đoạn 1993–1995; không dùng ảnh hiện nay để suy ra nguyên trạng năm 1972.',
+    note: 'Tường thành, hào nước, bốn cửa và việc tu sửa giai đoạn 1993–1995.',
   },
   {
     id: 'chu-lai',
@@ -138,7 +138,7 @@ export const scenes: Scene[] = [
     id: 'cong-hau',
     title: 'Quanh Cổng Hậu',
     eyebrow: 'Bắc môn · Thành cổ Quảng Trị',
-    summary: 'Vòm Cổng Hậu là một trong những dấu tích còn lại để đọc cấu trúc của tòa thành.',
+    summary: 'Vòm Cổng Hậu là một trong những dấu tích kiến trúc còn lại của Thành cổ.',
     description: [
       'Cổng Hậu, còn gọi là Bắc môn, là một điểm tựa để tìm hiểu cấu trúc Thành cổ. Những dấu tích được ghi nhận sau chiến tranh không cho biết đầy đủ diện mạo của cổng trong từng giai đoạn giao tranh.',
     ],

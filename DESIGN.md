@@ -124,6 +124,12 @@ Quá khứ dùng góc vuông, khung chữ nhật, nút viền hai sắc và tab 
 - Không gán ảnh hoặc sự kiện sang thập niên 1990 chỉ vì yêu cầu phong cách ảnh cũ.
 - Không đưa nhãn “AI generated” hoặc “made by AI” lên giao diện. Giới hạn diễn họa vẫn trình bày trong tư liệu bằng từ “phục dựng” và “mở rộng”.
 
+## Nội dung giao diện
+
+Rà chữ theo [Wikipedia:Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), theo yêu cầu của chủ dự án. Xét nội dung và ngữ cảnh của câu, không thay từ máy móc theo danh sách.
+
+Viết trực tiếp về địa danh, sự kiện hoặc chi tiết có nguồn. Bỏ lời bình chung chung về ý nghĩa, cảm xúc và các mối liên hệ không có dẫn chứng. Không đưa lời dặn biên tập, lời tự nhận xét chất lượng bài viết, placeholder hay câu giải thích điều hiển nhiên vào trang. Mục không có nội dung cụ thể thì bỏ; không thêm lại khối “Liên hệ với tiểu thuyết” cho từng cảnh. Ghi nguồn và giới hạn phục dựng ngắn gọn trong Tư liệu, tránh nhắc lại cùng một ý ở nhiều chỗ.
+
 ## Giới hạn lịch sử và hình ảnh
 
 - Nguồn và giới hạn diễn họa nằm trong bảng tư liệu. Theo yêu cầu của chủ dự án, giao diện không dùng nhãn hoặc lời ghi “AI generated”, “made by AI” hay tương tự; phần đọc giải thích bằng từ “phục dựng” và “mở rộng”.
