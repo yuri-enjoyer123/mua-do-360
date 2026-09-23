@@ -1,4 +1,5 @@
 import './style.css';
+import './eras.css';
 import 'pannellum/build/pannellum.css';
 import { reconstructionNotice, scenes as panoramas, sources } from './content';
 import { photoScenes, type TourScene } from './photographs';

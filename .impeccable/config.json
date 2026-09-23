@@ -8,7 +8,7 @@
         "rule": "design-system-font",
         "value": "be vietnam pro",
         "createdAt": "2026-09-23T06:03:02.068Z",
-        "reason": "Root review: DESIGN.md explicitly retains Be Vietnam Pro as an existing fallback font; no font change was introduced."
+        "reason": "Root review: the approved two-era redesign uses the existing self-hosted Be Vietnam Pro for Present and Newsreader for Past, as recorded in DESIGN.md."
       }
     ]
   }

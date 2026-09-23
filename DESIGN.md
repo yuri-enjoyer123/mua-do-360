@@ -1,105 +1,122 @@
 ---
-name: Mưa đỏ 360°
-description: Không gian lịch sử, trình bày như tập bản thảo in cổ và album ảnh tư liệu.
+name: Mưa đỏ
+description: Hai diện mạo cho Quá khứ và Hiện tại, cùng một trình xem ảnh và tư liệu.
 colors:
-  ivory: "#e9ddc5"
-  ink: "#362d22"
-  muted: "#6b5947"
-  oxblood: "#754337"
-  page-base: "#e9ddc5"
-  paper-inset: "#f4ebd9"
-  paper-shadow: "0 3px 9px rgba(54,45,34,.16)"
+  past-paper: "#ddd4bf"
+  past-inset: "#f1ead9"
+  past-ink: "#30291f"
+  past-muted: "#625749"
+  past-accent: "#653e35"
+  past-on-accent: "#f7f0df"
+  past-highlight: "#fff8e8"
+  past-edge: "#7c715f"
+  present-paper: "#fafcfb"
+  present-inset: "#eaf1ed"
+  present-ink: "#172c22"
+  present-muted: "#52635a"
+  present-accent: "#205c48"
+  present-line: "#82948a"
 typography:
-  body:
-    fontFamily: "Newsreader, Georgia, serif"
+  past-body:
+    fontFamily: "Newsreader, Georgia, Times New Roman, serif"
     fontSize: "19px"
-    mobileFontSize: "18px"
     lineHeight: 1.65
-    mobileLineHeight: 1.65
-  heading:
-    fontFamily: "Newsreader, Georgia, serif"
-    fontSize: "32px"
-    fontWeight: 400
-    lineHeight: 1.2
-  story-heading:
-    fontSize: "28px"
-  section-heading:
-    fontSize: "22px"
-  source-heading:
-    fontSize: "24px"
-  archive-heading:
-    fontSize: "21px"
-  caption:
-    fontSize: "14px"
-  source-label:
-    fontSize: "12px"
+  past-scene-title:
+    fontFamily: "Newsreader, Georgia, Times New Roman, serif"
+    fontSize: "20px"
+    lineHeight: 1.3
+  present-body:
+    fontFamily: "Be Vietnam Pro, Arial, sans-serif"
+    fontSize: "17px"
+    lineHeight: 1.75
+  present-scene-title:
+    fontFamily: "Be Vietnam Pro, Arial, sans-serif"
+    fontSize: "18px"
+    lineHeight: 1.4
 rounded:
-  control: "0px"
-  card: "0px"
+  past: "0px"
+  present-button: "8px"
+  present-switch: "10px"
+  present-panel: "12px"
+  present-dialog: "16px"
 spacing:
   touch-target: "44px"
-  hairline: "1px"
-  double-rule: "3px double #362d22"
+  desktop-edge: "16px"
+  mobile-edge: "10px"
+  scene-gap: "8px"
 components:
-  era-switch:
-    backgroundColor: "{colors.ivory}"
-    textColor: "{colors.muted}"
-    activeBackground: "{colors.oxblood}"
-    activeColor: "{colors.ivory}"
-  collection-switch:
-    backgroundColor: "{colors.ivory}"
-    textColor: "{colors.muted}"
-    activeBackground: "{colors.oxblood}"
-    activeColor: "{colors.ivory}"
-  scene-context:
-    backgroundColor: "{colors.ivory}"
-    textColor: "{colors.ink}"
-    borderBottom: "{spacing.double-rule}"
-  view-control:
-    backgroundColor: "{colors.ivory}"
-    textColor: "{colors.ink}"
-    activeBackground: "{colors.oxblood}"
-    activeColor: "{colors.ivory}"
-    gridDesktop: "2 columns x 4 rows"
-    gridMobile: "4 columns x 2 rows"
-  source-drawer:
-    backgroundColor: "{colors.ivory}"
-    textColor: "{colors.ink}"
-    width: "580px"
+  past-control:
+    backgroundColor: "{colors.past-paper}"
+    textColor: "{colors.past-ink}"
+    rounded: "{rounded.past}"
+    size: "{spacing.touch-target}"
+  past-control-active:
+    backgroundColor: "{colors.past-accent}"
+    textColor: "{colors.past-on-accent}"
+  present-control:
+    backgroundColor: "{colors.present-paper}"
+    textColor: "{colors.present-ink}"
+    rounded: "{rounded.present-button}"
+    size: "{spacing.touch-target}"
+  present-control-active:
+    backgroundColor: "{colors.present-accent}"
+    textColor: "{colors.present-paper}"
 ---
 
-# Mưa đỏ 360°
+# Mưa đỏ
 
-## Hướng thiết kế
+## Overview
 
-Mở trang vào thẳng cảnh 360°. Các nút và phần đọc dùng giấy ngà, mực nâu, chữ có chân và đường kẻ mảnh, gợi một tập tư liệu in. Thanh ảnh có khung giấy như những ảnh nhỏ trong album. Về hiển thị hình ảnh, toàn bộ byte ảnh JPEG gốc được giữ nguyên vẹn không đổi và ảnh tham chiếu trong bảng tư liệu (source drawer) không áp bộ lọc. Ở bề mặt hiển thị Quá khứ, toàn cảnh 360°, ảnh trong album và ảnh thu nhỏ được xử lý thang xám đơn sắc, độ mờ nhẹ (blur 0.4px) và hạt tĩnh (static grain); bề mặt hiển thị Hiện tại giữ nguyên màu sắc chân thực. Không áp dụng bộ lọc lên các thành phần giao diện người dùng (thanh điều khiển, nút bấm, chữ viết).
+Chủ dự án yêu cầu hai phong cách riêng: Quá khứ giống website cũ, Hiện tại có giao diện hiện đại. Mở trang vẫn vào thẳng cảnh đang chọn. Cảnh hoặc ảnh chiếm phần chính của màn hình; nút thời kỳ, kính VR, máy ảnh, hướng nhìn và dải ảnh luôn phục vụ thao tác thật.
 
-Chủ dự án yêu cầu giao diện cổ hơn, bỏ biểu tượng sách, thêm chuyển Quá khứ / Hiện tại và bốn nút nhìn lên, xuống, trái, phải. Viết mã trực tiếp. ENERGY 1 / RHYTHM 2 / MOTION 1: chuyển động chỉ phục vụ điều hướng, không trang trí.
+Quá khứ dùng chữ có chân, ô vuông, viền nổi kiểu giao diện web cũ và thanh tên cảnh đỏ nâu. Hiện tại dùng chữ sans, nền trắng gần trung tính, điểm chọn xanh trầm và các cụm điều khiển bo nhẹ. ENERGY 1 / RHYTHM 2 / MOTION 1 cho cả hai: chuyển động phục vụ thao tác, không thêm hiệu ứng trang trí. Đây là hướng thiết kế do người dùng chọn; phong cách ảnh cũ không thay niên đại của tư liệu.
 
-## Màu và chữ
+## Colors
 
-- Giấy `#e9ddc5`, mực `#362d22`, chữ phụ `#6b5947`, điểm chọn và liên kết `#754337`.
-- `#f4ebd9` là sắc giấy sáng hơn cho vùng lồng và trạng thái rê chuột.
-- Newsreader là phông chính, được lưu cùng trang; giữ Be Vietnam Pro trong khai báo phông dự phòng. Nội dung đọc 19px / 1.65 trên máy tính, 18px / 1.65 trên điện thoại. Chú thích, niên đại và điều khiển dùng cỡ nhỏ hơn theo vai trò.
-- Liên kết nguồn có gạch chân. Màu và đường viền cùng thể hiện lựa chọn; không dựa riêng vào độ đậm của chữ.
+Quá khứ: giấy `#ddd4bf`, vùng sáng `#f1ead9`, chữ `#30291f`, chữ phụ `#625749`, đỏ nâu `#653e35`; chữ trên nền đỏ nâu là `#f7f0df`. Hai cạnh sáng `#fff8e8` và tối `#7c715f` tạo viền nút cổ điển.
 
-## Bố cục và thao tác
+Hiện tại: bề mặt `#fafcfb`, vùng lồng `#eaf1ed`, chữ `#172c22`, chữ phụ `#52635a`, màu chọn `#205c48`, đường phân cách `#82948a`. Liên kết nguồn vẫn có gạch chân. Trạng thái chọn có cả nền, viền hoặc gạch chân và thuộc tính trợ năng.
 
-Trên máy tính, bộ chuyển thời kỳ ở góc trái trên; bộ chọn cảnh 360° hoặc ảnh tư liệu ở góc phải trên. Tên cảnh và niên đại nằm phía dưới bên trái. Nút chữ `#scene-sources` mở nguồn của cảnh, không có biểu tượng sách.
+## Typography
 
-Tám nút góc nhìn xếp hai cột bên phải. Trên màn hình dọc hẹp, bộ chuyển chế độ thành hai hàng trên, còn tám nút xếp bốn cột, hai hàng phía trên dải ảnh. Màn hình ngang thấp giữ bộ chuyển ở hai góc trên và cụm nút phía phải, trên dải ảnh. Mọi nút giữ vùng chạm ít nhất 44 × 44px, kể cả màn hình ngang.
+Newsreader là phông Quá khứ: nội dung đọc 19px/1.65 trên máy tính, 18px/1.65 trên điện thoại. Tiêu đề cảnh 20px, còn 18px ở màn hình hẹp hoặc ngang thấp.
 
-Dải ảnh cuộn ngang, tên ảnh luôn ở dưới hình. Khung giấy góc vuông và viền đỏ nâu 2px đánh dấu mục hiện tại. Hình thu nhỏ của cảnh 360° lấy từ góc nhìn phối cảnh trong trình xem.
+Be Vietnam Pro là phông Hiện tại, được lưu cùng trang: nội dung đọc 17px/1.75, tiêu đề bảng 26px (23px trên điện thoại), tên cảnh 18px (16px trên điện thoại). Dùng biến `--ui-font` cho phông theo thời kỳ; không tải thêm phông hoặc dùng chữ kiểu pixel làm khó đọc tiếng Việt.
 
-`.photo-viewer` dành khoảng trống cho điều hướng bằng `inset`, cập nhật theo chiều cao thực của tên cảnh. Ảnh `#document-photo` có chiều rộng và cao 100%, dùng `object-fit: contain`, không có padding; bộ điều khiển phóng và kéo toàn bộ ảnh trong khung có `overflow: hidden` và `touch-action: none`. Ảnh nguồn không bị cắt khi ở mức thu phóng ban đầu. Đã kiểm tra bố cục tại 320 × 568, 393 × 852, 844 × 390 và 1440 × 960: không tràn ngang, nút điều khiển nằm trong khung và đạt 44px. Dải ảnh thu gọn theo số mục để bộ sưu tập hai ảnh không bị kéo giãn hết màn hình.
+## Layout
 
-## Bề mặt và trạng thái
+Quy tắc chung ở `src/style.css`; phần theo thời kỳ ở `src/eras.css`, được chọn bằng `body[data-scene-era]`. Cảnh, chế độ xem và liên kết sâu quyết định thời kỳ, vì vậy đổi cảnh cũng đổi cả diện mạo đúng lúc.
 
-Bảng nguồn có khung lề mảnh bên trong, phần nội dung cuộn độc lập và chữ lớn như trang đọc. Bảng hướng dẫn, thông báo tải, lỗi, nút thoát trình chiếu, dấu chuyển cảnh và chú thích đều dùng cùng bề mặt giấy. Dấu chuyển cảnh là nút vuông 44px; chú thích hiện trên máy tính và ẩn trên màn hình hẹp.
+Máy tính đặt bộ chọn thời kỳ góc trên trái, kính VR/máy ảnh góc trên phải, tên cảnh bên dưới bên trái. Quá khứ đưa tên cảnh vào thanh tiêu đề riêng, niên đại và liên kết tư liệu nằm ở hàng dưới. Hiện tại dùng bảng tên gọn, không có thanh màu riêng.
 
-Đường viền đơn 1px và đôi 3px chia các phần. Bóng nhẹ lệch xuống tách bề mặt giấy khỏi cảnh. Giao diện (khung giấy, nút bấm, chữ) hoàn toàn không dùng kính mờ, hào quang, gradient hay bộ lọc làm cũ. Toàn bộ 9 ảnh JPEG gốc lưu trữ giữ nguyên byte không đổi, và ảnh tham chiếu hiển thị trong bảng tư liệu (source drawer) không áp bộ lọc. Ở bề mặt hiển thị Quá khứ, toàn cảnh 360°, ảnh xem trong album và ảnh thu nhỏ được áp dụng thang độ xám đơn sắc (grayscale), độ mờ nhẹ (blur 0.4px) và hạt tĩnh (static grain) nhằm phân định rõ với không gian Hiện tại (vẫn giữ màu sắc nguyên bản). Không có màn giới thiệu hay logo.
+Trên điện thoại, Quá khứ giữ hai hàng nút; Hiện tại đặt cả hai bộ chọn trên một hàng để dành thêm chỗ cho ảnh. Tám nút hướng nhìn và thu phóng xếp bốn cột, hai hàng phía trên dải ảnh; máy tính dùng hai cột bên phải. Màn hình ngang thấp giữ hai bộ chọn ở hai góc trên.
 
-Vòng focus có độ tương phản rõ trên giấy. Trình chiếu ẩn điều hướng và giữ nút thoát. Lỗi tải cho phép thử lại, chuyển cảnh hoặc đọc tư liệu. Âm thanh mặc định tắt, ghi rõ là mô phỏng. Tôn trọng tùy chọn giảm chuyển động.
+Mọi nút chính có vùng bấm ít nhất 44 × 44px. Dải ảnh cuộn ngang theo số cảnh. Khung album chừa phần tên cảnh qua `--context-end`, giữ toàn bộ ảnh bằng `object-fit: contain` trước khi người xem phóng to; không cắt ảnh nguồn để vừa khung.
+
+## Elevation & Depth
+
+Quá khứ dùng viền nút nổi/lõm kiểu web cũ; các bảng có bóng nhẹ `0 2px 4px rgb(38 31 22 / .2)`. Hiện tại dùng bóng `0 4px 18px rgb(14 39 27 / .15)` để tách các cụm điều khiển khỏi ảnh. Thẻ ảnh không có bóng; không dùng kính mờ hoặc hào quang.
+
+Ảnh trong Quá khứ được hiển thị với `grayscale(1) contrast(.76) brightness(1.14) blur(1px)`; ảnh thu nhỏ dùng blur `.65px`. Hạt nhiễu tĩnh có seed cố định, ô lặp 160px, phủ riêng vùng ảnh với chế độ hòa multiply và opacity `.72`. Bộ lọc làm chi tiết mềm, giảm tương phản và gợi ảnh in cũ theo yêu cầu, không thêm hiện vật hoặc sự kiện. Các tệp ảnh gốc không bị nén lại hay ghi đè. Ảnh Hiện tại và ảnh tham chiếu trong bảng tư liệu không áp bộ lọc làm cũ.
+
+## Shapes
+
+Quá khứ dùng góc vuông, khung chữ nhật, nút viền hai sắc và tab tư liệu cổ điển. Hiện tại dùng góc bo 7–8px cho nút, 8px cho thẻ ảnh, 10–12px cho cụm điều khiển và 16px cho bảng hướng dẫn. Không đổi các nút thành capsule hoặc thêm khung trang trí quanh cảnh.
+
+## Components
+
+- Kính VR chọn chế độ nhìn quanh; máy ảnh chọn album. SVG 24px, nút 44px, có tên trợ năng và chú thích khi rê chuột.
+- Nút chữ Tư liệu mở nguồn, giấy phép và giới hạn của đúng cảnh. Bảng đọc kế thừa diện mạo của thời kỳ đang xem, có vùng cuộn độc lập và đường đóng rõ ràng.
+- Trạng thái chọn thời kỳ dùng `aria-pressed`; cảnh hiện tại dùng viền và `aria-current`. Vòng focus vẫn nhìn thấy được trên cả hai nền.
+- Các điều khiển tải, lỗi, thử lại, toàn màn hình, trình chiếu và âm thanh dùng cùng hệ màu với thời kỳ. Âm thanh mặc định tắt; giảm chuyển động theo thiết lập trình duyệt.
+
+## Do's and Don'ts
+
+- Giữ cảnh dẫn đầu và vào thẳng trình xem; không thêm hero, logo, màn giới thiệu hay nhãn quảng cáo.
+- Giữ hai thời kỳ và hai cách xem; nguồn lịch sử, ngày chụp, ghi công và giấy phép luôn thuộc đúng ảnh.
+- Chỉ làm cũ phần hiển thị hình ảnh Quá khứ; không làm mờ chữ, nút bấm hoặc ảnh đối chiếu trong tư liệu.
+- Không gán ảnh hoặc sự kiện sang thập niên 1990 chỉ vì yêu cầu phong cách ảnh cũ.
+- Không đưa nhãn “AI generated” hoặc “made by AI” lên giao diện. Giới hạn diễn họa vẫn trình bày trong tư liệu bằng từ “phục dựng” và “mở rộng”.
 
 ## Giới hạn lịch sử và hình ảnh
 

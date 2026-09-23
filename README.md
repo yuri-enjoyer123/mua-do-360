@@ -19,10 +19,10 @@ Dự án gồm **8 không gian toàn cảnh 360°** (6 cảnh minh họa quá kh
 
 ## Giao diện và tương tác
 
-- Giao diện mang phong cách tập tư liệu in với tông màu giấy ngà, mực nâu sẫm, điểm nhấn đỏ nâu, đường kẻ mảnh và phông chữ Newsreader.
+- Hai diện mạo theo thời kỳ: Quá khứ dùng nền giấy, chữ Newsreader, thanh tên đỏ nâu và nút viền nổi kiểu website cũ; Hiện tại dùng nền trắng, chữ Be Vietnam Pro, điểm chọn xanh trầm và điều khiển bo nhẹ. Bộ chọn cách xem nằm cùng hàng với thời kỳ trên điện thoại ở chế độ Hiện tại.
 - Nút kính VR chọn chế độ nhìn quanh; nút máy ảnh mở album. Hai nút có vùng bấm 44 × 44px, chú thích khi rê chuột và tên dành cho trình đọc màn hình.
 - Nút chữ **Tư liệu** thuần túy (không biểu tượng cuốn sách) mở bảng giải thích nguồn gốc và giới hạn tái hiện một cách trung thực, không dùng huy hiệu hay nhãn từ AI trên giao diện người dùng.
-- Hiển thị hình ảnh phân định rõ hai thời kỳ: ở thời kỳ Quá khứ, toàn cảnh 360°, ảnh trong album và ảnh thu nhỏ được xử lý thang xám đơn sắc, độ mờ nhẹ (blur 0.4px) và hạt tĩnh; thời kỳ Hiện tại giữ màu sắc nguyên bản. Byte tệp JPEG gốc và ảnh tham chiếu trong bảng tư liệu (source drawer) giữ nguyên vẹn không đổi, không áp bộ lọc; các thành phần giao diện người dùng không bị can thiệp bộ lọc.
+- Hiển thị hình ảnh phân định rõ hai thời kỳ: ở thời kỳ Quá khứ, toàn cảnh 360°, ảnh trong album và ảnh thu nhỏ được xử lý thang xám đơn sắc, giảm tương phản, nâng vùng tối, độ mờ 1px (ảnh thu nhỏ 0.65px) và hạt nhiễu tĩnh rõ hơn; thời kỳ Hiện tại giữ màu sắc nguyên bản. Byte tệp JPEG gốc và ảnh tham chiếu trong bảng tư liệu (source drawer) giữ nguyên vẹn không đổi, không áp bộ lọc; các thành phần giao diện người dùng không bị can thiệp bộ lọc.
 - 4 nút chỉnh hướng nhìn (lên, xuống, trái, phải), phóng to (+), thu nhỏ (−), đặt lại góc nhìn và toàn màn hình (F).
 - Cảnh hiện ảnh xem trước trong lúc tải toàn cảnh; ảnh đầy đủ 7096 × 3548 thay thế khi sẵn sàng.
 - Chế độ album thu phóng tại con trỏ hoặc tâm hai ngón tay; kéo chuột/chạm hay dùng phím mũi tên để xem chi tiết. Nhấp đúp để phóng to hoặc đặt lại ảnh.
