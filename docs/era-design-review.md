@@ -58,3 +58,9 @@ Xác minh cục bộ của bước này:
 - Dữ liệu lịch sử và ảnh nguồn không thay đổi. Build được giữ tương thích cả ChatGPT Sites và GitHub Pages; toàn bộ suite của GitHub Actions vẫn phải đạt trước khi phát hành.
 
 Delivery Gate của bước nhập vai: Hard Gate PASS với kiểm tra cục bộ trên; Purpose-Gate PASS vì chuyển cảnh giữ hướng nhìn và Ngắm cảnh nhường không gian cho ảnh; Liveliness PASS với hai diện mạo và dials ENERGY 1 / RHYTHM 2 / MOTION 2; Craftsmanship & Quality Locks PASS với điều khiển hoạt động, giảm chuyển động, giới hạn bộ nhớ, dọn cảm biến và bảo toàn nguồn lịch sử. Kết quả CI và kiểm tra bản trực tuyến được ghi trong lịch sử phát hành, không suy diễn từ kiểm tra cục bộ.
+
+### Chẩn đoán phép chụp ảnh trong CI
+
+Lượt CI `35844975446` đạt 68 ca, bỏ qua 3 ca cảm biến desktop, và gặp một lỗi thời gian chờ trong phép so sánh ảnh khi tự xoay trên mobile. Trace cho thấy hai lần chụp mất 5.190 và 13.492 ms; phép so sánh ảnh sau đó đạt nhưng đã vượt hạn 10 giây. Ảnh trong trace cũng xác nhận khung nhìn thực sự đổi góc. Đã tái hiện lỗi 2/3 lần cục bộ trước khi sửa phép đo.
+
+Bộ kiểm thử nhập vai giờ đợi chuyển cảnh mở đầu kết thúc và so sánh vùng ảnh giữa 128 × 128 px ở độ phân giải CSS, để phép đọc ảnh không quá tải bộ dựng phần mềm. Các ca này dùng deviceScaleFactor 1; bộ `tour.spec.ts` vẫn kiểm tra trình xem trên cấu hình Pixel 7 độ phân giải cao. Không thay đổi mã ứng dụng, bỏ điều kiện chuyển động, thêm retry hay tăng thời gian chờ để che lỗi. Kiểm thử vẫn phải chứng minh ảnh được vẽ thay đổi khi tự xoay hoặc nhận dữ liệu cảm biến.

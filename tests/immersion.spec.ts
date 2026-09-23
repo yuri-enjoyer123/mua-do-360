@@ -1,12 +1,25 @@
 import { test, expect, type Page } from '@playwright/test';
 import { createHash } from 'node:crypto';
 
-const viewDigest = async (page: Page) => createHash('sha256').update(await page.locator('#panorama canvas').screenshot()).digest('hex');
+// Keep software-rendered motion captures at CSS resolution; tour.spec.ts covers high-DPI rendering.
+test.use({ deviceScaleFactor: 1 });
+
+async function viewDigest(page: Page) {
+  const box = await page.locator('#panorama canvas').boundingBox();
+  if (!box) throw new Error('Panorama canvas is not visible');
+  const width = Math.min(128, box.width);
+  const height = Math.min(128, box.height);
+  const clip = { x: box.x + (box.width - width) / 2, y: box.y + (box.height - height) / 2, width, height };
+  return createHash('sha256').update(await page.screenshot({ clip, scale: 'css' })).digest('hex');
+}
 
 async function openView(page: Page) {
   await page.goto('./#scene=cong-hau');
   await expect(page.locator('#panorama')).toHaveAttribute('aria-busy', 'false');
   await expect(page.locator('#panorama canvas')).toBeVisible();
+  await page.locator('#panorama').evaluate(async element => {
+    await Promise.all(element.getAnimations().map(animation => animation.finished));
+  });
 }
 
 test('immersive view opens from the scene and stops rotation when leaving', async ({ page }) => {
