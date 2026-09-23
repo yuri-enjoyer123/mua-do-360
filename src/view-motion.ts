@@ -7,6 +7,7 @@ export function createViewMotion(
   deviceButton: HTMLButtonElement,
   feedback: HTMLElement,
   reducedMotion: MediaQueryList,
+  onPlaybackToggle: (playing: boolean) => void,
 ) {
   let viewer: PanoramaViewer | undefined;
   let panoramaMode = true;
@@ -24,7 +25,7 @@ export function createViewMotion(
     rotateButton.disabled = !viewer || reducedMotion.matches;
     deviceButton.disabled = !viewer;
     rotateButton.setAttribute('aria-pressed', String(mode === 'rotate'));
-    rotateButton.setAttribute('aria-label', mode === 'rotate' ? 'Dừng tự xoay' : 'Bật tự xoay');
+    rotateButton.setAttribute('aria-label', mode === 'rotate' ? 'Tạm dừng' : 'Phát cảnh');
     rotateButton.title = reducedMotion.matches ? 'Tự xoay tắt theo cài đặt giảm chuyển động' : rotateButton.getAttribute('aria-label')!;
     deviceButton.setAttribute('aria-pressed', String(mode === 'device'));
     deviceButton.setAttribute('aria-busy', String(pending));
@@ -58,6 +59,7 @@ export function createViewMotion(
       viewer.startAutoRotate(-2.4, viewer.getPitch());
       render();
     }
+    onPlaybackToggle(start);
   });
 
   deviceButton.addEventListener('click', async () => {

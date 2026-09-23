@@ -93,7 +93,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 
     <div id="presentation-tools" class="presentation-tools" role="group" aria-label="Ngắm cảnh" hidden>
       <p id="motion-feedback" role="status" hidden></p>
-      <button class="icon-button" id="rotate-button" aria-label="Bật tự xoay" aria-pressed="false" title="Bật tự xoay">${icon('play', 'play-icon')}${icon('pause', 'pause-icon')}</button>
+      <button class="icon-button" id="rotate-button" aria-label="Phát cảnh" aria-pressed="false" title="Phát cảnh">${icon('play', 'play-icon')}${icon('pause', 'pause-icon')}</button>
       <button class="icon-button" id="device-look-button" aria-label="Nghiêng điện thoại để nhìn quanh" aria-pressed="false" aria-busy="false" hidden>${icon('phone')}</button>
       <button class="icon-button" id="ambient-quick-button" aria-label="Bật âm thanh thiên nhiên mô phỏng" aria-pressed="false" title="Âm thanh: đang tắt">${icon('muted')}</button>
       <button class="presentation-exit" id="presentation-exit" aria-label="Trở lại các nút điều khiển">${icon('close')}<span>Trở lại</span></button>
@@ -126,7 +126,7 @@ const helpDialog = get<HTMLDialogElement>('help-dialog');
 const announcement = get('announcement');
 const allDialogs = [infoDialog, helpDialog];
 const focusReturns = new WeakMap<HTMLDialogElement, HTMLElement>();
-const motion = createViewMotion(get<HTMLButtonElement>('rotate-button'), get<HTMLButtonElement>('device-look-button'), get('motion-feedback'), reducedMotion);
+const motion = createViewMotion(get<HTMLButtonElement>('rotate-button'), get<HTMLButtonElement>('device-look-button'), get('motion-feedback'), reducedMotion, syncPlaybackAudio);
 const sceneTransition = createSceneTransition(get('scene-transition'), reducedMotion);
 const experience = document.querySelector<HTMLElement>('.experience')!;
 const sceneContext = document.querySelector<HTMLElement>('.scene-context')!;
@@ -502,7 +502,7 @@ let ambienceFilter: BiquadFilterNode | undefined;
 let ambiencePulse: OscillatorNode | undefined;
 let ambienceDepth: GainNode | undefined;
 let ambienceOn = false;
-let ambienceSuspendTimer: ReturnType<typeof setTimeout> | undefined;
+let ambiencePausedForPlayback = false;
 let audioOpQueue: Promise<void> = Promise.resolve();
 
 function updateAmbienceScene() {
@@ -533,6 +533,11 @@ function audioUnavailable() {
 }
 
 function syncAudioState() {
+  // Mute immediately, even while an earlier resume is still pending.
+  if ((!ambienceOn || document.hidden) && audioContext && ambienceGain) {
+    ambienceGain.gain.cancelScheduledValues(audioContext.currentTime);
+    ambienceGain.gain.setValueAtTime(0, audioContext.currentTime);
+  }
   audioOpQueue = audioOpQueue.then(async () => {
     if (!audioContext || !ambienceGain) return;
     if (ambienceOn && !document.hidden) await audioContext.resume();
@@ -547,9 +552,8 @@ function syncAudioState() {
   }).catch(audioUnavailable);
 }
 
-function toggleAmbience() {
-  ambienceOn = !ambienceOn;
-  clearTimeout(ambienceSuspendTimer);
+function setAmbience(on: boolean) {
+  ambienceOn = on;
   try {
     if (ambienceOn && !audioContext) {
       const Context = window.AudioContext ?? window.webkitAudioContext;
@@ -588,14 +592,24 @@ function toggleAmbience() {
       sound.start();
     }
     syncAmbienceUI(ambienceOn);
-    if (ambienceOn) syncAudioState();
-    else if (audioContext && ambienceGain) {
-      ambienceGain.gain.cancelScheduledValues(audioContext.currentTime);
-      ambienceGain.gain.setTargetAtTime(0, audioContext.currentTime, 0.35);
-      ambienceSuspendTimer = setTimeout(() => { if (!ambienceOn) syncAudioState(); }, 1200);
-    }
+    syncAudioState();
     announce(`Âm thanh thiên nhiên mô phỏng đã ${ambienceOn ? 'bật' : 'tắt'}.`);
   } catch { audioUnavailable(); }
+}
+
+function toggleAmbience() {
+  ambiencePausedForPlayback = false;
+  setAmbience(!ambienceOn);
+}
+
+function syncPlaybackAudio(playing: boolean) {
+  if (!playing) {
+    ambiencePausedForPlayback = ambienceOn;
+    if (ambienceOn) setAmbience(false);
+  } else if (ambiencePausedForPlayback) {
+    ambiencePausedForPlayback = false;
+    setAmbience(true);
+  }
 }
 
 get('previous-scene').addEventListener('click', () => stepScene(-1));
@@ -638,7 +652,6 @@ document.addEventListener('fullscreenchange', () => {
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) motion.stop();
   if (!audioContext) return;
-  clearTimeout(ambienceSuspendTimer);
   syncAudioState();
 });
 document.addEventListener('keydown', (event) => {
