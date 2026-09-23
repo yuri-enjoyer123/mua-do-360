@@ -138,7 +138,7 @@ test('2. Album source clarity, context labels and restoration across scenes', as
   await detailsElement.locator('summary').click();
   await expect(detailsElement).toHaveAttribute('open');
   await expect(detailsElement.locator('p').first()).toBeVisible();
-  await expect(detailsElement).toContainText('không xác thực từng chi tiết');
+  await expect(detailsElement).toContainText('Chi tiết bổ sung không phải chứng cứ lịch sử');
   await expect(infoDialog).toContainText('Bản đồ này không xác nhận nguyên trạng năm 1972 hay vị trí các cảnh minh họa');
   await expect(infoDialog).toContainText('Cục Di sản văn hóa');
 

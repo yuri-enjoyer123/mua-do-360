@@ -13,9 +13,7 @@
     "width": 3559,
     "height": 2443,
     "notes": [
-      "Đây là ảnh năm 1967, không phải ảnh cuộc chiến 81 ngày đêm năm 1972.",
-      "Mốc mùa thu 1967 nằm trong tên và mô tả do tác giả cung cấp; trường Date của Commons ghi 9/8/2011 là mốc tệp, không phải ngày chụp lịch sử. Không xác định ngày chụp cụ thể.",
-      "Ảnh đơn chụp từ trên cao, không phải ảnh toàn cảnh 360°. Không suy ra vị trí người đứng hoặc tuyến tham quan từ ảnh."
+      "Sciacchitano ghi thời điểm chụp là mùa thu 1967. Mục Date trên Commons ghi ngày của tệp: 9/8/2011."
     ]
   },
   {
@@ -32,16 +30,14 @@
     "width": 3484,
     "height": 2417,
     "notes": [
-      "Địa danh và hướng nhìn theo mô tả do tác giả cung cấp trên Commons; không có tọa độ máy ảnh.",
-      "Mốc cuối năm 1967 nằm trong mô tả; trường Date ghi 20/10/2009 trùng ngày số hóa trong metadata, không phải ngày chụp.",
-      "Không dùng ảnh này để xác định một bến vượt sông hay hoạt động quân sự năm 1972. Đây là ảnh đơn, không phải 360°."
+      "Hướng nhìn và địa danh theo chú thích của Sciacchitano. Mốc 20/10/2009 trên Commons là ngày số hóa."
     ]
   },
   {
     "id": "quang-tri-airfield-1967",
     "era": "past",
     "title": "Tư liệu không ảnh sân bay phía Bắc Quảng Trị",
-    "caption": "Phiếu ảnh ngày 22/10/1967 ghi lại sân bay mới dọc Quốc lộ 1, cách Quảng Trị khoảng ba dặm về phía Bắc theo chú thích gốc. Bản số hóa giữ cả ảnh và thông tin lưu trữ.",
+    "caption": "Phiếu ảnh ngày 22/10/1967 ghi lại sân bay mới dọc Quốc lộ 1, cách Quảng Trị khoảng ba dặm về phía Bắc theo chú thích gốc.",
     "date": "22/10/1967",
     "creator": "Cpl J. J. Stevens / U.S. Marine Corps",
     "license": "Public domain in the United States; official U.S. federal government photograph",
@@ -51,17 +47,15 @@
     "width": 1200,
     "height": 768,
     "notes": [
-      "Đây là sân bay ở phía Bắc Quảng Trị, không phải Thành cổ hay một điểm bên trong thành.",
-      "Giữ nguyên phiếu tư liệu có ảnh đặt dọc và chú thích; không xoay hoặc cắt ảnh trong lần thu thập này.",
-      "Chú thích gốc ghi 3D-203072-67, ngày 22Oct67 và Photog: Cpl J.J. Stevens.",
-      "Nhãn public domain áp dụng tại Hoa Kỳ. Không gán CC0 cho ảnh chỉ vì NARA lưu giữ; căn cứ tác quyền là ảnh công vụ USMC cùng nhãn PD tại Commons."
+      "Mã ảnh: 3D-203072-67.",
+      "Ảnh công vụ của U.S. Marine Corps, thuộc phạm vi công cộng tại Hoa Kỳ."
     ]
   },
   {
     "id": "citadel-gate-2018",
     "era": "present",
     "title": "Cổng Thành cổ",
-    "caption": "Cổng Thành cổ Quảng Trị trong chuyến thăm dịp Tết 2018. Ảnh chụp ngày 19/02/2018.",
+    "caption": "Cổng Thành cổ Quảng Trị trong chuyến thăm dịp Tết 2018.",
     "date": "19/02/2018",
     "creator": "Phương Huy",
     "license": "CC BY-SA 4.0",
@@ -70,15 +64,13 @@
     "file": "photographs/citadel-gate-2018.jpg",
     "width": 4160,
     "height": 3120,
-    "notes": [
-      "Mốc thời gian là ngày chụp được ghi tại nguồn ảnh; không phải hình ảnh trực tiếp theo thời gian thực."
-    ]
+    "notes": []
   },
   {
     "id": "citadel-wall-2018",
     "era": "present",
     "title": "Hào nước Thành cổ",
-    "caption": "Hào nước và lối đi bên Thành cổ Quảng Trị. Ảnh chụp ngày 19/02/2018.",
+    "caption": "Hào nước và lối đi bên Thành cổ Quảng Trị.",
     "date": "19/02/2018",
     "creator": "Phương Huy",
     "license": "CC BY-SA 4.0",
@@ -87,15 +79,13 @@
     "file": "photographs/citadel-wall-2018.jpg",
     "width": 4160,
     "height": 3120,
-    "notes": [
-      "Mốc thời gian là ngày chụp được ghi tại nguồn ảnh; không phải hình ảnh trực tiếp theo thời gian thực."
-    ]
+    "notes": []
   },
   {
     "id": "citadel-memorial-2018",
     "era": "present",
     "title": "Đài tưởng niệm Thành cổ",
-    "caption": "Đài tưởng niệm trong khuôn viên Thành cổ Quảng Trị. Ảnh chụp ngày 19/02/2018.",
+    "caption": "Đài tưởng niệm trong khuôn viên Thành cổ Quảng Trị.",
     "date": "19/02/2018",
     "creator": "Phương Huy",
     "license": "CC BY-SA 4.0",
@@ -104,15 +94,13 @@
     "file": "photographs/citadel-memorial-2018.jpg",
     "width": 4160,
     "height": 3120,
-    "notes": [
-      "Mốc thời gian là ngày chụp được ghi tại nguồn ảnh; không phải hình ảnh trực tiếp theo thời gian thực."
-    ]
+    "notes": []
   },
   {
     "id": "thach-han-evening-2025",
     "era": "present",
     "title": "Chiều trên sông Thạch Hãn",
-    "caption": "Trời chiều trên sông Thạch Hãn qua ảnh của Nguyenbinh07, ghi ngày 03/07/2025.",
+    "caption": "Trời chiều trên sông Thạch Hãn.",
     "date": "03/07/2025",
     "creator": "Nguyenbinh07",
     "license": "CC BY-SA 4.0",
@@ -121,15 +109,13 @@
     "file": "photographs/thach-han-evening-2025.jpg",
     "width": 4076,
     "height": 2976,
-    "notes": [
-      "Mốc thời gian là ngày chụp được ghi tại nguồn ảnh; không phải hình ảnh trực tiếp theo thời gian thực."
-    ]
+    "notes": []
   },
   {
     "id": "thach-han-pavilion-2018",
     "era": "present",
     "title": "Nhà hành lễ bến thả hoa",
-    "caption": "Mặt tiền Nhà hành lễ bến thả hoa tưởng niệm các anh hùng liệt sĩ bên sông Thạch Hãn. Ảnh chụp ngày 19/02/2018.",
+    "caption": "Mặt tiền Nhà hành lễ bến thả hoa tưởng niệm các anh hùng liệt sĩ bên sông Thạch Hãn.",
     "date": "19/02/2018",
     "creator": "Phương Huy",
     "license": "CC BY-SA 4.0",
@@ -138,15 +124,13 @@
     "file": "photographs/thach-han-pavilion-2018.jpg",
     "width": 3120,
     "height": 4160,
-    "notes": [
-      "Mốc thời gian là ngày chụp được ghi tại nguồn ảnh; không phải hình ảnh trực tiếp theo thời gian thực."
-    ]
+    "notes": []
   },
   {
     "id": "hien-luong-bridge-2016",
     "era": "present",
     "title": "Cầu Hiền Lương",
-    "caption": "Cầu Hiền Lương bắc qua sông Bến Hải, chụp ngày 30/09/2016. Đây là điểm di tích riêng, không nằm trong khuôn viên Thành cổ.",
+    "caption": "Cầu Hiền Lương bắc qua sông Bến Hải.",
     "date": "30/09/2016",
     "creator": "Linhcandng",
     "license": "CC BY-SA 3.0",
@@ -155,8 +139,6 @@
     "file": "photographs/hien-luong-bridge-2016.jpg",
     "width": 4224,
     "height": 2368,
-    "notes": [
-      "Mốc thời gian là ngày chụp được ghi tại nguồn ảnh; không phải hình ảnh trực tiếp theo thời gian thực."
-    ]
+    "notes": []
   }
 ]

@@ -216,7 +216,19 @@ function renderStory() {
     const photo = current.photograph;
     get('story-panel').innerHTML = `<p class="story-lead">${escape(current.summary)}</p>${current.description.map(paragraph => `<p>${escape(paragraph)}</p>`).join('')}<button class="text-button" id="story-to-sources">Xem tư liệu của cảnh</button>`;
     get('story-to-sources').addEventListener('click', () => setTab('sources', true));
-    get('sources-panel').innerHTML = `<div class="photo-source"><h3>${escape(photo.title)}</h3><p>${escape(photo.caption)}</p><p>${escape(photo.date)} · ${escape(photo.creator)}</p><figure><a href="${asset(photo.file)}" target="_blank" rel="noopener noreferrer"><img src="${asset(photo.file)}" alt="${escape(photo.caption)}" width="${photo.width}" height="${photo.height}" loading="lazy" /></a><figcaption>${escape(photo.creator)} · ${escape(photo.date)}</figcaption></figure><p><a href="${escape(photo.sourceUrl)}" target="_blank" rel="noopener noreferrer">Hồ sơ ảnh và chú thích ${icon('external')}<span class="sr-only"> (mở thẻ mới)</span></a></p><p><a href="${escape(photo.licenseUrl)}" target="_blank" rel="noopener noreferrer">${escape(photo.license)}<span class="sr-only"> (mở thẻ mới)</span></a></p>${current.derivation ? `<p>${escape(current.derivation)}</p>` : ''}<details open><summary>Phạm vi tư liệu</summary>${photo.notes.map(note => `<p>${escape(note)}</p>`).join('')}</details></div>`;
+    get('sources-panel').innerHTML = `
+      <div class="photo-source">
+        <h3>${escape(photo.title)}</h3>
+        <p>${escape(photo.caption)}</p>
+        <figure>
+          <a href="${asset(photo.file)}" target="_blank" rel="noopener noreferrer"><img src="${asset(photo.file)}" alt="${escape(photo.caption)}" width="${photo.width}" height="${photo.height}" loading="lazy" /></a>
+          <figcaption>${escape(photo.creator)} · ${escape(photo.date)}</figcaption>
+        </figure>
+        <p><a href="${escape(photo.sourceUrl)}" target="_blank" rel="noopener noreferrer">Xem nguồn ảnh ${icon('external')}<span class="sr-only"> (mở thẻ mới)</span></a></p>
+        <p><a href="${escape(photo.licenseUrl)}" target="_blank" rel="noopener noreferrer">${escape(photo.license)}<span class="sr-only"> (mở thẻ mới)</span></a></p>
+        ${current.derivation ? `<p>${escape(current.derivation)}</p>` : ''}
+        ${photo.notes.length ? `<details open><summary>Chú thích</summary>${photo.notes.map(note => `<p>${escape(note)}</p>`).join('')}</details>` : ''}
+      </div>`;
     return;
   }
   const references = sources.filter((source) => current.sourceIds.includes(source.id));
@@ -232,7 +244,7 @@ function renderStory() {
     <button class="text-button" id="story-to-sources">Xem nguồn và giới hạn ảnh</button>`;
   get('story-to-sources').addEventListener('click', () => setTab('sources', true));
   get('sources-panel').innerHTML = `
-    <div class="source-notice"><h3>Về ảnh phục dựng</h3><p>${escape(reconstructionNotice)}</p><details class="reconstruction-details"><summary>Giới hạn phục dựng</summary><p>Cảnh toàn cảnh được phục dựng để minh họa không gian. Tư liệu giúp định hướng bối cảnh, không xác thực từng chi tiết trong hình. Đây không phải ảnh chụp tư liệu hay bản phục dựng khảo cổ.</p><p>Ảnh được tăng độ phân giải để giảm mờ khi nhìn quanh. Chi tiết bổ sung không phải chứng cứ lịch sử.</p><p>Các dấu chuyển điểm chỉ giúp điều hướng giữa những góc nhìn độc lập; chúng không xác nhận khoảng cách hay hướng đi thực tế.</p></details></div>
+    <div class="source-notice"><h3>Về ảnh phục dựng</h3><p>${escape(reconstructionNotice)}</p><details class="reconstruction-details"><summary>Giới hạn phục dựng</summary><p>Cảnh toàn cảnh được phục dựng theo tư liệu. Đây không phải ảnh chụp tư liệu hay bản phục dựng khảo cổ. Chi tiết bổ sung không phải chứng cứ lịch sử.</p><p>Các điểm chuyển cảnh không theo một tuyến đường được khảo sát.</p></details></div>
     <details class="archive-map"><summary>Bản đồ lưu trữ Quảng Trị</summary>
       <figure><a href="https://catalog.archives.gov/id/74797754" target="_blank" rel="noopener noreferrer" aria-label="Xem hồ sơ bản đồ Quảng Trị tại National Archives (mở thẻ mới)"><img src="${asset('archive/ams-quang-tri.webp')}" alt="Bản đồ AMS lưu trữ thể hiện sông Thạch Hãn, thị xã và khu Thành cổ Quảng Trị." width="1200" height="1332" loading="lazy" /></a>
       <figcaption>U.S. Army Topographic Command / National Archives, NAID 74797754. Chú giải trên bản đồ ghi thông tin đến năm 1968; hồ sơ lưu trữ ghi khoảng 1942–1972. Bản đồ này không xác nhận nguyên trạng năm 1972 hay vị trí các cảnh minh họa.</figcaption></figure>

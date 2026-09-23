@@ -338,6 +338,13 @@ test('responsive layout, image assets, and initial transfer budget', async ({ pa
       }));
       expect(blockedControls).toEqual([]);
       await page.screenshot({ path: `test-results/overview-${era}-${width}.png`, scale: 'css', animations: 'disabled' });
+      if (width === 320 || !isMobile) {
+        await page.locator('#scene-sources').click();
+        const photo = page.locator('.photo-source figure img');
+        if (await photo.count()) await expect.poll(async () => photo.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
+        await page.screenshot({ path: `test-results/sources-${era}-${width}.png`, scale: 'css', animations: 'disabled' });
+        await page.keyboard.press('Escape');
+      }
     }
   }
 });
