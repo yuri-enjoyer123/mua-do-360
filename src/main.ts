@@ -138,19 +138,14 @@ window.addEventListener('resize', updatePhotoInset);
 
 function announce(text: string) { announcement.textContent = text; }
 
-function updateViewControlsLabels() {
+function updateViewControls() {
   const isPhoto = current.format === 'photo';
-  const labels = {
-    'look-up': isPhoto ? 'Dịch ảnh lên' : 'Nhìn lên',
-    'look-down': isPhoto ? 'Dịch ảnh xuống' : 'Nhìn xuống',
-    'look-left': isPhoto ? 'Dịch ảnh sang trái' : 'Nhìn sang trái',
-    'look-right': isPhoto ? 'Dịch ảnh sang phải' : 'Nhìn sang phải',
-    'reset-view': isPhoto ? 'Đặt lại ảnh' : 'Đặt lại góc nhìn',
-  };
-  for (const [id, label] of Object.entries(labels)) {
-    get(id).setAttribute('aria-label', label);
-    get(id).title = label;
+  for (const id of ['look-up', 'look-down', 'look-left', 'look-right']) {
+    get(id).hidden = isPhoto;
   }
+  const resetLabel = isPhoto ? 'Đặt lại ảnh' : 'Đặt lại góc nhìn';
+  get('reset-view').setAttribute('aria-label', resetLabel);
+  get('reset-view').title = resetLabel;
 }
 
 function getSourcesTitle(): string {
@@ -175,7 +170,7 @@ function renderScene() {
   } else {
     preview.removeAttribute('src');
   }
-  updateViewControlsLabels();
+  updateViewControls();
   const era = eraOf(current);
   const collection = collectionOf(current);
   remembered.set(era, current.id);

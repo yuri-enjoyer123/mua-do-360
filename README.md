@@ -65,3 +65,5 @@ npm run preview
 ```
 
 Lệnh `npm test` thực hiện kiểm tra `build` và chạy Playwright trên cả giao diện máy tính lẫn điện thoại (hỗ trợ biến môi trường `TOUR_URL`).
+
+GitHub Actions chia các kiểm thử thành bốn nhóm chạy trên các máy riêng. Job xuất bản chỉ chạy khi build và cả bốn nhóm đều đạt. Bản cập nhật mới chờ lần đang chạy hoàn tất; kết quả và trace lỗi được lưu theo từng nhóm.

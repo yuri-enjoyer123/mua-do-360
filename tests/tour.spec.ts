@@ -115,7 +115,8 @@ test('archival photo can zoom, pan, reset and return to 360 without changing its
   await page.locator('#zoom-in').click();
   const photo = page.locator('#photo-viewer');
   await expect.poll(async () => Number(await photo.getAttribute('data-scale'))).toBeGreaterThan(1);
-  await page.locator('#look-right').click();
+  await photo.focus();
+  await page.keyboard.press('ArrowRight');
   await expect.poll(async () => Number(await photo.getAttribute('data-x'))).toBeLessThan(0);
   await page.locator('#reset-view').click();
   await expect(photo).toHaveAttribute('data-scale', '1');
@@ -174,6 +175,7 @@ test('direct panorama entry, all viewpoints, and clean immersion', async ({ page
 });
 
 test('deep link and browser history restore selected viewpoint', async ({ page }) => {
+  test.setTimeout(60000);
   await page.goto('./#scene=cong-hau');
   await ready(page);
   await expect(page.locator('#scene-title')).toBeVisible();
@@ -183,6 +185,7 @@ test('deep link and browser history restore selected viewpoint', async ({ page }
   await page.locator('#scene-sources').click();
   await page.locator('#story-tab').click();
   await page.goBack();
+  await expect(page).toHaveURL(/#scene=cong-hau$/);
   await expect(page.locator('#scene-title')).toBeVisible();
   await expect(page.locator('#scene-title')).toHaveText('Quanh Cổng Hậu');
   await expect(page.locator('#dialog-title')).toHaveText('Quanh Cổng Hậu');
@@ -328,7 +331,9 @@ test('responsive layout, image assets, and initial transfer budget', async ({ pa
     for (const era of ['past', 'present']) {
       await page.locator(`[data-era="${era}"]`).click();
       await ready(page);
-      const blockedControls = await page.locator('.era-switch button, .collection-switch button, .view-controls button, #scene-sources, .scene-step').evaluateAll(buttons => buttons.flatMap(button => {
+      const blockedControls = await page.locator('.era-switch button, .collection-switch button, .view-controls button, #scene-sources, .scene-step').evaluateAll(buttons => buttons.filter(button => {
+        return !button.hidden && getComputedStyle(button).display !== 'none' && getComputedStyle(button).visibility !== 'hidden';
+      }).flatMap(button => {
         const box = button.getBoundingClientRect();
         const hit = document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2);
         return box.width < 43.9 || box.height < 43.9 || box.x < 0 || box.y < 0

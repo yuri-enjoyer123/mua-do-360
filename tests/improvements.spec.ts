@@ -67,8 +67,9 @@ test('2. Album source clarity, context labels and restoration across scenes', as
   await page.goto('./#scene=quang-tri-south-1967');
   await photoReady(page);
 
-  const lookLeft = page.locator('#look-left');
-  await expect(lookLeft).toHaveAttribute('aria-label', 'Dịch ảnh sang trái');
+  for (const direction of ['up', 'down', 'left', 'right']) {
+    await expect(page.locator(`#look-${direction}`)).toBeHidden();
+  }
   const resetView = page.locator('#reset-view');
   await expect(resetView).toHaveAttribute('aria-label', 'Đặt lại ảnh');
 
@@ -113,7 +114,9 @@ test('2. Album source clarity, context labels and restoration across scenes', as
   await page.goto('./#scene=cong-hau');
   await ready(page);
 
-  // Assert panorama view labels restore
+  for (const direction of ['up', 'down', 'left', 'right']) {
+    await expect(page.locator(`#look-${direction}`)).toBeVisible();
+  }
   await expect(page.locator('#look-left')).toHaveAttribute('aria-label', 'Nhìn sang trái');
   await expect(page.locator('#reset-view')).toHaveAttribute('aria-label', 'Đặt lại góc nhìn');
 

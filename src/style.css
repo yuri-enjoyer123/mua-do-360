@@ -968,7 +968,7 @@ kbd{
   dialog{font-size:18px}
   .hotspot-caption{display:none}
   .photo-viewer{
-    inset:max(204px,calc(var(--context-end,192px) + 12px)) 10px 210px;
+    inset:max(204px,calc(var(--context-end,192px) + 12px)) 10px 162px;
   }
 
   .era-switch{
@@ -1008,7 +1008,7 @@ kbd{
     right:auto;
     transform:translateX(-50%);
     grid-template-columns:repeat(4,44px);
-    grid-template-rows:repeat(2,44px);
+    grid-auto-rows:44px;
     padding:2px;
   }
 
@@ -1112,7 +1112,7 @@ kbd{
     left:auto;
     transform:none;
     grid-template-columns:repeat(4,44px);
-    grid-template-rows:repeat(2,44px);
+    grid-auto-rows:44px;
     padding:1px;
   }
   .view-controls button{
