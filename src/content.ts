@@ -22,9 +22,6 @@ export interface Scene {
   hotspots: { pitch: number; yaw: number; targetId: string; label: string }[];
 }
 
-export const reconstructionNotice =
-  'Minh họa theo tư liệu, không phải ảnh chụp năm 1972';
-
 export const sources: Source[] = [
   {
     id: 'usmc-archive',

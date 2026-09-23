@@ -63,7 +63,7 @@ body[data-scene-era="past"] .scene-card.active .scene-card-title{
   text-underline-offset:3px;
 }
 body[data-scene-era="past"] .scene-card>img{
-  filter:grayscale(1) contrast(.76) brightness(1.14) blur(.65px);
+  filter:var(--historic-thumbnail-filter);
 }
 body[data-scene-era="past"] :is(.information-dialog,.help-dialog){
   border:2px solid;
@@ -195,7 +195,7 @@ body[data-scene-era="present"] :is(dialog h2,.story-title){
   line-height:1.4;
   letter-spacing:-.02em;
 }
-body[data-scene-era="present"] :is(.dialog-scroll section>p,.dialog-scroll .story-lead,.source-notice p,.source-list p,.help-intro,.help-grid p,.dialog-scroll ul){
+body[data-scene-era="present"] :is(.dialog-scroll section>p,.dialog-scroll .story-lead,.source-list p,.help-intro,.help-grid p,.dialog-scroll ul){
   font-size:17px;
   line-height:1.75;
 }
@@ -208,7 +208,7 @@ body[data-scene-era="present"] .dialog-scroll h3:not(.story-title){
 body[data-scene-era="present"] .dialog-tabs button{
   font-size:14px;
 }
-body[data-scene-era="present"] :is(.source-notice,.help-note,kbd){
+body[data-scene-era="present"] :is(.help-note,kbd){
   border:0;
   border-radius:6px;
 }

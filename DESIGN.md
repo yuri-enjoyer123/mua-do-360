@@ -103,7 +103,7 @@ Khung nhìn cũ được giữ khi tải panorama cùng thời kỳ rồi hòa c
 
 Quá khứ dùng viền nút nổi/lõm kiểu web cũ; các bảng có bóng nhẹ `0 2px 4px rgb(38 31 22 / .2)`. Hiện tại dùng bóng `0 4px 18px rgb(14 39 27 / .15)` để tách các cụm điều khiển khỏi ảnh. Thẻ ảnh không có bóng; không dùng kính mờ hoặc hào quang.
 
-Ảnh trong Quá khứ được hiển thị với `grayscale(1) contrast(.76) brightness(1.14) blur(1px)`; ảnh thu nhỏ dùng blur `.65px`. Hạt nhiễu tĩnh có seed cố định, ô lặp 160px, phủ riêng vùng ảnh với chế độ hòa multiply và opacity `.72`. Bộ lọc làm chi tiết mềm, giảm tương phản và gợi ảnh in cũ theo yêu cầu, không thêm hiện vật hoặc sự kiện. Các tệp ảnh gốc không bị nén lại hay ghi đè. Ảnh Hiện tại và ảnh tham chiếu trong bảng tư liệu không áp bộ lọc làm cũ.
+Ảnh trong Quá khứ dùng `grayscale(1) contrast(.78) brightness(1.17) blur(1.35px)`; ảnh thu nhỏ dùng blur `.75px`. Hạt phim tĩnh có seed cố định, ô lặp 240px, tương phản hạt cao hơn và viền tối nhẹ, phủ riêng vùng ảnh với chế độ hòa multiply và opacity `.84`. Bộ lọc tạo nét mềm, vùng tối bạc và chất ảnh đen trắng cũ cho panorama, album và ảnh thu nhỏ. Các tệp ảnh gốc không bị nén lại hay ghi đè. Ảnh Hiện tại, chữ, nút bấm và ảnh đối chiếu trong Tư liệu giữ cách hiển thị sẵn có.
 
 ## Shapes
 
@@ -129,6 +129,8 @@ Quá khứ dùng góc vuông, khung chữ nhật, nút viền hai sắc và tab 
 Rà chữ theo [Wikipedia:Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), theo yêu cầu của chủ dự án. Xét nội dung và ngữ cảnh của câu, không thay từ máy móc theo danh sách.
 
 Viết trực tiếp về địa danh, sự kiện hoặc chi tiết có nguồn. Bỏ lời bình chung chung về ý nghĩa, cảm xúc và các mối liên hệ không có dẫn chứng. Không đưa lời dặn biên tập, lời tự nhận xét chất lượng bài viết, placeholder hay câu giải thích điều hiển nhiên vào trang. Mục không có nội dung cụ thể thì bỏ; không thêm lại khối “Liên hệ với tiểu thuyết” cho từng cảnh. Ghi nguồn và giới hạn phục dựng ngắn gọn trong Tư liệu, tránh nhắc lại cùng một ý ở nhiều chỗ.
+
+Bảng nguồn mở vào tư liệu của cảnh. Không thêm lại khung giải thích chung “Về ảnh phục dựng” hay “Giới hạn phục dựng”; chú thích cần gắn với ảnh hoặc chi tiết cụ thể.
 
 ## Giới hạn lịch sử và hình ảnh
 

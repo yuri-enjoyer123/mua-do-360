@@ -345,6 +345,13 @@ test('responsive layout, image assets, and initial transfer budget', async ({ pa
         await page.locator('#story-tab').click();
         await page.screenshot({ path: `test-results/story-${era}-${width}.png`, scale: 'css', animations: 'disabled' });
         await page.keyboard.press('Escape');
+        if (era === 'past') {
+          await page.locator('[data-collection="archive"]').click();
+          await photoReady(page);
+          await page.screenshot({ path: `test-results/album-${era}-${width}.png`, scale: 'css', animations: 'disabled' });
+          await page.locator('[data-collection="panorama"]').click();
+          await ready(page);
+        }
       }
     }
   }
@@ -383,7 +390,7 @@ test('invalid hash during tour resets to valid first scene with working renderer
   await expect(page.locator('#panorama canvas')).toBeVisible();
 });
 
-test('compact info access reaches sources, reconstruction limits, historical links, and 44px target', async ({ page }) => {
+test('compact info access reaches historical sources with a 44px target', async ({ page }) => {
   await page.goto('./');
   await ready(page);
   const infoButton = page.locator('#scene-sources');
@@ -396,10 +403,7 @@ test('compact info access reaches sources, reconstruction limits, historical lin
   const dialog = page.locator('#information-dialog');
   await expect(dialog).toBeVisible();
   await expect(page.locator('#sources-panel')).toBeVisible();
-  await expect(page.locator('#sources-panel')).toContainText('Cảnh toàn cảnh được phục dựng');
   await expect(page.locator('body')).not.toContainText(/\bAI\b|AI.generated|made by AI/i);
-  await expect(page.locator('#sources-panel')).toContainText('Đây không phải ảnh chụp tư liệu hay bản phục dựng khảo cổ');
-  await expect(page.locator('#sources-panel')).toContainText('Chi tiết bổ sung không phải chứng cứ lịch sử');
 
   const links = await page.locator('#sources-panel a[href]').evaluateAll(nodes => nodes.map(n => (n as HTMLAnchorElement).href));
   expect(links.length).toBeGreaterThanOrEqual(3);
@@ -471,8 +475,8 @@ test('new scenes accessible via keyboard, story tab verification, and cyclic nav
   await expect(dialog).toBeVisible();
   await page.locator('#story-tab').click();
   await expect(page.locator('#story-panel')).toBeVisible();
-  await expect(page.locator('#story-panel')).toContainText('tháng 6–8/1972');
-  await expect(page.locator('#story-panel')).toContainText('không phải ảnh tư liệu được tô màu');
+  await expect(page.locator('#story-panel')).toContainText('đường Quang Trung');
+  await expect(page.locator('#story-panel')).toContainText('Government of Vietnam Photo');
   await page.keyboard.press('Escape');
   await expect(dialog).not.toBeVisible();
 

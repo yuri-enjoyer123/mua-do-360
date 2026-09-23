@@ -29,7 +29,7 @@ Dự án gồm **8 không gian toàn cảnh 360°** (6 cảnh minh họa quá kh
 - 4 nút chỉnh hướng nhìn (lên, xuống, trái, phải), phóng to (+), thu nhỏ (−), đặt lại góc nhìn và toàn màn hình (F).
 - Cảnh hiện ảnh xem trước trong lúc tải toàn cảnh; ảnh đầy đủ 7096 × 3548 thay thế khi sẵn sàng.
 - Chế độ album thu phóng tại con trỏ hoặc tâm hai ngón tay; kéo chuột/chạm hay dùng phím mũi tên để xem chi tiết. Nhấp đúp để phóng to hoặc đặt lại ảnh.
-- Bảng tư liệu đưa ảnh đối chiếu lên trước liên kết nguồn, mở sẵn phạm vi tư liệu; phần giải thích dài của cảnh minh họa có thể mở tại **Giới hạn phục dựng**.
+- Bảng tư liệu gồm ảnh đối chiếu, thông tin tác giả, giấy phép, bản đồ lưu trữ và các nguồn của cảnh.
 - Phím tắt:
   - <kbd>1</kbd>–<kbd>9</kbd>: Chọn điểm trong bộ sưu tập đang mở (không phải số thứ tự toàn cục).
   - <kbd>←</kbd> <kbd>→</kbd> <kbd>↑</kbd> <kbd>↓</kbd>: Nhìn quanh hoặc dịch chuyển ảnh; vẫn hoạt động khi dấu chuyển cảnh đang có focus.

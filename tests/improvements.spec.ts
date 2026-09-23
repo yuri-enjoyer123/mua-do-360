@@ -126,19 +126,6 @@ test('2. Album source clarity, context labels and restoration across scenes', as
   await expect(dialogTitle).toHaveText('Tư liệu & phục dựng');
   await expect(sourcesTab).toHaveText('Nguồn & phục dựng');
 
-  // Assert visible reconstruction notice
-  const notice = page.locator('.source-notice');
-  await expect(notice).toBeVisible();
-  await expect(infoDialog).toContainText('Minh họa theo tư liệu, không phải ảnh chụp năm 1972');
-
-  // Assert expandable details containing complete historical limits
-  const detailsElement = notice.locator('details.reconstruction-details');
-  await expect(detailsElement).toBeVisible();
-  await expect(detailsElement).not.toHaveAttribute('open');
-  await detailsElement.locator('summary').click();
-  await expect(detailsElement).toHaveAttribute('open');
-  await expect(detailsElement.locator('p').first()).toBeVisible();
-  await expect(detailsElement).toContainText('Chi tiết bổ sung không phải chứng cứ lịch sử');
   await expect(infoDialog).toContainText('Bản đồ này không xác nhận nguyên trạng năm 1972 hay vị trí các cảnh minh họa');
   await expect(infoDialog).toContainText('Cục Di sản văn hóa');
 

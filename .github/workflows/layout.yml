@@ -30,7 +30,7 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npm run build
-      - run: npx playwright test tests/tour.spec.ts tests/improvements.spec.ts --grep 'responsive layout, image assets|Album source clarity|eras restore their selected|source drawer separates' --workers=1
+      - run: npx playwright test tests/tour.spec.ts tests/improvements.spec.ts --grep 'responsive layout, image assets|Album source clarity|eras restore their selected|source drawer separates|compact info access|new scenes accessible' --workers=1
         env:
           MUA_DO_CAPTURE_LAYOUTS: '1'
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

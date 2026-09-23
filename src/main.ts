@@ -2,7 +2,7 @@ import './style.css';
 import './eras.css';
 import './immersion.css';
 import 'pannellum/build/pannellum.css';
-import { reconstructionNotice, scenes as panoramas, sources } from './content';
+import { scenes as panoramas, sources } from './content';
 import { photoScenes, type TourScene } from './photographs';
 import { createPhotoViewer } from './photo-viewer';
 import { derivedScenes } from './derived-scenes';
@@ -240,10 +240,9 @@ function renderStory() {
       <div class="inline-sources">${references.filter((source) => source.kind === 'historical').map((source) => `<a href="${escape(source.url)}" target="_blank" rel="noopener noreferrer">${escape(source.publisher)} ${icon('external')}<span class="sr-only"> (mở thẻ mới)</span></a>`).join('')}</div>
     </div>
     <div class="interpretation-block"><h3>Chi tiết minh họa</h3><ul>${current.interpretation.map((item) => `<li>${escape(item)}</li>`).join('')}</ul></div>
-    <button class="text-button" id="story-to-sources">Xem nguồn và giới hạn ảnh</button>`;
+    <button class="text-button" id="story-to-sources">Xem nguồn tư liệu</button>`;
   get('story-to-sources').addEventListener('click', () => setTab('sources', true));
   get('sources-panel').innerHTML = `
-    <div class="source-notice"><h3>Về ảnh phục dựng</h3><p>${escape(reconstructionNotice)}</p><details class="reconstruction-details"><summary>Giới hạn phục dựng</summary><p>Cảnh toàn cảnh được phục dựng theo tư liệu. Đây không phải ảnh chụp tư liệu hay bản phục dựng khảo cổ. Chi tiết bổ sung không phải chứng cứ lịch sử.</p><p>Các điểm chuyển cảnh không theo một tuyến đường được khảo sát.</p></details></div>
     <details class="archive-map"><summary>Bản đồ lưu trữ Quảng Trị</summary>
       <figure><a href="https://catalog.archives.gov/id/74797754" target="_blank" rel="noopener noreferrer" aria-label="Xem hồ sơ bản đồ Quảng Trị tại National Archives (mở thẻ mới)"><img src="${asset('archive/ams-quang-tri.webp')}" alt="Bản đồ AMS lưu trữ thể hiện sông Thạch Hãn, thị xã và khu Thành cổ Quảng Trị." width="1200" height="1332" loading="lazy" /></a>
       <figcaption>U.S. Army Topographic Command / National Archives, NAID 74797754. Chú giải trên bản đồ ghi thông tin đến năm 1968; hồ sơ lưu trữ ghi khoảng 1942–1972. Bản đồ này không xác nhận nguyên trạng năm 1972 hay vị trí các cảnh minh họa.</figcaption></figure>
