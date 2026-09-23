@@ -842,7 +842,6 @@ dialog h2{
 .source-notice .section-kicker{font-size:11px;letter-spacing:1.4px;color:var(--oxblood)}
 .dialog-scroll .source-notice h3{font-size:22px;margin-bottom:8px;color:var(--paper-ink)}
 .dialog-scroll .sources-heading{font-size:24px;margin-bottom:10px;color:var(--paper-ink)}
-.dialog-scroll .sources-intro{font-size:16px;margin-bottom:18px;line-height:1.65;color:var(--muted)}
 .source-list{list-style:none;margin:0;padding:0}
 .source-list>li{
   display:flex;
@@ -859,16 +858,6 @@ dialog h2{
 .source-list .icon{width:14px;height:14px;display:inline;margin-left:4px;color:var(--oxblood)}
 .source-list p{font-size:19px;line-height:1.65;color:var(--paper-ink);margin-top:8px}
 .source-list p.source-publisher{color:var(--muted);font-size:14px;margin-top:4px}
-.source-relevance{
-  display:inline-block;
-  font-family:var(--ui-font);
-  font-size:12px;
-  color:var(--oxblood);
-  border:1px solid var(--ink);
-  background:var(--paper-inset);
-  padding:3px 8px;
-  margin-top:10px;
-}
 .dialog-footer{
   border-top:1px solid var(--ink);
   padding:10px 0;

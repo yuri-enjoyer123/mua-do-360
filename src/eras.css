@@ -208,7 +208,7 @@ body[data-scene-era="present"] .dialog-scroll h3:not(.story-title){
 body[data-scene-era="present"] .dialog-tabs button{
   font-size:14px;
 }
-body[data-scene-era="present"] :is(.source-notice,.help-note,.source-relevance,kbd){
+body[data-scene-era="present"] :is(.source-notice,.help-note,kbd){
   border:0;
   border-radius:6px;
 }

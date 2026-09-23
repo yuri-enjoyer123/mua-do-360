@@ -112,7 +112,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <button class="icon-button" id="presentation-button" aria-label="Ngắm cảnh" aria-pressed="false" title="Ngắm cảnh (P)">${icon('eye')}</button>
     </div>
   </dialog>
-  <dialog class="help-dialog" id="help-dialog" aria-labelledby="help-title"><div class="dialog-top"><button class="icon-button close-dialog" aria-label="Đóng hướng dẫn">${icon('close')}</button></div><h2 id="help-title">Cách xem</h2><p class="help-intro">Chọn Quá khứ hoặc Hiện tại. Nhấn nút kính VR để nhìn quanh, hoặc nút máy ảnh để mở album. Nút con mắt mở Ngắm cảnh: thu gọn điều khiển, tự xoay theo ý bạn và nhìn quanh bằng cách nghiêng điện thoại khi có cảm biến. Ngày chụp và nguồn ảnh nằm trong mục Tư liệu.</p><div class="help-grid"><div>${icon('drag')}<h3>Nhìn quanh</h3><p>Kéo ảnh hoặc dùng bốn nút mũi tên để nhìn quanh. Trong album, cuộn chuột hoặc chụm hai ngón tay để phóng to, thu nhỏ. Nhấp đúp để phóng to hoặc trở về ban đầu; kéo hoặc dùng phím mũi tên để dịch ảnh.</p></div><div>${icon('arrow')}<h3>Chọn cảnh</h3><p>Nhấn dấu mũi tên trong cảnh, chọn một ảnh nhỏ phía dưới hoặc dùng hai nút trước / sau.</p></div><div>${icon('book')}<h3>Đọc và đối chiếu</h3><p>Chọn Tư liệu bên tên cảnh để đọc bối cảnh, xem ảnh tham chiếu và đối chiếu nguồn.</p></div></div><div class="keyboard-help"><h3>Bàn phím</h3><p><kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd> Nhìn quanh / dịch ảnh khi chọn vùng xem</p><p><kbd>1</kbd> đến <kbd>9</kbd> Chọn điểm trong dải ảnh đang mở <span>·</span> <kbd>F</kbd> Toàn màn hình <span>·</span> <kbd>P</kbd> Ngắm cảnh</p><p><kbd>Esc</kbd> Đóng bảng đang mở / thoát trình chiếu</p></div><p class="help-note">Mỗi cảnh là một góc nhìn minh họa riêng, không phải bản đồ đo đạc hay đường đi liên tục. Âm thanh được mô phỏng và chỉ phát khi bạn bật. Bạn có thể xem ngay trên điện thoại hoặc máy tính.</p></dialog>
+  <dialog class="help-dialog" id="help-dialog" aria-labelledby="help-title"><div class="dialog-top"><button class="icon-button close-dialog" aria-label="Đóng hướng dẫn">${icon('close')}</button></div><h2 id="help-title">Cách xem</h2><p class="help-intro">Nút kính VR để nhìn quanh, nút máy ảnh để xem album. Nút con mắt mở Ngắm cảnh, với tự xoay và điều khiển bằng cảm biến điện thoại.</p><div class="help-grid"><div>${icon('drag')}<h3>Nhìn quanh</h3><p>Kéo ảnh hoặc dùng bốn nút mũi tên để nhìn quanh. Trong album, cuộn chuột hoặc chụm hai ngón tay để phóng to, thu nhỏ. Nhấp đúp để phóng to hoặc trở về ban đầu; kéo hoặc dùng phím mũi tên để dịch ảnh.</p></div><div>${icon('arrow')}<h3>Chọn cảnh</h3><p>Nhấn dấu mũi tên trong cảnh, chọn một ảnh nhỏ phía dưới hoặc dùng hai nút trước / sau.</p></div><div>${icon('book')}<h3>Đọc và đối chiếu</h3><p>Chọn Tư liệu bên tên cảnh để đọc bối cảnh, xem ảnh tham chiếu và đối chiếu nguồn.</p></div></div><div class="keyboard-help"><h3>Bàn phím</h3><p><kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd> Nhìn quanh / dịch ảnh khi chọn vùng xem</p><p><kbd>1</kbd> đến <kbd>9</kbd> Chọn điểm trong dải ảnh đang mở <span>·</span> <kbd>F</kbd> Toàn màn hình <span>·</span> <kbd>P</kbd> Ngắm cảnh</p><p><kbd>Esc</kbd> Đóng bảng đang mở / thoát trình chiếu</p></div><p class="help-note">Âm thanh được mô phỏng và chỉ phát khi bật. Nút tạm dừng dừng xoay và tắt tiếng.</p></dialog>
 `;
 
 const get = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
@@ -216,11 +216,10 @@ function renderStory() {
     const photo = current.photograph;
     get('story-panel').innerHTML = `<p class="story-lead">${escape(current.summary)}</p>${current.description.map(paragraph => `<p>${escape(paragraph)}</p>`).join('')}<button class="text-button" id="story-to-sources">Xem tư liệu của cảnh</button>`;
     get('story-to-sources').addEventListener('click', () => setTab('sources', true));
-    get('sources-panel').innerHTML = `<div class="photo-source"><h3>${escape(photo.title)}</h3><p>${escape(photo.caption)}</p><p>${escape(photo.date)} · ${escape(photo.creator)}</p><figure><a href="${asset(photo.file)}" target="_blank" rel="noopener noreferrer"><img src="${asset(photo.file)}" alt="${escape(photo.caption)}" width="${photo.width}" height="${photo.height}" loading="lazy" /></a><figcaption>${escape(photo.creator)} · ${escape(photo.date)}</figcaption></figure><p><a href="${escape(photo.sourceUrl)}" target="_blank" rel="noopener noreferrer">Hồ sơ ảnh và chú thích ${icon('external')}<span class="sr-only"> (mở thẻ mới)</span></a></p><p><a href="${escape(photo.licenseUrl)}" target="_blank" rel="noopener noreferrer">${escape(photo.license)}<span class="sr-only"> (mở thẻ mới)</span></a></p>${current.derivation ? `<p>${escape(current.derivation)}</p>` : '<p>Ảnh đối chiếu trên đây giữ nguyên khung hình và màu sắc của tệp từ nguồn.</p>'}<details open><summary>Phạm vi tư liệu</summary>${photo.notes.map(note => `<p>${escape(note)}</p>`).join('')}</details></div>`;
+    get('sources-panel').innerHTML = `<div class="photo-source"><h3>${escape(photo.title)}</h3><p>${escape(photo.caption)}</p><p>${escape(photo.date)} · ${escape(photo.creator)}</p><figure><a href="${asset(photo.file)}" target="_blank" rel="noopener noreferrer"><img src="${asset(photo.file)}" alt="${escape(photo.caption)}" width="${photo.width}" height="${photo.height}" loading="lazy" /></a><figcaption>${escape(photo.creator)} · ${escape(photo.date)}</figcaption></figure><p><a href="${escape(photo.sourceUrl)}" target="_blank" rel="noopener noreferrer">Hồ sơ ảnh và chú thích ${icon('external')}<span class="sr-only"> (mở thẻ mới)</span></a></p><p><a href="${escape(photo.licenseUrl)}" target="_blank" rel="noopener noreferrer">${escape(photo.license)}<span class="sr-only"> (mở thẻ mới)</span></a></p>${current.derivation ? `<p>${escape(current.derivation)}</p>` : ''}<details open><summary>Phạm vi tư liệu</summary>${photo.notes.map(note => `<p>${escape(note)}</p>`).join('')}</details></div>`;
     return;
   }
   const references = sources.filter((source) => current.sourceIds.includes(source.id));
-  const orderedSources = [...sources].sort((a, b) => Number(current.sourceIds.includes(b.id)) - Number(current.sourceIds.includes(a.id)));
   get('story-panel').innerHTML = `
     <p class="story-lead">${escape(current.summary)}</p>
     ${current.description.map((paragraph) => `<p>${escape(paragraph)}</p>`).join('')}
@@ -239,8 +238,8 @@ function renderStory() {
       <figcaption>U.S. Army Topographic Command / National Archives, NAID 74797754. Chú giải trên bản đồ ghi thông tin đến năm 1968; hồ sơ lưu trữ ghi khoảng 1942–1972. Bản đồ này không xác nhận nguyên trạng năm 1972 hay vị trí các cảnh minh họa.</figcaption></figure>
       <a class="archive-credit" href="https://commons.wikimedia.org/wiki/File:AMS_-_Quang_Tri,_Vietnam_-_NARA_-_74797754.jpg" target="_blank" rel="noopener noreferrer">Bản gốc độ phân giải cao và thông tin public domain ${icon('external')}<span class="sr-only"> (mở thẻ mới)</span></a>
     </details>
-    <h3 class="sources-heading">Nguồn tham khảo</h3><p class="sources-intro">Nguồn lịch sử và nguồn về văn học được ghi riêng. Các liên kết mở trong thẻ mới.</p>
-    <ul class="source-list">${orderedSources.map((source) => `<li><div><span class="source-kind">${source.kind === 'historical' ? 'Tư liệu lịch sử' : 'Nguồn về văn học'}</span><h4><a href="${escape(source.url)}" target="_blank" rel="noopener noreferrer">${escape(source.title)} ${icon('external')}<span class="sr-only"> (mở thẻ mới)</span></a></h4><p class="source-publisher">${escape(source.publisher)}</p><p>${escape(source.note)}</p>${current.sourceIds.includes(source.id) ? '<span class="source-relevance">Tham khảo cho điểm nhìn này</span>' : ''}</div></li>`).join('')}</ul>`;
+    <h3 class="sources-heading">Nguồn tham khảo</h3>
+    <ul class="source-list">${references.map((source) => `<li><div><span class="source-kind">${source.kind === 'historical' ? 'Tư liệu lịch sử' : 'Nguồn về văn học'}</span><h4><a href="${escape(source.url)}" target="_blank" rel="noopener noreferrer">${escape(source.title)} ${icon('external')}<span class="sr-only"> (mở thẻ mới)</span></a></h4><p class="source-publisher">${escape(source.publisher)}</p><p>${escape(source.note)}</p></div></li>`).join('')}</ul>`;
 }
 
 function setTab(tab: 'story' | 'sources', focus = false) {
@@ -375,7 +374,7 @@ async function loadScene() {
       clearTimeout(loadingTimer);
       setLoading(false);
       sceneTransition.reveal(photoImage);
-      announce(`Đã mở ${current.title}, ${current.photograph?.date}. Có thể phóng to và kéo xem ảnh.`);
+      announce(`Đã mở ${current.title}, ${current.photograph?.date}.`);
       return;
     }
     enginePromise ??= import('pannellum').catch((error: unknown) => { enginePromise = undefined; throw error; });
@@ -417,7 +416,7 @@ async function loadScene() {
         setLoading(false);
         motion.setViewer(viewer, true);
         sceneTransition.reveal(panorama);
-        announce(`Đã mở ${current.title}. Kéo để nhìn quanh hoặc chọn cảnh khác.`);
+        announce(`Đã mở ${current.title}.`);
       }));
     };
     viewer.on('load', onLoaded);
