@@ -11,7 +11,7 @@ type Collection = 'panorama' | 'archive';
 const eraOf = (scene: TourScene): Era => scene.era ?? 'past';
 const collectionOf = (scene: TourScene): Collection => scene.format === 'photo' ? 'archive' : 'panorama';
 
-type IconName = 'arrow' | 'chevron' | 'close' | 'book' | 'help' | 'expand' | 'volume' | 'muted' | 'eye' | 'drag' | 'plus' | 'minus' | 'external' | 'reset';
+type IconName = 'arrow' | 'chevron' | 'close' | 'book' | 'help' | 'expand' | 'volume' | 'muted' | 'eye' | 'drag' | 'plus' | 'minus' | 'external' | 'reset' | 'vr' | 'camera';
 const paths: Record<IconName, string> = {
   arrow: '<path d="M4 12h15M13 5l7 7-7 7"/>',
   chevron: '<path d="m9 5 7 7-7 7"/>',
@@ -27,6 +27,8 @@ const paths: Record<IconName, string> = {
   minus: '<path d="M5 12h14"/>',
   external: '<path d="M14 3h7v7m0-7L11 13M10 3H3v18h18v-7"/>',
   reset: '<path d="M4 11a8 8 0 1 1 2 7M4 5v6h6"/>',
+  vr: '<path d="M4 8h16a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-4.5l-2-2.5a2 2 0 0 0-3 0L8.5 18H4a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2Z"/><circle cx="8" cy="13" r="2"/><circle cx="16" cy="13" r="2"/><path d="M2 12H1m22 0h-1"/>',
+  camera: '<path d="M2 9a2 2 0 0 1 2-2h3l2-2h6l2 2h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9Z"/><circle cx="12" cy="13" r="3.5"/>',
 };
 const icon = (name: IconName, cls = '') => `<svg class="icon ${cls}" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name]}</svg>`;
 const escape = (value: string) => value.replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]!);
@@ -60,7 +62,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 
     <div class="tour-ui">
       <div class="era-switch" role="group" aria-label="Chọn thời kỳ"><button data-era="past" aria-pressed="true">Quá khứ</button><button data-era="present" aria-pressed="false">Hiện tại</button></div>
-      <div class="collection-switch" role="group" aria-label="Cách xem"><button data-collection="panorama" aria-pressed="true">Nhìn quanh</button><button data-collection="archive" aria-pressed="false">Album ảnh</button></div>
+      <div class="collection-switch" role="group" aria-label="Cách xem"><button data-collection="panorama" aria-pressed="true" aria-label="Nhìn quanh" title="Nhìn quanh">${icon('vr')}</button><button data-collection="archive" aria-pressed="false" aria-label="Album ảnh" title="Album ảnh">${icon('camera')}</button></div>
       <div class="scene-context"><h2 id="scene-title"></h2><p id="scene-date"></p><button id="scene-sources" class="text-button" data-open="sources" aria-label="Mở tư liệu của cảnh">Tư liệu</button></div>
       <div class="view-controls" aria-label="Điều khiển góc nhìn">
         <button class="icon-button" id="look-up" aria-label="Nhìn lên" title="Nhìn lên">${icon('chevron')}</button>
@@ -96,7 +98,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <button class="icon-button" id="presentation-button" aria-label="Bật chế độ trình chiếu" aria-pressed="false" title="Trình chiếu (P)">${icon('eye')}</button>
     </div>
   </dialog>
-  <dialog class="help-dialog" id="help-dialog" aria-labelledby="help-title"><div class="dialog-top"><button class="icon-button close-dialog" aria-label="Đóng hướng dẫn">${icon('close')}</button></div><h2 id="help-title">Cách xem</h2><p class="help-intro">Chọn Quá khứ hoặc Hiện tại. Nhấn Nhìn quanh để xem cảnh, hoặc Album ảnh để xem từng bức ảnh. Ngày chụp và nguồn ảnh nằm trong mục Tư liệu.</p><div class="help-grid"><div>${icon('drag')}<h3>Nhìn quanh</h3><p>Kéo ảnh hoặc dùng bốn nút mũi tên để nhìn quanh. Trong album, cuộn chuột hoặc chụm hai ngón tay để phóng to, thu nhỏ. Nhấp đúp để phóng to hoặc trở về ban đầu; kéo hoặc dùng phím mũi tên để dịch ảnh.</p></div><div>${icon('arrow')}<h3>Chọn cảnh</h3><p>Nhấn dấu mũi tên trong cảnh, chọn một ảnh nhỏ phía dưới hoặc dùng hai nút trước / sau.</p></div><div>${icon('book')}<h3>Đọc và đối chiếu</h3><p>Chọn Tư liệu bên tên cảnh để đọc bối cảnh, xem ảnh tham chiếu và đối chiếu nguồn.</p></div></div><div class="keyboard-help"><h3>Bàn phím</h3><p><kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd> Nhìn quanh / dịch ảnh khi chọn vùng xem</p><p><kbd>1</kbd> đến <kbd>9</kbd> Chọn điểm trong dải ảnh đang mở <span>·</span> <kbd>F</kbd> Toàn màn hình <span>·</span> <kbd>P</kbd> Trình chiếu</p><p><kbd>Esc</kbd> Đóng bảng đang mở / thoát trình chiếu</p></div><p class="help-note">Mỗi cảnh là một góc nhìn minh họa riêng, không phải bản đồ đo đạc hay đường đi liên tục. Âm thanh được mô phỏng và chỉ phát khi bạn bật. Bạn có thể xem ngay trên điện thoại hoặc máy tính.</p></dialog>
+  <dialog class="help-dialog" id="help-dialog" aria-labelledby="help-title"><div class="dialog-top"><button class="icon-button close-dialog" aria-label="Đóng hướng dẫn">${icon('close')}</button></div><h2 id="help-title">Cách xem</h2><p class="help-intro">Chọn Quá khứ hoặc Hiện tại. Nhấn nút kính VR để nhìn quanh, hoặc nút máy ảnh để mở album. Ngày chụp và nguồn ảnh nằm trong mục Tư liệu.</p><div class="help-grid"><div>${icon('drag')}<h3>Nhìn quanh</h3><p>Kéo ảnh hoặc dùng bốn nút mũi tên để nhìn quanh. Trong album, cuộn chuột hoặc chụm hai ngón tay để phóng to, thu nhỏ. Nhấp đúp để phóng to hoặc trở về ban đầu; kéo hoặc dùng phím mũi tên để dịch ảnh.</p></div><div>${icon('arrow')}<h3>Chọn cảnh</h3><p>Nhấn dấu mũi tên trong cảnh, chọn một ảnh nhỏ phía dưới hoặc dùng hai nút trước / sau.</p></div><div>${icon('book')}<h3>Đọc và đối chiếu</h3><p>Chọn Tư liệu bên tên cảnh để đọc bối cảnh, xem ảnh tham chiếu và đối chiếu nguồn.</p></div></div><div class="keyboard-help"><h3>Bàn phím</h3><p><kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd> Nhìn quanh / dịch ảnh khi chọn vùng xem</p><p><kbd>1</kbd> đến <kbd>9</kbd> Chọn điểm trong dải ảnh đang mở <span>·</span> <kbd>F</kbd> Toàn màn hình <span>·</span> <kbd>P</kbd> Trình chiếu</p><p><kbd>Esc</kbd> Đóng bảng đang mở / thoát trình chiếu</p></div><p class="help-note">Mỗi cảnh là một góc nhìn minh họa riêng, không phải bản đồ đo đạc hay đường đi liên tục. Âm thanh được mô phỏng và chỉ phát khi bạn bật. Bạn có thể xem ngay trên điện thoại hoặc máy tính.</p></dialog>
 `;
 
 const get = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;

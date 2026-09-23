@@ -20,6 +20,7 @@ Dự án gồm **8 không gian toàn cảnh 360°** (6 cảnh minh họa quá kh
 ## Giao diện và tương tác
 
 - Giao diện mang phong cách tập tư liệu in với tông màu giấy ngà, mực nâu sẫm, điểm nhấn đỏ nâu, đường kẻ mảnh và phông chữ Newsreader.
+- Nút kính VR chọn chế độ nhìn quanh; nút máy ảnh mở album. Hai nút có vùng bấm 44 × 44px, chú thích khi rê chuột và tên dành cho trình đọc màn hình.
 - Nút chữ **Tư liệu** thuần túy (không biểu tượng cuốn sách) mở bảng giải thích nguồn gốc và giới hạn tái hiện một cách trung thực, không dùng huy hiệu hay nhãn từ AI trên giao diện người dùng.
 - Hiển thị hình ảnh phân định rõ hai thời kỳ: ở thời kỳ Quá khứ, toàn cảnh 360°, ảnh trong album và ảnh thu nhỏ được xử lý thang xám đơn sắc, độ mờ nhẹ (blur 0.4px) và hạt tĩnh; thời kỳ Hiện tại giữ màu sắc nguyên bản. Byte tệp JPEG gốc và ảnh tham chiếu trong bảng tư liệu (source drawer) giữ nguyên vẹn không đổi, không áp bộ lọc; các thành phần giao diện người dùng không bị can thiệp bộ lọc.
 - 4 nút chỉnh hướng nhìn (lên, xuống, trái, phải), phóng to (+), thu nhỏ (−), đặt lại góc nhìn và toàn màn hình (F).

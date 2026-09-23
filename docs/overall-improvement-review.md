@@ -116,3 +116,12 @@ Theo phản hồi tiếp theo của chủ dự án, đổi nút “Không gian 3
 - Purpose-Gate PASS: “Nhìn quanh” gọi đúng thao tác; “Đang mở cảnh…” mô tả trạng thái đang diễn ra. Không thêm lời quảng cáo, huy hiệu hoặc thành phần trang trí.
 - Liveliness PASS: giữ ENERGY 1 / RHYTHM 2 / MOTION 1 và phong cách giấy ngà; ảnh chụp hai kích thước xác nhận nhãn mới vừa nút.
 - Craftsmanship & Quality Locks PASS: TypeScript/Vite build đạt, nguồn và album mở được ở cả hai cấu hình kiểm thử. Diff chỉ đổi lời trong giao diện và tài liệu liên quan; đọc lại để loại thuật ngữ thừa, giữ phần giải thích lịch sử đúng nghĩa.
+
+## Nút kính VR và máy ảnh
+
+Theo yêu cầu của chủ dự án, hai nút chọn cách xem chỉ hiển thị kính VR và máy ảnh. Gemini sửa SVG, nhãn trợ năng và một câu hướng dẫn trong `src/main.ts`; tác nhân chính tích hợp CSS, đọc diff và kiểm tra kết quả.
+
+- Hard Gate PASS: hai nút có vùng bấm 44 × 44px, SVG 24px, `aria-label`, `title` và `aria-pressed`. Giữ nút HTML và focus hiện có. Tương phản biểu tượng đang chọn 5,97:1; chưa chọn 4,96:1. Không đổi ảnh, dữ kiện hay nguồn lịch sử.
+- Purpose-Gate PASS: kính VR chọn cảnh để nhìn quanh, máy ảnh chọn album; biểu tượng thay chữ theo yêu cầu, không thêm tính năng hoặc phụ thuộc.
+- Liveliness PASS: giữ ENERGY 1 / RHYTHM 2 / MOTION 1, giấy ngà và đỏ nâu. Đã xem ảnh chụp máy tính và điện thoại; hai nút gọn, cân giữa, không che điều khiển khác.
+- Craftsmanship & Quality Locks PASS: TypeScript/Vite build đạt. Sáu kiểm thử hiện có về album, bố cục và màn hình ngang thấp đều đạt sau một lượt chạy lại riêng kiểm thử album máy tính. Lượt đầu quá thời gian chờ panorama 10 giây khi chạy hai worker; trace ghi nhận ảnh trả HTTP 200 và không có lỗi JavaScript. Lượt chạy riêng đạt trong 7,3 giây, không sửa mã hoặc tăng thời gian chờ. Cảnh báo phông `Be Vietnam Pro` đã được đối chiếu lại với DESIGN.md: đây vẫn là phông dự phòng được giữ theo thiết kế và ngoại lệ riêng hiện có; không đổi phông hoặc quy tắc kiểm tra.

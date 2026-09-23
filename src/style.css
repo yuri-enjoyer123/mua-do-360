@@ -207,6 +207,16 @@ body[data-scene-era="past"] .scene-card.active::after {
   border:none;
   transition:color .15s,background-color .15s;
 }
+.collection-switch button{
+  display:grid;
+  place-items:center;
+  width:44px;
+  padding:0;
+}
+.collection-switch .icon{
+  width:24px;
+  height:24px;
+}
 .era-switch button+button,
 .collection-switch button+button{
   border-left:1px solid var(--ink);
