@@ -89,7 +89,7 @@ Quy tắc chung ở `src/style.css`; phần theo thời kỳ ở `src/eras.css`,
 
 Máy tính đặt bộ chọn thời kỳ góc trên trái, kính VR/máy ảnh góc trên phải, tên cảnh bên dưới bên trái. Quá khứ đưa tên cảnh vào thanh tiêu đề riêng, niên đại và liên kết tư liệu nằm ở hàng dưới. Hiện tại dùng bảng tên gọn, không có thanh màu riêng.
 
-Trên điện thoại, Quá khứ giữ hai hàng nút; Hiện tại đặt cả hai bộ chọn trên một hàng để dành thêm chỗ cho ảnh. Tám nút hướng nhìn và thu phóng xếp bốn cột, hai hàng phía trên dải ảnh; máy tính dùng hai cột bên phải. Màn hình ngang thấp giữ hai bộ chọn ở hai góc trên.
+Trên điện thoại, cả hai thời kỳ đặt bộ chọn thời kỳ và bộ chọn cách xem trên cùng một hàng để dành thêm chỗ cho ảnh. Quá khứ giữ chữ có chân và viền nổi, giảm đệm ngang của nút để vừa màn hình 320px; thanh tên cảnh nằm ngay dưới hai bộ chọn. Tám nút hướng nhìn và thu phóng xếp bốn cột, hai hàng phía trên dải ảnh; máy tính dùng hai cột bên phải. Màn hình ngang thấp giữ hai bộ chọn ở hai góc trên.
 
 Mọi nút chính có vùng bấm ít nhất 44 × 44px. Dải ảnh cuộn ngang theo số cảnh. Khung album chừa phần tên cảnh qua `--context-end`, giữ toàn bộ ảnh bằng `object-fit: contain` trước khi người xem phóng to; không cắt ảnh nguồn để vừa khung.
 

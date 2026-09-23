@@ -220,8 +220,23 @@ body[data-scene-era="present"] .dialog-footer .text-button{
 }
 
 @media(max-width:760px){
+  body[data-scene-era="past"] .era-switch button{
+    padding-inline:8px;
+  }
+  body[data-scene-era="past"] .collection-switch{
+    top:max(10px,env(safe-area-inset-top));
+    right:max(10px,env(safe-area-inset-right));
+    left:auto;
+  }
+  body[data-scene-era="past"] .scene-context{
+    top:calc(max(10px,env(safe-area-inset-top)) + 54px);
+  }
   body[data-scene-era="past"] .scene-context #scene-title{
     font-size:18px;
+    padding:4px 10px;
+  }
+  body[data-scene-era="past"] .photo-viewer{
+    inset-block-start:max(156px,calc(var(--context-end,144px) + 12px));
   }
   body[data-scene-era="present"] .collection-switch{
     top:max(10px,env(safe-area-inset-top));
@@ -245,6 +260,15 @@ body[data-scene-era="present"] .dialog-footer .text-button{
 }
 
 @media(max-height:500px) and (orientation:landscape){
+  body[data-scene-era="past"] .collection-switch{
+    top:max(8px,env(safe-area-inset-top));
+  }
+  body[data-scene-era="past"] .scene-context{
+    top:calc(max(8px,env(safe-area-inset-top)) + 48px);
+  }
+  body[data-scene-era="past"] .photo-viewer{
+    inset-block-start:max(138px,calc(var(--context-end,126px) + 12px));
+  }
   body[data-scene-era="past"] .scene-context #scene-title{
     font-size:18px;
     padding:4px 10px;

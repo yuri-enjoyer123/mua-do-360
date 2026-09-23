@@ -309,7 +309,9 @@ test('wide panoramas stay within GPU texture limits after turning and zooming', 
   expect(uploads.every(image => image.width <= 1024 && image.height <= 1024)).toBe(true);
 });
 
-test('responsive layout, image assets, and initial transfer budget', async ({ page }) => {
+test('responsive layout, image assets, and initial transfer budget', async ({ page, isMobile }) => {
+  const captureLayouts = process.env.MUA_DO_CAPTURE_LAYOUTS === '1';
+  if (captureLayouts) test.setTimeout(90000);
   await page.goto('./');
   await ready(page);
   const layout = await page.evaluate(() => ({ width: innerWidth, scrollWidth: document.documentElement.scrollWidth }));
@@ -318,7 +320,26 @@ test('responsive layout, image assets, and initial transfer budget', async ({ pa
   expect(transfer).toBeLessThan(5 * 1024 * 1024);
   const broken = await page.locator('img').evaluateAll(images => images.filter(el => el.complete && !el.naturalWidth).map(el => el.src));
   expect(broken).toEqual([]);
-  await page.screenshot({ path: `test-results/overview-${test.info().project.name}.png` });
+  if (!captureLayouts) {
+    await page.screenshot({ path: `test-results/overview-${test.info().project.name}.png`, scale: 'css' });
+    return;
+  }
+  for (const width of isMobile ? [320, 390, 430] : [1440]) {
+    await page.setViewportSize({ width, height: isMobile ? 780 : 960 });
+    for (const era of ['past', 'present']) {
+      await page.locator(`[data-era="${era}"]`).click();
+      await ready(page);
+      const blockedControls = await page.locator('.era-switch button, .collection-switch button, .view-controls button, #scene-sources, .scene-step').evaluateAll(buttons => buttons.flatMap(button => {
+        const box = button.getBoundingClientRect();
+        const hit = document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2);
+        return box.width < 43.9 || box.height < 43.9 || box.x < 0 || box.y < 0
+          || box.right > innerWidth || box.bottom > innerHeight || !button.contains(hit)
+          ? [button.id || button.getAttribute('aria-label') || button.textContent] : [];
+      }));
+      expect(blockedControls).toEqual([]);
+      await page.screenshot({ path: `test-results/overview-${era}-${width}.png`, scale: 'css', animations: 'disabled' });
+    }
+  }
 });
 
 test('rapid navigation finishes on latest scene, including invalid hash', async ({ page }) => {
