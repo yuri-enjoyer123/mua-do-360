@@ -23,17 +23,19 @@ Dự án gồm **8 không gian toàn cảnh 360°** (6 cảnh minh họa quá kh
 - Nút chữ **Tư liệu** thuần túy (không biểu tượng cuốn sách) mở bảng giải thích nguồn gốc và giới hạn tái hiện một cách trung thực, không dùng huy hiệu hay nhãn từ AI trên giao diện người dùng.
 - Hiển thị hình ảnh phân định rõ hai thời kỳ: ở thời kỳ Quá khứ, toàn cảnh 360°, ảnh trong album và ảnh thu nhỏ được xử lý thang xám đơn sắc, độ mờ nhẹ (blur 0.4px) và hạt tĩnh; thời kỳ Hiện tại giữ màu sắc nguyên bản. Byte tệp JPEG gốc và ảnh tham chiếu trong bảng tư liệu (source drawer) giữ nguyên vẹn không đổi, không áp bộ lọc; các thành phần giao diện người dùng không bị can thiệp bộ lọc.
 - 4 nút chỉnh hướng nhìn (lên, xuống, trái, phải), phóng to (+), thu nhỏ (−), đặt lại góc nhìn và toàn màn hình (F).
-- Chế độ album cho phép phóng to rồi kéo rê chuột/chạm hoặc dùng phím mũi tên để duyệt chi tiết ảnh gốc.
+- Cảnh hiện ảnh xem trước trong lúc tải toàn cảnh; ảnh đầy đủ 7096 × 3548 thay thế khi sẵn sàng.
+- Chế độ album thu phóng tại con trỏ hoặc tâm hai ngón tay; kéo chuột/chạm hay dùng phím mũi tên để xem chi tiết. Nhấp đúp để phóng to hoặc đặt lại ảnh.
+- Bảng tư liệu đưa ảnh đối chiếu lên trước liên kết nguồn, mở sẵn phạm vi tư liệu; phần giải thích dài của cảnh minh họa có thể mở tại **Giới hạn phục dựng**.
 - Phím tắt:
   - <kbd>1</kbd>–<kbd>9</kbd>: Chọn điểm trong bộ sưu tập đang mở (không phải số thứ tự toàn cục).
-  - <kbd>←</kbd> <kbd>→</kbd> <kbd>↑</kbd> <kbd>↓</kbd>: Nhìn quanh hoặc dịch chuyển ảnh sau khi phóng to.
+  - <kbd>←</kbd> <kbd>→</kbd> <kbd>↑</kbd> <kbd>↓</kbd>: Nhìn quanh hoặc dịch chuyển ảnh; vẫn hoạt động khi dấu chuyển cảnh đang có focus.
   - <kbd>+</kbd> / <kbd>−</kbd>: Phóng to / thu nhỏ.
   - <kbd>F</kbd>: Toàn màn hình.
   - <kbd>P</kbd>: Trình chiếu tối giản.
   - <kbd>Esc</kbd>: Đóng bảng tư liệu hoặc thoát trình chiếu.
 - Liên kết trực tiếp `#scene=id` tự động kích hoạt đúng thời kỳ và bộ sưu tập.
 
-Âm thanh tổng hợp mặc định tắt; ứng dụng chưa có WebXR. Nhóm Hiện tại dùng ảnh chụp năm 2016, 2018 và 2025, không phải hình ảnh trực tiếp.
+Âm thanh tổng hợp mặc định tắt. Tắt tiếng sẽ giảm âm rồi ngừng xử lý âm thanh; chuyển sang thẻ khác cũng tạm dừng, chỉ phát lại khi người xem vẫn bật âm thanh. Ứng dụng chưa có WebXR. Nhóm Hiện tại dùng ảnh chụp năm 2016, 2018 và 2025, không phải hình ảnh trực tiếp.
 
 ## Xử lý hình ảnh và nguồn tư liệu
 

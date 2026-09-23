@@ -53,7 +53,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <a class="skip-link" href="#information-dialog">Đến nội dung điểm nhìn</a>
   <main class="experience" aria-label="Hành trình Mưa đỏ 360 độ">
     <h1 class="sr-only">Mưa đỏ — Quảng Trị qua những góc nhìn</h1>
-    <div class="landscape" aria-hidden="true"><img id="scene-preview" src="${sceneAsset(current)}" alt="" fetchpriority="high" /></div>
+    <div class="landscape" aria-hidden="true"><img id="scene-preview" src="${asset(current.thumbnail ?? `scenes/${current.id}-thumb.webp`)}" alt="" fetchpriority="high" /></div>
     <div id="panorama" tabindex="0" role="region" aria-label="Không gian 360 độ. Kéo để nhìn quanh; dùng phím mũi tên khi đang tập trung vào không gian." aria-describedby="panorama-help"></div>
     <div class="photo-viewer" id="photo-viewer" tabindex="0" role="region" aria-label="Xem ảnh. Phóng to rồi kéo để xem chi tiết; phím mũi tên dịch chuyển ảnh." hidden><img id="document-photo" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" draggable="false" /></div>
     <div class="tour-vignette" aria-hidden="true"></div>
@@ -96,7 +96,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <button class="icon-button" id="presentation-button" aria-label="Bật chế độ trình chiếu" aria-pressed="false" title="Trình chiếu (P)">${icon('eye')}</button>
     </div>
   </dialog>
-  <dialog class="help-dialog" id="help-dialog" aria-labelledby="help-title"><div class="dialog-top"><button class="icon-button close-dialog" aria-label="Đóng hướng dẫn">${icon('close')}</button></div><h2 id="help-title">Cách xem</h2><p class="help-intro">Chọn Quá khứ hoặc Hiện tại, rồi chọn không gian 360° hoặc album ảnh. Mỗi cảnh có niên đại và tư liệu riêng.</p><div class="help-grid"><div>${icon('drag')}<h3>Nhìn quanh</h3><p>Kéo hoặc dùng bốn nút hướng để nhìn lên, xuống và sang hai bên. Trong album, phóng to rồi kéo xem chi tiết; chụm hai ngón tay hoặc dùng + / − để thu phóng.</p></div><div>${icon('arrow')}<h3>Chuyển điểm</h3><p>Chọn dấu mốc trong cảnh, ảnh ở thanh hành trình hoặc hai nút trước / sau.</p></div><div>${icon('book')}<h3>Đọc và đối chiếu</h3><p>Chọn Tư liệu bên tên cảnh để đọc bối cảnh, xem ảnh tham chiếu và đối chiếu nguồn.</p></div></div><div class="keyboard-help"><h3>Bàn phím</h3><p><kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd> Nhìn quanh / dịch ảnh khi chọn vùng xem</p><p><kbd>1</kbd> đến <kbd>9</kbd> Chọn điểm trong dải ảnh đang mở <span>·</span> <kbd>F</kbd> Toàn màn hình <span>·</span> <kbd>P</kbd> Trình chiếu</p><p><kbd>Esc</kbd> Đóng bảng đang mở / thoát trình chiếu</p></div><p class="help-note">Đây là các góc nhìn minh họa 360°, không phải bản đồ đo đạc hay tuyến đi bộ liên tục. Âm thanh, nếu bật, là âm thanh thiên nhiên tổng hợp. Trải nghiệm không yêu cầu kính VR.</p></dialog>
+  <dialog class="help-dialog" id="help-dialog" aria-labelledby="help-title"><div class="dialog-top"><button class="icon-button close-dialog" aria-label="Đóng hướng dẫn">${icon('close')}</button></div><h2 id="help-title">Cách xem</h2><p class="help-intro">Chọn Quá khứ hoặc Hiện tại, rồi chọn không gian 360° hoặc album ảnh. Mỗi cảnh có niên đại và tư liệu riêng.</p><div class="help-grid"><div>${icon('drag')}<h3>Nhìn quanh</h3><p>Kéo hoặc dùng bốn nút hướng để nhìn lên, xuống và sang hai bên. Trong album, cuộn chuột hoặc chụm hai ngón tay để thu phóng tại vị trí con trỏ; nhấp đúp để phóng to hoặc đặt lại; phím mũi tên hoặc kéo để dịch ảnh.</p></div><div>${icon('arrow')}<h3>Chuyển điểm</h3><p>Chọn dấu mốc trong cảnh, ảnh ở thanh hành trình hoặc hai nút trước / sau.</p></div><div>${icon('book')}<h3>Đọc và đối chiếu</h3><p>Chọn Tư liệu bên tên cảnh để đọc bối cảnh, xem ảnh tham chiếu và đối chiếu nguồn.</p></div></div><div class="keyboard-help"><h3>Bàn phím</h3><p><kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd> Nhìn quanh / dịch ảnh khi chọn vùng xem</p><p><kbd>1</kbd> đến <kbd>9</kbd> Chọn điểm trong dải ảnh đang mở <span>·</span> <kbd>F</kbd> Toàn màn hình <span>·</span> <kbd>P</kbd> Trình chiếu</p><p><kbd>Esc</kbd> Đóng bảng đang mở / thoát trình chiếu</p></div><p class="help-note">Đây là các góc nhìn minh họa 360°, không phải bản đồ đo đạc hay tuyến đi bộ liên tục. Âm thanh, nếu bật, là âm thanh thiên nhiên tổng hợp. Trải nghiệm không yêu cầu kính VR.</p></dialog>
 `;
 
 const get = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
@@ -120,9 +120,44 @@ window.addEventListener('resize', updatePhotoInset);
 
 function announce(text: string) { announcement.textContent = text; }
 
+function updateViewControlsLabels() {
+  const isPhoto = current.format === 'photo';
+  const labels = {
+    'look-up': isPhoto ? 'Dịch ảnh lên' : 'Nhìn lên',
+    'look-down': isPhoto ? 'Dịch ảnh xuống' : 'Nhìn xuống',
+    'look-left': isPhoto ? 'Dịch ảnh sang trái' : 'Nhìn sang trái',
+    'look-right': isPhoto ? 'Dịch ảnh sang phải' : 'Nhìn sang phải',
+    'reset-view': isPhoto ? 'Đặt lại ảnh' : 'Đặt lại góc nhìn',
+  };
+  for (const [id, label] of Object.entries(labels)) {
+    get(id).setAttribute('aria-label', label);
+    get(id).title = label;
+  }
+}
+
+function getSourcesTitle(): string {
+  return current.format === 'photo' ? 'Tư liệu ảnh' : 'Tư liệu & phục dựng';
+}
+
+function getSourcesTabLabel(): string {
+  return current.format === 'photo' ? 'Nguồn ảnh' : 'Nguồn & phục dựng';
+}
+
 let stripKey = '';
 function renderScene() {
-  preview.src = sceneAsset(current);
+  const isPhoto = current.format === 'photo';
+  preview.onerror = null;
+  if (!isPhoto) {
+    const fullUrl = sceneAsset(current);
+    preview.onerror = () => {
+      preview.onerror = null;
+      preview.src = fullUrl;
+    };
+    preview.src = asset(current.thumbnail ?? `scenes/${current.id}-thumb.webp`);
+  } else {
+    preview.removeAttribute('src');
+  }
+  updateViewControlsLabels();
   const era = eraOf(current);
   const collection = collectionOf(current);
   remembered.set(era, current.id);
@@ -156,12 +191,13 @@ function renderScene() {
 }
 
 function renderStory() {
-  get('dialog-title').textContent = get('story-tab').getAttribute('aria-selected') === 'true' ? current.title : 'Tư liệu & phục dựng';
+  get('sources-tab').textContent = getSourcesTabLabel();
+  get('dialog-title').textContent = get('story-tab').getAttribute('aria-selected') === 'true' ? current.title : getSourcesTitle();
   if (current.photograph) {
     const photo = current.photograph;
     get('story-panel').innerHTML = `<p class="story-lead">${escape(current.summary)}</p>${current.description.map(paragraph => `<p>${escape(paragraph)}</p>`).join('')}<button class="text-button" id="story-to-sources">Xem tư liệu của cảnh</button>`;
     get('story-to-sources').addEventListener('click', () => setTab('sources', true));
-    get('sources-panel').innerHTML = `<div class="photo-source"><h3>${escape(photo.title)}</h3><p>${escape(photo.caption)}</p><p>${escape(photo.date)} · ${escape(photo.creator)}</p><p><a href="${escape(photo.sourceUrl)}" target="_blank" rel="noopener noreferrer">Hồ sơ ảnh và chú thích ${icon('external')}<span class="sr-only"> (mở thẻ mới)</span></a></p><p><a href="${escape(photo.licenseUrl)}" target="_blank" rel="noopener noreferrer">${escape(photo.license)}<span class="sr-only"> (mở thẻ mới)</span></a></p>${current.derivation ? `<p>${escape(current.derivation)}</p>` : '<p>Ảnh giữ nguyên khung hình và màu sắc của tệp từ nguồn.</p>'}<figure><a href="${asset(photo.file)}" target="_blank" rel="noopener noreferrer"><img src="${asset(photo.file)}" alt="${escape(photo.caption)}" width="${photo.width}" height="${photo.height}" loading="lazy" /></a><figcaption>${escape(photo.creator)} · ${escape(photo.date)}</figcaption></figure><details><summary>Phạm vi tư liệu</summary>${photo.notes.map(note => `<p>${escape(note)}</p>`).join('')}</details></div>`;
+    get('sources-panel').innerHTML = `<div class="photo-source"><h3>${escape(photo.title)}</h3><p>${escape(photo.caption)}</p><p>${escape(photo.date)} · ${escape(photo.creator)}</p><figure><a href="${asset(photo.file)}" target="_blank" rel="noopener noreferrer"><img src="${asset(photo.file)}" alt="${escape(photo.caption)}" width="${photo.width}" height="${photo.height}" loading="lazy" /></a><figcaption>${escape(photo.creator)} · ${escape(photo.date)}</figcaption></figure><p><a href="${escape(photo.sourceUrl)}" target="_blank" rel="noopener noreferrer">Hồ sơ ảnh và chú thích ${icon('external')}<span class="sr-only"> (mở thẻ mới)</span></a></p><p><a href="${escape(photo.licenseUrl)}" target="_blank" rel="noopener noreferrer">${escape(photo.license)}<span class="sr-only"> (mở thẻ mới)</span></a></p>${current.derivation ? `<p>${escape(current.derivation)}</p>` : '<p>Ảnh đối chiếu trên đây giữ nguyên khung hình và màu sắc của tệp từ nguồn.</p>'}<details open><summary>Phạm vi tư liệu</summary>${photo.notes.map(note => `<p>${escape(note)}</p>`).join('')}</details></div>`;
     return;
   }
   const references = sources.filter((source) => current.sourceIds.includes(source.id));
@@ -178,7 +214,7 @@ function renderStory() {
     <button class="text-button" id="story-to-sources">Xem nguồn và giới hạn ảnh</button>`;
   get('story-to-sources').addEventListener('click', () => setTab('sources', true));
   get('sources-panel').innerHTML = `
-    <div class="source-notice"><h3>Về ảnh phục dựng</h3><p>${escape(reconstructionNotice)}</p><p>Cảnh toàn cảnh được phục dựng để minh họa không gian. Tư liệu giúp định hướng bối cảnh, không xác thực từng chi tiết trong hình. Đây không phải ảnh chụp tư liệu hay bản phục dựng khảo cổ.</p><p>Ảnh được tăng độ phân giải để giảm mờ khi nhìn quanh. Chi tiết bổ sung không phải chứng cứ lịch sử.</p><p>Các dấu chuyển điểm chỉ giúp điều hướng giữa những góc nhìn độc lập; chúng không xác nhận khoảng cách hay hướng đi thực tế.</p></div>
+    <div class="source-notice"><h3>Về ảnh phục dựng</h3><p>${escape(reconstructionNotice)}</p><details class="reconstruction-details"><summary>Giới hạn phục dựng</summary><p>Cảnh toàn cảnh được phục dựng để minh họa không gian. Tư liệu giúp định hướng bối cảnh, không xác thực từng chi tiết trong hình. Đây không phải ảnh chụp tư liệu hay bản phục dựng khảo cổ.</p><p>Ảnh được tăng độ phân giải để giảm mờ khi nhìn quanh. Chi tiết bổ sung không phải chứng cứ lịch sử.</p><p>Các dấu chuyển điểm chỉ giúp điều hướng giữa những góc nhìn độc lập; chúng không xác nhận khoảng cách hay hướng đi thực tế.</p></details></div>
     <details class="archive-map"><summary>Bản đồ lưu trữ Quảng Trị</summary>
       <figure><a href="https://catalog.archives.gov/id/74797754" target="_blank" rel="noopener noreferrer" aria-label="Xem hồ sơ bản đồ Quảng Trị tại National Archives (mở thẻ mới)"><img src="${asset('archive/ams-quang-tri.webp')}" alt="Bản đồ AMS lưu trữ thể hiện sông Thạch Hãn, thị xã và khu Thành cổ Quảng Trị." width="1200" height="1332" loading="lazy" /></a>
       <figcaption>U.S. Army Topographic Command / National Archives, NAID 74797754. Chú giải trên bản đồ ghi thông tin đến năm 1968; hồ sơ lưu trữ ghi khoảng 1942–1972. Bản đồ này không xác nhận nguyên trạng năm 1972 hay vị trí các cảnh minh họa.</figcaption></figure>
@@ -195,7 +231,8 @@ function setTab(tab: 'story' | 'sources', focus = false) {
     get(`${name}-tab`).tabIndex = selected ? 0 : -1;
     get(`${name}-panel`).hidden = !selected;
   }
-  get('dialog-title').textContent = tab === 'story' ? current.title : 'Tư liệu & phục dựng';
+  get('sources-tab').textContent = getSourcesTabLabel();
+  get('dialog-title').textContent = tab === 'story' ? current.title : getSourcesTitle();
   infoDialog.querySelector('.dialog-scroll')!.scrollTop = 0;
   if (focus) get(`${tab}-tab`).focus();
 }
@@ -251,7 +288,12 @@ function writeHash(replace = false) {
 }
 
 function setLoading(loading: boolean) {
-  get('viewer-status').hidden = !loading;
+  const status = get('viewer-status');
+  status.hidden = !loading;
+  const statusText = status.querySelector('span:last-child');
+  if (statusText) {
+    statusText.textContent = current.format === 'photo' ? 'Đang mở ảnh tư liệu…' : 'Đang mở không gian…';
+  }
   panorama.setAttribute('aria-busy', String(loading));
   photoView.setAttribute('aria-busy', String(loading));
   document.body.classList.toggle('is-loading', loading);
@@ -267,8 +309,13 @@ function failScene(token: number) {
   panorama.hidden = true;
   photoView.hidden = true;
   get('viewer-error').hidden = false;
+  get('viewer-error').querySelector('h2')!.textContent = current.format === 'photo' ? 'Chưa mở được ảnh tư liệu' : 'Chưa mở được cảnh';
   document.body.classList.add('has-error');
-  announce('Không thể tải không gian 360 độ. Bạn có thể thử tải lại, chuyển điểm nhìn hoặc đọc câu chuyện.');
+  if (current.format === 'photo') {
+    announce('Không thể tải ảnh tư liệu. Bạn có thể thử tải lại, chuyển điểm nhìn hoặc đọc câu chuyện.');
+  } else {
+    announce('Không thể tải không gian 360 độ. Bạn có thể thử tải lại, chuyển điểm nhìn hoặc đọc câu chuyện.');
+  }
 }
 
 async function loadScene() {
@@ -305,6 +352,8 @@ async function loadScene() {
     enginePromise ??= import('pannellum').catch((error: unknown) => { enginePromise = undefined; throw error; });
     await Promise.all([enginePromise, sceneImage.decode()]);
     if (token !== generation) return;
+    preview.onerror = null;
+    preview.src = sceneImage.src;
     viewer = window.pannellum.viewer(panorama, {
       // Static mode preserves split textures on devices with smaller GPU limits.
       type: 'equirectangular', panorama: sceneImage.src,
@@ -316,7 +365,8 @@ async function loadScene() {
       escapeHTML: true, backgroundColor: [0.07, 0.10, 0.08],
       strings: { loadingLabel: 'Đang mở không gian…', fileAccessError: 'Chưa tải được ảnh 360°.', genericWebGLError: 'Trình duyệt chưa mở được không gian 360°.', noWebGLError: 'Trình duyệt chưa hỗ trợ WebGL.' },
       hotSpots: current.hotspots.map((spot) => ({
-        pitch: window.innerWidth < 600 ? 8 : spot.pitch, yaw: spot.yaw, cssClass: 'scene-hotspot',
+        pitch: window.innerWidth < 600 || (window.innerHeight <= 500 && window.innerWidth > window.innerHeight) ? 8 : spot.pitch,
+        yaw: spot.yaw, cssClass: 'scene-hotspot',
         createTooltipFunc: (element: HTMLElement) => {
           const button = document.createElement('button');
           button.className = 'hotspot-button';
@@ -411,9 +461,43 @@ async function toggleFullscreen() {
 let audioContext: AudioContext | undefined;
 let ambienceGain: GainNode | undefined;
 let ambienceOn = false;
-async function toggleAmbience() {
+let ambienceSuspendTimer: ReturnType<typeof setTimeout> | undefined;
+let audioOpQueue: Promise<void> = Promise.resolve();
+
+function syncAmbienceUI(on: boolean) {
+  const button = get('ambience-button');
+  button.innerHTML = icon(on ? 'volume' : 'muted');
+  button.setAttribute('aria-pressed', String(on));
+  button.setAttribute('aria-label', `${on ? 'Tắt' : 'Bật'} âm thanh thiên nhiên mô phỏng`);
+  button.title = `Âm thanh mô phỏng: ${on ? 'đang bật' : 'đang tắt'}`;
+}
+
+function audioUnavailable() {
+  ambienceOn = false;
+  syncAmbienceUI(false);
+  announce('Trình duyệt chưa thể phát âm thanh. Các chức năng khác vẫn hoạt động.');
+}
+
+function syncAudioState() {
+  audioOpQueue = audioOpQueue.then(async () => {
+    if (!audioContext || !ambienceGain) return;
+    if (ambienceOn && !document.hidden) await audioContext.resume();
+    // A resume may finish after the user has muted or left the page.
+    const audible = ambienceOn && !document.hidden;
+    ambienceGain.gain.cancelScheduledValues(audioContext.currentTime);
+    if (audible) ambienceGain.gain.setTargetAtTime(0.24, audioContext.currentTime, 0.35);
+    else {
+      ambienceGain.gain.setValueAtTime(0, audioContext.currentTime);
+      await audioContext.suspend();
+    }
+  }).catch(audioUnavailable);
+}
+
+function toggleAmbience() {
+  ambienceOn = !ambienceOn;
+  clearTimeout(ambienceSuspendTimer);
   try {
-    if (!audioContext) {
+    if (ambienceOn && !audioContext) {
       const Context = window.AudioContext ?? window.webkitAudioContext;
       if (!Context) throw new Error('Audio unavailable');
       audioContext = new Context();
@@ -431,16 +515,15 @@ async function toggleAmbience() {
       sound.connect(filter).connect(ambienceGain).connect(audioContext.destination);
       sound.start();
     }
-    await audioContext.resume();
-    ambienceOn = !ambienceOn;
-    ambienceGain!.gain.setTargetAtTime(ambienceOn ? 0.24 : 0, audioContext.currentTime, 0.35);
-    const button = get('ambience-button');
-    button.innerHTML = icon(ambienceOn ? 'volume' : 'muted');
-    button.setAttribute('aria-pressed', String(ambienceOn));
-    button.setAttribute('aria-label', `${ambienceOn ? 'Tắt' : 'Bật'} âm thanh thiên nhiên mô phỏng`);
-    button.title = `Âm thanh mô phỏng: ${ambienceOn ? 'đang bật' : 'đang tắt'}`;
-    announce(`Âm thanh thiên nhiên mô phỏng ${ambienceOn ? 'đã bật' : 'đã tắt'}.`);
-  } catch { announce('Trình duyệt chưa thể phát âm thanh. Các chức năng khác vẫn hoạt động.'); }
+    syncAmbienceUI(ambienceOn);
+    if (ambienceOn) syncAudioState();
+    else if (audioContext && ambienceGain) {
+      ambienceGain.gain.cancelScheduledValues(audioContext.currentTime);
+      ambienceGain.gain.setTargetAtTime(0, audioContext.currentTime, 0.35);
+      ambienceSuspendTimer = setTimeout(() => { if (!ambienceOn) syncAudioState(); }, 1200);
+    }
+    announce(`Âm thanh thiên nhiên mô phỏng đã ${ambienceOn ? 'bật' : 'tắt'}.`);
+  } catch { audioUnavailable(); }
 }
 
 get('previous-scene').addEventListener('click', () => stepScene(-1));
@@ -477,9 +560,9 @@ document.addEventListener('fullscreenchange', () => {
   viewer?.resize();
 });
 document.addEventListener('visibilitychange', () => {
-  if (!audioContext || !ambienceOn) return;
-  if (document.hidden) void audioContext.suspend();
-  else void audioContext.resume();
+  if (!audioContext) return;
+  clearTimeout(ambienceSuspendTimer);
+  syncAudioState();
 });
 document.addEventListener('keydown', (event) => {
   if (allDialogs.some((dialog) => dialog.open) || event.altKey || event.ctrlKey || event.metaKey) return;
@@ -489,15 +572,17 @@ document.addEventListener('keydown', (event) => {
   if (/^[1-9]$/.test(event.key) && visibleScenes()[Number(event.key) - 1]) { event.preventDefault(); selectScene(visibleScenes()[Number(event.key) - 1].id); return; }
   if (event.key.toLowerCase() === 'f') { event.preventDefault(); void toggleFullscreen(); return; }
   if (event.key.toLowerCase() === 'p') { event.preventDefault(); setPresentation(!presentation); return; }
-  if ((!viewer && current.format !== 'photo') || (target !== panorama && target !== photoView && target !== document.body)) return;
-  if (event.key === 'ArrowLeft') turn(-10, 0);
-  else if (event.key === 'ArrowRight') turn(10, 0);
-  else if (event.key === 'ArrowUp') turn(0, 8);
-  else if (event.key === 'ArrowDown') turn(0, -8);
-  else if (event.key === '+' || event.key === '=') zoom(1);
-  else if (event.key === '-') zoom(-1);
-  else return;
-  event.preventDefault();
+  const isPanoramaTarget = target === panorama || panorama.contains(target);
+  if ((!viewer && current.format !== 'photo') || (!isPanoramaTarget && target !== photoView && target !== document.body)) return;
+  if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', '+', '=', '-'].includes(event.key)) {
+    if (event.key === 'ArrowLeft') turn(-10, 0);
+    else if (event.key === 'ArrowRight') turn(10, 0);
+    else if (event.key === 'ArrowUp') turn(0, 8);
+    else if (event.key === 'ArrowDown') turn(0, -8);
+    else if (event.key === '+' || event.key === '=') zoom(1);
+    else if (event.key === '-') zoom(-1);
+    event.preventDefault();
+  }
 });
 
 renderScene();

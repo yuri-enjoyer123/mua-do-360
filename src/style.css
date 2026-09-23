@@ -825,6 +825,9 @@ dialog h2{
   margin:0 0 26px;
 }
 .source-notice p{font-size:19px;line-height:1.65;color:var(--paper-ink);margin-top:10px}
+.reconstruction-details{margin-top:10px}
+.reconstruction-details summary{cursor:pointer;min-height:44px;align-content:center;color:var(--oxblood)}
+.reconstruction-details summary:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 .source-notice .section-kicker{font-size:11px;letter-spacing:1.4px;color:var(--oxblood)}
 .dialog-scroll .source-notice h3{font-size:22px;margin-bottom:8px;color:var(--paper-ink)}
 .dialog-scroll .sources-heading{font-size:24px;margin-bottom:10px;color:var(--paper-ink)}
@@ -1084,7 +1087,8 @@ kbd{
     font-size:18px;
     line-height:1.65;
   }
-  .experience{min-height:300px}
+  .experience{min-height:0}
+  .hotspot-caption{display:none}
   .photo-viewer{
     inset:max(138px,calc(var(--context-end,126px) + 12px)) 214px 94px 12px;
   }
