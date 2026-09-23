@@ -9,10 +9,10 @@ Tour tương tác trên trình duyệt khám phá không gian Thành cổ và v�
 ## Cấu trúc nội dung
 
 - **Thời kỳ Quá khứ**:
-  - *Không gian 360°*: 6 cảnh minh họa cuộc chiến đấu 81 ngày đêm bảo vệ Thành cổ năm 1972 và sau giao tranh (`thach-han`, `hao-thanh`, `cong-hau`, `luy-bac`, `noi-thanh`, `pho-cu`: cảnh phố dùng tư liệu sau giữa tháng 9, không gán cho tháng 6–8), hiển thị đơn sắc với độ mềm nhẹ và hạt tĩnh.
+  - *Nhìn quanh*: 6 cảnh minh họa cuộc chiến đấu 81 ngày đêm bảo vệ Thành cổ năm 1972 và sau giao tranh (`thach-han`, `hao-thanh`, `cong-hau`, `luy-bac`, `noi-thanh`, `pho-cu`: cảnh phố dùng tư liệu sau giữa tháng 9, không gán cho tháng 6–8), hiển thị đơn sắc với độ mềm nhẹ và hạt tĩnh.
   - *Album ảnh*: 3 tư liệu hình ảnh lịch sử năm 1967 (Thành cổ nhìn về phía Nam, Sông Thạch Hãn nhìn về phía Đông Bắc, và phiếu không ảnh sân bay cách thị xã 3 dặm về phía Bắc dọc Quốc lộ 1).
 - **Thời kỳ Hiện tại**:
-  - *Không gian 360°*: 2 cảnh 360° dựng từ ảnh chụp di tích năm 2018 (`citadel-gate-2018-360`, `citadel-wall-2018-360`), giữ nguyên màu sắc.
+  - *Nhìn quanh*: 2 cảnh 360° dựng từ ảnh chụp di tích năm 2018 (`citadel-gate-2018-360`, `citadel-wall-2018-360`), giữ nguyên màu sắc.
   - *Album ảnh*: 6 ảnh tư liệu sau chiến tranh và đương đại chụp các năm 2016, 2018 và 2025 (Cổng Thành cổ, Hào nước Thành cổ, Đài tưởng niệm Thành cổ, Chiều trên sông Thạch Hãn, Nhà hành lễ bến thả hoa, Cầu Hiền Lương trên sông Bến Hải).
 
 Dự án gồm **8 không gian toàn cảnh 360°** (6 cảnh minh họa quá khứ và 2 cảnh mở rộng từ ảnh di tích năm 2018) cùng **9 ảnh tư liệu gốc trong album** (3 quá khứ, 6 hiện tại); hiện chỉ còn **2 không gian toàn cảnh phái sinh từ ảnh chụp đang hoạt động**. Hai toàn cảnh không ảnh năm 1967 (`quang-tri-south-1967-360` và `quang-tri-northeast-1967-360`) đã được rút lui do lo ngại về độ chân thực lịch sử và tái tạo lẫn thời kỳ; 3 ảnh tư liệu gốc năm 1967 vẫn được lưu giữ nguyên trạng trong album. Chỉ 6 cảnh 1972 ban đầu có liên hệ tiểu thuyết *Mưa đỏ* của Chu Lai; các cảnh khác không có mục văn học.

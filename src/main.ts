@@ -50,17 +50,17 @@ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const duration = () => reducedMotion.matches ? 0 : 280;
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <a class="skip-link" href="#information-dialog">Đến nội dung điểm nhìn</a>
-  <main class="experience" aria-label="Hành trình Mưa đỏ 360 độ">
+  <a class="skip-link" href="#information-dialog">Đọc về cảnh này</a>
+  <main class="experience" aria-label="Mưa đỏ">
     <h1 class="sr-only">Mưa đỏ — Quảng Trị qua những góc nhìn</h1>
     <div class="landscape" aria-hidden="true"><img id="scene-preview" src="${asset(current.thumbnail ?? `scenes/${current.id}-thumb.webp`)}" alt="" fetchpriority="high" /></div>
-    <div id="panorama" tabindex="0" role="region" aria-label="Không gian 360 độ. Kéo để nhìn quanh; dùng phím mũi tên khi đang tập trung vào không gian." aria-describedby="panorama-help"></div>
+    <div id="panorama" tabindex="0" role="region" aria-label="Cảnh đang xem. Kéo để nhìn quanh hoặc dùng phím mũi tên." aria-describedby="panorama-help"></div>
     <div class="photo-viewer" id="photo-viewer" tabindex="0" role="region" aria-label="Xem ảnh. Phóng to rồi kéo để xem chi tiết; phím mũi tên dịch chuyển ảnh." hidden><img id="document-photo" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" draggable="false" /></div>
     <div class="tour-vignette" aria-hidden="true"></div>
 
     <div class="tour-ui">
       <div class="era-switch" role="group" aria-label="Chọn thời kỳ"><button data-era="past" aria-pressed="true">Quá khứ</button><button data-era="present" aria-pressed="false">Hiện tại</button></div>
-      <div class="collection-switch" role="group" aria-label="Cách khám phá"><button data-collection="panorama" aria-pressed="true">Không gian 360°</button><button data-collection="archive" aria-pressed="false">Album ảnh</button></div>
+      <div class="collection-switch" role="group" aria-label="Cách xem"><button data-collection="panorama" aria-pressed="true">Nhìn quanh</button><button data-collection="archive" aria-pressed="false">Album ảnh</button></div>
       <div class="scene-context"><h2 id="scene-title"></h2><p id="scene-date"></p><button id="scene-sources" class="text-button" data-open="sources" aria-label="Mở tư liệu của cảnh">Tư liệu</button></div>
       <div class="view-controls" aria-label="Điều khiển góc nhìn">
         <button class="icon-button" id="look-up" aria-label="Nhìn lên" title="Nhìn lên">${icon('chevron')}</button>
@@ -78,8 +78,8 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       </nav>
     </div>
 
-    <div class="viewer-status" id="viewer-status" role="status" hidden><span class="loading-orbit" aria-hidden="true"></span><span>Đang mở không gian…</span></div>
-    <section class="viewer-error" id="viewer-error" aria-label="Không thể mở ảnh" hidden><h2>Chưa mở được cảnh</h2><p>Ảnh chưa tải được hoặc trình duyệt chưa hỗ trợ chế độ xem này. Bạn có thể thử lại, chuyển điểm nhìn hoặc đọc tư liệu.</p><div><button class="primary-button" id="retry-button">Thử tải lại ${icon('reset')}</button><button class="text-button" data-open="story">Đọc câu chuyện</button></div></section>
+    <div class="viewer-status" id="viewer-status" role="status" hidden><span class="loading-orbit" aria-hidden="true"></span><span>Đang mở cảnh…</span></div>
+    <section class="viewer-error" id="viewer-error" aria-label="Không thể mở ảnh" hidden><h2>Chưa mở được cảnh</h2><p>Ảnh chưa tải được hoặc trình duyệt chưa mở được cảnh này. Bạn có thể thử lại, chọn cảnh khác hoặc đọc tư liệu.</p><div><button class="primary-button" id="retry-button">Thử tải lại ${icon('reset')}</button><button class="text-button" data-open="story">Đọc câu chuyện</button></div></section>
 
     <button class="presentation-exit" id="presentation-exit" hidden>${icon('eye')}<span>Thoát trình chiếu</span><kbd>P</kbd></button>
     <div class="sr-only" id="announcement" role="status" aria-live="polite" aria-atomic="true"></div>
@@ -96,7 +96,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <button class="icon-button" id="presentation-button" aria-label="Bật chế độ trình chiếu" aria-pressed="false" title="Trình chiếu (P)">${icon('eye')}</button>
     </div>
   </dialog>
-  <dialog class="help-dialog" id="help-dialog" aria-labelledby="help-title"><div class="dialog-top"><button class="icon-button close-dialog" aria-label="Đóng hướng dẫn">${icon('close')}</button></div><h2 id="help-title">Cách xem</h2><p class="help-intro">Chọn Quá khứ hoặc Hiện tại, rồi chọn không gian 360° hoặc album ảnh. Mỗi cảnh có niên đại và tư liệu riêng.</p><div class="help-grid"><div>${icon('drag')}<h3>Nhìn quanh</h3><p>Kéo hoặc dùng bốn nút hướng để nhìn lên, xuống và sang hai bên. Trong album, cuộn chuột hoặc chụm hai ngón tay để thu phóng tại vị trí con trỏ; nhấp đúp để phóng to hoặc đặt lại; phím mũi tên hoặc kéo để dịch ảnh.</p></div><div>${icon('arrow')}<h3>Chuyển điểm</h3><p>Chọn dấu mốc trong cảnh, ảnh ở thanh hành trình hoặc hai nút trước / sau.</p></div><div>${icon('book')}<h3>Đọc và đối chiếu</h3><p>Chọn Tư liệu bên tên cảnh để đọc bối cảnh, xem ảnh tham chiếu và đối chiếu nguồn.</p></div></div><div class="keyboard-help"><h3>Bàn phím</h3><p><kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd> Nhìn quanh / dịch ảnh khi chọn vùng xem</p><p><kbd>1</kbd> đến <kbd>9</kbd> Chọn điểm trong dải ảnh đang mở <span>·</span> <kbd>F</kbd> Toàn màn hình <span>·</span> <kbd>P</kbd> Trình chiếu</p><p><kbd>Esc</kbd> Đóng bảng đang mở / thoát trình chiếu</p></div><p class="help-note">Đây là các góc nhìn minh họa 360°, không phải bản đồ đo đạc hay tuyến đi bộ liên tục. Âm thanh, nếu bật, là âm thanh thiên nhiên tổng hợp. Trải nghiệm không yêu cầu kính VR.</p></dialog>
+  <dialog class="help-dialog" id="help-dialog" aria-labelledby="help-title"><div class="dialog-top"><button class="icon-button close-dialog" aria-label="Đóng hướng dẫn">${icon('close')}</button></div><h2 id="help-title">Cách xem</h2><p class="help-intro">Chọn Quá khứ hoặc Hiện tại. Nhấn Nhìn quanh để xem cảnh, hoặc Album ảnh để xem từng bức ảnh. Ngày chụp và nguồn ảnh nằm trong mục Tư liệu.</p><div class="help-grid"><div>${icon('drag')}<h3>Nhìn quanh</h3><p>Kéo ảnh hoặc dùng bốn nút mũi tên để nhìn quanh. Trong album, cuộn chuột hoặc chụm hai ngón tay để phóng to, thu nhỏ. Nhấp đúp để phóng to hoặc trở về ban đầu; kéo hoặc dùng phím mũi tên để dịch ảnh.</p></div><div>${icon('arrow')}<h3>Chọn cảnh</h3><p>Nhấn dấu mũi tên trong cảnh, chọn một ảnh nhỏ phía dưới hoặc dùng hai nút trước / sau.</p></div><div>${icon('book')}<h3>Đọc và đối chiếu</h3><p>Chọn Tư liệu bên tên cảnh để đọc bối cảnh, xem ảnh tham chiếu và đối chiếu nguồn.</p></div></div><div class="keyboard-help"><h3>Bàn phím</h3><p><kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd> Nhìn quanh / dịch ảnh khi chọn vùng xem</p><p><kbd>1</kbd> đến <kbd>9</kbd> Chọn điểm trong dải ảnh đang mở <span>·</span> <kbd>F</kbd> Toàn màn hình <span>·</span> <kbd>P</kbd> Trình chiếu</p><p><kbd>Esc</kbd> Đóng bảng đang mở / thoát trình chiếu</p></div><p class="help-note">Mỗi cảnh là một góc nhìn minh họa riêng, không phải bản đồ đo đạc hay đường đi liên tục. Âm thanh được mô phỏng và chỉ phát khi bạn bật. Bạn có thể xem ngay trên điện thoại hoặc máy tính.</p></dialog>
 `;
 
 const get = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
@@ -186,7 +186,7 @@ function renderScene() {
     }
     else button.removeAttribute('aria-current');
   });
-  document.title = `${current.title} · Mưa đỏ 360°`;
+  document.title = `${current.title} · Mưa đỏ`;
   renderStory();
 }
 
@@ -292,7 +292,7 @@ function setLoading(loading: boolean) {
   status.hidden = !loading;
   const statusText = status.querySelector('span:last-child');
   if (statusText) {
-    statusText.textContent = current.format === 'photo' ? 'Đang mở ảnh tư liệu…' : 'Đang mở không gian…';
+    statusText.textContent = current.format === 'photo' ? 'Đang mở ảnh tư liệu…' : 'Đang mở cảnh…';
   }
   panorama.setAttribute('aria-busy', String(loading));
   photoView.setAttribute('aria-busy', String(loading));
@@ -312,9 +312,9 @@ function failScene(token: number) {
   get('viewer-error').querySelector('h2')!.textContent = current.format === 'photo' ? 'Chưa mở được ảnh tư liệu' : 'Chưa mở được cảnh';
   document.body.classList.add('has-error');
   if (current.format === 'photo') {
-    announce('Không thể tải ảnh tư liệu. Bạn có thể thử tải lại, chuyển điểm nhìn hoặc đọc câu chuyện.');
+    announce('Chưa tải được ảnh. Bạn có thể thử lại, chọn ảnh khác hoặc mở tư liệu.');
   } else {
-    announce('Không thể tải không gian 360 độ. Bạn có thể thử tải lại, chuyển điểm nhìn hoặc đọc câu chuyện.');
+    announce('Chưa tải được cảnh. Bạn có thể thử lại, chọn cảnh khác hoặc mở tư liệu.');
   }
 }
 
@@ -363,7 +363,7 @@ async function loadScene() {
       hfov: window.innerWidth < 600 ? 80 : 100, minHfov: 65, maxHfov: 120,
       mouseZoom: true, friction: reducedMotion.matches ? 1 : 0.15,
       escapeHTML: true, backgroundColor: [0.07, 0.10, 0.08],
-      strings: { loadingLabel: 'Đang mở không gian…', fileAccessError: 'Chưa tải được ảnh 360°.', genericWebGLError: 'Trình duyệt chưa mở được không gian 360°.', noWebGLError: 'Trình duyệt chưa hỗ trợ WebGL.' },
+      strings: { loadingLabel: 'Đang mở cảnh…', fileAccessError: 'Chưa tải được ảnh.', genericWebGLError: 'Trình duyệt chưa mở được cảnh này.', noWebGLError: 'Trình duyệt này chưa hỗ trợ cách xem này.' },
       hotSpots: current.hotspots.map((spot) => ({
         pitch: window.innerWidth < 600 || (window.innerHeight <= 500 && window.innerWidth > window.innerHeight) ? 8 : spot.pitch,
         yaw: spot.yaw, cssClass: 'scene-hotspot',
@@ -386,7 +386,7 @@ async function loadScene() {
       requestAnimationFrame(() => requestAnimationFrame(() => {
         if (token !== generation) return;
         setLoading(false);
-        announce(`Đã mở điểm nhìn ${visibleScenes().indexOf(current) + 1}: ${current.title}. Kéo để nhìn quanh hoặc chọn dấu chuyển điểm.`);
+        announce(`Đã mở ${current.title}. Kéo để nhìn quanh hoặc chọn cảnh khác.`);
       }));
     };
     viewer.on('load', onLoaded);

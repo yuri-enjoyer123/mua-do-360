@@ -107,3 +107,12 @@ Phạm vi: phần thay đổi trong đợt này và các luồng giao diện hi�
 ## Giới hạn đo đạc
 
 Phép thử tải chậm giữ yêu cầu ảnh lớn và xác nhận thumbnail đã giải mã khi panorama còn bận; khi hoàn tất, ảnh xem trước có đủ 7096 × 3548 pixel. Đây là cải thiện phản hồi lúc chờ, không phải tuyên bố tăng tốc mạng hoặc FPS. Không có thử nghiệm kính VR hay Safari trong đợt này.
+
+## Chỉnh lời giao diện
+
+Theo phản hồi tiếp theo của chủ dự án, đổi nút “Không gian 360°” thành “Nhìn quanh”, giữ “Album ảnh”. Lời hướng dẫn, thông báo tải/lỗi và tiêu đề trình duyệt dùng từ thông thường như “cảnh”, “ảnh”, “chọn cảnh”. Gemini sửa các chuỗi giao diện trong một tệp; tác nhân chính kiểm tra bản diff, chỉnh metadata, chạy build và kiểm tra ảnh chụp máy tính/điện thoại.
+
+- Hard Gate PASS: 4 kiểm thử hiện có về bố cục, tải ảnh và tư liệu đạt; không sửa dữ liệu lịch sử, ảnh, giấy phép, CSS hay xử lý tương tác. Nội dung mới không thêm dữ kiện lịch sử.
+- Purpose-Gate PASS: “Nhìn quanh” gọi đúng thao tác; “Đang mở cảnh…” mô tả trạng thái đang diễn ra. Không thêm lời quảng cáo, huy hiệu hoặc thành phần trang trí.
+- Liveliness PASS: giữ ENERGY 1 / RHYTHM 2 / MOTION 1 và phong cách giấy ngà; ảnh chụp hai kích thước xác nhận nhãn mới vừa nút.
+- Craftsmanship & Quality Locks PASS: TypeScript/Vite build đạt, nguồn và album mở được ở cả hai cấu hình kiểm thử. Diff chỉ đổi lời trong giao diện và tài liệu liên quan; đọc lại để loại thuật ngữ thừa, giữ phần giải thích lịch sử đúng nghĩa.
