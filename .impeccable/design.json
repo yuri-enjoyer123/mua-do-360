@@ -20,6 +20,16 @@
         "name": "control-state",
         "value": "0.15s",
         "purpose": "Phản hồi thao tác; tôn trọng reduced motion."
+      },
+      {
+        "name": "scene-dissolve",
+        "value": "0.42s",
+        "purpose": "Giữ liên tục giữa panorama cùng thời kỳ; không chồng hai thời kỳ; tắt khi giảm chuyển động."
+      },
+      {
+        "name": "image-reveal",
+        "value": "0.32s",
+        "purpose": "Hiện ảnh album hoặc cảnh đầu khi đã tải xong; tắt khi giảm chuyển động."
       }
     ],
     "breakpoints": [

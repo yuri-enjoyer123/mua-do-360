@@ -10,10 +10,12 @@
     "test": "npm run build && playwright test"
   },
   "dependencies": {
-    "pannellum": "2.5.7"
+    "pannellum": "2.5.7",
+    "three": "0.186.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",
+    "@types/three": "0.186.0",
     "typescript": "7.0.2",
     "vite": "8.3.0"
   }

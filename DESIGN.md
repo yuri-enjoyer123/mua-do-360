@@ -69,7 +69,7 @@ components:
 
 Chủ dự án yêu cầu hai phong cách riêng: Quá khứ giống website cũ, Hiện tại có giao diện hiện đại. Mở trang vẫn vào thẳng cảnh đang chọn. Cảnh hoặc ảnh chiếm phần chính của màn hình; nút thời kỳ, kính VR, máy ảnh, hướng nhìn và dải ảnh luôn phục vụ thao tác thật.
 
-Quá khứ dùng chữ có chân, ô vuông, viền nổi kiểu giao diện web cũ và thanh tên cảnh đỏ nâu. Hiện tại dùng chữ sans, nền trắng gần trung tính, điểm chọn xanh trầm và các cụm điều khiển bo nhẹ. ENERGY 1 / RHYTHM 2 / MOTION 1 cho cả hai: chuyển động phục vụ thao tác, không thêm hiệu ứng trang trí. Đây là hướng thiết kế do người dùng chọn; phong cách ảnh cũ không thay niên đại của tư liệu.
+Quá khứ dùng chữ có chân, ô vuông, viền nổi kiểu giao diện web cũ và thanh tên cảnh đỏ nâu. Hiện tại dùng chữ sans, nền trắng gần trung tính, điểm chọn xanh trầm và các cụm điều khiển bo nhẹ. ENERGY 1 / RHYTHM 2 / MOTION 2 cho cả hai: chuyển động phục vụ thao tác, không thêm hiệu ứng trang trí. Đây là hướng thiết kế do người dùng chọn; phong cách ảnh cũ không thay niên đại của tư liệu.
 
 ## Colors
 
@@ -92,6 +92,12 @@ Máy tính đặt bộ chọn thời kỳ góc trên trái, kính VR/máy ảnh 
 Trên điện thoại, Quá khứ giữ hai hàng nút; Hiện tại đặt cả hai bộ chọn trên một hàng để dành thêm chỗ cho ảnh. Tám nút hướng nhìn và thu phóng xếp bốn cột, hai hàng phía trên dải ảnh; máy tính dùng hai cột bên phải. Màn hình ngang thấp giữ hai bộ chọn ở hai góc trên.
 
 Mọi nút chính có vùng bấm ít nhất 44 × 44px. Dải ảnh cuộn ngang theo số cảnh. Khung album chừa phần tên cảnh qua `--context-end`, giữ toàn bộ ảnh bằng `object-fit: contain` trước khi người xem phóng to; không cắt ảnh nguồn để vừa khung.
+
+## Ngắm cảnh và chuyển động
+
+Nút con mắt cạnh kính VR và máy ảnh mở Ngắm cảnh. Chế độ này ẩn bảng tên, điều hướng và dấu chuyển điểm; thanh nhỏ dưới màn hình giữ tự xoay, cảm biến điện thoại khi có hỗ trợ, âm thanh và Trở lại. Dùng đúng chất liệu của thời kỳ hiện tại, không thêm logo, huy hiệu hoặc màn giới thiệu. Hạt ảnh Quá khứ vẫn có trong chế độ này.
+
+Khung nhìn cũ được giữ khi tải panorama cùng thời kỳ rồi hòa chuyển 420ms; không hòa Quá khứ và Hiện tại hoặc panorama với tư liệu ảnh. Khung lưu tạm không lớn hơn 1280 × 960 để giới hạn bộ nhớ và thời gian mã hóa. Album và lần mở cảnh đầu dùng hiện ảnh 320ms. Các hiệu ứng này bị hủy khi cần và tắt theo reduced motion. Tự xoay 2,4 độ/giây do người xem bật, luôn có nút dừng; chuyển động dừng khi đổi cảnh, kéo ảnh, mở bảng, ẩn thẻ hoặc thoát Ngắm cảnh.
 
 ## Elevation & Depth
 

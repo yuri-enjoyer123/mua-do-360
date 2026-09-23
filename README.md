@@ -21,6 +21,9 @@ Dự án gồm **8 không gian toàn cảnh 360°** (6 cảnh minh họa quá kh
 
 - Hai diện mạo theo thời kỳ: Quá khứ dùng nền giấy, chữ Newsreader, thanh tên đỏ nâu và nút viền nổi kiểu website cũ; Hiện tại dùng nền trắng, chữ Be Vietnam Pro, điểm chọn xanh trầm và điều khiển bo nhẹ. Bộ chọn cách xem nằm cùng hàng với thời kỳ trên điện thoại ở chế độ Hiện tại.
 - Nút kính VR chọn chế độ nhìn quanh; nút máy ảnh mở album. Hai nút có vùng bấm 44 × 44px, chú thích khi rê chuột và tên dành cho trình đọc màn hình.
+- Nút con mắt mở **Ngắm cảnh** (phím P): ẩn các bảng và dấu chuyển điểm, chỉ giữ thanh ngắm cảnh gọn. Có thể bật tự xoay, âm thanh hoặc nghiêng điện thoại để nhìn quanh. Tự xoay mặc định tắt, dừng khi kéo ảnh, đổi cảnh, thoát chế độ hoặc chuyển sang thẻ khác; không chạy khi thiết bị yêu cầu giảm chuyển động.
+- Điều khiển điện thoại xin quyền khi người xem chủ động bật. Phép xoay dùng phần toán học của Three.js, chỉ tải khi cần; mẫu cảm biến đầu tiên giữ góc nhìn hiện có. Khi bị từ chối quyền, không có cảm biến hoặc đã thoát chế độ, trình xem vẫn kéo được bình thường. Chưa xác minh trên điện thoại thật; kiểm thử trình duyệt mô phỏng cả dữ liệu cảm biến và luồng cấp quyền.
+- Khi đổi panorama trong cùng thời kỳ, giữ khung nhìn cũ trong lúc tải rồi hòa chuyển 420ms sang cảnh mới; không chồng cảnh giữa hai thời kỳ hoặc panorama với ảnh tư liệu. Album và lần mở cảnh đầu hiện nhẹ trong 320ms. Các hiệu ứng này tắt theo thiết lập giảm chuyển động.
 - Nút chữ **Tư liệu** thuần túy (không biểu tượng cuốn sách) mở bảng giải thích nguồn gốc và giới hạn tái hiện một cách trung thực, không dùng huy hiệu hay nhãn từ AI trên giao diện người dùng.
 - Hiển thị hình ảnh phân định rõ hai thời kỳ: ở thời kỳ Quá khứ, toàn cảnh 360°, ảnh trong album và ảnh thu nhỏ được xử lý thang xám đơn sắc, giảm tương phản, nâng vùng tối, độ mờ 1px (ảnh thu nhỏ 0.65px) và hạt nhiễu tĩnh rõ hơn; thời kỳ Hiện tại giữ màu sắc nguyên bản. Byte tệp JPEG gốc và ảnh tham chiếu trong bảng tư liệu (source drawer) giữ nguyên vẹn không đổi, không áp bộ lọc; các thành phần giao diện người dùng không bị can thiệp bộ lọc.
 - 4 nút chỉnh hướng nhìn (lên, xuống, trái, phải), phóng to (+), thu nhỏ (−), đặt lại góc nhìn và toàn màn hình (F).
@@ -36,7 +39,7 @@ Dự án gồm **8 không gian toàn cảnh 360°** (6 cảnh minh họa quá kh
   - <kbd>Esc</kbd>: Đóng bảng tư liệu hoặc thoát trình chiếu.
 - Liên kết trực tiếp `#scene=id` tự động kích hoạt đúng thời kỳ và bộ sưu tập.
 
-Âm thanh tổng hợp mặc định tắt. Tắt tiếng sẽ giảm âm rồi ngừng xử lý âm thanh; chuyển sang thẻ khác cũng tạm dừng, chỉ phát lại khi người xem vẫn bật âm thanh. Ứng dụng chưa có WebXR. Nhóm Hiện tại dùng ảnh chụp năm 2016, 2018 và 2025, không phải hình ảnh trực tiếp.
+Âm thanh tổng hợp mặc định tắt, có hai lớp chất âm phù hợp cảnh ven nước và các cảnh còn lại; lọc âm chuyển dần trong 0,8 giây khi chọn cảnh. Vòng âm stereo dài 12 giây nối mềm ở cuối vòng, không sử dụng bản ghi lịch sử. Nút âm thanh trong Ngắm cảnh và trong Tư liệu đồng bộ với nhau. Tắt tiếng sẽ giảm âm rồi ngừng xử lý âm thanh; chuyển sang thẻ khác cũng tạm dừng, chỉ phát lại khi người xem vẫn bật âm thanh. Ứng dụng chưa có WebXR. Nhóm Hiện tại dùng ảnh chụp năm 2016, 2018 và 2025, không phải hình ảnh trực tiếp.
 
 ## Xử lý hình ảnh và nguồn tư liệu
 

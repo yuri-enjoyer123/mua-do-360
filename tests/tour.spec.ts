@@ -211,6 +211,25 @@ test('source drawer separates historical evidence and interpretive details', asy
   await expect(page.locator('#scene-sources')).toBeFocused();
 });
 
+test('closing the source drawer preserves a newly focused control', async ({ page }) => {
+  await page.goto('./#scene=quang-tri-south-1967');
+  await photoReady(page);
+  await page.locator('#scene-sources').click();
+  await page.evaluate(() => new Promise<void>((resolve) => {
+    const dialog = document.querySelector<HTMLDialogElement>('#information-dialog')!;
+    const vrButton = document.querySelector<HTMLButtonElement>('[data-collection="panorama"]')!;
+    dialog.addEventListener('close', () => resolve(), { once: true });
+    dialog.querySelector<HTMLButtonElement>('.close-dialog')!.click();
+    vrButton.focus();
+  }));
+  const vrButton = page.locator('[data-collection="panorama"]');
+  await expect(vrButton).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(vrButton).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#information-dialog')).not.toBeVisible();
+  await ready(page);
+});
+
 test('presentation and audio controls inside info dialog; presentation closes dialog', async ({ page }) => {
   await page.goto('./#scene=thach-han');
   await ready(page);

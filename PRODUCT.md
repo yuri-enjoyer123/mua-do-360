@@ -16,7 +16,7 @@ Cung cấp trải nghiệm trực quan kết hợp không gian toàn cảnh 360�
 
 ## Operating Context
 
-Xây dựng bằng Vite, TypeScript và Pannellum; triển khai tĩnh hoàn toàn trên GitHub Pages qua GitHub Actions với đường dẫn cơ sở tương đối miễn phí. Người dùng truy cập trực tiếp, không cần tài khoản, máy chủ backend hay dịch vụ API khi xem.
+Xây dựng bằng Vite, TypeScript và Pannellum; phần toán học Three.js chỉ tải khi bật cảm biến điện thoại. Triển khai tĩnh trên ChatGPT Sites và GitHub Pages qua GitHub Actions, dùng đường dẫn cơ sở tương đối. Sites dùng hạn mức đi kèm tài khoản, không yêu cầu API trả phí. Người dùng truy cập trực tiếp, không cần tài khoản, máy chủ backend hay dịch vụ API khi xem.
 
 ## Capabilities and Constraints
 
@@ -24,6 +24,8 @@ Xây dựng bằng Vite, TypeScript và Pannellum; triển khai tĩnh hoàn toà
   - *8 không gian 360°*: 6 cảnh minh họa cuộc chiến đấu bảo vệ Thành cổ năm 1972 và sau giao tranh (`pho-cu` sau giữa tháng 9, không gán cho tháng 6–8) hiển thị đơn sắc, hạt tĩnh và độ mềm nhẹ; 2 cảnh phái sinh dựng từ ảnh di tích năm 2018 hiển thị màu sắc đương đại. Hai cảnh dựng từ không ảnh năm 1967 (`quang-tri-south-1967-360`, `quang-tri-northeast-1967-360`) đã được rút lui do lo ngại về độ chân thực lịch sử và tái tạo lẫn thời kỳ; hiện chỉ còn 2 cảnh phái sinh từ ảnh chụp đang hoạt động. Chỉ 6 cảnh 1972 ban đầu có liên hệ văn học tiểu thuyết *Mưa đỏ*; các cảnh còn lại không có mục văn học.
   - *9 ảnh tư liệu trong album*: 3 ảnh thời kỳ Quá khứ (1967) và 6 ảnh thời kỳ Hiện tại (2016, 2018, 2025). Mỗi thời kỳ có panorama và album ảnh riêng; hiển thị rõ niên đại cụ thể của từng ảnh.
 - **Giao diện và tương tác**:
+  - Nút con mắt mở Ngắm cảnh với tự xoay, âm thanh theo cảnh và cảm biến điện thoại theo lựa chọn của người xem. Tự xoay và âm thanh mặc định tắt; cảm biến chỉ xin quyền sau thao tác bật. Đổi cảnh, rời chế độ, kéo ảnh hoặc ẩn thẻ dừng chuyển động.
+  - Hòa chuyển 420ms chỉ giữa panorama cùng thời kỳ; không chồng Quá khứ với Hiện tại. Ảnh album hiện nhẹ 320ms, giữ nguyên khung hình. Giảm chuyển động tắt các hiệu ứng và tự xoay.
   - Hai diện mạo theo thời kỳ: Quá khứ dùng nền giấy, chữ Newsreader, thanh tên đỏ nâu và nút viền nổi kiểu website cũ; Hiện tại dùng nền trắng, chữ Be Vietnam Pro, điểm chọn xanh trầm và điều khiển bo nhẹ. Bộ chọn cách xem nằm cùng hàng với thời kỳ trên điện thoại ở chế độ Hiện tại.
   - Nút chữ **Tư liệu** thuần túy không dùng biểu tượng cuốn sách. Bảng tư liệu giải thích nguồn gốc và giới hạn tái hiện một cách trung thực, không dùng nhãn hay huy hiệu AI trên giao diện người dùng.
   - Phân định thị giác rõ rệt giữa hai thời kỳ: trong thời kỳ Quá khứ, toàn cảnh 360°, ảnh xem trong album và ảnh thu nhỏ được xử lý thang xám đơn sắc, giảm tương phản, nâng vùng tối, độ mờ 1px (ảnh thu nhỏ 0.65px) và hạt nhiễu tĩnh rõ hơn; thời kỳ Hiện tại giữ màu sắc nguyên bản. Byte tệp JPEG gốc và ảnh tham chiếu trong bảng tư liệu (source drawer) giữ nguyên vẹn, không áp bộ lọc; các thành phần giao diện người dùng không bị áp dụng bộ lọc.

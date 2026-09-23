@@ -14,6 +14,11 @@ interface PanoramaViewer {
   setHfov(hfov: number, duration?: number): PanoramaViewer;
   lookAt(pitch: number, yaw: number, hfov?: number, duration?: number): PanoramaViewer;
   resize(): PanoramaViewer;
+  startAutoRotate(speed?: number, pitch?: number): PanoramaViewer;
+  stopAutoRotate(): PanoramaViewer;
+  getRenderer(): {
+    render(pitch: number, yaw: number, hfov: number, options?: { returnImage?: boolean }): string | void;
+  };
 }
 
 interface Window {

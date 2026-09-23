@@ -554,7 +554,6 @@ body[data-scene-era="past"] .scene-card.active::after {
   color:var(--paper-ink);
 }
 .presentation .tour-ui{opacity:0;visibility:hidden;pointer-events:none;transition:none}
-.presentation .tour-vignette{opacity:0}
 .presentation .experience .photo-viewer{inset:0;border:0;box-shadow:none}
 .photo-viewer{cursor:zoom-in}
 .photo-viewer.is-zoomed{cursor:grab}

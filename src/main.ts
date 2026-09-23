@@ -1,10 +1,13 @@
 import './style.css';
 import './eras.css';
+import './immersion.css';
 import 'pannellum/build/pannellum.css';
 import { reconstructionNotice, scenes as panoramas, sources } from './content';
 import { photoScenes, type TourScene } from './photographs';
 import { createPhotoViewer } from './photo-viewer';
 import { derivedScenes } from './derived-scenes';
+import { createViewMotion } from './view-motion';
+import { createSceneTransition } from './scene-transition';
 
 const scenes: TourScene[] = [...panoramas, ...derivedScenes, ...photoScenes];
 type Era = 'past' | 'present';
@@ -12,8 +15,11 @@ type Collection = 'panorama' | 'archive';
 const eraOf = (scene: TourScene): Era => scene.era ?? 'past';
 const collectionOf = (scene: TourScene): Collection => scene.format === 'photo' ? 'archive' : 'panorama';
 
-type IconName = 'arrow' | 'chevron' | 'close' | 'book' | 'help' | 'expand' | 'volume' | 'muted' | 'eye' | 'drag' | 'plus' | 'minus' | 'external' | 'reset' | 'vr' | 'camera';
+type IconName = 'arrow' | 'chevron' | 'close' | 'book' | 'help' | 'expand' | 'volume' | 'muted' | 'eye' | 'drag' | 'plus' | 'minus' | 'external' | 'reset' | 'vr' | 'camera' | 'play' | 'pause' | 'phone';
 const paths: Record<IconName, string> = {
+  play: '<path d="m8 5 11 7-11 7V5Z"/>',
+  pause: '<path d="M8 5v14M16 5v14"/>',
+  phone: '<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2M3 6l-2 3 2 3m18 0 2 3-2 3"/>',
   arrow: '<path d="M4 12h15M13 5l7 7-7 7"/>',
   chevron: '<path d="m9 5 7 7-7 7"/>',
   close: '<path d="m6 6 12 12M18 6 6 18"/>',
@@ -59,11 +65,12 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <div class="landscape" aria-hidden="true"><img id="scene-preview" src="${asset(current.thumbnail ?? `scenes/${current.id}-thumb.webp`)}" alt="" fetchpriority="high" /></div>
     <div id="panorama" tabindex="0" role="region" aria-label="Cảnh đang xem. Kéo để nhìn quanh hoặc dùng phím mũi tên." aria-describedby="panorama-help"></div>
     <div class="photo-viewer" id="photo-viewer" tabindex="0" role="region" aria-label="Xem ảnh. Phóng to rồi kéo để xem chi tiết; phím mũi tên dịch chuyển ảnh." hidden><img id="document-photo" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" draggable="false" /></div>
+    <div id="scene-transition" aria-hidden="true" hidden></div>
     <div class="tour-vignette" aria-hidden="true"></div>
 
     <div class="tour-ui">
       <div class="era-switch" role="group" aria-label="Chọn thời kỳ"><button data-era="past" aria-pressed="true">Quá khứ</button><button data-era="present" aria-pressed="false">Hiện tại</button></div>
-      <div class="collection-switch" role="group" aria-label="Cách xem"><button data-collection="panorama" aria-pressed="true" aria-label="Nhìn quanh" title="Nhìn quanh">${icon('vr')}</button><button data-collection="archive" aria-pressed="false" aria-label="Album ảnh" title="Album ảnh">${icon('camera')}</button></div>
+      <div class="collection-switch" role="group" aria-label="Cách xem"><button data-collection="panorama" aria-pressed="true" aria-label="Nhìn quanh" title="Nhìn quanh">${icon('vr')}</button><button data-collection="archive" aria-pressed="false" aria-label="Album ảnh" title="Album ảnh">${icon('camera')}</button><button id="immersive-button" aria-pressed="false" aria-label="Ngắm cảnh" title="Ngắm cảnh (P)">${icon('eye')}</button></div>
       <div class="scene-context"><h2 id="scene-title"></h2><p id="scene-date"></p><button id="scene-sources" class="text-button" data-open="sources" aria-label="Mở tư liệu của cảnh">Tư liệu</button></div>
       <div class="view-controls" aria-label="Điều khiển góc nhìn">
         <button class="icon-button" id="look-up" aria-label="Nhìn lên" title="Nhìn lên">${icon('chevron')}</button>
@@ -84,7 +91,13 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <div class="viewer-status" id="viewer-status" role="status" hidden><span class="loading-orbit" aria-hidden="true"></span><span>Đang mở cảnh…</span></div>
     <section class="viewer-error" id="viewer-error" aria-label="Không thể mở ảnh" hidden><h2>Chưa mở được cảnh</h2><p>Ảnh chưa tải được hoặc trình duyệt chưa mở được cảnh này. Bạn có thể thử lại, chọn cảnh khác hoặc đọc tư liệu.</p><div><button class="primary-button" id="retry-button">Thử tải lại ${icon('reset')}</button><button class="text-button" data-open="story">Đọc câu chuyện</button></div></section>
 
-    <button class="presentation-exit" id="presentation-exit" hidden>${icon('eye')}<span>Thoát trình chiếu</span><kbd>P</kbd></button>
+    <div id="presentation-tools" class="presentation-tools" role="group" aria-label="Ngắm cảnh" hidden>
+      <p id="motion-feedback" role="status" hidden></p>
+      <button class="icon-button" id="rotate-button" aria-label="Bật tự xoay" aria-pressed="false" title="Bật tự xoay">${icon('play', 'play-icon')}${icon('pause', 'pause-icon')}</button>
+      <button class="icon-button" id="device-look-button" aria-label="Nghiêng điện thoại để nhìn quanh" aria-pressed="false" aria-busy="false" hidden>${icon('phone')}</button>
+      <button class="icon-button" id="ambient-quick-button" aria-label="Bật âm thanh thiên nhiên mô phỏng" aria-pressed="false" title="Âm thanh: đang tắt">${icon('muted')}</button>
+      <button class="presentation-exit" id="presentation-exit" aria-label="Trở lại các nút điều khiển">${icon('close')}<span>Trở lại</span></button>
+    </div>
     <div class="sr-only" id="announcement" role="status" aria-live="polite" aria-atomic="true"></div>
   </main>
 
@@ -96,10 +109,10 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <div class="dialog-footer">
       <button class="text-button" data-open="help">${icon('help')}Hướng dẫn</button>
       <button class="icon-button" id="ambience-button" aria-label="Bật âm thanh thiên nhiên mô phỏng" aria-pressed="false" title="Âm thanh mô phỏng: đang tắt">${icon('muted')}</button>
-      <button class="icon-button" id="presentation-button" aria-label="Bật chế độ trình chiếu" aria-pressed="false" title="Trình chiếu (P)">${icon('eye')}</button>
+      <button class="icon-button" id="presentation-button" aria-label="Ngắm cảnh" aria-pressed="false" title="Ngắm cảnh (P)">${icon('eye')}</button>
     </div>
   </dialog>
-  <dialog class="help-dialog" id="help-dialog" aria-labelledby="help-title"><div class="dialog-top"><button class="icon-button close-dialog" aria-label="Đóng hướng dẫn">${icon('close')}</button></div><h2 id="help-title">Cách xem</h2><p class="help-intro">Chọn Quá khứ hoặc Hiện tại. Nhấn nút kính VR để nhìn quanh, hoặc nút máy ảnh để mở album. Ngày chụp và nguồn ảnh nằm trong mục Tư liệu.</p><div class="help-grid"><div>${icon('drag')}<h3>Nhìn quanh</h3><p>Kéo ảnh hoặc dùng bốn nút mũi tên để nhìn quanh. Trong album, cuộn chuột hoặc chụm hai ngón tay để phóng to, thu nhỏ. Nhấp đúp để phóng to hoặc trở về ban đầu; kéo hoặc dùng phím mũi tên để dịch ảnh.</p></div><div>${icon('arrow')}<h3>Chọn cảnh</h3><p>Nhấn dấu mũi tên trong cảnh, chọn một ảnh nhỏ phía dưới hoặc dùng hai nút trước / sau.</p></div><div>${icon('book')}<h3>Đọc và đối chiếu</h3><p>Chọn Tư liệu bên tên cảnh để đọc bối cảnh, xem ảnh tham chiếu và đối chiếu nguồn.</p></div></div><div class="keyboard-help"><h3>Bàn phím</h3><p><kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd> Nhìn quanh / dịch ảnh khi chọn vùng xem</p><p><kbd>1</kbd> đến <kbd>9</kbd> Chọn điểm trong dải ảnh đang mở <span>·</span> <kbd>F</kbd> Toàn màn hình <span>·</span> <kbd>P</kbd> Trình chiếu</p><p><kbd>Esc</kbd> Đóng bảng đang mở / thoát trình chiếu</p></div><p class="help-note">Mỗi cảnh là một góc nhìn minh họa riêng, không phải bản đồ đo đạc hay đường đi liên tục. Âm thanh được mô phỏng và chỉ phát khi bạn bật. Bạn có thể xem ngay trên điện thoại hoặc máy tính.</p></dialog>
+  <dialog class="help-dialog" id="help-dialog" aria-labelledby="help-title"><div class="dialog-top"><button class="icon-button close-dialog" aria-label="Đóng hướng dẫn">${icon('close')}</button></div><h2 id="help-title">Cách xem</h2><p class="help-intro">Chọn Quá khứ hoặc Hiện tại. Nhấn nút kính VR để nhìn quanh, hoặc nút máy ảnh để mở album. Nút con mắt mở Ngắm cảnh: thu gọn điều khiển, tự xoay theo ý bạn và nhìn quanh bằng cách nghiêng điện thoại khi có cảm biến. Ngày chụp và nguồn ảnh nằm trong mục Tư liệu.</p><div class="help-grid"><div>${icon('drag')}<h3>Nhìn quanh</h3><p>Kéo ảnh hoặc dùng bốn nút mũi tên để nhìn quanh. Trong album, cuộn chuột hoặc chụm hai ngón tay để phóng to, thu nhỏ. Nhấp đúp để phóng to hoặc trở về ban đầu; kéo hoặc dùng phím mũi tên để dịch ảnh.</p></div><div>${icon('arrow')}<h3>Chọn cảnh</h3><p>Nhấn dấu mũi tên trong cảnh, chọn một ảnh nhỏ phía dưới hoặc dùng hai nút trước / sau.</p></div><div>${icon('book')}<h3>Đọc và đối chiếu</h3><p>Chọn Tư liệu bên tên cảnh để đọc bối cảnh, xem ảnh tham chiếu và đối chiếu nguồn.</p></div></div><div class="keyboard-help"><h3>Bàn phím</h3><p><kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd> Nhìn quanh / dịch ảnh khi chọn vùng xem</p><p><kbd>1</kbd> đến <kbd>9</kbd> Chọn điểm trong dải ảnh đang mở <span>·</span> <kbd>F</kbd> Toàn màn hình <span>·</span> <kbd>P</kbd> Ngắm cảnh</p><p><kbd>Esc</kbd> Đóng bảng đang mở / thoát trình chiếu</p></div><p class="help-note">Mỗi cảnh là một góc nhìn minh họa riêng, không phải bản đồ đo đạc hay đường đi liên tục. Âm thanh được mô phỏng và chỉ phát khi bạn bật. Bạn có thể xem ngay trên điện thoại hoặc máy tính.</p></dialog>
 `;
 
 const get = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
@@ -113,6 +126,8 @@ const helpDialog = get<HTMLDialogElement>('help-dialog');
 const announcement = get('announcement');
 const allDialogs = [infoDialog, helpDialog];
 const focusReturns = new WeakMap<HTMLDialogElement, HTMLElement>();
+const motion = createViewMotion(get<HTMLButtonElement>('rotate-button'), get<HTMLButtonElement>('device-look-button'), get('motion-feedback'), reducedMotion);
+const sceneTransition = createSceneTransition(get('scene-transition'), reducedMotion);
 const experience = document.querySelector<HTMLElement>('.experience')!;
 const sceneContext = document.querySelector<HTMLElement>('.scene-context')!;
 function updatePhotoInset() {
@@ -191,6 +206,7 @@ function renderScene() {
   });
   document.title = `${current.title} · Mưa đỏ`;
   renderStory();
+  updateAmbienceScene();
 }
 
 function renderStory() {
@@ -241,6 +257,7 @@ function setTab(tab: 'story' | 'sources', focus = false) {
 }
 
 function openDialog(dialog: HTMLDialogElement, tab?: 'story' | 'sources') {
+  motion.stop();
   if (tab) setTab(tab);
   if (dialog.open) return;
   focusReturns.set(dialog, document.activeElement as HTMLElement);
@@ -255,7 +272,12 @@ allDialogs.forEach((dialog) => {
     const rect = dialog.getBoundingClientRect();
     if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
   });
-  dialog.addEventListener('close', () => focusReturns.get(dialog)?.focus({ preventScroll: true }));
+  dialog.addEventListener('close', () => {
+    const focused = document.activeElement;
+    if (focused === document.body || dialog.contains(focused)) {
+      focusReturns.get(dialog)?.focus({ preventScroll: true });
+    }
+  });
   dialog.addEventListener('keydown', (event) => {
     if (event.key !== 'Tab') return;
     const focusable = [...dialog.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], summary, [tabindex="0"]')].filter((element) => element.getClientRects().length > 0);
@@ -306,6 +328,8 @@ function failScene(token: number) {
   if (token !== generation) return;
   generation++;
   clearTimeout(loadingTimer);
+  motion.setViewer(undefined, current.format !== 'photo');
+  sceneTransition.clear();
   setLoading(false);
   viewer?.destroy();
   viewer = undefined;
@@ -324,6 +348,7 @@ function failScene(token: number) {
 async function loadScene() {
   const token = ++generation;
   clearTimeout(loadingTimer);
+  motion.setViewer(undefined, current.format !== 'photo');
   viewer?.destroy();
   viewer = undefined;
   const isPhoto = current.format === 'photo';
@@ -349,6 +374,7 @@ async function loadScene() {
       photoController.reset();
       clearTimeout(loadingTimer);
       setLoading(false);
+      sceneTransition.reveal(photoImage);
       announce(`Đã mở ${current.title}, ${current.photograph?.date}. Có thể phóng to và kéo xem ảnh.`);
       return;
     }
@@ -389,6 +415,8 @@ async function loadScene() {
       requestAnimationFrame(() => requestAnimationFrame(() => {
         if (token !== generation) return;
         setLoading(false);
+        motion.setViewer(viewer, true);
+        sceneTransition.reveal(panorama);
         announce(`Đã mở ${current.title}. Kéo để nhìn quanh hoặc chọn cảnh khác.`);
       }));
     };
@@ -402,6 +430,7 @@ async function loadScene() {
 function selectScene(id: string, fromHistory = false) {
   const next = scenes.find((scene) => scene.id === id);
   if (!next || (current.id === next.id && get('viewer-error').hidden)) return;
+  sceneTransition.capture(viewer, current.format !== 'photo' && next.format !== 'photo' && eraOf(current) === eraOf(next));
   current = next;
   renderScene();
   if (!fromHistory) writeHash();
@@ -425,6 +454,7 @@ function chooseCollection(collection: Collection) {
 }
 
 function turn(yaw: number, pitch: number) {
+  motion.stop();
   if (current.format === 'photo') photoController.move(-yaw * 8, pitch * 8);
   else {
     if (yaw) viewer?.setYaw(viewer.getYaw() + yaw, duration());
@@ -433,20 +463,25 @@ function turn(yaw: number, pitch: number) {
 }
 
 function zoom(direction: number) {
+  motion.stop();
   if (current.format === 'photo') photoController.zoom(direction > 0 ? 1.3 : 1 / 1.3);
   else viewer?.setHfov(viewer.getHfov() - direction * 10, duration());
 }
 
 function resetView() {
+  motion.stop();
   if (current.format === 'photo') photoController.reset();
   else viewer?.lookAt(current.initialPitch, current.initialYaw, window.innerWidth < 600 ? 80 : 100, duration());
 }
 
 function setPresentation(active: boolean) {
   presentation = active;
+  if (!active) motion.stop();
   document.body.classList.toggle('presentation', active);
+  get('presentation-tools').hidden = !active;
+  get('immersive-button').setAttribute('aria-pressed', String(active));
   get('presentation-button').setAttribute('aria-pressed', String(active));
-  get('presentation-button').setAttribute('aria-label', active ? 'Tắt chế độ trình chiếu' : 'Bật chế độ trình chiếu');
+  get('presentation-button').setAttribute('aria-label', active ? 'Trở lại các nút điều khiển' : 'Ngắm cảnh');
   get('presentation-exit').hidden = !active;
   if (active) get('presentation-exit').focus();
   else (current.format === 'photo' ? photoView : panorama).focus({ preventScroll: true });
@@ -457,22 +492,38 @@ async function toggleFullscreen() {
   try {
     if (document.fullscreenElement) await document.exitFullscreen();
     else if (document.documentElement.requestFullscreen) await document.documentElement.requestFullscreen();
-    else announce('Trình duyệt này chưa hỗ trợ toàn màn hình. Bạn vẫn có thể dùng chế độ trình chiếu.');
-  } catch { announce('Chưa thể mở toàn màn hình trên trình duyệt này. Bạn vẫn có thể dùng chế độ trình chiếu.'); }
+    else announce('Trình duyệt này chưa hỗ trợ toàn màn hình. Bạn vẫn có thể dùng chế độ Ngắm cảnh.');
+  } catch { announce('Chưa thể mở toàn màn hình trên trình duyệt này. Bạn vẫn có thể dùng chế độ Ngắm cảnh.'); }
 }
 
 let audioContext: AudioContext | undefined;
 let ambienceGain: GainNode | undefined;
+let ambienceFilter: BiquadFilterNode | undefined;
+let ambiencePulse: OscillatorNode | undefined;
+let ambienceDepth: GainNode | undefined;
 let ambienceOn = false;
 let ambienceSuspendTimer: ReturnType<typeof setTimeout> | undefined;
 let audioOpQueue: Promise<void> = Promise.resolve();
 
+function updateAmbienceScene() {
+  if (!audioContext || !ambienceFilter || !ambiencePulse || !ambienceDepth) return;
+  const water = current.id.startsWith('thach-han') || current.id.startsWith('citadel-wall')
+    || ['hao-thanh', 'quang-tri-northeast-1967', 'hien-luong-bridge-2016'].includes(current.id);
+  const now = audioContext.currentTime;
+  ambienceFilter.frequency.cancelScheduledValues(now);
+  ambienceFilter.frequency.setTargetAtTime(water ? 1100 : 450, now, 0.8);
+  ambiencePulse.frequency.setTargetAtTime(water ? 0.18 : 0.07, now, 0.8);
+  ambienceDepth.gain.setTargetAtTime(water ? 90 : 160, now, 0.8);
+}
+
 function syncAmbienceUI(on: boolean) {
-  const button = get('ambience-button');
-  button.innerHTML = icon(on ? 'volume' : 'muted');
-  button.setAttribute('aria-pressed', String(on));
-  button.setAttribute('aria-label', `${on ? 'Tắt' : 'Bật'} âm thanh thiên nhiên mô phỏng`);
-  button.title = `Âm thanh mô phỏng: ${on ? 'đang bật' : 'đang tắt'}`;
+  for (const id of ['ambience-button', 'ambient-quick-button']) {
+    const button = get(id);
+    button.innerHTML = icon(on ? 'volume' : 'muted');
+    button.setAttribute('aria-pressed', String(on));
+    button.setAttribute('aria-label', `${on ? 'Tắt' : 'Bật'} âm thanh thiên nhiên mô phỏng`);
+    button.title = `Âm thanh: ${on ? 'đang bật' : 'đang tắt'}`;
+  }
 }
 
 function audioUnavailable() {
@@ -505,17 +556,35 @@ function toggleAmbience() {
       if (!Context) throw new Error('Audio unavailable');
       audioContext = new Context();
       // A soft filtered noise bed: a synthetic soundscape, never archival audio.
-      const buffer = audioContext.createBuffer(1, audioContext.sampleRate * 4, audioContext.sampleRate);
-      const values = buffer.getChannelData(0);
-      let previous = 0;
-      for (let index = 0; index < values.length; index++) { previous = (previous + (Math.random() * 2 - 1) * 0.02) / 1.02; values[index] = previous * 3.5; }
+      const buffer = audioContext.createBuffer(2, audioContext.sampleRate * 12, audioContext.sampleRate);
+      const seam = Math.round(audioContext.sampleRate * 0.2);
+      for (let channel = 0; channel < 2; channel++) {
+        const values = buffer.getChannelData(channel);
+        let previous = 0;
+        for (let index = 0; index < values.length; index++) {
+          previous = (previous + (Math.random() * 2 - 1) * 0.02) / 1.02;
+          values[index] = previous * 3.5;
+        }
+        for (let index = 0; index < seam; index++) {
+          const mix = (index + 1) / seam;
+          const tail = values.length - seam + index;
+          values[tail] = values[tail] * (1 - mix) + values[index] * mix;
+        }
+      }
       const sound = audioContext.createBufferSource();
-      sound.buffer = buffer; sound.loop = true;
-      const filter = audioContext.createBiquadFilter();
-      filter.type = 'lowpass'; filter.frequency.value = 650;
+      sound.buffer = buffer; sound.loop = true; sound.loopStart = 0.2;
+      ambienceFilter = audioContext.createBiquadFilter();
+      ambienceFilter.type = 'lowpass'; ambienceFilter.frequency.value = 450;
+      ambiencePulse = audioContext.createOscillator();
+      ambienceDepth = audioContext.createGain();
+      ambiencePulse.frequency.value = 0.07;
+      ambienceDepth.gain.value = 160;
+      ambiencePulse.connect(ambienceDepth).connect(ambienceFilter.frequency);
+      updateAmbienceScene();
       ambienceGain = audioContext.createGain();
       ambienceGain.gain.value = 0;
-      sound.connect(filter).connect(ambienceGain).connect(audioContext.destination);
+      sound.connect(ambienceFilter).connect(ambienceGain).connect(audioContext.destination);
+      ambiencePulse.start();
       sound.start();
     }
     syncAmbienceUI(ambienceOn);
@@ -541,8 +610,12 @@ get('look-right').addEventListener('click', () => turn(20, 0));
 get('reset-view').addEventListener('click', resetView);
 get('fullscreen-button').addEventListener('click', () => void toggleFullscreen());
 get('presentation-button').addEventListener('click', () => { infoDialog.close(); setPresentation(!presentation); });
+get('immersive-button').addEventListener('click', () => setPresentation(!presentation));
 get('presentation-exit').addEventListener('click', () => setPresentation(false));
 get('ambience-button').addEventListener('click', () => void toggleAmbience());
+get('ambient-quick-button').addEventListener('click', () => void toggleAmbience());
+panorama.addEventListener('pointerdown', () => motion.stop(), { passive: true });
+panorama.addEventListener('wheel', () => motion.stop(), { passive: true });
 document.querySelector('.scene-strip')!.addEventListener('click', event => {
   const button = (event.target as HTMLElement).closest<HTMLElement>('[data-scene]');
   if (button?.dataset.scene) selectScene(button.dataset.scene);
@@ -563,6 +636,7 @@ document.addEventListener('fullscreenchange', () => {
   viewer?.resize();
 });
 document.addEventListener('visibilitychange', () => {
+  if (document.hidden) motion.stop();
   if (!audioContext) return;
   clearTimeout(ambienceSuspendTimer);
   syncAudioState();
