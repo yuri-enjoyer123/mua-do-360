@@ -240,7 +240,6 @@ function renderStory() {
       <div class="inline-sources">${references.filter((source) => source.kind === 'historical').map((source) => `<a href="${escape(source.url)}" target="_blank" rel="noopener noreferrer">${escape(source.publisher)} ${icon('external')}<span class="sr-only"> (mở thẻ mới)</span></a>`).join('')}</div>
     </div>
     <div class="interpretation-block"><h3>Chi tiết minh họa</h3><ul>${current.interpretation.map((item) => `<li>${escape(item)}</li>`).join('')}</ul></div>
-    <div class="literary-block"><h3>Liên hệ với tiểu thuyết</h3><p>${escape(current.literaryNote)}</p></div>
     <button class="text-button" id="story-to-sources">Xem nguồn và giới hạn ảnh</button>`;
   get('story-to-sources').addEventListener('click', () => setTab('sources', true));
   get('sources-panel').innerHTML = `

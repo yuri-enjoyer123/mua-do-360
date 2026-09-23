@@ -21,7 +21,6 @@ export const derivedScenes: TourScene[] = specifications.map(specification => {
     verified: [],
     interpretation: [],
     sourceIds: [],
-    literaryNote: '',
     panorama: `scenes/${id}.webp`,
     thumbnail: `scenes/${id}-thumb.webp`,
     initialYaw: 0,

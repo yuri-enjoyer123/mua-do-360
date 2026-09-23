@@ -772,7 +772,7 @@ dialog h2{
   color:var(--paper-ink);
   line-height:1.65;
 }
-.evidence-block,.interpretation-block,.literary-block{
+.evidence-block,.interpretation-block{
   border-top:1px solid var(--muted);
   padding:20px 0 0;
   margin-top:24px;
@@ -817,7 +817,6 @@ dialog h2{
 }
 .inline-sources>a:hover{color:var(--paper-ink)}
 .inline-sources .icon{height:14px;width:14px}
-.literary-block>p{font-size:19px;line-height:1.65;color:var(--paper-ink)}
 #story-to-sources{
   font-family:var(--ui-font);
   font-size:15px;
@@ -1061,7 +1060,7 @@ kbd{
 
   .information-dialog{width:100%;padding:18px 20px 0}
   .information-dialog h2{font-size:26px}
-  .dialog-scroll section>p,.dialog-scroll .story-lead,.literary-block>p,.source-notice p,.source-list p,.help-intro,.help-grid p{font-size:18px}
+  .dialog-scroll section>p,.dialog-scroll .story-lead,.source-notice p,.source-list p,.help-intro,.help-grid p{font-size:18px}
   .source-list p.source-publisher{font-size:14px}
   .photo-caption{left:10px;bottom:210px;max-width:calc(100% - 20px);font-size:13px}
   .viewer-error{top:40%;width:calc(100% - 24px);padding:20px}

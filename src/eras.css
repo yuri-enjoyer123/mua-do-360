@@ -187,7 +187,7 @@ body[data-scene-era="present"] .help-dialog{
   border:0;
   border-radius:16px;
 }
-body[data-scene-era="present"] :is(.dialog-top,.dialog-tabs,.dialog-footer,.help-grid,.archive-map,.photo-source summary,.evidence-block,.interpretation-block,.literary-block,.source-list>li){
+body[data-scene-era="present"] :is(.dialog-top,.dialog-tabs,.dialog-footer,.help-grid,.archive-map,.photo-source summary,.evidence-block,.interpretation-block,.source-list>li){
   border-color:var(--line);
 }
 body[data-scene-era="present"] :is(dialog h2,.story-title){
@@ -195,7 +195,7 @@ body[data-scene-era="present"] :is(dialog h2,.story-title){
   line-height:1.4;
   letter-spacing:-.02em;
 }
-body[data-scene-era="present"] :is(.dialog-scroll section>p,.dialog-scroll .story-lead,.literary-block>p,.source-notice p,.source-list p,.help-intro,.help-grid p,.dialog-scroll ul){
+body[data-scene-era="present"] :is(.dialog-scroll section>p,.dialog-scroll .story-lead,.source-notice p,.source-list p,.help-intro,.help-grid p,.dialog-scroll ul){
   font-size:17px;
   line-height:1.75;
 }

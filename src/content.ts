@@ -16,7 +16,6 @@ export interface Scene {
   verified: string[];
   interpretation: string[];
   sourceIds: string[];
-  literaryNote: string;
   panorama: string;
   initialYaw: number;
   initialPitch: number;
@@ -81,7 +80,7 @@ export const sources: Source[] = [
     publisher: 'Báo Quân đội nhân dân',
     url: 'https://www.qdnd.vn/van-hoa/doi-song/nha-van-chu-lai-mua-do-vam-vo-cuong-trang-hon-qua-dien-anh-845152',
     kind: 'literary',
-    note: 'Phỏng vấn tác giả xác nhận việc xây dựng nhân vật hư cấu từ chất liệu đời thực; chỉ dùng để làm rõ ranh giới giữa tiểu thuyết và sử liệu.',
+    note: 'Chu Lai nói về chất liệu đời thực và các nhân vật hư cấu trong Mưa đỏ.',
   },
 ];
 
@@ -103,7 +102,6 @@ export const scenes: Scene[] = [
       'Ánh sáng, thời tiết, màu nước và chất liệu bề mặt được tạo để thể hiện không gian; không mô tả một ngày cụ thể trong năm 1972.',
     ],
     sourceIds: ['ttxvn', 'thach-han', 'chu-lai'],
-    literaryNote: 'Liên hệ với Mưa đỏ ở trải nghiệm và số phận người lính, không gán một sự việc trong truyện cho địa điểm chính xác trên bờ sông.',
     panorama: 'scenes/thach-han.webp',
     initialYaw: 0,
     initialPitch: 0,
@@ -128,7 +126,6 @@ export const scenes: Scene[] = [
       'Màu gạch, bùn đất, cây cỏ và ánh sáng là phần diễn họa; ảnh không phải bản vẽ kiến trúc theo tỷ lệ.',
     ],
     sourceIds: ['du-lich', 'ttxvn', 'chu-lai'],
-    literaryNote: 'Không gian này giúp đặt việc đọc Mưa đỏ vào bối cảnh chiến tranh, không xác nhận đường di chuyển của các nhân vật.',
     panorama: 'scenes/hao-thanh.webp',
     initialYaw: 0,
     initialPitch: 0,
@@ -154,7 +151,6 @@ export const scenes: Scene[] = [
       'Góc quan sát, ánh sáng và dấu bào mòn bề mặt được diễn họa; không có căn cứ xác định một trận đánh tại đúng góc đứng này.',
     ],
     sourceIds: ['di-san', 'ttxvn', 'chu-lai'],
-    literaryNote: 'Các nhân vật trong Mưa đỏ thuộc thế giới tiểu thuyết; không xem Cổng Hậu trong cảnh này là tọa độ của một tình tiết cụ thể.',
     panorama: 'scenes/cong-hau.webp',
     initialYaw: 0,
     initialPitch: 0,
@@ -175,7 +171,6 @@ export const scenes: Scene[] = [
       'Cảnh không xác định công sự, đơn vị chiến đấu hoặc vị trí của hố bom được bảo tồn hiện nay.',
     ],
     sourceIds: ['di-san', 'du-lich', 'chu-lai'],
-    literaryNote: 'Có thể đọc Mưa đỏ từ khoảng cách gần này: người lính sống giữa đất, gạch và những giới hạn rất cụ thể của nơi trú ẩn. Đây là cách tiếp cận tác phẩm, không phải vị trí đã xác minh của nhân vật.',
     panorama: 'scenes/luy-bac.webp',
     initialYaw: -20,
     initialPitch: -3,
@@ -190,18 +185,17 @@ export const scenes: Scene[] = [
     eyebrow: 'Góc nhìn minh họa · Năm 1972',
     summary: 'Những mảng tường gạch, lớp vữa còn bám và gỗ sập gợi lại không gian từng có doanh trại, nhà lao và các công trình trong thành.',
     description: [
-      'Đây là góc nhìn minh họa bên trong Thành cổ, không phải một căn hầm, sở chỉ huy hay trận địa được xác định trong hồ sơ. Cảnh chỉ gợi cảm giác về một không gian bị chiến tranh tàn phá.',
+      'Góc nhìn minh họa bên trong Thành cổ. Tư liệu chưa xác định đây là một căn hầm, sở chỉ huy hay trận địa cụ thể.',
     ],
     verified: [
       'Hồ sơ di tích ghi nhận Thành cổ bị phá hủy gần hết trong cuộc chiến năm 1972.',
       'Đài tưởng niệm xây năm 1997 và nhà trưng bày xây năm 2002.',
     ],
     interpretation: [
-      'Góc khuất, cách sắp xếp đổ nát và địa hình ngay trước mắt là bố cục minh họa; không được gọi là nơi trú ẩn của một đơn vị hay nhân vật cụ thể.',
+      'Góc khuất, cách sắp xếp đổ nát và địa hình trước mắt là bố cục minh họa.',
       'Chất liệu bề mặt và ánh sáng được diễn họa; không tái hiện chính xác mức tàn phá, thời tiết hoặc tầm nhìn của một ngày trong năm 1972.',
     ],
     sourceIds: ['di-san', 'usmc-archive', 'ttxvn', 'chu-lai'],
-    literaryNote: 'Mưa đỏ gợi suy ngẫm về hy sinh và khát vọng sống.',
     panorama: 'scenes/noi-thanh.webp',
     initialYaw: 0,
     initialPitch: 0,
@@ -217,15 +211,14 @@ export const scenes: Scene[] = [
     summary: 'Từ không gian tòa thành, nhìn ra những gì còn lại của một thị xã sau chiến tranh.',
     description: [
       'Ảnh đường Quang Trung trong tư liệu được đối chiếu cho thấy một con đường rộng giữa những đống đổ nát thấp, xen vài cột và khung còn đứng. Chú thích đặt ảnh sau khi quân Việt Nam Cộng hòa tái chiếm thị xã, không ghi ngày chụp cụ thể.',
-      'Panorama này lấy đó làm căn cứ về mức độ phá hủy và vật liệu. Không gọi đây là đường Quang Trung, vì chưa có đủ tư liệu để dựng đúng toàn bộ con phố và góc nhìn ấy.',
+      'Cảnh tham khảo mức độ đổ nát và vật liệu trong ảnh. Chưa có đủ tư liệu để phục dựng chính xác đường Quang Trung từ góc nhìn này.',
     ],
     verified: ['Ảnh ở trang 128 của The War That Would Not End, 1971–1973 ghi lại đường Quang Trung sau giao tranh; dòng ghi nguồn ảnh là Government of Vietnam Photo.'],
     interpretation: [
       'Các chân tường, gỗ sập, cột, chiều rộng đường và vị trí nhà trong panorama đều là sắp đặt minh họa.',
-      'Cảnh gợi hậu quả chiến tranh, không gắn với một ngày cụ thể.',
+      'Thời điểm của cảnh không được xác định cụ thể.',
     ],
     sourceIds: ['usmc-archive', 'ttxvn', 'chu-lai'],
-    literaryNote: 'Nhìn ra phố cũng là nhìn về đời sống đã bị chiến tranh làm gián đoạn. Từ đó, trở lại Mưa đỏ và câu hỏi về những gì con người mong giữ lấy qua cuộc chiến.',
     panorama: 'scenes/pho-cu.webp',
     initialYaw: 0,
     initialPitch: -2,

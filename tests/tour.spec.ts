@@ -205,7 +205,6 @@ test('source drawer separates historical evidence and interpretive details', asy
   await expect(page.locator('#story-panel')).toBeVisible();
   await expect(dialog).toContainText('vòm cuốn');
   await expect(dialog).toContainText('diễn họa');
-  await expect(dialog).toContainText('tiểu thuyết');
   await page.keyboard.press('Escape');
   await expect(dialog).not.toBeVisible();
   await expect(page.locator('#scene-sources')).toBeFocused();
@@ -343,6 +342,8 @@ test('responsive layout, image assets, and initial transfer budget', async ({ pa
         const photo = page.locator('.photo-source figure img');
         if (await photo.count()) await expect.poll(async () => photo.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
         await page.screenshot({ path: `test-results/sources-${era}-${width}.png`, scale: 'css', animations: 'disabled' });
+        await page.locator('#story-tab').click();
+        await page.screenshot({ path: `test-results/story-${era}-${width}.png`, scale: 'css', animations: 'disabled' });
         await page.keyboard.press('Escape');
       }
     }

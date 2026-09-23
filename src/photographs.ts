@@ -38,7 +38,6 @@ export const photoScenes: TourScene[] = photographs.map(photo => ({
   verified: [],
   interpretation: [],
   sourceIds: [],
-  literaryNote: '',
   panorama: photo.file,
   thumbnail: photo.file.replace('.jpg', '-thumb.webp'),
   initialYaw: 0,
