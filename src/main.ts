@@ -107,7 +107,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <div class="dialog-tabs" role="tablist" aria-label="Nội dung tư liệu"><button role="tab" id="story-tab" aria-controls="story-panel" aria-selected="true" tabindex="0">Câu chuyện</button><button role="tab" id="sources-tab" aria-controls="sources-panel" aria-selected="false" tabindex="-1">Nguồn & phục dựng</button></div>
     <div class="dialog-scroll"><section id="story-panel" role="tabpanel" aria-labelledby="story-tab" tabindex="0"></section><section id="sources-panel" role="tabpanel" aria-labelledby="sources-tab" tabindex="0" hidden></section></div>
     <div class="dialog-footer">
-      <button class="text-button" data-open="help">${icon('help')}Hướng dẫn</button>
+      <div class="dialog-footer-meta"><button class="text-button" data-open="help">${icon('help')}Hướng dẫn</button><small class="author-credit">Trần Ngọc Hải Nam</small></div>
       <button class="icon-button" id="ambience-button" aria-label="Bật âm thanh thiên nhiên mô phỏng" aria-pressed="false" title="Âm thanh mô phỏng: đang tắt">${icon('muted')}</button>
       <button class="icon-button" id="presentation-button" aria-label="Ngắm cảnh" aria-pressed="false" title="Ngắm cảnh (P)">${icon('eye')}</button>
     </div>
