@@ -2,7 +2,7 @@
 
 Tour tương tác trên trình duyệt khám phá không gian Thành cổ và vùng phụ cận Quảng Trị qua hai thời kỳ: **Quá khứ** và **Hiện tại**, hỗ trợ máy tính và điện thoại.
 
-[Mở hành trình trên GitHub Pages](https://yuri-enjoyer123.github.io/mua-do-360/).
+[ChatGPT Sites](https://mua-do-ky-uc.ilovecyrene.chatgpt.site) · [GitHub Pages](https://yuri-enjoyer123.github.io/mua-do-360/).
 
 Đây là các không gian minh họa và ảnh tư liệu đối chiếu, không phải bản đồ đo đạc khảo sát thực địa hay bằng chứng lịch sử mới. Mỗi thời kỳ có panorama và album ảnh riêng, hiển thị niên đại rõ ràng.
 
@@ -49,7 +49,9 @@ Dự án gồm **8 không gian toàn cảnh 360°** (6 cảnh minh họa quá kh
 
 ## Triển khai và chạy thử
 
-Trang web tĩnh lưu trữ hoàn toàn trên GitHub Pages qua GitHub Actions với đường dẫn cơ sở tương đối miễn phí; người xem không cần tài khoản, máy chủ backend hay khóa API.
+Trang web tĩnh có đường dẫn cơ sở tương đối, chạy được ở gốc tên miền hoặc thư mục con; người xem không cần máy chủ backend hay khóa API. GitHub Pages được cập nhật qua GitHub Actions.
+
+ChatGPT Sites dùng cấu hình `.openai/hosting.json`: `static.directory` trỏ tới `dist`. Khi xuất bản, đẩy đúng commit lên kho nguồn do Sites cấp, chạy `npm run build`, rồi đóng gói `.openai/hosting.json` và `dist` trong một tệp tar. Lưu phiên bản với commit đó và triển khai phiên bản đã lưu. Giữ nguyên `project_id` để các lần cập nhật dùng cùng một Site. Không lưu thông tin xác thực Git vào mã nguồn hoặc cấu hình này.
 
 ```sh
 npm ci
