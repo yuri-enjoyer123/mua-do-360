@@ -32,7 +32,7 @@ test('interface refresh: Split-view resizes with keyboard and pointer without re
   let requests = 0;
   await page.route('https://www.canva.com/**', route => {
     requests++;
-    return route.fulfill({ contentType: 'text/html', body: '<body style="margin:0;background:#141613;color:#eee;height:100vh;display:grid;place-items:center;font:18px Georgia"><p>Canva · test fixture</p><input aria-label="Slide note" /></body>' });
+    return route.fulfill({ contentType: 'text/html; charset=utf-8', body: '<body style="margin:0;background:#141613;color:#eee;height:100vh;display:grid;place-items:center;font:18px Georgia"><p>Canva · test fixture</p><input aria-label="Slide note" /></body>' });
   });
   await page.goto('./#scene=citadel-gate-2018&view=slides&layout=split');
   const split = page.getByRole('button', { name: 'Split-view', exact: true });
@@ -41,9 +41,9 @@ test('interface refresh: Split-view resizes with keyboard and pointer without re
   await frame.getByRole('textbox').fill('Retain this slide');
   const divider = page.getByRole('separator', { name: 'Chia diện tích bài chiếu và cảnh' });
   const stage = page.locator('.slides-stage');
-  for (const viewport of [{ width: 1440, height: 960 }, { width: 390, height: 780 }]) {
+  for (const viewport of [{ width: 1440, height: 960 }, { width: 640, height: 390 }, { width: 390, height: 780 }]) {
     await page.setViewportSize(viewport);
-    const stacked = viewport.width < 900;
+    const stacked = viewport.width < 600 || viewport.width < 900 && viewport.height > 500;
     await expect(divider).toHaveAttribute('aria-orientation', stacked ? 'horizontal' : 'vertical');
     await divider.focus();
     await page.keyboard.press('Enter');
@@ -62,6 +62,17 @@ test('interface refresh: Split-view resizes with keyboard and pointer without re
     await page.mouse.move(x - (stacked ? 0 : 80), y - (stacked ? 60 : 0), { steps: 4 });
     await page.mouse.up();
     expect(Number(await divider.getAttribute('aria-valuenow'))).toBeLessThan(oldRatio);
+    await divider.focus();
+    await page.keyboard.press('End');
+    expect(Number(await divider.getAttribute('aria-valuenow'))).toBe(Number(await divider.getAttribute('aria-valuemax')));
+    for (const id of ['slides-scene-select', 'slides-return', 'slides-sources', 'zoom-in', 'reset-view']) {
+      const bounds = (await page.locator(`#${id}`).boundingBox())!;
+      expect(bounds.x).toBeGreaterThanOrEqual(0);
+      expect(bounds.y).toBeGreaterThanOrEqual(0);
+      expect(bounds.x + bounds.width).toBeLessThanOrEqual(viewport.width + 1);
+      expect(bounds.y + bounds.height).toBeLessThanOrEqual(viewport.height + 1);
+    }
+    await page.keyboard.press('Enter');
     await expect(frame.getByRole('textbox')).toHaveValue('Retain this slide');
     if (process.env.MUA_DO_CAPTURE_LAYOUTS === '1') await page.screenshot({ path: testInfo.outputPath(`split-photo-${viewport.width}.png`), scale: 'css' });
   }

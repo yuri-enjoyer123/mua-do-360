@@ -23,7 +23,7 @@ typography:
     lineHeight: 1.65
   past-scene-title:
     fontFamily: "Newsreader, Georgia, Times New Roman, serif"
-    fontSize: "20px"
+    fontSize: "27px"
     lineHeight: 1.3
   present-body:
     fontFamily: "Be Vietnam Pro, Arial, sans-serif"
@@ -79,17 +79,17 @@ Hiện tại: bề mặt `#fafcfb`, vùng lồng `#eaf1ed`, chữ `#172c22`, ch�
 
 ## Typography
 
-Newsreader là phông Quá khứ: nội dung đọc 19px/1.65 trên máy tính, 18px/1.65 trên điện thoại. Tiêu đề cảnh 20px, còn 18px ở màn hình hẹp hoặc ngang thấp.
+Newsreader là phông Quá khứ: nội dung đọc 19px/1.65 trên máy tính, 18px/1.65 trên điện thoại. Tiêu đề cảnh 27px, 22px trên điện thoại, 20px ở màn hình dưới 360px và 19px khi ngang thấp.
 
 Be Vietnam Pro là phông Hiện tại, được lưu cùng trang: nội dung đọc 17px/1.75, tiêu đề bảng 26px (23px trên điện thoại), tên cảnh 18px (16px trên điện thoại). Dùng biến `--ui-font` cho phông theo thời kỳ; không tải thêm phông hoặc dùng chữ kiểu pixel làm khó đọc tiếng Việt.
 
 ## Layout
 
-Quy tắc chung ở `src/style.css`; phần theo thời kỳ ở `src/eras.css`, được chọn bằng `body[data-scene-era]`. Cảnh, chế độ xem và liên kết sâu quyết định thời kỳ, vì vậy đổi cảnh cũng đổi cả diện mạo đúng lúc.
+Quy tắc chung ở `src/style.css`; bố cục tour ở `src/tour.css`, tương tác dải ảnh ở `src/tour-ui.ts`, phần theo thời kỳ ở `src/eras.css`, được chọn bằng `body[data-scene-era]`. Cảnh, chế độ xem và liên kết sâu quyết định thời kỳ, vì vậy đổi cảnh cũng đổi cả diện mạo đúng lúc.
 
 Máy tính đặt bộ chọn thời kỳ góc trên trái, kính VR/máy ảnh góc trên phải, tên cảnh bên dưới bên trái. Tên cảnh lớn hơn, niên đại ở dưới và Tư liệu ở cạnh bên; cùng một cấu trúc cho hai thời kỳ. Hiện tại dùng bảng tên gọn, không có thanh màu riêng.
 
-Trên điện thoại, cả hai thời kỳ đặt bộ chọn thời kỳ và bộ chọn cách xem trên cùng một hàng để dành thêm chỗ cho ảnh. Quá khứ giữ chữ có chân và viền nổi, giảm đệm ngang của nút để vừa màn hình 320px; thanh tên cảnh nằm ngay dưới hai bộ chọn. Điện thoại rộng từ 390px xếp tám nút góc nhìn thành một hàng; nhỏ hơn dùng bốn cột. Máy tính giữ cụm hai cột bên phải. Album ẩn nút hướng nhìn. Màn hình ngang thấp giữ hai bộ chọn ở hai góc trên.
+Trên điện thoại, cả hai thời kỳ đặt bộ chọn thời kỳ và bộ chọn cách xem trên cùng một hàng để dành thêm chỗ cho ảnh. Quá khứ giữ chữ có chân và viền mảnh, giảm đệm ngang của nút để vừa màn hình 320px; thanh tên cảnh nằm ngay dưới hai bộ chọn. Điện thoại rộng từ 390px xếp tám nút góc nhìn thành một hàng; nhỏ hơn dùng bốn cột. Máy tính giữ cụm hai cột bên phải. Album ẩn nút hướng nhìn. Màn hình ngang thấp giữ hai bộ chọn ở hai góc trên.
 
 Mọi nút chính có vùng bấm ít nhất 44 × 44px. Dải ảnh cuộn ngang theo số cảnh. Khung album chừa phần tên cảnh qua `--context-end`, giữ toàn bộ ảnh bằng `object-fit: contain` trước khi người xem phóng to; không cắt ảnh nguồn để vừa khung.
 
@@ -97,7 +97,7 @@ Mọi nút chính có vùng bấm ít nhất 44 × 44px. Dải ảnh cuộn ngan
 
 Nút con mắt cạnh kính VR và máy ảnh mở Ngắm cảnh. Chế độ này ẩn bảng tên, điều hướng và dấu chuyển điểm; thanh nhỏ dưới màn hình giữ tự xoay, cảm biến điện thoại khi có hỗ trợ, âm thanh và Trở lại. Dùng đúng chất liệu của thời kỳ hiện tại, không thêm logo, huy hiệu hoặc màn giới thiệu. Hạt ảnh Quá khứ vẫn có trong chế độ này.
 
-Khung nhìn cũ được giữ khi tải panorama cùng thời kỳ rồi hòa chuyển 420ms; không hòa Quá khứ và Hiện tại hoặc panorama với tư liệu ảnh. Khung lưu tạm không lớn hơn 1280 × 960 để giới hạn bộ nhớ và thời gian mã hóa. Album và lần mở cảnh đầu dùng hiện ảnh 320ms. Các hiệu ứng này bị hủy khi cần và tắt theo reduced motion. Tự xoay 2,4 độ/giây do người xem bật, luôn có nút dừng; chuyển động dừng khi đổi cảnh, kéo ảnh, mở bảng, ẩn thẻ hoặc thoát Ngắm cảnh.
+Khung nhìn cũ được giữ khi tải panorama cùng thời kỳ rồi hòa chuyển 420ms; không hòa Quá khứ và Hiện tại hoặc panorama với tư liệu ảnh. Khung lưu tạm không lớn hơn 1280 × 960 để giới hạn bộ nhớ và thời gian mã hóa. Album và lần mở cảnh đầu hiện ảnh trong 560ms, thu từ tỷ lệ 1,018 về 1 để ổn định khung nhìn. Các hiệu ứng này bị hủy khi cần và tắt theo reduced motion. Tự xoay 2,4 độ/giây do người xem bật, luôn có nút dừng; chuyển động dừng khi đổi cảnh, kéo ảnh, mở bảng, ẩn thẻ hoặc thoát Ngắm cảnh.
 
 ## Elevation & Depth
 

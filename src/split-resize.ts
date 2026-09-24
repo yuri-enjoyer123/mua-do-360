@@ -6,11 +6,16 @@ export function createSplitResize(dialog: HTMLDialogElement) {
   let pointer: number | undefined;
 
   function setRatio(value: number) {
-    const ratio = Math.max(35, Math.min(75, Math.round(value)));
+    const size = stacked.matches ? body.clientHeight : body.clientWidth;
+    const minimum = size > 360 ? Math.max(35, Math.ceil((stacked.matches ? 140 : 220) / size * 100)) : 35;
+    const maximum = size > 360 ? Math.max(minimum, Math.min(75, Math.floor(100 - (stacked.matches ? 210 : 220) / size * 100))) : 75;
+    const ratio = Math.max(minimum, Math.min(maximum, Math.round(value)));
     ratios[stacked.matches ? 'vertical' : 'horizontal'] = ratio;
     body.style.setProperty('--slide-share', `${ratio}fr`);
     body.style.setProperty('--scene-share', `${100 - ratio}fr`);
     divider.setAttribute('aria-valuenow', String(ratio));
+    divider.setAttribute('aria-valuemin', String(minimum));
+    divider.setAttribute('aria-valuemax', String(maximum));
     divider.setAttribute('aria-valuetext', `Bài chiếu ${ratio}%, cảnh ${100 - ratio}%`);
   }
   function sync() {
@@ -51,6 +56,7 @@ export function createSplitResize(dialog: HTMLDialogElement) {
     else setRatio(ratio + (event.key === previous ? -5 : 5));
   });
   stacked.addEventListener('change', () => { end(); sync(); });
+  new ResizeObserver(sync).observe(body);
   dialog.addEventListener('close', end);
   sync();
   return { end };
