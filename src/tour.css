@@ -218,6 +218,8 @@ dialog[open]::backdrop{animation:backdrop-enter 280ms ease-out}
     left:50%;right:auto;transform:translateX(-50%);
     grid-template-columns:repeat(4,44px);padding:3px;gap:2px;
   }
+  body[data-scene-era] .view-controls :is(#reset-view,#fullscreen-button){border-top:1px solid var(--line);border-radius:0}
+  body.viewing-photo .view-controls :is(#reset-view,#fullscreen-button){border-top:0}
   body[data-scene-era] .scene-navigation{left:var(--edge);right:var(--edge);bottom:max(10px,env(safe-area-inset-bottom));max-width:calc(100% - 24px);padding:0 7px 7px}
   .scene-nav-heading{min-height:44px}
   .scene-nav-row{gap:5px}
@@ -236,6 +238,7 @@ dialog[open]::backdrop{animation:backdrop-enter 280ms ease-out}
   body[data-scene-era] .view-controls{grid-template-columns:repeat(8,44px);gap:0;padding:3px}
   body[data-scene-era] .view-controls #zoom-in{border-top:0;border-left:1px solid var(--line)}
   body[data-scene-era] .view-controls #zoom-out{border-top:0}
+  body[data-scene-era] .view-controls :is(#reset-view,#fullscreen-button){border-top:0}
   body.viewing-photo .view-controls{grid-template-columns:repeat(4,44px)}
 }
 @media(max-width:359px){
