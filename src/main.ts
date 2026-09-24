@@ -9,6 +9,7 @@ import { createPhotoViewer } from './photo-viewer';
 import { derivedScenes } from './derived-scenes';
 import { createViewMotion } from './view-motion';
 import { createSceneTransition } from './scene-transition';
+import { createSlides } from './slides';
 
 const scenes: TourScene[] = [...panoramas, ...derivedScenes, ...photoScenes];
 type Era = 'past' | 'present';
@@ -16,8 +17,11 @@ type Collection = 'panorama' | 'archive';
 const eraOf = (scene: TourScene): Era => scene.era ?? 'past';
 const collectionOf = (scene: TourScene): Collection => scene.format === 'photo' ? 'archive' : 'panorama';
 
-type IconName = 'arrow' | 'chevron' | 'close' | 'book' | 'help' | 'expand' | 'volume' | 'muted' | 'eye' | 'drag' | 'plus' | 'minus' | 'external' | 'reset' | 'vr' | 'camera' | 'play' | 'pause' | 'phone' | 'slides';
+type IconName = 'arrow' | 'chevron' | 'close' | 'book' | 'help' | 'expand' | 'volume' | 'muted' | 'eye' | 'drag' | 'plus' | 'minus' | 'external' | 'reset' | 'vr' | 'camera' | 'play' | 'pause' | 'phone' | 'slides' | 'split' | 'more' | 'link';
 const paths: Record<IconName, string> = {
+  split: '<rect x="3" y="4" width="18" height="16" rx="1"/><path d="M14 4v16"/>',
+  more: '<circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/>',
+  link: '<path d="m10 13 4-4m-6 6-2 2a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m4 2 2-2a4 4 0 0 0-6-6L6 5a4 4 0 0 0 0 6" transform="translate(3 2)"/>',
   slides: '<path d="M2 3h20M4 3v12h16V3M12 15v6m-5 0 5-4 5 4"/><path d="m10 6 5 3-5 3V6Z"/>',
   play: '<path d="m8 5 11 7-11 7V5Z"/>',
   pause: '<path d="M8 5v14M16 5v14"/>',
@@ -73,7 +77,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 
     <div class="tour-ui">
       <div class="era-switch" role="group" aria-label="Chọn thời kỳ"><button data-era="past" aria-pressed="true">Quá khứ</button><button data-era="present" aria-pressed="false">Hiện tại</button></div>
-      <div class="collection-switch" role="group" aria-label="Cách xem"><button data-collection="panorama" aria-pressed="true" aria-label="Nhìn quanh" title="Nhìn quanh">${icon('vr')}</button><button id="slides-button" aria-label="Trình chiếu" title="Trình chiếu" aria-haspopup="dialog" aria-controls="slides-dialog">${icon('slides')}</button><button data-collection="archive" aria-pressed="false" aria-label="Album ảnh" title="Album ảnh">${icon('camera')}</button><button id="immersive-button" aria-pressed="false" aria-label="Ngắm cảnh" title="Ngắm cảnh (P)">${icon('eye')}</button></div>
+      <div class="collection-switch" role="group" aria-label="Cách xem"><button data-collection="panorama" aria-pressed="true" aria-label="Nhìn quanh" title="Nhìn quanh">${icon('vr')}</button><button id="slides-button" aria-label="Trình chiếu" title="Trình chiếu (S)" aria-keyshortcuts="S" aria-haspopup="dialog" aria-controls="slides-dialog" aria-expanded="false">${icon('slides')}</button><button data-collection="archive" aria-pressed="false" aria-label="Album ảnh" title="Album ảnh">${icon('camera')}</button><button id="immersive-button" aria-pressed="false" aria-label="Ngắm cảnh" title="Ngắm cảnh (P)">${icon('eye')}</button></div>
       <div class="scene-context"><h2 id="scene-title"></h2><p id="scene-date"></p><button id="scene-sources" class="text-button" data-open="sources" aria-label="Mở tư liệu của cảnh">Tư liệu</button></div>
       <div class="view-controls" aria-label="Điều khiển góc nhìn">
         <button class="icon-button" id="look-up" aria-label="Nhìn lên" title="Nhìn lên">${icon('chevron')}</button>
@@ -105,8 +109,35 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   </main>
 
   <dialog id="slides-dialog" aria-label="Bài trình chiếu">
-    <div class="slides-toolbar"><a id="slides-external" href="${slidesUrl}" target="_blank" rel="noopener noreferrer">Mở trên Canva ${icon('external')}</a><button id="slides-close" class="icon-button close-dialog" aria-label="Đóng trình chiếu" title="Đóng trình chiếu">${icon('close')}</button></div>
-    <div class="slides-stage"><p id="slides-loading" role="status">Đang mở bài trình chiếu…</p><iframe id="slides-frame" title="Ngữ Văn 8 - Nói và Nghe: Giới thiệu ngắn về một cuốn sách" allow="fullscreen" allowfullscreen></iframe></div>
+    <header class="slides-toolbar">
+      <h2>Mưa đỏ</h2>
+      <button id="slides-split" class="slides-split icon-button" aria-label="Xem cùng cảnh" title="Xem cùng cảnh" aria-pressed="false" aria-controls="slides-tour">${icon('split')}<span id="slides-split-label">Xem cùng cảnh</span></button>
+      <button id="slides-fullscreen" class="icon-button" aria-label="Toàn màn hình" title="Toàn màn hình" aria-pressed="false">${icon('expand')}</button>
+      <details id="slides-menu">
+        <summary class="icon-button" aria-label="Tùy chọn bài chiếu" title="Tùy chọn bài chiếu">${icon('more')}</summary>
+        <div class="slides-menu-items">
+          <button id="slides-share">${icon('link')}Sao chép liên kết</button>
+          <button id="slides-retry">${icon('reset')}Tải lại bài chiếu</button>
+          <a id="slides-external" href="${slidesUrl}" target="_blank" rel="noopener noreferrer">${icon('external')}Mở trên Canva<span class="sr-only"> (mở thẻ mới)</span></a>
+        </div>
+      </details>
+      <button id="slides-close" class="icon-button close-dialog" aria-label="Đóng trình chiếu" title="Đóng trình chiếu">${icon('close')}</button>
+    </header>
+    <div class="slides-body">
+      <div class="slides-stage">
+        <div id="slides-loading"><p id="slides-loading-text" role="status">Đang mở bài chiếu…</p><button id="slides-retry-status" hidden>Thử lại ${icon('reset')}</button></div>
+        <iframe id="slides-frame" title="Ngữ Văn 8 - Nói và Nghe: Giới thiệu ngắn về một cuốn sách" allow="fullscreen" allowfullscreen></iframe>
+      </div>
+      <section id="slides-tour" aria-label="Cảnh Quảng Trị" hidden>
+        <div class="slides-scene-toolbar">
+          <select id="slides-scene-select" aria-label="Chọn cảnh cùng bài chiếu">${(['past', 'present'] as const).map(era => `<optgroup label="${era === 'past' ? 'Quá khứ' : 'Hiện tại'}">${scenes.filter(scene => eraOf(scene) === era).map(scene => `<option value="${escape(scene.id)}">${escape(scene.title)}${scene.format === 'photo' ? ' (ảnh)' : ''}</option>`).join('')}</optgroup>`).join('')}</select>
+          <button class="text-button" data-open="sources" id="slides-sources">Tư liệu</button>
+        </div>
+        <div id="slides-scene-host"></div>
+        <button id="slides-return">${icon('vr')}Trở lại cảnh</button>
+      </section>
+    </div>
+    <p id="slides-feedback" role="status"></p>
   </dialog>
   <dialog class="information-dialog" id="information-dialog" aria-labelledby="dialog-title">
     <div class="dialog-top"><button class="icon-button close-dialog" aria-label="Đóng bảng tư liệu">${icon('close')}</button></div>
@@ -119,7 +150,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <button class="icon-button" id="presentation-button" aria-label="Ngắm cảnh" aria-pressed="false" title="Ngắm cảnh (P)">${icon('eye')}</button>
     </div>
   </dialog>
-  <dialog class="help-dialog" id="help-dialog" aria-labelledby="help-title"><div class="dialog-top"><button class="icon-button close-dialog" aria-label="Đóng hướng dẫn">${icon('close')}</button></div><h2 id="help-title">Cách xem</h2><p class="help-intro">Nút kính VR để nhìn quanh, nút máy ảnh để xem album. Nút con mắt mở Ngắm cảnh, với tự xoay và điều khiển bằng cảm biến điện thoại.</p><div class="help-grid"><div>${icon('drag')}<h3>Nhìn quanh</h3><p>Kéo ảnh hoặc dùng bốn nút mũi tên để nhìn quanh. Trong album, cuộn chuột hoặc chụm hai ngón tay để phóng to, thu nhỏ. Nhấp đúp để phóng to hoặc trở về ban đầu; kéo hoặc dùng phím mũi tên để dịch ảnh.</p></div><div>${icon('arrow')}<h3>Chọn cảnh</h3><p>Nhấn dấu mũi tên trong cảnh, chọn một ảnh nhỏ phía dưới hoặc dùng hai nút trước / sau.</p></div><div>${icon('book')}<h3>Đọc và đối chiếu</h3><p>Chọn Tư liệu bên tên cảnh để đọc bối cảnh, xem ảnh tham chiếu và đối chiếu nguồn.</p></div></div><div class="keyboard-help"><h3>Bàn phím</h3><p><kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd> Nhìn quanh / dịch ảnh khi chọn vùng xem</p><p><kbd>1</kbd> đến <kbd>9</kbd> Chọn điểm trong dải ảnh đang mở <span>·</span> <kbd>F</kbd> Toàn màn hình <span>·</span> <kbd>P</kbd> Ngắm cảnh</p><p><kbd>Esc</kbd> Đóng bảng đang mở / thoát trình chiếu</p></div><p class="help-note">Âm thanh được mô phỏng và chỉ phát khi bật. Nút tạm dừng dừng xoay và tắt tiếng.</p></dialog>
+  <dialog class="help-dialog" id="help-dialog" aria-labelledby="help-title"><div class="dialog-top"><button class="icon-button close-dialog" aria-label="Đóng hướng dẫn">${icon('close')}</button></div><h2 id="help-title">Cách xem</h2><p class="help-intro">Nút kính VR để nhìn quanh, nút máy ảnh để xem album. Nút con mắt mở Ngắm cảnh, với tự xoay và điều khiển bằng cảm biến điện thoại.</p><div class="help-grid"><div>${icon('drag')}<h3>Nhìn quanh</h3><p>Kéo ảnh hoặc dùng bốn nút mũi tên để nhìn quanh. Trong album, cuộn chuột hoặc chụm hai ngón tay để phóng to, thu nhỏ. Nhấp đúp để phóng to hoặc trở về ban đầu; kéo hoặc dùng phím mũi tên để dịch ảnh.</p></div><div>${icon('arrow')}<h3>Chọn cảnh</h3><p>Nhấn dấu mũi tên trong cảnh, chọn một ảnh nhỏ phía dưới hoặc dùng hai nút trước / sau.</p></div><div>${icon('book')}<h3>Đọc và đối chiếu</h3><p>Chọn Tư liệu bên tên cảnh để đọc bối cảnh, xem ảnh tham chiếu và đối chiếu nguồn.</p></div></div><div class="keyboard-help"><h3>Bàn phím</h3><p><kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd> Nhìn quanh / dịch ảnh khi chọn vùng xem</p><p><kbd>1</kbd> đến <kbd>9</kbd> Chọn điểm trong dải ảnh đang mở <span>·</span> <kbd>F</kbd> Toàn màn hình <span>·</span> <kbd>P</kbd> Ngắm cảnh <span>·</span> <kbd>S</kbd> Trình chiếu</p><p><kbd>Esc</kbd> Đóng bảng đang mở / thoát trình chiếu</p></div><p class="help-note">Âm thanh được mô phỏng và chỉ phát khi bật. Nút tạm dừng dừng xoay và tắt tiếng.</p></dialog>
 `;
 
 const get = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
@@ -132,7 +163,6 @@ const infoDialog = get<HTMLDialogElement>('information-dialog');
 const helpDialog = get<HTMLDialogElement>('help-dialog');
 const slidesDialog = get<HTMLDialogElement>('slides-dialog');
 const slidesFrame = get<HTMLIFrameElement>('slides-frame');
-let slidesOwnsFullscreen = false;
 const announcement = get('announcement');
 const allDialogs = [infoDialog, helpDialog, slidesDialog];
 const focusReturns = new WeakMap<HTMLDialogElement, HTMLElement>();
@@ -145,6 +175,22 @@ function updatePhotoInset() {
 }
 new ResizeObserver(updatePhotoInset).observe(sceneContext);
 window.addEventListener('resize', updatePhotoInset);
+const slides = createSlides({
+  dialog: slidesDialog,
+  frame: slidesFrame,
+  experience,
+  url: slidesUrl,
+  openDialog: () => openDialog(slidesDialog),
+  onChange: () => {
+    syncAudioState();
+    document.title = slidesDialog.open ? 'Mưa đỏ · Trình chiếu' : `${current.title} · Mưa đỏ`;
+  },
+  onResize: () => {
+    updatePhotoInset();
+    viewer?.resize();
+  },
+});
+new ResizeObserver(() => viewer?.resize()).observe(experience);
 
 function announce(text: string) { announcement.textContent = text; }
 
@@ -199,6 +245,7 @@ function renderScene() {
   navigation.setAttribute('aria-label', `${items.length} điểm nhìn`);
   navigation.style.setProperty('--scene-count', String(items.length));
   get('scene-title').textContent = current.title;
+  get<HTMLSelectElement>('slides-scene-select').value = current.id;
   get('scene-date').textContent = current.photograph?.date ?? 'Quảng Trị, 1972';
   document.querySelectorAll<HTMLButtonElement>('[data-scene]').forEach((button) => {
     const selected = button.dataset.scene === current.id;
@@ -209,7 +256,7 @@ function renderScene() {
     }
     else button.removeAttribute('aria-current');
   });
-  document.title = `${current.title} · Mưa đỏ`;
+  document.title = slidesDialog.open ? 'Mưa đỏ · Trình chiếu' : `${current.title} · Mưa đỏ`;
   renderStory();
   updateAmbienceScene();
 }
@@ -293,7 +340,7 @@ allDialogs.forEach((dialog) => {
     }
   });
   dialog.addEventListener('keydown', (event) => {
-    if (event.key !== 'Tab') return;
+    if (event.key !== 'Tab' || dialog === slidesDialog) return;
     const focusable = [...dialog.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], summary, iframe, [tabindex="0"]')].filter((element) => element.getClientRects().length > 0);
     const first = focusable[0];
     const last = focusable[focusable.length - 1];
@@ -302,47 +349,12 @@ allDialogs.forEach((dialog) => {
   });
 });
 
-async function openSlides() {
-  if (slidesDialog.open) return;
-  get('slides-loading').textContent = 'Đang mở bài trình chiếu…';
-  get('slides-loading').hidden = false;
-  openDialog(slidesDialog);
-  syncAudioState();
-  slidesFrame.src = `${slidesUrl}?embed`;
-  if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
-    try {
-      await document.documentElement.requestFullscreen({ navigationUI: 'hide' });
-      if (slidesDialog.open) slidesOwnsFullscreen = true;
-      else if (document.fullscreenElement === document.documentElement) await document.exitFullscreen();
-    } catch {
-      // Keep the viewport-sized dialog when native fullscreen is unavailable.
-    }
-  }
-}
-
-slidesFrame.addEventListener('load', () => {
-  if (slidesDialog.open && slidesFrame.hasAttribute('src')) get('slides-loading').hidden = true;
-});
-slidesFrame.addEventListener('error', () => {
-  get('slides-loading').textContent = 'Chưa mở được bài trình chiếu.';
-  get('slides-loading').hidden = false;
-});
-slidesDialog.addEventListener('close', () => {
-  if (slidesDialog.open) return;
-  slidesFrame.removeAttribute('src');
-  if (slidesOwnsFullscreen) {
-    slidesOwnsFullscreen = false;
-    if (document.fullscreenElement) void document.exitFullscreen().catch(() => {});
-  }
-  syncAudioState();
-});
-
 document.querySelectorAll<HTMLButtonElement>('[data-open]').forEach((button) => button.addEventListener('click', () => {
   const target = button.dataset.open;
   if (target === 'help') {
     infoDialog.close();
     openDialog(helpDialog);
-    focusReturns.set(helpDialog, get('scene-sources'));
+    focusReturns.set(helpDialog, get(slidesDialog.open ? 'slides-sources' : 'scene-sources'));
   }
   else openDialog(infoDialog, target === 'story' ? 'story' : 'sources');
 }));
@@ -356,9 +368,11 @@ for (const name of ['story', 'sources'] as const) {
 }
 
 function writeHash(replace = false) {
-  const url = `${location.pathname}${location.search}#scene=${encodeURIComponent(current.id)}`;
-  if (replace) history.replaceState(null, '', url);
-  else if (location.hash !== `#scene=${current.id}`) history.pushState(null, '', url);
+  const params = new URLSearchParams(location.hash.slice(1));
+  params.set('scene', current.id);
+  const url = `${location.pathname}${location.search}#${params}`;
+  if (replace || slidesDialog.open) history.replaceState(history.state, '', url);
+  else if (location.hash !== `#${params}`) history.pushState(null, '', url);
 }
 
 function setLoading(loading: boolean) {
@@ -672,7 +686,8 @@ get('look-left').addEventListener('click', () => turn(-20, 0));
 get('look-right').addEventListener('click', () => turn(20, 0));
 get('reset-view').addEventListener('click', resetView);
 get('fullscreen-button').addEventListener('click', () => void toggleFullscreen());
-get('slides-button').addEventListener('click', () => void openSlides());
+get('slides-button').addEventListener('click', () => slides.open());
+get('slides-scene-select').addEventListener('change', event => selectScene((event.target as HTMLSelectElement).value));
 get('presentation-button').addEventListener('click', () => { infoDialog.close(); setPresentation(!presentation); });
 get('immersive-button').addEventListener('click', () => setPresentation(!presentation));
 get('presentation-exit').addEventListener('click', () => setPresentation(false));
@@ -694,6 +709,7 @@ window.addEventListener('hashchange', () => {
     selectScene(scenes[0].id, true);
     writeHash(true);
   }
+  slides.syncRoute();
 });
 document.addEventListener('fullscreenchange', () => {
   get('fullscreen-button').setAttribute('aria-label', document.fullscreenElement ? 'Thoát toàn màn hình' : 'Mở toàn màn hình');
@@ -705,13 +721,14 @@ document.addEventListener('visibilitychange', () => {
   syncAudioState();
 });
 document.addEventListener('keydown', (event) => {
-  if (allDialogs.some((dialog) => dialog.open) || event.altKey || event.ctrlKey || event.metaKey) return;
   const target = event.target as HTMLElement;
+  if ([infoDialog, helpDialog].some(dialog => dialog.open) || (slidesDialog.open && !experience.contains(target)) || event.altKey || event.ctrlKey || event.metaKey) return;
   if (target.closest('input, textarea, select, [contenteditable="true"]')) return;
   if (event.key === 'Escape' && presentation) { setPresentation(false); return; }
+  if (event.key.toLowerCase() === 's' && !slidesDialog.open) { event.preventDefault(); slides.open(); return; }
   if (/^[1-9]$/.test(event.key) && visibleScenes()[Number(event.key) - 1]) { event.preventDefault(); selectScene(visibleScenes()[Number(event.key) - 1].id); return; }
   if (event.key.toLowerCase() === 'f') { event.preventDefault(); void toggleFullscreen(); return; }
-  if (event.key.toLowerCase() === 'p') { event.preventDefault(); setPresentation(!presentation); return; }
+  if (event.key.toLowerCase() === 'p' && !slidesDialog.open) { event.preventDefault(); setPresentation(!presentation); return; }
   const isPanoramaTarget = target === panorama || panorama.contains(target);
   if ((!viewer && current.format !== 'photo') || (!isPanoramaTarget && target !== photoView && target !== document.body)) return;
   if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', '+', '=', '-'].includes(event.key)) {
@@ -728,3 +745,4 @@ document.addEventListener('keydown', (event) => {
 renderScene();
 writeHash(true);
 void loadScene();
+slides.syncRoute();

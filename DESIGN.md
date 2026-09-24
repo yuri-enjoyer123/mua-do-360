@@ -112,7 +112,9 @@ Quá khứ dùng góc vuông, khung chữ nhật, nút viền hai sắc và tab 
 ## Components
 
 - Kính VR chọn chế độ nhìn quanh; máy ảnh chọn album. SVG 24px, nút 44px, có tên trợ năng và chú thích khi rê chuột.
-- Nút màn chiếu cạnh kính VR mở bài Canva do chủ dự án cung cấp. Khung trình chiếu phủ màn hình, giữ một hàng gọn với đường mở Canva và nút đóng; dừng âm thanh cảnh trong khi mở. Màn hình từ 380px trở xuống tách bộ chọn thời kỳ và hàng biểu tượng thành hai hàng để giữ vùng bấm 44px.
+- Nút màn chiếu cạnh kính VR mở bài Canva do chủ dự án cung cấp. Thanh trên giữ tên sách, xem cùng cảnh, toàn màn hình, tùy chọn và đóng. Tùy chọn gồm sao chép liên kết, tải lại và mở Canva. Âm thanh cảnh dừng trong khi bài chiếu mở. Màn hình từ 380px trở xuống tách bộ chọn thời kỳ và hàng biểu tượng thành hai hàng để giữ vùng bấm 44px.
+- Xem cùng cảnh đặt bài chiếu và trình xem cạnh nhau; điện thoại dọc xếp bài chiếu trên, cảnh dưới. Dùng lại trình xem hiện tại, giữ góc nhìn, thu phóng và nguồn của cảnh. Bộ chọn cảnh chia Quá khứ / Hiện tại; Tư liệu mở đúng nguồn đang chọn. Trở lại cảnh đóng Canva và giữ cảnh vừa xem. Bật/tắt khung cảnh không tải lại iframe, nên trang chiếu và thao tác trong Canva được giữ nguyên. Kết thúc trình chiếu gỡ iframe để dừng media.
+- Liên kết `#scene=…&view=slides&layout=split` mở đúng cảnh và bố cục bài chiếu. Nút Back quay về trước khi mở bài chiếu; liên kết trực tiếp không tự yêu cầu toàn màn hình. Điều khiển trang chiếu và media dùng giao diện Canva, không tạo bộ đếm hoặc nút chuyển trang dựa trên API chưa được xác nhận.
 - Nút chữ Tư liệu mở nguồn, giấy phép và giới hạn của đúng cảnh. Bảng đọc kế thừa diện mạo của thời kỳ đang xem, có vùng cuộn độc lập và đường đóng rõ ràng.
 - Trạng thái chọn thời kỳ dùng `aria-pressed`; cảnh hiện tại dùng viền và `aria-current`. Vòng focus vẫn nhìn thấy được trên cả hai nền.
 - Các điều khiển tải, lỗi, thử lại, toàn màn hình, trình chiếu và âm thanh dùng cùng hệ màu với thời kỳ. Âm thanh mặc định tắt; giảm chuyển động theo thiết lập trình duyệt.

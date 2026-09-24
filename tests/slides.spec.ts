@@ -18,7 +18,7 @@ const MOCK_CANVA_HTML = `<!doctype html>
 <html>
   <head><meta charset="utf-8"><title>Mock Canva Presentation</title></head>
   <body style="margin:0;background:#0f172a;color:#fff;display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;">
-    <div data-testid="mock-slide-content">Mock Canva Slide Fixture - Test Content</div>
+    <div data-testid="mock-slide-content">Mock Canva Slide Fixture - Test Content<button id="fixture-control">Fixture control</button></div>
   </body>
 </html>`;
 
@@ -121,6 +121,18 @@ test.describe('Canva presentation', () => {
     await expect(slidesFrame).toHaveAttribute('allow', 'fullscreen');
     await expect(slidesFrame).toHaveAttribute('allowfullscreen', '');
     expect(canvaRequested).toBe(true);
+
+    await page.locator('#slides-fullscreen').click();
+    await expect.poll(() => page.evaluate(() => document.fullscreenElement)).toBeNull();
+    await expect(slidesDialog).toHaveAttribute('open', '');
+    await slidesClose.focus();
+    await page.keyboard.press('Tab');
+    await expect(page.frameLocator('#slides-frame').locator('#fixture-control')).toBeFocused();
+    await page.keyboard.press('Tab');
+    await expect(page.locator('#slides-split')).toBeFocused();
+    await page.locator('#slides-fullscreen').click();
+    await expect.poll(() => page.evaluate(() => document.fullscreenElement === document.documentElement)).toBe(true);
+    await slidesClose.focus();
 
     // Background shortcuts must be blocked while dialog is open (scene & presentation state remain unchanged)
     const initialHash = page.url();
@@ -295,10 +307,12 @@ test.describe('Canva presentation', () => {
       await expect(page.frameLocator('#slides-frame').getByTestId('mock-slide-content')).toBeVisible();
 
       const closeBox = (await page.locator('#slides-close').boundingBox())!;
-      const extBox = (await page.locator('#slides-external').boundingBox())!;
       expect(closeBox.width).toBeGreaterThanOrEqual(43.9);
       expect(closeBox.height).toBeGreaterThanOrEqual(43.9);
+      await page.locator('#slides-menu summary').click();
+      const extBox = (await page.locator('#slides-external').boundingBox())!;
       expect(extBox.height).toBeGreaterThanOrEqual(43.9);
+      await page.locator('#slides-menu summary').click();
 
       if (process.env.MUA_DO_CAPTURE_LAYOUTS === '1') {
         await page.screenshot({
