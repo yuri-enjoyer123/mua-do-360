@@ -46,7 +46,7 @@ test('interface refresh: Split-view resizes with keyboard and pointer without re
     const stacked = viewport.width < 600 || viewport.width < 900 && viewport.height > 500;
     await expect(divider).toHaveAttribute('aria-orientation', stacked ? 'horizontal' : 'vertical');
     await divider.focus();
-    await page.keyboard.press('Enter');
+    await page.keyboard.press('Home');
     const before = (await stage.boundingBox())!;
     await page.keyboard.press(stacked ? 'ArrowDown' : 'ArrowRight');
     await expect.poll(async () => {

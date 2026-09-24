@@ -8,7 +8,7 @@ export function createSplitResize(dialog: HTMLDialogElement) {
   function setRatio(value: number) {
     const size = stacked.matches ? body.clientHeight : body.clientWidth;
     const minimum = size > 360 ? Math.max(35, Math.ceil((stacked.matches ? 140 : 220) / size * 100)) : 35;
-    const maximum = size > 360 ? Math.max(minimum, Math.min(75, Math.floor(100 - (stacked.matches ? 210 : 220) / size * 100))) : 75;
+    const maximum = size > 360 ? Math.max(minimum, Math.min(75, Math.floor(100 - (stacked.matches ? 270 : 220) / size * 100))) : 75;
     const ratio = Math.max(minimum, Math.min(maximum, Math.round(value)));
     ratios[stacked.matches ? 'vertical' : 'horizontal'] = ratio;
     body.style.setProperty('--slide-share', `${ratio}fr`);

@@ -97,7 +97,7 @@ Mọi nút chính có vùng bấm ít nhất 44 × 44px. Dải ảnh cuộn ngan
 
 Nút con mắt cạnh kính VR và máy ảnh mở Ngắm cảnh. Chế độ này ẩn bảng tên, điều hướng và dấu chuyển điểm; thanh nhỏ dưới màn hình giữ tự xoay, cảm biến điện thoại khi có hỗ trợ, âm thanh và Trở lại. Dùng đúng chất liệu của thời kỳ hiện tại, không thêm logo, huy hiệu hoặc màn giới thiệu. Hạt ảnh Quá khứ vẫn có trong chế độ này.
 
-Khung nhìn cũ được giữ khi tải panorama cùng thời kỳ rồi hòa chuyển 420ms; không hòa Quá khứ và Hiện tại hoặc panorama với tư liệu ảnh. Khung lưu tạm không lớn hơn 1280 × 960 để giới hạn bộ nhớ và thời gian mã hóa. Album và lần mở cảnh đầu hiện ảnh trong 560ms, thu từ tỷ lệ 1,018 về 1 để ổn định khung nhìn. Các hiệu ứng này bị hủy khi cần và tắt theo reduced motion. Tự xoay 2,4 độ/giây do người xem bật, luôn có nút dừng; chuyển động dừng khi đổi cảnh, kéo ảnh, mở bảng, ẩn thẻ hoặc thoát Ngắm cảnh.
+Khung nhìn cũ được giữ khi tải panorama cùng thời kỳ rồi hòa chuyển 420ms; không hòa Quá khứ và Hiện tại hoặc panorama với tư liệu ảnh. Khung lưu tạm không lớn hơn 1280 × 960 để giới hạn bộ nhớ và thời gian mã hóa. Album và lần mở cảnh đầu hòa sáng trong 560ms; hiệu ứng không ghi đè transform dùng cho thu phóng và dịch ảnh. Các hiệu ứng này bị hủy khi cần và tắt theo reduced motion. Tự xoay 2,4 độ/giây do người xem bật, luôn có nút dừng; chuyển động dừng khi đổi cảnh, kéo ảnh, mở bảng, ẩn thẻ hoặc thoát Ngắm cảnh.
 
 ## Elevation & Depth
 
@@ -150,4 +150,4 @@ Dải ảnh nằm trên một mặt giấy thống nhất, có số vị trí v�
 
 Album dùng nền tối (`#272520` ở Quá khứ, `#16241f` ở Hiện tại); ảnh giữ object-fit contain và không bị crop mặc định. Hiệu ứng hạt ảnh chỉ phủ vùng hình. Bảng tư liệu tách khỏi mép trang một khoảng nhỏ, có chuyển động trượt lúc mở và vùng đọc rộng.
 
-Split-view dùng một nhãn cố định với aria-pressed. Đường phân chia kéo được bằng chuột/chạm, phím mũi tên chỉnh từng 5%, Home/End đặt giới hạn 35/75%, Enter hoặc nhấp đúp khôi phục tỷ lệ. Điện thoại xếp dọc. Thay đổi tỷ lệ không thay iframe và không mất vị trí slide hay thu phóng ảnh. Tư liệu và Trở lại cảnh nằm cùng hàng phía dưới.
+Split-view dùng một nhãn cố định với aria-pressed. Đường phân chia kéo được bằng chuột/chạm, phím mũi tên chỉnh từng 5%, Home/End đặt giới hạn 35/75%, thu hẹp thêm trên màn hình nhỏ để các nút và ảnh còn đủ chỗ, Enter hoặc nhấp đúp khôi phục tỷ lệ. Điện thoại xếp dọc. Thay đổi tỷ lệ không thay iframe và không mất vị trí slide hay thu phóng ảnh. Tư liệu và Trở lại cảnh nằm cùng hàng phía dưới.

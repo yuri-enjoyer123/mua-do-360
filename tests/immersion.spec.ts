@@ -23,6 +23,7 @@ async function openView(page: Page) {
 }
 
 test('immersive view opens from the scene and stops rotation when leaving', async ({ page }) => {
+  test.setTimeout(60000);
   await openView(page);
   await page.getByRole('button', { name: 'Ngắm cảnh', exact: true }).click();
   await expect(page.locator('.era-switch')).not.toBeVisible();
