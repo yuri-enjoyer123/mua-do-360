@@ -1,6 +1,7 @@
 import './style.css';
 import './eras.css';
 import './immersion.css';
+import './slides.css';
 import 'pannellum/build/pannellum.css';
 import { scenes as panoramas, sources } from './content';
 import { photoScenes, type TourScene } from './photographs';
@@ -15,8 +16,9 @@ type Collection = 'panorama' | 'archive';
 const eraOf = (scene: TourScene): Era => scene.era ?? 'past';
 const collectionOf = (scene: TourScene): Collection => scene.format === 'photo' ? 'archive' : 'panorama';
 
-type IconName = 'arrow' | 'chevron' | 'close' | 'book' | 'help' | 'expand' | 'volume' | 'muted' | 'eye' | 'drag' | 'plus' | 'minus' | 'external' | 'reset' | 'vr' | 'camera' | 'play' | 'pause' | 'phone';
+type IconName = 'arrow' | 'chevron' | 'close' | 'book' | 'help' | 'expand' | 'volume' | 'muted' | 'eye' | 'drag' | 'plus' | 'minus' | 'external' | 'reset' | 'vr' | 'camera' | 'play' | 'pause' | 'phone' | 'slides';
 const paths: Record<IconName, string> = {
+  slides: '<path d="M2 3h20M4 3v12h16V3M12 15v6m-5 0 5-4 5 4"/><path d="m10 6 5 3-5 3V6Z"/>',
   play: '<path d="m8 5 11 7-11 7V5Z"/>',
   pause: '<path d="M8 5v14M16 5v14"/>',
   phone: '<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2M3 6l-2 3 2 3m18 0 2 3-2 3"/>',
@@ -57,6 +59,7 @@ let loadingTimer: ReturnType<typeof setTimeout> | undefined;
 let presentation = false;
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const duration = () => reducedMotion.matches ? 0 : 280;
+const slidesUrl = 'https://www.canva.com/design/DAHWALcziLU/-vKYtAmPvSmY13YbW3QgZg/view';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <a class="skip-link" href="#information-dialog">Đọc về cảnh này</a>
@@ -70,7 +73,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 
     <div class="tour-ui">
       <div class="era-switch" role="group" aria-label="Chọn thời kỳ"><button data-era="past" aria-pressed="true">Quá khứ</button><button data-era="present" aria-pressed="false">Hiện tại</button></div>
-      <div class="collection-switch" role="group" aria-label="Cách xem"><button data-collection="panorama" aria-pressed="true" aria-label="Nhìn quanh" title="Nhìn quanh">${icon('vr')}</button><button data-collection="archive" aria-pressed="false" aria-label="Album ảnh" title="Album ảnh">${icon('camera')}</button><button id="immersive-button" aria-pressed="false" aria-label="Ngắm cảnh" title="Ngắm cảnh (P)">${icon('eye')}</button></div>
+      <div class="collection-switch" role="group" aria-label="Cách xem"><button data-collection="panorama" aria-pressed="true" aria-label="Nhìn quanh" title="Nhìn quanh">${icon('vr')}</button><button id="slides-button" aria-label="Trình chiếu" title="Trình chiếu" aria-haspopup="dialog" aria-controls="slides-dialog">${icon('slides')}</button><button data-collection="archive" aria-pressed="false" aria-label="Album ảnh" title="Album ảnh">${icon('camera')}</button><button id="immersive-button" aria-pressed="false" aria-label="Ngắm cảnh" title="Ngắm cảnh (P)">${icon('eye')}</button></div>
       <div class="scene-context"><h2 id="scene-title"></h2><p id="scene-date"></p><button id="scene-sources" class="text-button" data-open="sources" aria-label="Mở tư liệu của cảnh">Tư liệu</button></div>
       <div class="view-controls" aria-label="Điều khiển góc nhìn">
         <button class="icon-button" id="look-up" aria-label="Nhìn lên" title="Nhìn lên">${icon('chevron')}</button>
@@ -101,6 +104,10 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <div class="sr-only" id="announcement" role="status" aria-live="polite" aria-atomic="true"></div>
   </main>
 
+  <dialog id="slides-dialog" aria-label="Bài trình chiếu">
+    <div class="slides-toolbar"><a id="slides-external" href="${slidesUrl}" target="_blank" rel="noopener noreferrer">Mở trên Canva ${icon('external')}</a><button id="slides-close" class="icon-button close-dialog" aria-label="Đóng trình chiếu" title="Đóng trình chiếu">${icon('close')}</button></div>
+    <div class="slides-stage"><p id="slides-loading" role="status">Đang mở bài trình chiếu…</p><iframe id="slides-frame" title="Ngữ Văn 8 - Nói và Nghe: Giới thiệu ngắn về một cuốn sách" allow="fullscreen" allowfullscreen></iframe></div>
+  </dialog>
   <dialog class="information-dialog" id="information-dialog" aria-labelledby="dialog-title">
     <div class="dialog-top"><button class="icon-button close-dialog" aria-label="Đóng bảng tư liệu">${icon('close')}</button></div>
     <h2 id="dialog-title">Thông tin cảnh</h2>
@@ -123,8 +130,11 @@ const photoImage = get<HTMLImageElement>('document-photo');
 const photoController = createPhotoViewer(photoView, photoImage);
 const infoDialog = get<HTMLDialogElement>('information-dialog');
 const helpDialog = get<HTMLDialogElement>('help-dialog');
+const slidesDialog = get<HTMLDialogElement>('slides-dialog');
+const slidesFrame = get<HTMLIFrameElement>('slides-frame');
+let slidesOwnsFullscreen = false;
 const announcement = get('announcement');
-const allDialogs = [infoDialog, helpDialog];
+const allDialogs = [infoDialog, helpDialog, slidesDialog];
 const focusReturns = new WeakMap<HTMLDialogElement, HTMLElement>();
 const motion = createViewMotion(get<HTMLButtonElement>('rotate-button'), get<HTMLButtonElement>('device-look-button'), get('motion-feedback'), reducedMotion, syncPlaybackAudio);
 const sceneTransition = createSceneTransition(get('scene-transition'), reducedMotion);
@@ -284,12 +294,47 @@ allDialogs.forEach((dialog) => {
   });
   dialog.addEventListener('keydown', (event) => {
     if (event.key !== 'Tab') return;
-    const focusable = [...dialog.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], summary, [tabindex="0"]')].filter((element) => element.getClientRects().length > 0);
+    const focusable = [...dialog.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], summary, iframe, [tabindex="0"]')].filter((element) => element.getClientRects().length > 0);
     const first = focusable[0];
     const last = focusable[focusable.length - 1];
     if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
     else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
   });
+});
+
+async function openSlides() {
+  if (slidesDialog.open) return;
+  get('slides-loading').textContent = 'Đang mở bài trình chiếu…';
+  get('slides-loading').hidden = false;
+  openDialog(slidesDialog);
+  syncAudioState();
+  slidesFrame.src = `${slidesUrl}?embed`;
+  if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
+    try {
+      await document.documentElement.requestFullscreen({ navigationUI: 'hide' });
+      if (slidesDialog.open) slidesOwnsFullscreen = true;
+      else if (document.fullscreenElement === document.documentElement) await document.exitFullscreen();
+    } catch {
+      // Keep the viewport-sized dialog when native fullscreen is unavailable.
+    }
+  }
+}
+
+slidesFrame.addEventListener('load', () => {
+  if (slidesDialog.open && slidesFrame.hasAttribute('src')) get('slides-loading').hidden = true;
+});
+slidesFrame.addEventListener('error', () => {
+  get('slides-loading').textContent = 'Chưa mở được bài trình chiếu.';
+  get('slides-loading').hidden = false;
+});
+slidesDialog.addEventListener('close', () => {
+  if (slidesDialog.open) return;
+  slidesFrame.removeAttribute('src');
+  if (slidesOwnsFullscreen) {
+    slidesOwnsFullscreen = false;
+    if (document.fullscreenElement) void document.exitFullscreen().catch(() => {});
+  }
+  syncAudioState();
 });
 
 document.querySelectorAll<HTMLButtonElement>('[data-open]').forEach((button) => button.addEventListener('click', () => {
@@ -538,15 +583,15 @@ function audioUnavailable() {
 
 function syncAudioState() {
   // Mute immediately, even while an earlier resume is still pending.
-  if ((!ambienceOn || document.hidden) && audioContext && ambienceGain) {
+  if ((!ambienceOn || document.hidden || slidesDialog.open) && audioContext && ambienceGain) {
     ambienceGain.gain.cancelScheduledValues(audioContext.currentTime);
     ambienceGain.gain.setValueAtTime(0, audioContext.currentTime);
   }
   audioOpQueue = audioOpQueue.then(async () => {
     if (!audioContext || !ambienceGain) return;
-    if (ambienceOn && !document.hidden) await audioContext.resume();
+    if (ambienceOn && !document.hidden && !slidesDialog.open) await audioContext.resume();
     // A resume may finish after the user has muted or left the page.
-    const audible = ambienceOn && !document.hidden;
+    const audible = ambienceOn && !document.hidden && !slidesDialog.open;
     ambienceGain.gain.cancelScheduledValues(audioContext.currentTime);
     if (audible) ambienceGain.gain.setTargetAtTime(0.24, audioContext.currentTime, 0.35);
     else {
@@ -627,6 +672,7 @@ get('look-left').addEventListener('click', () => turn(-20, 0));
 get('look-right').addEventListener('click', () => turn(20, 0));
 get('reset-view').addEventListener('click', resetView);
 get('fullscreen-button').addEventListener('click', () => void toggleFullscreen());
+get('slides-button').addEventListener('click', () => void openSlides());
 get('presentation-button').addEventListener('click', () => { infoDialog.close(); setPresentation(!presentation); });
 get('immersive-button').addEventListener('click', () => setPresentation(!presentation));
 get('presentation-exit').addEventListener('click', () => setPresentation(false));

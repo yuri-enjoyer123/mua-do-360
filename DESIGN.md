@@ -112,6 +112,7 @@ Quá khứ dùng góc vuông, khung chữ nhật, nút viền hai sắc và tab 
 ## Components
 
 - Kính VR chọn chế độ nhìn quanh; máy ảnh chọn album. SVG 24px, nút 44px, có tên trợ năng và chú thích khi rê chuột.
+- Nút màn chiếu cạnh kính VR mở bài Canva do chủ dự án cung cấp. Khung trình chiếu phủ màn hình, giữ một hàng gọn với đường mở Canva và nút đóng; dừng âm thanh cảnh trong khi mở. Màn hình từ 380px trở xuống tách bộ chọn thời kỳ và hàng biểu tượng thành hai hàng để giữ vùng bấm 44px.
 - Nút chữ Tư liệu mở nguồn, giấy phép và giới hạn của đúng cảnh. Bảng đọc kế thừa diện mạo của thời kỳ đang xem, có vùng cuộn độc lập và đường đóng rõ ràng.
 - Trạng thái chọn thời kỳ dùng `aria-pressed`; cảnh hiện tại dùng viền và `aria-current`. Vòng focus vẫn nhìn thấy được trên cả hai nền.
 - Các điều khiển tải, lỗi, thử lại, toàn màn hình, trình chiếu và âm thanh dùng cùng hệ màu với thời kỳ. Âm thanh mặc định tắt; giảm chuyển động theo thiết lập trình duyệt.
