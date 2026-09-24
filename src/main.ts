@@ -1,5 +1,6 @@
 import './style.css';
 import './eras.css';
+import './tour.css';
 import './immersion.css';
 import './slides.css';
 import 'pannellum/build/pannellum.css';
@@ -10,6 +11,7 @@ import { derivedScenes } from './derived-scenes';
 import { createViewMotion } from './view-motion';
 import { createSceneTransition } from './scene-transition';
 import { createSlides } from './slides';
+import { createTourUI } from './tour-ui';
 
 const scenes: TourScene[] = [...panoramas, ...derivedScenes, ...photoScenes];
 type Era = 'past' | 'present';
@@ -91,7 +93,8 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       </div>
       <p class="sr-only" id="panorama-help">Kéo để nhìn quanh hoặc dùng bốn nút đổi hướng. Chọn ảnh thu nhỏ để chuyển điểm. Mở Tư liệu để đọc thêm.</p>
       <nav class="scene-navigation" aria-label="${scenes.length} điểm nhìn">
-        <div class="scene-nav-row"><button class="icon-button scene-step previous" id="previous-scene" aria-label="Điểm nhìn trước" title="Điểm nhìn trước">${icon('chevron')}</button><div class="scene-strip"></div><button class="icon-button scene-step next" id="next-scene" aria-label="Điểm nhìn tiếp theo" title="Điểm nhìn tiếp theo">${icon('chevron')}</button></div>
+        <div class="scene-nav-heading"><span id="scene-position" aria-hidden="true"></span><button id="scene-list-toggle" aria-expanded="true" aria-controls="scene-list"><span>Dải ảnh</span>${icon('chevron')}</button></div>
+        <div class="scene-nav-row" id="scene-list"><button class="icon-button scene-step previous" id="previous-scene" aria-label="Điểm nhìn trước" title="Điểm nhìn trước">${icon('chevron')}</button><div class="scene-strip"></div><button class="icon-button scene-step next" id="next-scene" aria-label="Điểm nhìn tiếp theo" title="Điểm nhìn tiếp theo">${icon('chevron')}</button></div>
       </nav>
     </div>
 
@@ -111,7 +114,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <dialog id="slides-dialog" aria-label="Bài trình chiếu">
     <header class="slides-toolbar">
       <h2>Mưa đỏ</h2>
-      <button id="slides-split" class="slides-split icon-button" aria-label="Xem cùng cảnh" title="Xem cùng cảnh" aria-pressed="false" aria-controls="slides-tour">${icon('split')}<span id="slides-split-label">Xem cùng cảnh</span></button>
+      <button id="slides-split" class="slides-split icon-button" aria-label="Split-view" title="Split-view" aria-pressed="false" aria-controls="slides-tour">${icon('split')}<span id="slides-split-label">Split-view</span></button>
       <button id="slides-fullscreen" class="icon-button" aria-label="Toàn màn hình" title="Toàn màn hình" aria-pressed="false">${icon('expand')}</button>
       <details id="slides-menu">
         <summary class="icon-button" aria-label="Tùy chọn bài chiếu" title="Tùy chọn bài chiếu">${icon('more')}</summary>
@@ -128,13 +131,13 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         <div id="slides-loading"><p id="slides-loading-text" role="status">Đang mở bài chiếu…</p><button id="slides-retry-status" hidden>Thử lại ${icon('reset')}</button></div>
         <iframe id="slides-frame" title="Ngữ Văn 8 - Nói và Nghe: Giới thiệu ngắn về một cuốn sách" allow="fullscreen" allowfullscreen></iframe>
       </div>
+      <div id="slides-divider" role="separator" tabindex="0" aria-label="Chia diện tích bài chiếu và cảnh" aria-orientation="vertical" aria-valuemin="35" aria-valuemax="75" aria-valuenow="65" hidden></div>
       <section id="slides-tour" aria-label="Cảnh Quảng Trị" hidden>
         <div class="slides-scene-toolbar">
           <select id="slides-scene-select" aria-label="Chọn cảnh cùng bài chiếu">${(['past', 'present'] as const).map(era => `<optgroup label="${era === 'past' ? 'Quá khứ' : 'Hiện tại'}">${scenes.filter(scene => eraOf(scene) === era).map(scene => `<option value="${escape(scene.id)}">${escape(scene.title)}${scene.format === 'photo' ? ' (ảnh)' : ''}</option>`).join('')}</optgroup>`).join('')}</select>
-          <button class="text-button" data-open="sources" id="slides-sources">Tư liệu</button>
         </div>
         <div id="slides-scene-host"></div>
-        <button id="slides-return">${icon('vr')}Trở lại cảnh</button>
+        <div class="slides-scene-footer"><button class="text-button" data-open="sources" id="slides-sources">Tư liệu ${icon('external')}</button><button id="slides-return">${icon('vr')}Trở lại cảnh ${icon('arrow')}</button></div>
       </section>
     </div>
     <p id="slides-feedback" role="status"></p>
@@ -170,6 +173,7 @@ const focusReturns = new WeakMap<HTMLDialogElement, HTMLElement>();
 const motion = createViewMotion(get<HTMLButtonElement>('rotate-button'), get<HTMLButtonElement>('device-look-button'), get('motion-feedback'), reducedMotion, syncPlaybackAudio);
 const sceneTransition = createSceneTransition(get('scene-transition'), reducedMotion);
 const experience = document.querySelector<HTMLElement>('.experience')!;
+const tourUI = createTourUI(experience, reducedMotion);
 const sceneContext = document.querySelector<HTMLElement>('.scene-context')!;
 function updatePhotoInset() {
   experience.style.setProperty('--context-end', `${sceneContext.getBoundingClientRect().bottom - experience.getBoundingClientRect().top}px`);
@@ -243,12 +247,13 @@ function renderScene() {
   const items = visibleScenes();
   const key = items.map(scene => scene.id).join(',');
   if (key !== stripKey) {
-    document.querySelector('.scene-strip')!.innerHTML = items.map((scene, index) => `<button class="scene-card" data-scene="${escape(scene.id)}" aria-label="Điểm nhìn ${index + 1}: ${escape(scene.title)}" title="${escape(scene.title)}"><img src="${asset(scene.thumbnail ?? `scenes/${scene.id}-thumb.webp`)}" alt="" loading="lazy" width="320" height="180" /><span class="scene-card-title">${escape(scene.title)}</span></button>`).join('');
+    document.querySelector('.scene-strip')!.innerHTML = items.map((scene, index) => `<button class="scene-card" data-scene="${escape(scene.id)}" aria-label="Điểm nhìn ${index + 1}: ${escape(scene.title)}" title="${escape(scene.title)}"><img src="${asset(scene.thumbnail ?? `scenes/${scene.id}-thumb.webp`)}" alt="" loading="lazy" width="320" height="180" /><span class="scene-card-title">${escape(scene.title)}</span><span class="scene-card-index" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span></button>`).join('');
     stripKey = key;
   }
   const navigation = document.querySelector<HTMLElement>('.scene-navigation')!;
   navigation.setAttribute('aria-label', `${items.length} điểm nhìn`);
   navigation.style.setProperty('--scene-count', String(items.length));
+  get('scene-position').textContent = `${String(items.indexOf(current) + 1).padStart(2, '0')} / ${String(items.length).padStart(2, '0')}`;
   get('scene-title').textContent = current.title;
   get<HTMLSelectElement>('slides-scene-select').value = current.id;
   get('scene-date').textContent = current.photograph?.date ?? 'Quảng Trị, 1972';
@@ -262,6 +267,7 @@ function renderScene() {
     else button.removeAttribute('aria-current');
   });
   document.title = slidesDialog.open ? 'Mưa đỏ · Trình chiếu' : `${current.title} · Mưa đỏ`;
+  tourUI.sceneChanged(current.id, key);
   renderStory();
   updateAmbienceScene();
 }

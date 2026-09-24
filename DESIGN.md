@@ -69,7 +69,7 @@ components:
 
 Chủ dự án yêu cầu hai phong cách riêng: Quá khứ giống website cũ, Hiện tại có giao diện hiện đại. Mở trang vẫn vào thẳng cảnh đang chọn. Cảnh hoặc ảnh chiếm phần chính của màn hình; nút thời kỳ, kính VR, máy ảnh, hướng nhìn và dải ảnh luôn phục vụ thao tác thật.
 
-Quá khứ dùng chữ có chân, ô vuông, viền nổi kiểu giao diện web cũ và thanh tên cảnh đỏ nâu. Hiện tại dùng chữ sans, nền trắng gần trung tính, điểm chọn xanh trầm và các cụm điều khiển bo nhẹ. ENERGY 1 / RHYTHM 2 / MOTION 2 cho cả hai: chuyển động phục vụ thao tác, không thêm hiệu ứng trang trí. Đây là hướng thiết kế do người dùng chọn; phong cách ảnh cũ không thay niên đại của tư liệu.
+Quá khứ dùng chữ có chân, giấy ngà, góc vuông, đường viền mảnh và điểm nhấn đỏ nâu. Bảng tên có đường đỏ bên trái; bỏ thanh màu và các lớp viền nổi dày quanh nút. Hiện tại dùng chữ sans, nền trắng gần trung tính, điểm chọn xanh trầm và các cụm điều khiển bo nhẹ. Theo yêu cầu mới, giao diện tăng chuyển động: trượt nền chọn thời kỳ, hiện lần lượt dải ảnh, phản hồi hover, hòa cảnh và mở bảng tư liệu. Tôn trọng reduced motion; không tự xoay hoặc bật âm thanh. Đây là hướng thiết kế do người dùng chọn; phong cách ảnh cũ không thay niên đại của tư liệu.
 
 ## Colors
 
@@ -87,9 +87,9 @@ Be Vietnam Pro là phông Hiện tại, được lưu cùng trang: nội dung đ
 
 Quy tắc chung ở `src/style.css`; phần theo thời kỳ ở `src/eras.css`, được chọn bằng `body[data-scene-era]`. Cảnh, chế độ xem và liên kết sâu quyết định thời kỳ, vì vậy đổi cảnh cũng đổi cả diện mạo đúng lúc.
 
-Máy tính đặt bộ chọn thời kỳ góc trên trái, kính VR/máy ảnh góc trên phải, tên cảnh bên dưới bên trái. Quá khứ đưa tên cảnh vào thanh tiêu đề riêng, niên đại và liên kết tư liệu nằm ở hàng dưới. Hiện tại dùng bảng tên gọn, không có thanh màu riêng.
+Máy tính đặt bộ chọn thời kỳ góc trên trái, kính VR/máy ảnh góc trên phải, tên cảnh bên dưới bên trái. Tên cảnh lớn hơn, niên đại ở dưới và Tư liệu ở cạnh bên; cùng một cấu trúc cho hai thời kỳ. Hiện tại dùng bảng tên gọn, không có thanh màu riêng.
 
-Trên điện thoại, cả hai thời kỳ đặt bộ chọn thời kỳ và bộ chọn cách xem trên cùng một hàng để dành thêm chỗ cho ảnh. Quá khứ giữ chữ có chân và viền nổi, giảm đệm ngang của nút để vừa màn hình 320px; thanh tên cảnh nằm ngay dưới hai bộ chọn. Tám nút hướng nhìn và thu phóng xếp bốn cột, hai hàng phía trên dải ảnh; máy tính dùng hai cột bên phải. Màn hình ngang thấp giữ hai bộ chọn ở hai góc trên.
+Trên điện thoại, cả hai thời kỳ đặt bộ chọn thời kỳ và bộ chọn cách xem trên cùng một hàng để dành thêm chỗ cho ảnh. Quá khứ giữ chữ có chân và viền nổi, giảm đệm ngang của nút để vừa màn hình 320px; thanh tên cảnh nằm ngay dưới hai bộ chọn. Điện thoại rộng từ 390px xếp tám nút góc nhìn thành một hàng; nhỏ hơn dùng bốn cột. Máy tính giữ cụm hai cột bên phải. Album ẩn nút hướng nhìn. Màn hình ngang thấp giữ hai bộ chọn ở hai góc trên.
 
 Mọi nút chính có vùng bấm ít nhất 44 × 44px. Dải ảnh cuộn ngang theo số cảnh. Khung album chừa phần tên cảnh qua `--context-end`, giữ toàn bộ ảnh bằng `object-fit: contain` trước khi người xem phóng to; không cắt ảnh nguồn để vừa khung.
 
@@ -112,8 +112,8 @@ Quá khứ dùng góc vuông, khung chữ nhật, nút viền hai sắc và tab 
 ## Components
 
 - Kính VR chọn chế độ nhìn quanh; máy ảnh chọn album. SVG 24px, nút 44px, có tên trợ năng và chú thích khi rê chuột.
-- Nút màn chiếu cạnh kính VR mở bài Canva do chủ dự án cung cấp. Thanh trên giữ tên sách, xem cùng cảnh, toàn màn hình, tùy chọn và đóng. Tùy chọn gồm sao chép liên kết, tải lại và mở Canva. Âm thanh cảnh dừng trong khi bài chiếu mở. Màn hình từ 380px trở xuống tách bộ chọn thời kỳ và hàng biểu tượng thành hai hàng để giữ vùng bấm 44px.
-- Xem cùng cảnh đặt bài chiếu và trình xem cạnh nhau; điện thoại dọc xếp bài chiếu trên, cảnh dưới. Dùng lại trình xem hiện tại, giữ góc nhìn, thu phóng và nguồn của cảnh. Bộ chọn cảnh chia Quá khứ / Hiện tại; Tư liệu mở đúng nguồn đang chọn. Trở lại cảnh đóng Canva và giữ cảnh vừa xem. Bật/tắt khung cảnh không tải lại iframe, nên trang chiếu và thao tác trong Canva được giữ nguyên. Kết thúc trình chiếu gỡ iframe để dừng media.
+- Nút màn chiếu cạnh kính VR mở bài Canva do chủ dự án cung cấp. Thanh trên giữ tên sách, Split-view, toàn màn hình, tùy chọn và đóng. Tùy chọn gồm sao chép liên kết, tải lại và mở Canva. Âm thanh cảnh dừng trong khi bài chiếu mở. Màn hình dưới 360px tách bộ chọn thời kỳ và hàng biểu tượng thành hai hàng để giữ vùng bấm 44px.
+- Split-view đặt bài chiếu và trình xem cạnh nhau; điện thoại dọc xếp bài chiếu trên, cảnh dưới. Dùng lại trình xem hiện tại, giữ góc nhìn, thu phóng và nguồn của cảnh. Bộ chọn cảnh chia Quá khứ / Hiện tại; Tư liệu mở đúng nguồn đang chọn. Trở lại cảnh đóng Canva và giữ cảnh vừa xem. Bật/tắt khung cảnh không tải lại iframe, nên trang chiếu và thao tác trong Canva được giữ nguyên. Kết thúc trình chiếu gỡ iframe để dừng media.
 - Liên kết `#scene=…&view=slides&layout=split` mở đúng cảnh và bố cục bài chiếu. Nút Back quay về trước khi mở bài chiếu; liên kết trực tiếp không tự yêu cầu toàn màn hình. Điều khiển trang chiếu và media dùng giao diện Canva, không tạo bộ đếm hoặc nút chuyển trang dựa trên API chưa được xác nhận.
 - Nút chữ Tư liệu mở nguồn, giấy phép và giới hạn của đúng cảnh. Bảng đọc kế thừa diện mạo của thời kỳ đang xem, có vùng cuộn độc lập và đường đóng rõ ràng.
 - Trạng thái chọn thời kỳ dùng `aria-pressed`; cảnh hiện tại dùng viền và `aria-current`. Vòng focus vẫn nhìn thấy được trên cả hai nền.
@@ -143,3 +143,11 @@ Bảng nguồn mở vào tư liệu của cảnh. Không thêm lại khung giả
 - Ảnh tư liệu và ảnh hiện tại phải giữ xuất xứ, niên đại, quyền sử dụng và giới hạn của nguồn; không nhập nhằng chúng với ảnh minh họa.
 - Các cảnh 360° độc lập, không phải tuyến đi bộ hay bản đồ đo đạc. Không dùng ảnh hoặc bản đồ để gán một tọa độ, sự kiện hay tình tiết không được nguồn xác nhận.
 - Không thêm công trình phục hồi hiện đại vào cảnh năm 1972, lời nhân chứng tưởng tượng hay diễn biến chiến đấu chưa đối chiếu.
+
+## Cập nhật giao diện toàn trang
+
+Dải ảnh nằm trên một mặt giấy thống nhất, có số vị trí và nút Dải ảnh để thu gọn. Khi đóng, các ảnh và nút điều hướng được ẩn cả khỏi bàn phím; phím số vẫn đổi cảnh. Vùng xem album và các nút thu phóng tự nhận diện tích được trả lại. Tên ảnh nhỏ được xuống hai dòng.
+
+Album dùng nền tối (`#272520` ở Quá khứ, `#16241f` ở Hiện tại); ảnh giữ object-fit contain và không bị crop mặc định. Hiệu ứng hạt ảnh chỉ phủ vùng hình. Bảng tư liệu tách khỏi mép trang một khoảng nhỏ, có chuyển động trượt lúc mở và vùng đọc rộng.
+
+Split-view dùng một nhãn cố định với aria-pressed. Đường phân chia kéo được bằng chuột/chạm, phím mũi tên chỉnh từng 5%, Home/End đặt giới hạn 35/75%, Enter hoặc nhấp đúp khôi phục tỷ lệ. Điện thoại xếp dọc. Thay đổi tỷ lệ không thay iframe và không mất vị trí slide hay thu phóng ảnh. Tư liệu và Trở lại cảnh nằm cùng hàng phía dưới.

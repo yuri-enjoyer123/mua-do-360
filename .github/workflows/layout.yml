@@ -9,6 +9,7 @@ on:
       - 'tests/improvements.spec.ts'
       - 'tests/slides.spec.ts'
       - 'tests/slides-workspace.spec.ts'
+      - 'tests/interface.spec.ts'
       - '.github/workflows/layout.yml'
   workflow_dispatch:
 
@@ -32,7 +33,7 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npm run build
-      - run: npx playwright test tests/tour.spec.ts tests/improvements.spec.ts tests/slides.spec.ts tests/slides-workspace.spec.ts --grep 'responsive layout, image assets|Album source clarity|archival photo can zoom|eras restore their selected|source drawer separates|compact info access|new scenes accessible|Canva presentation|Canva workspace' --workers=1
+      - run: npx playwright test tests/tour.spec.ts tests/slides-workspace.spec.ts tests/interface.spec.ts --grep 'responsive layout, image assets|fits phone and desktop layouts|interface refresh' --workers=1
         env:
           MUA_DO_CAPTURE_LAYOUTS: '1'
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

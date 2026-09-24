@@ -1,3 +1,5 @@
+import { createSplitResize } from './split-resize';
+
 type SlidesOptions = {
   dialog: HTMLDialogElement;
   frame: HTMLIFrameElement;
@@ -22,6 +24,7 @@ export function createSlides(options: SlidesOptions) {
   const statusText = get('slides-loading-text');
   const statusRetry = get('slides-retry-status');
   const feedback = get('slides-feedback');
+  const resize = createSplitResize(dialog);
   let loadingTimer: ReturnType<typeof setTimeout> | undefined;
   let feedbackTimer: ReturnType<typeof setTimeout> | undefined;
   let ownsFullscreen = false;
@@ -51,10 +54,8 @@ export function createSlides(options: SlidesOptions) {
     split = next;
     dialog.dataset.layout = split ? 'split' : 'slides';
     splitButton.setAttribute('aria-pressed', String(split));
-    const label = split ? 'Chỉ xem bài chiếu' : 'Xem cùng cảnh';
-    splitButton.setAttribute('aria-label', label);
-    splitButton.title = label;
-    get('slides-split-label').textContent = label;
+    resize.end();
+    get('slides-divider').hidden = !split;
     get('slides-tour').hidden = !split;
     if (split) sceneHost.append(experience);
     else home.before(experience);

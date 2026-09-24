@@ -13,6 +13,7 @@ body[data-scene-era="past"]{
   --paper-shadow:0 2px 4px rgb(38 31 22 / .2);
   --bevel-light:#fff8e8;
   --bevel-dark:#7c715f;
+  --photo-mat:#272520;
 }
 
 body[data-scene-era="past"] :is(.era-switch,.collection-switch,.view-controls){
@@ -99,6 +100,7 @@ body[data-scene-era="present"]{
   --line:#82948a;
   --paper-hairline:#82948a;
   --paper-shadow:0 4px 18px rgb(14 39 27 / .15);
+  --photo-mat:#16241f;
   font-family:var(--ui-font);
 }
 body[data-scene-era="present"] :is(.era-switch,.collection-switch){
