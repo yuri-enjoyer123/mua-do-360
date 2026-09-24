@@ -22,6 +22,7 @@ export interface TourScene extends Scene {
   format?: 'photo' | 'panorama';
   photograph?: Photograph;
   thumbnail?: string;
+  assetVersion?: string;
   derivation?: string;
 }
 

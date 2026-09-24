@@ -5,6 +5,7 @@ on:
     branches: [main, 'review/**']
     paths:
       - 'src/**'
+      - 'public/scenes/**'
       - 'tests/tour.spec.ts'
       - 'tests/improvements.spec.ts'
       - 'tests/slides.spec.ts'

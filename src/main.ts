@@ -50,7 +50,8 @@ const paths: Record<IconName, string> = {
 const icon = (name: IconName, cls = '') => `<svg class="icon ${cls}" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name]}</svg>`;
 const escape = (value: string) => value.replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]!);
 const asset = (path: string) => new URL(`${import.meta.env.BASE_URL}${path}`, document.baseURI).href;
-const panoramaAsset = (path: string) => `${asset(path)}?v=esrgan4x`;
+const panoramaAsset = (path: string, version = 'esrgan4x') => `${asset(path)}?v=${version}`;
+const thumbnailAsset = (scene: TourScene) => asset(scene.thumbnail ?? `scenes/${scene.id}-thumb.webp`) + (scene.assetVersion ? `?v=${scene.assetVersion}` : '');
 const fromHash = () => {
   const id = new URLSearchParams(location.hash.slice(1)).get('scene');
   return scenes.find((scene) => scene.id === id);
@@ -59,7 +60,7 @@ const linkedScene = fromHash();
 let current = linkedScene ?? scenes[0];
 const remembered = new Map<string, string>();
 const visibleScenes = () => scenes.filter(scene => eraOf(scene) === eraOf(current) && collectionOf(scene) === collectionOf(current));
-const sceneAsset = (scene: TourScene) => scene.format === 'photo' ? asset(scene.panorama) : panoramaAsset(scene.panorama);
+const sceneAsset = (scene: TourScene) => scene.format === 'photo' ? asset(scene.panorama) : panoramaAsset(scene.panorama, scene.assetVersion);
 let viewer: PanoramaViewer | undefined;
 const hotspotDirections = createHotspotDirections(() => viewer?.getYaw() ?? current.initialYaw);
 let enginePromise: Promise<unknown> | undefined;
@@ -74,7 +75,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <a class="skip-link" href="#information-dialog">Đọc về cảnh này</a>
   <main class="experience" aria-label="Mưa đỏ">
     <h1 class="sr-only">Mưa đỏ — Quảng Trị qua những góc nhìn</h1>
-    <div class="landscape" aria-hidden="true"><img id="scene-preview" src="${asset(current.thumbnail ?? `scenes/${current.id}-thumb.webp`)}" alt="" fetchpriority="high" /></div>
+    <div class="landscape" aria-hidden="true"><img id="scene-preview" src="${thumbnailAsset(current)}" alt="" fetchpriority="high" /></div>
     <div id="panorama" tabindex="0" role="region" aria-label="Cảnh đang xem. Kéo để nhìn quanh hoặc dùng phím mũi tên." aria-describedby="panorama-help"></div>
     <div class="photo-viewer" id="photo-viewer" tabindex="0" role="region" aria-label="Xem ảnh. Phóng to rồi kéo để xem chi tiết; phím mũi tên dịch chuyển ảnh." hidden><img id="document-photo" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" draggable="false" /></div>
     <div id="scene-transition" aria-hidden="true" hidden></div>
@@ -248,7 +249,7 @@ function renderScene() {
       preview.onerror = null;
       preview.src = fullUrl;
     };
-    preview.src = asset(current.thumbnail ?? `scenes/${current.id}-thumb.webp`);
+    preview.src = thumbnailAsset(current);
   } else {
     preview.removeAttribute('src');
   }
@@ -264,7 +265,7 @@ function renderScene() {
   const items = visibleScenes();
   const key = items.map(scene => scene.id).join(',');
   if (key !== stripKey) {
-    document.querySelector('.scene-strip')!.innerHTML = items.map((scene, index) => `<button class="scene-card" data-scene="${escape(scene.id)}" aria-label="Điểm nhìn ${index + 1}: ${escape(scene.title)}" title="${escape(scene.title)}"><img src="${asset(scene.thumbnail ?? `scenes/${scene.id}-thumb.webp`)}" alt="" loading="lazy" width="320" height="180" /><span class="scene-card-title">${escape(scene.title)}</span><span class="scene-card-index" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span></button>`).join('');
+    document.querySelector('.scene-strip')!.innerHTML = items.map((scene, index) => `<button class="scene-card" data-scene="${escape(scene.id)}" aria-label="Điểm nhìn ${index + 1}: ${escape(scene.title)}" title="${escape(scene.title)}"><img src="${thumbnailAsset(scene)}" alt="" loading="lazy" width="320" height="180" /><span class="scene-card-title">${escape(scene.title)}</span><span class="scene-card-index" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span></button>`).join('');
     stripKey = key;
   }
   const navigation = document.querySelector<HTMLElement>('.scene-navigation')!;

@@ -151,3 +151,5 @@ Dải ảnh nằm trên một mặt giấy thống nhất, có số vị trí v�
 Album dùng nền tối (`#272520` ở Quá khứ, `#16241f` ở Hiện tại); ảnh giữ object-fit contain và không bị crop mặc định. Hiệu ứng hạt ảnh chỉ phủ vùng hình. Bảng tư liệu tách khỏi mép trang một khoảng nhỏ, có chuyển động trượt lúc mở và vùng đọc rộng.
 
 Split-view dùng một nhãn cố định với aria-pressed. Đường phân chia kéo được bằng chuột/chạm, phím mũi tên chỉnh từng 5%, Home/End đặt giới hạn 35/75%, thu hẹp thêm trên màn hình nhỏ để các nút và ảnh còn đủ chỗ, Enter hoặc nhấp đúp khôi phục tỷ lệ. Điện thoại xếp dọc. Thay đổi tỷ lệ không thay iframe và không mất vị trí slide hay thu phóng ảnh. Tư liệu và Trở lại cảnh nằm cùng hàng phía dưới.
+
+Hai toàn cảnh Hiện tại giữ góc nhìn mặc định 95° và giới hạn 55–100° theo cạnh dài của khung. Khi xoay điện thoại hoặc thay kích thước Split-view, đổi góc ngang theo tỷ lệ khung để tránh kéo giãn theo chiều dọc. Dấu chuyển điểm cập nhật hướng trái/phải theo camera; hạt phim nằm trên ảnh, không phủ lên nút chuyển điểm.

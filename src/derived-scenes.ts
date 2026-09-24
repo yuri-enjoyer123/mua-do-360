@@ -1,7 +1,7 @@
 import { photographs, type TourScene } from './photographs';
 
 const specifications = [
-  { source: 'citadel-gate-2018', title: 'Cổng Thành cổ', pitch: 10 },
+  { source: 'citadel-gate-2018', title: 'Cổng Thành cổ', pitch: 5 },
   { source: 'citadel-wall-2018', title: 'Dọc hào Thành cổ', pitch: -12 },
 ];
 
@@ -23,6 +23,7 @@ export const derivedScenes: TourScene[] = specifications.map(specification => {
     sourceIds: [],
     panorama: `scenes/${id}.webp`,
     thumbnail: `scenes/${id}-thumb.webp`,
+    assetVersion: '20260925',
     initialYaw: 0,
     initialPitch: specification.pitch,
     hotspots: [],

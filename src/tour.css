@@ -337,7 +337,6 @@ body[data-scene-era="past"] .dialog-tabs button[aria-selected="true"]{background
   body[data-scene-era="past"] .scene-context{padding:0}
   body[data-scene-era="past"] .scene-context #scene-title{font-size:18px;padding:5px 8px}
   body[data-scene-era="past"] .scene-context #scene-date{padding:4px 0 4px 8px}
-  body[data-scene-era="past"] .scene-context #scene-sources{min-height:32px}
   body[data-scene-era] .scene-navigation{bottom:8px;max-width:calc(100% - 24px);padding:0 6px 4px}
   .scene-nav-heading{position:absolute;bottom:calc(100% + 4px);left:50%;translate:-50% 0;background:var(--paper-bg);padding:0 10px;gap:12px;border:1px solid var(--line)}
   body[data-scene-era="past"] .scene-nav-heading{margin-bottom:0}
