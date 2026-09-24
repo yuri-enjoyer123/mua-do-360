@@ -102,8 +102,8 @@
 body[data-scene-era="present"] :is(.slides-menu-items,#slides-scene-select,#slides-retry-status,#slides-return){border-radius:8px}
 #slides-divider{position:relative;z-index:3;touch-action:none;cursor:col-resize;background:var(--paper-bg)}
 #slides-divider::before{content:'';position:absolute;inset:0 -16px}
-#slides-divider::after{content:'';position:absolute;width:3px;height:36px;top:50%;left:50%;translate:-50% -50%;background:var(--line);border-radius:2px;transition:background-color 180ms,height 180ms}
-#slides-divider:is(:hover,:focus-visible)::after{background:var(--oxblood);height:54px}
+#slides-divider::after{content:'';position:absolute;width:3px;height:36px;top:50%;left:50%;translate:-50% -50%;background:var(--line);border-radius:2px;transition:background-color 180ms,transform 180ms}
+#slides-divider:is(:hover,:focus-visible)::after{background:var(--oxblood);transform:scaleY(1.5)}
 #slides-divider:focus-visible{outline:2px solid var(--oxblood);outline-offset:-2px}
 .is-resizing :is(#slides-frame,#slides-scene-host){pointer-events:none;user-select:none}
 #slides-dialog[open]{animation:slides-enter 240ms ease-out}
@@ -115,7 +115,7 @@ body[data-scene-era="present"] :is(.slides-menu-items,#slides-scene-select,#slid
   #slides-divider{cursor:row-resize}
   #slides-divider::before{inset:-16px 0}
   #slides-divider::after{width:36px;height:3px}
-  #slides-divider:is(:hover,:focus-visible)::after{width:54px;height:3px}
+  #slides-divider:is(:hover,:focus-visible)::after{transform:scaleX(1.5)}
   .slides-scene-toolbar{padding:4px 10px}
   .slides-scene-footer{padding:2px 10px}
 }
@@ -145,7 +145,7 @@ body[data-scene-era="present"] :is(.slides-menu-items,#slides-scene-select,#slid
   #slides-divider{cursor:col-resize}
   #slides-divider::before{inset:0 -16px}
   #slides-divider::after{width:3px;height:36px}
-  #slides-divider:is(:hover,:focus-visible)::after{width:3px;height:54px}
+  #slides-divider:is(:hover,:focus-visible)::after{transform:scaleY(1.5)}
   .slides-scene-toolbar,.slides-scene-footer{padding:2px 6px}
   #slides-scene-host .view-controls{bottom:6px}
   #slides-return{font-size:12px;padding-inline:6px}
