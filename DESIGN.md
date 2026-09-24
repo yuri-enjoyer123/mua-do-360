@@ -15,7 +15,7 @@ colors:
   present-ink: "#172c22"
   present-muted: "#52635a"
   present-accent: "#205c48"
-  present-line: "#82948a"
+  present-line: "#75877c"
 typography:
   past-body:
     fontFamily: "Newsreader, Georgia, Times New Roman, serif"
@@ -69,13 +69,13 @@ components:
 
 Chủ dự án yêu cầu hai phong cách riêng: Quá khứ giống website cũ, Hiện tại có giao diện hiện đại. Mở trang vẫn vào thẳng cảnh đang chọn. Cảnh hoặc ảnh chiếm phần chính của màn hình; nút thời kỳ, kính VR, máy ảnh, hướng nhìn và dải ảnh luôn phục vụ thao tác thật.
 
-Quá khứ dùng chữ có chân, giấy ngà, góc vuông, đường viền mảnh và điểm nhấn đỏ nâu. Bảng tên có đường đỏ bên trái; bỏ thanh màu và các lớp viền nổi dày quanh nút. Hiện tại dùng chữ sans, nền trắng gần trung tính, điểm chọn xanh trầm và các cụm điều khiển bo nhẹ. Theo yêu cầu mới, giao diện tăng chuyển động: trượt nền chọn thời kỳ, hiện lần lượt dải ảnh, phản hồi hover, hòa cảnh và mở bảng tư liệu. Tôn trọng reduced motion; không tự xoay hoặc bật âm thanh. Đây là hướng thiết kế do người dùng chọn; phong cách ảnh cũ không thay niên đại của tư liệu.
+Quá khứ dùng chữ có chân, giấy ngà, góc vuông, đường viền mảnh và điểm nhấn đỏ nâu. Bảng tên có đường đỏ bên trái; bỏ thanh màu và các lớp viền nổi dày quanh nút. Hiện tại dùng chữ sans, nền trắng gần trung tính, điểm chọn xanh trầm và các cụm điều khiển bo nhẹ. ENERGY 2 / RHYTHM 2 / MOTION 3. Theo yêu cầu mới, giao diện tăng chuyển động: trượt nền chọn thời kỳ, hiện lần lượt dải ảnh, phản hồi hover, hòa cảnh và mở bảng tư liệu. Tôn trọng reduced motion; không tự xoay hoặc bật âm thanh. Đây là hướng thiết kế do người dùng chọn; phong cách ảnh cũ không thay niên đại của tư liệu.
 
 ## Colors
 
 Quá khứ: giấy `#ddd4bf`, vùng sáng `#f1ead9`, chữ `#30291f`, chữ phụ `#625749`, đỏ nâu `#653e35`; chữ trên nền đỏ nâu là `#f7f0df`. Hai cạnh sáng `#fff8e8` và tối `#7c715f` tạo viền nút cổ điển.
 
-Hiện tại: bề mặt `#fafcfb`, vùng lồng `#eaf1ed`, chữ `#172c22`, chữ phụ `#52635a`, màu chọn `#205c48`, đường phân cách `#82948a`. Liên kết nguồn vẫn có gạch chân. Trạng thái chọn có cả nền, viền hoặc gạch chân và thuộc tính trợ năng.
+Hiện tại: bề mặt `#fafcfb`, vùng lồng `#eaf1ed`, chữ `#172c22`, chữ phụ `#52635a`, màu chọn `#205c48`, đường phân cách `#75877c`. Liên kết nguồn vẫn có gạch chân. Trạng thái chọn có cả nền, viền hoặc gạch chân và thuộc tính trợ năng.
 
 ## Typography
 
@@ -112,7 +112,7 @@ Quá khứ dùng góc vuông, khung chữ nhật, nút viền hai sắc và tab 
 ## Components
 
 - Kính VR chọn chế độ nhìn quanh; máy ảnh chọn album. SVG 24px, nút 44px, có tên trợ năng và chú thích khi rê chuột.
-- Nút màn chiếu cạnh kính VR mở bài Canva do chủ dự án cung cấp. Thanh trên giữ tên sách, Split-view, toàn màn hình, tùy chọn và đóng. Tùy chọn gồm sao chép liên kết, tải lại và mở Canva. Âm thanh cảnh dừng trong khi bài chiếu mở. Màn hình dưới 360px tách bộ chọn thời kỳ và hàng biểu tượng thành hai hàng để giữ vùng bấm 44px.
+- Nút màn chiếu cạnh kính VR mở bài Canva do chủ dự án cung cấp. Thanh trên giữ tên sách, Split-view, toàn màn hình, tùy chọn và đóng. Tùy chọn gồm sao chép liên kết, tải lại và mở Canva. Âm thanh cảnh dừng trong khi bài chiếu mở. Màn hình 320px giữ bộ chọn thời kỳ và hàng biểu tượng trên một hàng bằng cách giảm đệm và cỡ chữ của tab; vùng bấm vẫn ít nhất 44px.
 - Split-view đặt bài chiếu và trình xem cạnh nhau; điện thoại dọc xếp bài chiếu trên, cảnh dưới. Dùng lại trình xem hiện tại, giữ góc nhìn, thu phóng và nguồn của cảnh. Bộ chọn cảnh chia Quá khứ / Hiện tại; Tư liệu mở đúng nguồn đang chọn. Trở lại cảnh đóng Canva và giữ cảnh vừa xem. Bật/tắt khung cảnh không tải lại iframe, nên trang chiếu và thao tác trong Canva được giữ nguyên. Kết thúc trình chiếu gỡ iframe để dừng media.
 - Liên kết `#scene=…&view=slides&layout=split` mở đúng cảnh và bố cục bài chiếu. Nút Back quay về trước khi mở bài chiếu; liên kết trực tiếp không tự yêu cầu toàn màn hình. Điều khiển trang chiếu và media dùng giao diện Canva, không tạo bộ đếm hoặc nút chuyển trang dựa trên API chưa được xác nhận.
 - Nút chữ Tư liệu mở nguồn, giấy phép và giới hạn của đúng cảnh. Bảng đọc kế thừa diện mạo của thời kỳ đang xem, có vùng cuộn độc lập và đường đóng rõ ràng.

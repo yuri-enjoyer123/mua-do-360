@@ -124,11 +124,21 @@ body[data-scene-era="present"] :is(.slides-menu-items,#slides-scene-select,#slid
   #slides-dialog .slides-toolbar h2{font-size:17px}
   #slides-dialog .slides-split{gap:5px;padding-inline:8px}
   #slides-split-label{font-size:12px}
+  #slides-split>.icon{display:none}
   #slides-scene-select{font-size:13px}
   #slides-return{font-size:12px;padding-inline:8px}
   #slides-sources{font-size:12px}
   #slides-scene-host .view-controls{bottom:8px;padding:3px;gap:1px}
   #slides-scene-host .photo-viewer{inset:0 0 64px}
+}
+@media(min-width:600px){
+  #slides-tour{container-type:inline-size}
+}
+@container(max-width:260px){
+  #slides-scene-host .view-controls{flex-wrap:wrap;width:148px;justify-content:center}
+  .slides-scene-footer{gap:2px;padding-inline:4px}
+  #slides-return{font-size:12px;gap:4px;padding-inline:4px}
+  #slides-return>.icon:last-child{display:none}
 }
 @media(max-height:500px) and (min-width:600px){
   #slides-dialog[data-layout="split"] .slides-body{grid-template-columns:minmax(0,var(--slide-share,65fr)) 12px minmax(0,var(--scene-share,35fr));grid-template-rows:minmax(0,1fr)}

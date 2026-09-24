@@ -37,7 +37,10 @@ export function createSceneTransition(frame: HTMLElement, reducedMotion: MediaQu
     entrance?.cancel();
     if (reducedMotion.matches) { clear(); return; }
     if (frame.hidden) {
-      entrance = target.animate([{ opacity: 0.65 }, { opacity: 1 }], { duration: 320, easing: 'ease-out' });
+      entrance = target.animate(
+        [{ opacity: 0.3, transform: 'scale(1.018)' }, { opacity: 1, transform: 'scale(1)' }],
+        { duration: 560, easing: 'cubic-bezier(.2,.7,.2,1)' },
+      );
       return;
     }
     const fade = frame.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 420, easing: 'ease-out' });

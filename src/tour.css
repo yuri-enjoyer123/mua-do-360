@@ -102,6 +102,7 @@ body[data-scene-era] .scene-navigation{
   border:1px solid var(--line);
   box-shadow:var(--paper-shadow);
 }
+body[data-scene-era="present"] .scene-navigation{border-radius:14px}
 .scene-nav-heading{display:flex;align-items:center;justify-content:space-between;min-height:44px;padding-inline:4px}
 #scene-position{font-size:12px;letter-spacing:.14em;font-variant-numeric:tabular-nums;color:var(--muted)}
 #scene-list-toggle{display:flex;align-items:center;gap:10px;font-size:13px;min-width:88px;justify-content:flex-end;padding:0 4px}
@@ -179,6 +180,8 @@ body[data-scene-era="present"] .information-dialog h2{font-size:25px;line-height
 body[data-scene-era] .dialog-tabs{gap:24px;border-bottom:1px solid var(--line)}
 body[data-scene-era] .dialog-tabs button{padding:8px 0;border:0;background:none;font-weight:400}
 .dialog-scroll{padding:24px 4px 32px}
+.dialog-scroll [role="tabpanel"]:not([hidden]){animation:reading-enter 260ms ease-out}
+@keyframes reading-enter{from{opacity:0;translate:0 6px}to{opacity:1;translate:0 0}}
 .dialog-scroll :is(a,button){transition:color 180ms}
 .photo-source figure{margin-inline:0}
 body[data-scene-era] .dialog-footer{gap:8px;padding:12px 0}
@@ -236,8 +239,16 @@ dialog[open]::backdrop{animation:backdrop-enter 280ms ease-out}
   body.viewing-photo .view-controls{grid-template-columns:repeat(4,44px)}
 }
 @media(max-width:359px){
-  body[data-scene-era] .collection-switch{top:70px;left:var(--edge);right:auto}
-  body[data-scene-era] .scene-context{top:132px}
+  .experience{--edge:max(8px,env(safe-area-inset-left))}
+  body[data-scene-era] :is(.era-switch,.collection-switch){padding:1px;gap:0}
+  body[data-scene-era] .era-switch button{width:56px;font-size:12px;padding:0 2px}
+  .era-switch::before{inset:1px auto 1px 1px;width:56px}
+  body[data-scene-era="present"] .era-switch::before{transform:translateX(56px)}
+  body[data-scene-era] .collection-switch{left:auto;right:var(--edge)}
+  body[data-scene-era] .scene-context{top:70px;padding:10px 12px;column-gap:10px}
+  body[data-scene-era] .scene-context #scene-title{font-size:20px}
+  body[data-scene-era="present"] .scene-context #scene-title{font-size:16px}
+  body[data-scene-era] .scene-navigation{max-width:calc(100% - 16px)}
 }
 @media(max-height:500px) and (orientation:landscape){
   .experience{--edge:12px;min-height:0}

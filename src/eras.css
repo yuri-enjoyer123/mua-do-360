@@ -8,8 +8,8 @@ body[data-scene-era="past"]{
   --paper-muted:#625749;
   --oxblood:#653e35;
   --terracotta:#653e35;
-  --line:#867965;
-  --paper-hairline:#867965;
+  --line:#7f725f;
+  --paper-hairline:#7f725f;
   --paper-shadow:0 2px 4px rgb(38 31 22 / .2);
   --bevel-light:#fff8e8;
   --bevel-dark:#7c715f;
@@ -97,8 +97,8 @@ body[data-scene-era="present"]{
   --paper-muted:#52635a;
   --oxblood:#205c48;
   --terracotta:#205c48;
-  --line:#82948a;
-  --paper-hairline:#82948a;
+  --line:#75877c;
+  --paper-hairline:#75877c;
   --paper-shadow:0 4px 18px rgb(14 39 27 / .15);
   --photo-mat:#16241f;
   font-family:var(--ui-font);
