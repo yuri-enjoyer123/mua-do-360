@@ -59,6 +59,9 @@ test.describe('present camera', () => {
       await expect.poll(longField).toBeLessThanOrEqual(100.01);
     }
     await page.locator('#slides-button').click();
+    await expect(page.locator('#slides-fullscreen')).toHaveAttribute('aria-pressed', 'true');
+    await page.locator('#slides-fullscreen').click();
+    await expect(page.locator('#slides-fullscreen')).toHaveAttribute('aria-pressed', 'false');
     await page.locator('#slides-split').click();
     await expect.poll(longField).toBeLessThanOrEqual(100.01);
     await page.setViewportSize({ width: 390, height: 844 });
