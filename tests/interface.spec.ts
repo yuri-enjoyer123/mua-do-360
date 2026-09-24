@@ -1,14 +1,38 @@
 import { test, expect } from '@playwright/test';
 
+test('interface refresh: hotspot arrows follow the camera without changing their destinations', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('./#scene=hao-thanh');
+  await expect(page.locator('#panorama')).toHaveAttribute('aria-busy', 'false');
+  const previous = page.getByRole('button', { name: 'Chuyển điểm: Điểm trước: Bờ sông' });
+  const next = page.getByRole('button', { name: 'Chuyển điểm: Điểm tiếp: Cổng Hậu' });
+  const horizontalDirection = (button: typeof previous) => button.locator('svg').evaluate(element => new DOMMatrixReadOnly(getComputedStyle(element).transform).a);
+  await expect.poll(() => horizontalDirection(previous)).toBe(-1);
+  await expect.poll(() => horizontalDirection(next)).toBe(1);
+  await page.locator('#look-left').click();
+  await page.locator('#look-left').click();
+  await expect.poll(() => horizontalDirection(previous)).toBe(1);
+  await page.locator('#reset-view').click();
+  await expect.poll(() => horizontalDirection(previous)).toBe(-1);
+  await next.focus();
+  await page.keyboard.press('Enter');
+  await expect(page).toHaveURL(/scene=cong-hau/);
+  await expect(page.locator('#panorama')).toHaveAttribute('aria-busy', 'false');
+  await expect.poll(() => horizontalDirection(page.getByRole('button', { name: 'Chuyển điểm: Điểm trước: Hào thành' }))).toBe(-1);
+});
+
 test('interface refresh: folding the filmstrip frees the photo and retains navigation and focus', async ({ page }) => {
   await page.goto('./#scene=quang-tri-south-1967');
   const photo = page.locator('#photo-viewer');
   await expect(photo).toHaveAttribute('aria-busy', 'false');
   const initialHeight = (await photo.boundingBox())!.height;
   const toggle = page.locator('#scene-list-toggle');
+  await expect(toggle).toHaveText('Ẩn');
   await toggle.focus();
   await page.keyboard.press('Enter');
   await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  await expect(toggle).toHaveText('Hiện');
+  await expect(toggle).toHaveAccessibleName('Hiện dải ảnh');
   await expect(page.locator('#scene-list')).toBeHidden();
   await expect(toggle).toBeFocused();
   await expect.poll(async () => (await photo.boundingBox())!.height).toBeGreaterThan(initialHeight + 50);
@@ -17,6 +41,7 @@ test('interface refresh: folding the filmstrip frees the photo and retains navig
   await expect(page).toHaveURL(/scene=quang-tri-northeast-1967/);
   await page.keyboard.press('Enter');
   await expect(page.locator('#scene-list')).toBeVisible();
+  await expect(toggle).toHaveText('Ẩn');
   await expect(page.locator('[aria-current="location"]')).toHaveAttribute('data-scene', 'quang-tri-northeast-1967');
   await page.locator('#scene-sources').click();
   await page.locator('[data-open="help"]').click();

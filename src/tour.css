@@ -193,6 +193,75 @@ dialog[open]::backdrop{animation:backdrop-enter 280ms ease-out}
 @keyframes dialog-enter{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
 @keyframes backdrop-enter{from{background:rgb(24 22 20 / 0)}to{background:rgb(24 22 20 / .65)}}
 
+/* The archive keeps raised controls and a title bar at the shared tour sizes. */
+body[data-scene-era="past"] :is(.era-switch,.collection-switch,.view-controls,.scene-navigation){
+  border:1px solid var(--ink);
+  box-shadow:inset 1px 1px var(--bevel-light),inset -1px -1px var(--bevel-dark),2px 2px 0 rgb(38 31 22 / .22);
+}
+body[data-scene-era="past"] .era-switch::before{display:none}
+body[data-scene-era="past"] :is(.era-switch button,.collection-switch button,.view-controls button,.scene-step,.close-dialog,.dialog-footer .icon-button){
+  border:2px solid;
+  border-color:var(--bevel-light) var(--bevel-dark) var(--bevel-dark) var(--bevel-light);
+  border-radius:0;
+  background:var(--paper-bg);
+  box-shadow:none;
+}
+body[data-scene-era="past"] :is(.era-switch button,.collection-switch button)[aria-pressed="true"]{
+  background:var(--oxblood);
+  color:var(--ivory);
+  border-color:var(--bevel-dark) var(--bevel-light) var(--bevel-light) var(--bevel-dark);
+}
+body[data-scene-era="past"] :is(.era-switch button,.collection-switch button,.view-controls button,.scene-step,.close-dialog,.dialog-footer .icon-button):active{
+  border-color:var(--bevel-dark) var(--bevel-light) var(--bevel-light) var(--bevel-dark);
+}
+body[data-scene-era="past"] .scene-context{
+  padding:0;
+  gap:0 12px;
+  border:2px solid;
+  border-color:var(--bevel-light) var(--bevel-dark) var(--bevel-dark) var(--bevel-light);
+}
+body[data-scene-era="past"] .scene-context #scene-title{
+  grid-column:1 / -1;
+  grid-row:1;
+  padding:7px 10px;
+  background:var(--oxblood);
+  color:var(--ivory);
+  font-size:22px;
+  line-height:1.25;
+}
+body[data-scene-era="past"] .scene-context #scene-date{grid-row:2;padding:8px 0 8px 10px}
+body[data-scene-era="past"] .scene-context #scene-sources{grid-row:2;padding:0 10px}
+body[data-scene-era="past"] .scene-nav-heading{border-bottom:1px solid var(--bevel-dark);margin-bottom:5px}
+body[data-scene-era="past"] #scene-position{letter-spacing:.04em}
+body[data-scene-era="past"] #scene-list-toggle{text-decoration:underline;text-underline-offset:3px}
+body[data-scene-era="past"] .tray-collapsed .scene-nav-heading{border-bottom:0;margin-bottom:0}
+body[data-scene-era="past"] .scene-card{
+  padding:2px;
+  border:2px solid;
+  border-color:var(--bevel-light) var(--bevel-dark) var(--bevel-dark) var(--bevel-light);
+  background:var(--paper-bg);
+}
+body[data-scene-era="past"] .scene-card.active{
+  padding:2px;
+  border:2px solid var(--oxblood);
+  background:var(--paper-inset);
+}
+body[data-scene-era="past"] .scene-card.active .scene-card-title{text-decoration:underline;text-underline-offset:2px}
+body[data-scene-era="past"] .hotspot-circle{
+  border:2px solid;
+  border-color:var(--bevel-light) var(--bevel-dark) var(--bevel-dark) var(--bevel-light);
+  border-radius:0;
+  box-shadow:1px 1px 0 var(--ink);
+}
+body[data-scene-era="past"] :is(.information-dialog,.help-dialog){
+  border:2px solid;
+  border-color:var(--bevel-light) var(--bevel-dark) var(--bevel-dark) var(--bevel-light);
+}
+body[data-scene-era="past"] .dialog-top{border-bottom:3px double var(--line);padding-bottom:10px;margin-bottom:14px}
+body[data-scene-era="past"] .dialog-tabs{gap:4px;border-bottom:2px solid var(--bevel-dark)}
+body[data-scene-era="past"] .dialog-tabs button{padding:6px 12px;border:1px solid;border-color:var(--bevel-light) var(--bevel-dark) transparent var(--bevel-light)}
+body[data-scene-era="past"] .dialog-tabs button[aria-selected="true"]{background:var(--paper-inset)}
+
 @media(hover:hover) and (prefers-reduced-motion:no-preference){
   .scene-card:hover{transform:translateY(-2px)}
   .scene-card:hover>img{transform:scale(1.035)}
@@ -211,6 +280,8 @@ dialog[open]::backdrop{animation:backdrop-enter 280ms ease-out}
   body[data-scene-era] .scene-context{top:74px;left:var(--edge);right:var(--edge);max-width:none;padding:11px 13px;column-gap:16px}
   body[data-scene-era] .scene-context #scene-title{font-size:22px;line-height:1.2;text-wrap:initial}
   body[data-scene-era="present"] .scene-context #scene-title{font-size:16px;line-height:1.4}
+  body[data-scene-era="past"] .scene-context{padding:0}
+  body[data-scene-era="past"] .scene-context #scene-title{font-size:19px}
   body[data-scene-era] .scene-context #scene-date{font-size:12px}
   body[data-scene-era] .scene-context #scene-sources{font-size:13px}
   body[data-scene-era] .view-controls{
@@ -250,6 +321,8 @@ dialog[open]::backdrop{animation:backdrop-enter 280ms ease-out}
   body[data-scene-era] .collection-switch{left:auto;right:var(--edge)}
   body[data-scene-era] .scene-context{top:70px;padding:10px 12px;column-gap:10px}
   body[data-scene-era] .scene-context #scene-title{font-size:20px}
+  body[data-scene-era="past"] .scene-context{padding:0}
+  body[data-scene-era="past"] .scene-context #scene-title{font-size:18px}
   body[data-scene-era="present"] .scene-context #scene-title{font-size:16px}
   body[data-scene-era] .scene-navigation{max-width:calc(100% - 16px)}
 }
@@ -260,8 +333,13 @@ dialog[open]::backdrop{animation:backdrop-enter 280ms ease-out}
   body[data-scene-era] .scene-context #scene-title{font-size:19px}
   body[data-scene-era="present"] .scene-context #scene-title{font-size:16px}
   body[data-scene-era] .view-controls{top:68px;right:12px;left:auto;bottom:auto;transform:none;grid-template-columns:repeat(4,44px);gap:1px;padding:3px}
+  body[data-scene-era="past"] .scene-context{padding:0}
+  body[data-scene-era="past"] .scene-context #scene-title{font-size:18px;padding:5px 8px}
+  body[data-scene-era="past"] .scene-context #scene-date{padding:4px 0 4px 8px}
+  body[data-scene-era="past"] .scene-context #scene-sources{min-height:32px}
   body[data-scene-era] .scene-navigation{bottom:8px;max-width:calc(100% - 24px);padding:0 6px 4px}
   .scene-nav-heading{position:absolute;bottom:calc(100% + 4px);left:50%;translate:-50% 0;background:var(--paper-bg);padding:0 10px;gap:12px;border:1px solid var(--line)}
+  body[data-scene-era="past"] .scene-nav-heading{margin-bottom:0}
   .scene-navigation:has(#scene-list[hidden]) .scene-nav-heading{position:static;translate:0;border:0}
   .scene-strip{grid-auto-columns:minmax(116px,1fr);gap:4px}
   body[data-scene-era] .scene-card{--thumbnail-height:32px;height:65px}

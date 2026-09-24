@@ -12,6 +12,7 @@ import { createViewMotion } from './view-motion';
 import { createSceneTransition } from './scene-transition';
 import { createSlides } from './slides';
 import { createTourUI } from './tour-ui';
+import { createHotspotDirections } from './hotspot-directions';
 
 const scenes: TourScene[] = [...panoramas, ...derivedScenes, ...photoScenes];
 type Era = 'past' | 'present';
@@ -59,6 +60,7 @@ const remembered = new Map<string, string>();
 const visibleScenes = () => scenes.filter(scene => eraOf(scene) === eraOf(current) && collectionOf(scene) === collectionOf(current));
 const sceneAsset = (scene: TourScene) => scene.format === 'photo' ? asset(scene.panorama) : panoramaAsset(scene.panorama);
 let viewer: PanoramaViewer | undefined;
+const hotspotDirections = createHotspotDirections(() => viewer?.getYaw() ?? current.initialYaw);
 let enginePromise: Promise<unknown> | undefined;
 let generation = 0;
 let loadingTimer: ReturnType<typeof setTimeout> | undefined;
@@ -93,7 +95,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       </div>
       <p class="sr-only" id="panorama-help">Kéo để nhìn quanh hoặc dùng bốn nút đổi hướng. Chọn ảnh thu nhỏ để chuyển điểm. Mở Tư liệu để đọc thêm.</p>
       <nav class="scene-navigation" aria-label="${scenes.length} điểm nhìn">
-        <div class="scene-nav-heading"><span id="scene-position" aria-hidden="true"></span><button id="scene-list-toggle" aria-expanded="true" aria-controls="scene-list"><span>Dải ảnh</span>${icon('chevron')}</button></div>
+        <div class="scene-nav-heading"><span id="scene-position" aria-hidden="true"></span><button id="scene-list-toggle" aria-label="Ẩn dải ảnh" aria-expanded="true" aria-controls="scene-list"><span>Ẩn</span>${icon('chevron')}</button></div>
         <div class="scene-nav-row" id="scene-list"><button class="icon-button scene-step previous" id="previous-scene" aria-label="Điểm nhìn trước" title="Điểm nhìn trước">${icon('chevron')}</button><div class="scene-strip"></div><button class="icon-button scene-step next" id="next-scene" aria-label="Điểm nhìn tiếp theo" title="Điểm nhìn tiếp theo">${icon('chevron')}</button></div>
       </nav>
     </div>
@@ -403,6 +405,7 @@ function failScene(token: number) {
   generation++;
   clearTimeout(loadingTimer);
   motion.setViewer(undefined, current.format !== 'photo');
+  hotspotDirections.clear();
   sceneTransition.clear();
   setLoading(false);
   viewer?.destroy();
@@ -423,6 +426,7 @@ async function loadScene() {
   const token = ++generation;
   clearTimeout(loadingTimer);
   motion.setViewer(undefined, current.format !== 'photo');
+  hotspotDirections.clear();
   viewer?.destroy();
   viewer = undefined;
   const isPhoto = current.format === 'photo';
@@ -478,6 +482,7 @@ async function loadScene() {
           button.innerHTML = `<span class="hotspot-circle">${icon('arrow')}</span><span class="hotspot-caption">${escape(spot.label)}</span>`;
           button.addEventListener('click', (event) => { event.stopPropagation(); selectScene(spot.targetId); });
           element.append(button);
+          hotspotDirections.add(element, spot.yaw);
         },
       })),
     });

@@ -23,7 +23,7 @@ typography:
     lineHeight: 1.65
   past-scene-title:
     fontFamily: "Newsreader, Georgia, Times New Roman, serif"
-    fontSize: "27px"
+    fontSize: "22px"
     lineHeight: 1.3
   present-body:
     fontFamily: "Be Vietnam Pro, Arial, sans-serif"
@@ -79,7 +79,7 @@ Hiện tại: bề mặt `#fafcfb`, vùng lồng `#eaf1ed`, chữ `#172c22`, ch�
 
 ## Typography
 
-Newsreader là phông Quá khứ: nội dung đọc 19px/1.65 trên máy tính, 18px/1.65 trên điện thoại. Tiêu đề cảnh 27px, 22px trên điện thoại, 20px ở màn hình dưới 360px và 19px khi ngang thấp.
+Newsreader là phông Quá khứ: nội dung đọc 19px/1.65 trên máy tính, 18px/1.65 trên điện thoại. Tiêu đề cảnh 22px, 19px trên điện thoại và 18px ở màn hình dưới 360px hoặc khi ngang thấp.
 
 Be Vietnam Pro là phông Hiện tại, được lưu cùng trang: nội dung đọc 17px/1.75, tiêu đề bảng 26px (23px trên điện thoại), tên cảnh 18px (16px trên điện thoại). Dùng biến `--ui-font` cho phông theo thời kỳ; không tải thêm phông hoặc dùng chữ kiểu pixel làm khó đọc tiếng Việt.
 
@@ -87,11 +87,11 @@ Be Vietnam Pro là phông Hiện tại, được lưu cùng trang: nội dung đ
 
 Quy tắc chung ở `src/style.css`; bố cục tour ở `src/tour.css`, tương tác dải ảnh ở `src/tour-ui.ts`, phần theo thời kỳ ở `src/eras.css`, được chọn bằng `body[data-scene-era]`. Cảnh, chế độ xem và liên kết sâu quyết định thời kỳ, vì vậy đổi cảnh cũng đổi cả diện mạo đúng lúc.
 
-Máy tính đặt bộ chọn thời kỳ góc trên trái, kính VR/máy ảnh góc trên phải, tên cảnh bên dưới bên trái. Tên cảnh lớn hơn, niên đại ở dưới và Tư liệu ở cạnh bên; cùng một cấu trúc cho hai thời kỳ. Hiện tại dùng bảng tên gọn, không có thanh màu riêng.
+Máy tính đặt bộ chọn thời kỳ góc trên trái, kính VR/máy ảnh góc trên phải, tên cảnh bên dưới bên trái. Quá khứ dùng thanh tiêu đề đỏ nâu, ngày và liên kết Tư liệu ở hàng dưới; nút vuông có viền nổi hai tông và trạng thái nhấn chìm. Hiện tại dùng bảng tên gọn, không có thanh màu riêng.
 
-Trên điện thoại, cả hai thời kỳ đặt bộ chọn thời kỳ và bộ chọn cách xem trên cùng một hàng để dành thêm chỗ cho ảnh. Quá khứ giữ chữ có chân và viền mảnh, giảm đệm ngang của nút để vừa màn hình 320px; thanh tên cảnh nằm ngay dưới hai bộ chọn. Điện thoại rộng từ 390px xếp tám nút góc nhìn thành một hàng; nhỏ hơn dùng bốn cột. Máy tính giữ cụm hai cột bên phải. Album ẩn nút hướng nhìn. Màn hình ngang thấp giữ hai bộ chọn ở hai góc trên.
+Trên điện thoại, cả hai thời kỳ đặt bộ chọn thời kỳ và bộ chọn cách xem trên cùng một hàng để dành thêm chỗ cho ảnh. Quá khứ giữ chữ có chân, thanh tiêu đề đỏ nâu và nút nổi cổ điển, giảm đệm ngang của nút để vừa màn hình 320px; thanh tên cảnh nằm ngay dưới hai bộ chọn. Điện thoại rộng từ 390px xếp tám nút góc nhìn thành một hàng; nhỏ hơn dùng bốn cột. Máy tính giữ cụm hai cột bên phải. Album ẩn nút hướng nhìn. Màn hình ngang thấp giữ hai bộ chọn ở hai góc trên.
 
-Mọi nút chính có vùng bấm ít nhất 44 × 44px. Dải ảnh cuộn ngang theo số cảnh. Khung album chừa phần tên cảnh qua `--context-end`, giữ toàn bộ ảnh bằng `object-fit: contain` trước khi người xem phóng to; không cắt ảnh nguồn để vừa khung.
+Mọi nút chính có vùng bấm ít nhất 44 × 44px. Dải ảnh cuộn ngang theo số cảnh; nút Ẩn / Hiện cho biết hành động tiếp theo. Khung album chừa phần tên cảnh qua `--context-end`, giữ toàn bộ ảnh bằng `object-fit: contain` trước khi người xem phóng to; không cắt ảnh nguồn để vừa khung.
 
 ## Ngắm cảnh và chuyển động
 

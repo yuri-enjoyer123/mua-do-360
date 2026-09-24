@@ -23,6 +23,8 @@ export function createTourUI(experience: HTMLElement, reducedMotion: MediaQueryL
   toggle.addEventListener('click', () => {
     const expanded = toggle.getAttribute('aria-expanded') !== 'true';
     toggle.setAttribute('aria-expanded', String(expanded));
+    toggle.querySelector('span')!.textContent = expanded ? 'Ẩn' : 'Hiện';
+    toggle.setAttribute('aria-label', `${expanded ? 'Ẩn' : 'Hiện'} dải ảnh`);
     list.hidden = !expanded;
     experience.classList.toggle('tray-collapsed', !expanded);
     if (expanded) {
