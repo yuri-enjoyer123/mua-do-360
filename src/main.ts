@@ -138,6 +138,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       </section>
     </div>
     <p id="slides-feedback" role="status"></p>
+    <span id="slides-focus-end" class="sr-only" tabindex="0"></span>
   </dialog>
   <dialog class="information-dialog" id="information-dialog" aria-labelledby="dialog-title">
     <div class="dialog-top"><button class="icon-button close-dialog" aria-label="Đóng bảng tư liệu">${icon('close')}</button></div>
@@ -182,6 +183,10 @@ const slides = createSlides({
   url: slidesUrl,
   openDialog: () => openDialog(slidesDialog),
   onChange: () => {
+    if (!slidesDialog.open) {
+      infoDialog.close();
+      helpDialog.close();
+    }
     syncAudioState();
     document.title = slidesDialog.open ? 'Mưa đỏ · Trình chiếu' : `${current.title} · Mưa đỏ`;
   },
@@ -688,7 +693,11 @@ get('reset-view').addEventListener('click', resetView);
 get('fullscreen-button').addEventListener('click', () => void toggleFullscreen());
 get('slides-button').addEventListener('click', () => slides.open());
 get('slides-scene-select').addEventListener('change', event => selectScene((event.target as HTMLSelectElement).value));
-get('presentation-button').addEventListener('click', () => { infoDialog.close(); setPresentation(!presentation); });
+get('presentation-button').addEventListener('click', () => {
+  infoDialog.close();
+  if (slidesDialog.open) slidesDialog.close();
+  setPresentation(!presentation);
+});
 get('immersive-button').addEventListener('click', () => setPresentation(!presentation));
 get('presentation-exit').addEventListener('click', () => setPresentation(false));
 get('ambience-button').addEventListener('click', () => void toggleAmbience());
@@ -724,7 +733,7 @@ document.addEventListener('keydown', (event) => {
   const target = event.target as HTMLElement;
   if ([infoDialog, helpDialog].some(dialog => dialog.open) || (slidesDialog.open && !experience.contains(target)) || event.altKey || event.ctrlKey || event.metaKey) return;
   if (target.closest('input, textarea, select, [contenteditable="true"]')) return;
-  if (event.key === 'Escape' && presentation) { setPresentation(false); return; }
+  if (event.key === 'Escape' && presentation && !slidesDialog.open) { setPresentation(false); return; }
   if (event.key.toLowerCase() === 's' && !slidesDialog.open) { event.preventDefault(); slides.open(); return; }
   if (/^[1-9]$/.test(event.key) && visibleScenes()[Number(event.key) - 1]) { event.preventDefault(); selectScene(visibleScenes()[Number(event.key) - 1].id); return; }
   if (event.key.toLowerCase() === 'f') { event.preventDefault(); void toggleFullscreen(); return; }

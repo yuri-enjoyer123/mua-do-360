@@ -9,7 +9,8 @@ type SlidesOptions = {
 };
 
 export function createSlides(options: SlidesOptions) {
-  const { dialog, frame, experience, url } = options;
+  const { dialog, experience, url } = options;
+  let frame = options.frame;
   const get = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
   const home = document.createComment('scene-home');
   experience.after(home);
@@ -26,6 +27,7 @@ export function createSlides(options: SlidesOptions) {
   let ownsFullscreen = false;
   let fullscreenPending = false;
   let split = false;
+  let closingFromHistory = false;
 
   function route(open: boolean, push = false) {
     const params = new URLSearchParams(location.hash.slice(1));
@@ -104,6 +106,7 @@ export function createSlides(options: SlidesOptions) {
 
   function open(fullscreen = true, fromHistory = false) {
     if (dialog.open) return;
+    closingFromHistory = false;
     options.openDialog();
     setLayout(fromHistory && new URLSearchParams(location.hash.slice(1)).get('layout') === 'split');
     if (!fromHistory) route(true, true);
@@ -118,7 +121,10 @@ export function createSlides(options: SlidesOptions) {
     if (params.get('view') === 'slides') {
       if (!dialog.open) open(false, true);
       else setLayout(params.get('layout') === 'split');
-    } else if (dialog.open) dialog.close();
+    } else if (dialog.open) {
+      closingFromHistory = true;
+      dialog.close();
+    }
   }
 
   splitButton.addEventListener('click', () => {
@@ -161,16 +167,27 @@ export function createSlides(options: SlidesOptions) {
       menu.querySelector('summary')!.focus();
     }
   });
-  frame.addEventListener('load', () => {
-    if (!dialog.open || !frame.hasAttribute('src')) return;
-    if (frame.contentDocument?.URL === 'about:blank') return;
-    clearTimeout(loadingTimer);
-    status.hidden = true;
-    frame.setAttribute('aria-busy', 'false');
+  get('slides-focus-end').addEventListener('focus', () => splitButton.focus());
+  dialog.addEventListener('keydown', event => {
+    if (event.key === 'Tab' && event.shiftKey && document.activeElement === splitButton) {
+      event.preventDefault();
+      (split ? get('slides-return') : frame).focus();
+    }
   });
-  frame.addEventListener('error', () => {
-    if (dialog.open) showStatus('Chưa mở được bài chiếu.', true);
-  });
+  function listenToFrame() {
+    const currentFrame = frame;
+    currentFrame.addEventListener('load', () => {
+      if (currentFrame !== frame || !dialog.open || !frame.hasAttribute('src')) return;
+      if (frame.contentDocument?.URL === 'about:blank') return;
+      clearTimeout(loadingTimer);
+      status.hidden = true;
+      frame.setAttribute('aria-busy', 'false');
+    });
+    currentFrame.addEventListener('error', () => {
+      if (currentFrame === frame && dialog.open) showStatus('Chưa mở được bài chiếu.', true);
+    });
+  }
+  listenToFrame();
   window.addEventListener('offline', () => {
     if (dialog.open) showStatus('Bạn đang ngoại tuyến.', true);
   });
@@ -181,8 +198,13 @@ export function createSlides(options: SlidesOptions) {
     if (dialog.open) return;
     clearTimeout(loadingTimer);
     clearTimeout(feedbackTimer);
-    frame.removeAttribute('src');
-    frame.removeAttribute('aria-busy');
+    // Removing a src navigates to about:blank and can erase the Forward entry.
+    const emptyFrame = frame.cloneNode(false) as HTMLIFrameElement;
+    emptyFrame.removeAttribute('src');
+    emptyFrame.removeAttribute('aria-busy');
+    frame.replaceWith(emptyFrame);
+    frame = emptyFrame;
+    listenToFrame();
     feedback.textContent = '';
     menu.open = false;
     setLayout(false);
@@ -190,7 +212,8 @@ export function createSlides(options: SlidesOptions) {
       ownsFullscreen = false;
       if (document.fullscreenElement) void document.exitFullscreen().catch(() => {});
     }
-    route(false);
+    if (!closingFromHistory) route(false);
+    closingFromHistory = false;
     get('slides-button').setAttribute('aria-expanded', 'false');
     options.onChange();
     get(document.body.classList.contains('presentation') ? 'presentation-exit' : 'slides-button').focus({ preventScroll: true });

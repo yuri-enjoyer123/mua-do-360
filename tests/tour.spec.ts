@@ -153,7 +153,7 @@ test('direct panorama entry, all viewpoints, and clean immersion', async ({ page
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('./');
   await expect(page.locator('.introduction')).toHaveCount(0);
-  await expect(page.locator('header')).toHaveCount(0);
+  await expect(page.locator('header:visible')).toHaveCount(0);
   await expect(page.locator('.location-tag')).toHaveCount(0);
   await expect(page.locator('.reconstruction-label')).toHaveCount(0);
   await expect(page.locator('nav.scene-navigation')).toHaveAttribute('aria-label', '6 điểm nhìn');

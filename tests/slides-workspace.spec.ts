@@ -28,7 +28,7 @@ const MOCK_CANVA_HTML = `<!doctype html>
 
 function disableNativeFullscreen(page: Page) {
   return page.addInitScript(() => {
-    document.documentElement.requestFullscreen = async () => {
+    Element.prototype.requestFullscreen = async () => {
       throw new DOMException('Native fullscreen disabled in test suite', 'NotAllowedError');
     };
   });
@@ -101,6 +101,8 @@ test.describe('Canva workspace', () => {
 
     const sceneSelect = page.locator('#slides-scene-select');
     await sceneSelect.selectOption('citadel-gate-2018-360');
+    await expect(page.locator('#panorama')).toHaveAttribute('aria-busy', 'false');
+    await expect(page.locator('#slides-scene-host #panorama canvas')).toBeVisible();
 
     await expect(page.locator('#scene-title')).toHaveText('Cổng Thành cổ');
 
@@ -206,6 +208,32 @@ test.describe('Canva workspace', () => {
     expect(copiedText).toContain('scene=cong-hau');
     expect(copiedText).toContain('view=slides');
     expect(copiedText).toContain('layout=split');
+  });
+
+  test('keeps photo zoom and restores immersive viewing after the presentation', async ({ page }) => {
+    await disableNativeFullscreen(page);
+    await page.route(CANVA_EMBED_URL, route => route.fulfill({ contentType: 'text/html', body: MOCK_CANVA_HTML }));
+    await page.goto('./#scene=quang-tri-south-1967');
+    const photo = page.locator('#photo-viewer');
+    await expect(photo).toHaveAttribute('aria-busy', 'false');
+    await page.locator('#zoom-in').click();
+    await page.locator('#zoom-in').click();
+    const scale = await photo.getAttribute('data-scale');
+    expect(Number(scale)).toBeGreaterThan(1);
+    await page.locator('#immersive-button').click();
+    await page.keyboard.press('s');
+    await expect(page.locator('#slides-dialog')).toBeVisible();
+    await page.locator('#slides-split').click();
+    await expect(photo).toHaveAttribute('data-scale', scale!);
+    await expect(page.locator('#look-up')).toBeHidden();
+    await page.locator('#zoom-in').click();
+    const zoomedScale = await photo.getAttribute('data-scale');
+    expect(Number(zoomedScale)).toBeGreaterThan(Number(scale));
+    await page.locator('#slides-return').click();
+    await expect(page.locator('#slides-dialog')).not.toBeVisible();
+    await expect(photo).toHaveAttribute('data-scale', zoomedScale!);
+    await expect(page.locator('body')).toHaveClass(/presentation/);
+    await expect(page.locator('#presentation-exit')).toBeFocused();
   });
 
   test('offers a retry and external link when the embed stalls', async ({ page }) => {
@@ -354,6 +382,14 @@ test.describe('Canva workspace', () => {
           scale: 'css',
         });
       }
+    }
+    await page.setViewportSize({ width: 320, height: 568 });
+    await page.locator('#slides-scene-select').selectOption('citadel-gate-2018-360');
+    await expect(page.locator('#panorama')).toHaveAttribute('aria-busy', 'false');
+    await expect(page.locator('body')).toHaveAttribute('data-scene-era', 'present');
+    await expect(counterVal).toHaveText('1');
+    if (process.env.MUA_DO_CAPTURE_LAYOUTS === '1') {
+      await page.screenshot({ path: testInfo.outputPath('slides-workspace-present-320.png'), scale: 'css' });
     }
   });
 });
