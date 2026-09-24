@@ -13,6 +13,7 @@ import { createSceneTransition } from './scene-transition';
 import { createSlides } from './slides';
 import { createTourUI } from './tour-ui';
 import { createHotspotDirections } from './hotspot-directions';
+import { horizontalField, longSideField } from './view-field';
 
 const scenes: TourScene[] = [...panoramas, ...derivedScenes, ...photoScenes];
 type Era = 'past' | 'present';
@@ -176,6 +177,20 @@ const motion = createViewMotion(get<HTMLButtonElement>('rotate-button'), get<HTM
 const sceneTransition = createSceneTransition(get('scene-transition'), reducedMotion);
 const experience = document.querySelector<HTMLElement>('.experience')!;
 const tourUI = createTourUI(experience, reducedMotion);
+const viewAspect = () => Math.max(1, experience.clientWidth) / Math.max(1, experience.clientHeight);
+let cameraAspect = viewAspect();
+const initialField = () => eraOf(current) === 'present' ? horizontalField(95, viewAspect()) : window.innerWidth < 600 ? 80 : 100;
+function resizeViewer() {
+  if (!viewer) return;
+  const nextAspect = viewAspect();
+  if (eraOf(current) === 'present') {
+    const field = longSideField(viewer.getHfov(), cameraAspect);
+    viewer.setHfovBounds([horizontalField(55, nextAspect), horizontalField(100, nextAspect)]);
+    viewer.resize();
+    viewer.setHfov(horizontalField(field, nextAspect), 0);
+  } else viewer.resize();
+  cameraAspect = nextAspect;
+}
 const sceneContext = document.querySelector<HTMLElement>('.scene-context')!;
 function updatePhotoInset() {
   experience.style.setProperty('--context-end', `${sceneContext.getBoundingClientRect().bottom - experience.getBoundingClientRect().top}px`);
@@ -198,10 +213,10 @@ const slides = createSlides({
   },
   onResize: () => {
     updatePhotoInset();
-    viewer?.resize();
+    resizeViewer();
   },
 });
-new ResizeObserver(() => viewer?.resize()).observe(experience);
+new ResizeObserver(resizeViewer).observe(experience);
 
 function announce(text: string) { announcement.textContent = text; }
 
@@ -461,13 +476,16 @@ async function loadScene() {
     if (token !== generation) return;
     preview.onerror = null;
     preview.src = sceneImage.src;
+    cameraAspect = viewAspect();
     viewer = window.pannellum.viewer(panorama, {
       // Static mode preserves split textures on devices with smaller GPU limits.
       type: 'equirectangular', panorama: sceneImage.src,
       autoLoad: true, showControls: false, compass: false,
       disableKeyboardCtrl: true, keyboardZoom: false,
       yaw: current.initialYaw, pitch: current.initialPitch,
-      hfov: window.innerWidth < 600 ? 80 : 100, minHfov: 65, maxHfov: 120,
+      hfov: initialField(),
+      minHfov: eraOf(current) === 'present' ? horizontalField(55, cameraAspect) : 65,
+      maxHfov: eraOf(current) === 'present' ? horizontalField(100, cameraAspect) : 120,
       mouseZoom: true, friction: reducedMotion.matches ? 1 : 0.15,
       escapeHTML: true, backgroundColor: [0.07, 0.10, 0.08],
       strings: { loadingLabel: 'Đang mở cảnh…', fileAccessError: 'Chưa tải được ảnh.', genericWebGLError: 'Trình duyệt chưa mở được cảnh này.', noWebGLError: 'Trình duyệt này chưa hỗ trợ cách xem này.' },
@@ -550,7 +568,7 @@ function zoom(direction: number) {
 function resetView() {
   motion.stop();
   if (current.format === 'photo') photoController.reset();
-  else viewer?.lookAt(current.initialPitch, current.initialYaw, window.innerWidth < 600 ? 80 : 100, duration());
+  else viewer?.lookAt(current.initialPitch, current.initialYaw, initialField(), duration());
 }
 
 function setPresentation(active: boolean) {
@@ -564,7 +582,7 @@ function setPresentation(active: boolean) {
   get('presentation-exit').hidden = !active;
   if (active) get('presentation-exit').focus();
   else (current.format === 'photo' ? photoView : panorama).focus({ preventScroll: true });
-  viewer?.resize();
+  resizeViewer();
 }
 
 async function toggleFullscreen() {

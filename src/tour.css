@@ -253,6 +253,7 @@ body[data-scene-era="past"] .hotspot-circle{
   border-radius:0;
   box-shadow:1px 1px 0 var(--ink);
 }
+.hotspot-circle .icon{width:22px;height:22px;stroke-width:1.75}
 body[data-scene-era="past"] :is(.information-dialog,.help-dialog){
   border:2px solid;
   border-color:var(--bevel-light) var(--bevel-dark) var(--bevel-dark) var(--bevel-light);

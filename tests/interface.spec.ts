@@ -21,6 +21,70 @@ test('interface refresh: hotspot arrows follow the camera without changing their
   await expect.poll(() => horizontalDirection(page.getByRole('button', { name: 'Chuyển điểm: Điểm trước: Hào thành' }))).toBe(-1);
 });
 
+test.describe('present camera', () => {
+  test.use({ deviceScaleFactor: 1 });
+  test('interface refresh: present views keep a bounded field when resized or used in Split-view', async ({ page }, testInfo) => {
+    test.setTimeout(90000);
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.route('https://www.canva.com/**', route => route.fulfill({ contentType: 'text/html', body: '<p>Presentation fixture</p>' }));
+    await page.addInitScript(() => {
+      let engine: { viewer: (...args: unknown[]) => unknown };
+      Object.defineProperty(window, 'pannellum', {
+        configurable: true,
+        get: () => engine,
+        set(value) {
+          engine = value;
+          const create = engine.viewer;
+          engine.viewer = (...args: unknown[]) => {
+            const viewer = create(...args);
+            Object.assign(window, { testViewer: viewer });
+            return viewer;
+          };
+        },
+      });
+    });
+    const longField = () => page.evaluate(() => {
+      const viewer = (window as unknown as { testViewer: { getHfov(): number } }).testViewer;
+      const view = document.querySelector<HTMLElement>('.experience')!;
+      return 2 * Math.atan(Math.tan(viewer.getHfov() * Math.PI / 360) / Math.min(1, view.clientWidth / view.clientHeight)) * 180 / Math.PI;
+    });
+    await page.goto('./#scene=citadel-gate-2018-360');
+    await expect(page.locator('#panorama')).toHaveAttribute('aria-busy', 'false');
+    for (const viewport of [{ width: 390, height: 844 }, { width: 844, height: 390 }, { width: 1440, height: 960 }]) {
+      await page.setViewportSize(viewport);
+      await page.locator('#reset-view').click();
+      await expect.poll(longField).toBeCloseTo(95, 1);
+      await page.locator('#zoom-out').click();
+      await page.locator('#zoom-out').click();
+      await expect.poll(longField).toBeLessThanOrEqual(100.01);
+    }
+    await page.locator('#slides-button').click();
+    await page.locator('#slides-split').click();
+    await expect.poll(longField).toBeLessThanOrEqual(100.01);
+    await page.setViewportSize({ width: 390, height: 844 });
+    await expect.poll(longField).toBeLessThanOrEqual(100.01);
+    await page.locator('#reset-view').click();
+    await expect.poll(longField).toBeCloseTo(95, 1);
+    await page.locator('#slides-close').click();
+    await expect.poll(longField).toBeCloseTo(95, 1);
+
+    if (process.env.MUA_DO_CAPTURE_LAYOUTS === '1') {
+      await page.setViewportSize({ width: 960, height: 640 });
+      for (const scene of ['citadel-gate-2018-360', 'citadel-wall-2018-360']) {
+        await page.locator(`[data-scene="${scene}"]`).click();
+        await expect(page.locator('#panorama')).toHaveAttribute('aria-busy', 'false');
+        for (const [name, yaw, pitch] of [['front', 0, 0], ['right', 90, 0], ['back', 180, 0], ['down', 0, -35]] as const) {
+          await page.evaluate(({ yaw, pitch }) => {
+            (window as unknown as { testViewer: { lookAt(pitch: number, yaw: number, hfov: number, duration: number): void } }).testViewer.lookAt(pitch, yaw, 85, 0);
+          }, { yaw, pitch });
+          await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+          await page.locator('#panorama').screenshot({ path: testInfo.outputPath(`${scene}-${name}.png`), scale: 'css' });
+        }
+      }
+    }
+  });
+});
+
 test('interface refresh: folding the filmstrip frees the photo and retains navigation and focus', async ({ page }) => {
   await page.goto('./#scene=quang-tri-south-1967');
   const photo = page.locator('#photo-viewer');

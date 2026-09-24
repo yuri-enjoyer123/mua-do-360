@@ -9,6 +9,7 @@ interface PanoramaViewer {
   getYaw(): number;
   getPitch(): number;
   getHfov(): number;
+  setHfovBounds(bounds: [number, number]): PanoramaViewer;
   setYaw(yaw: number, duration?: number): PanoramaViewer;
   setPitch(pitch: number, duration?: number): PanoramaViewer;
   setHfov(hfov: number, duration?: number): PanoramaViewer;
